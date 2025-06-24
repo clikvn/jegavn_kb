@@ -8,8 +8,8 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'Jega Knowledgebase',
+  tagline: 'Welcome to Jega Knowledgebase',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -58,9 +58,9 @@ const config = {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'My Site',
+        title: 'Jega Knowledgebase',
         logo: {
-          alt: 'My Site Logo',
+          alt: 'Jega Logo',
           src: 'img/logo.svg',
         },
         items: [
@@ -68,7 +68,7 @@ const config = {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: 'Docs',
+            label: 'Documentation',
           },
           {to: '/blog', label: 'Blog', position: 'left'},
         ],
