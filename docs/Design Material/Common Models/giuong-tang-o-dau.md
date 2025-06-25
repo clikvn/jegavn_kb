@@ -1,6 +1,6 @@
 ---
 title: Giường tầng ở đâu
-slug: giuong-tang-o-dau
+slug: /giuong-tang-o-dau
 sidebar_label: Giường tầng ở đâu
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Cách mở cửa phòng
-slug: cach-mo-cua-phong
+slug: /cach-mo-cua-phong
 sidebar_label: Cách mở cửa phòng
 ---
 

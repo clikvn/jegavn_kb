@@ -1,6 +1,6 @@
 ---
 title: Cách làm phòng tắm nắng
-slug: how-to-make-a-sun-room
+slug: /how-to-make-a-sun-room
 sidebar_label: Cách làm phòng tắm nắng
 ---
 

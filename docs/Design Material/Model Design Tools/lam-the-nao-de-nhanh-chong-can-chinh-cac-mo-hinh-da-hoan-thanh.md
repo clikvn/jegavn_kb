@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để nhanh chóng căn chỉnh các mô hình đã hoàn thành
-slug: lam-the-nao-de-nhanh-chong-can-chinh-cac-mo-hinh-da-hoan-thanh
+slug: /lam-the-nao-de-nhanh-chong-can-chinh-cac-mo-hinh-da-hoan-thanh
 sidebar_label: Cách căn chỉnh nhanh mô hình
 ---
 
@@ -19,8 +19,6 @@ Xin chào, trong phần mềm, bạn có thể nhấn phím CTRL + nút chuột 
 ![Một quy trình làm việc căn chỉnh cho thấy (3) ba chiếc ghế bành được chọn, (2) biểu tượng căn chỉnh được nhấp và (1) tùy chọn Căn chỉnh phía trước được chọn từ menu.](https://storage.googleapis.com/jegavn_kb/images/9940e314-3b40-44bc-bd33-513f9a2f6e2d.png)
 
 :::note
-
-Ảnh GIF minh họa thao tác:
 
 :::
 

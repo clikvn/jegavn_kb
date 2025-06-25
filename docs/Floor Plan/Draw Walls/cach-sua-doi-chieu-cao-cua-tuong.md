@@ -1,6 +1,6 @@
 ---
 title: Cách sửa đổi chiều cao của tường
-slug: cach-sua-doi-chieu-cao-cua-tuong
+slug: /cach-sua-doi-chieu-cao-cua-tuong
 sidebar_label: Cách sửa đổi chiều cao của tường
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Cách phản chiếu các đối tượng tạo khối tự do
-slug: cach-phan-chieu-cac-doi-tuong-tao-khoi-tu-do
+slug: /cach-phan-chieu-cac-doi-tuong-tao-khoi-tu-do
 sidebar_label: Cách phản chiếu các đối tượng tạo khối tự do
 ---
 
@@ -23,8 +23,6 @@ Xin chào, đối với hình dạng mô hình được thiết kế trong Tạo
 ![Người dùng đang làm việc ở chế độ tạo khối tự do của phần mềm thiết kế 3D, với một đối tượng được chọn và một công cụ được tô sáng, và một đối tượng hoặc mặt phẳng khác cũng được tô sáng.](https://storage.googleapis.com/jegavn_kb/images/0d14d34e-cff7-4632-8738-75a25ce5ab1f.png)
 
 :::note
-
-Nếu bạn cần sao chép phản chiếu, hãy nhấn phím shift trong quá trình phản chiếu, và một biểu tượng dấu "+" sẽ xuất hiện bên cạnh con trỏ chuột.
 
 :::
 

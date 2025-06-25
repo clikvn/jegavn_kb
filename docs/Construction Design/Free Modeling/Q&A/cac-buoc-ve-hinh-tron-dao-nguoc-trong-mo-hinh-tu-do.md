@@ -1,6 +1,6 @@
 ---
 title: Các bước vẽ hình tròn đảo ngược trong mô hình tự do
-slug: cac-buoc-ve-hinh-tron-dao-nguoc-trong-mo-hinh-tu-do
+slug: /cac-buoc-ve-hinh-tron-dao-nguoc-trong-mo-hinh-tu-do
 sidebar_label: Vẽ hình tròn đảo ngược trong mô hình tự do
 ---
 

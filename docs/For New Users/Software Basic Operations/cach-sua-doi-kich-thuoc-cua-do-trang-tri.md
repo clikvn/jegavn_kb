@@ -1,6 +1,6 @@
 ---
 title: Cách sửa đổi kích thước của đồ trang trí
-slug: cach-sua-doi-kich-thuoc-cua-do-trang-tri
+slug: /cach-sua-doi-kich-thuoc-cua-do-trang-tri
 sidebar_label: Cách sửa đổi kích thước của đồ trang trí
 ---
 

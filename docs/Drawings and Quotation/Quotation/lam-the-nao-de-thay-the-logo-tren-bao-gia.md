@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để thay thế logo trên báo giá?
-slug: lam-the-nao-de-thay-the-logo-tren-bao-gia
+slug: /lam-the-nao-de-thay-the-logo-tren-bao-gia
 sidebar_label: Làm thế nào để thay thế logo trên báo giá?
 ---
 

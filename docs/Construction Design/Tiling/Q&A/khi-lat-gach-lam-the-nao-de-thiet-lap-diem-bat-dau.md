@@ -1,6 +1,6 @@
 ---
 title: Khi lát gạch làm thế nào để thiết lập điểm bắt đầu?
-slug: khi-lat-gach-lam-the-nao-de-thiet-lap-diem-bat-dau
+slug: /khi-lat-gach-lam-the-nao-de-thiet-lap-diem-bat-dau
 sidebar_label: Khi lát gạch làm thế nào để thiết lập điểm bắt đầu?
 ---
 

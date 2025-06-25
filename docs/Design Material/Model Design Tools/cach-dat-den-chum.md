@@ -1,6 +1,6 @@
 ---
 title: Cách Đặt Đèn Chùm
-slug: cach-dat-den-chum
+slug: /cach-dat-den-chum
 sidebar_label: Cách Đặt Đèn Chùm
 ---
 

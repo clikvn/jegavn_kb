@@ -1,6 +1,6 @@
 ---
 title: Tại sao không có trần nhà
-slug: tai-sao-khong-co-tran-nha
+slug: /tai-sao-khong-co-tran-nha
 sidebar_label: Tại sao không có trần nhà
 ---
 

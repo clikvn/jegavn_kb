@@ -1,6 +1,6 @@
 ---
 title: Cách tạo Máy hút mùi
-slug: cach-tao-may-hut-mui
+slug: /cach-tao-may-hut-mui
 sidebar_label: Cách tạo Máy hút mùi
 ---
 
@@ -11,8 +11,6 @@ Một. Máy hút mùi hoàn thiện: Bạn có thể kéo và thả trực tiế
 Hai. Máy hút mùi tùy chỉnh:
 
 :::note
-
-Khi lắp đặt máy hút mùi, lưu ý rằng nó được lắp đặt bằng cách nhấp vào bếp, vì vậy cần phải lắp đặt bếp trước.
 
 :::
 

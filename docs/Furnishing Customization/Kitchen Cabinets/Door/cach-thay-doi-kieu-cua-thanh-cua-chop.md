@@ -1,6 +1,6 @@
 ---
 title: Cách thay đổi kiểu cửa thành cửa chớp
-slug: cach-thay-doi-kieu-cua-thanh-cua-chop
+slug: /cach-thay-doi-kieu-cua-thanh-cua-chop
 sidebar_label: Cách thay đổi kiểu cửa thành cửa chớp
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Tối ưu hóa thói quen thao tác chuột
-slug: toi-uu-hoa-thoi-quen-thao-tac-chuot
+slug: /toi-uu-hoa-thoi-quen-thao-tac-chuot
 sidebar_label: Tối ưu hóa thói quen thao tác chuột
 ---
 
@@ -11,10 +11,6 @@ I. Giới thiệu chức năng:
 2. Cài đặt chuột được áp dụng trong chế độ 3D:
 
 :::info
-
-① Nếu chuột được đặt để xoay ngang bằng nút trái và xoay tròn bằng nút phải, trong chế độ xem 3D, nút trái sẽ xoay ngang và nút phải sẽ xoay tròn;
-② Nếu chuột được đặt để xoay ngang bằng nút phải và xoay tròn bằng nút trái, trong chế độ xem 3D, nút phải sẽ xoay ngang và nút trái sẽ xoay tròn;
-③ Nếu chuột được đặt để xoay tròn bằng cả nút trái và phải, trong chế độ xem 3D, cả hai nút trái và phải đều xoay tròn.
 
 :::
 

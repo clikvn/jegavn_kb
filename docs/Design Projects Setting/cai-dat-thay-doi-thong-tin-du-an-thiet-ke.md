@@ -1,6 +1,6 @@
 ---
 title: Cài đặt Thay đổi Thông tin Dự án Thiết kế
-slug: cai-dat-thay-doi-thong-tin-du-an-thiet-ke
+slug: /cai-dat-thay-doi-thong-tin-du-an-thiet-ke
 sidebar_label: Cài đặt Thay đổi Thông tin Dự án Thiết kế
 ---
 

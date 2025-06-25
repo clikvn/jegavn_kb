@@ -1,6 +1,6 @@
 ---
 title: Tại sao không thể quét vật liệu cho tấm ngăn kéo?
-slug: tai-sao-khong-the-quet-vat-lieu-cho-tam-ngan-keo
+slug: /tai-sao-khong-the-quet-vat-lieu-cho-tam-ngan-keo
 sidebar_label: Tại sao không thể quét vật liệu cho tấm ngăn kéo?
 ---
 
@@ -13,7 +13,5 @@ sidebar_label: Tại sao không thể quét vật liệu cho tấm ngăn kéo?
 ![Một menu ngữ cảnh để sửa đổi vật liệu của cửa tủ, hiển thị các bước: (1) chọn cửa tủ, (2) chọn Vật liệu, và (3) chọn Vật liệu cửa.](https://storage.googleapis.com/jegavn_kb/images/cbccf4dd-6cb2-4f84-b0f7-8f51ec004c16.png)
 
 :::note
-
-Ngoài ra, bạn có thể nhấn phím B để chuyển sang chế độ tấm ván và sau đó dùng cọ vật liệu để quét.
 
 :::

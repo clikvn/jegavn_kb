@@ -1,6 +1,6 @@
 ---
 title: Cách làm tủ bếp
-slug: cach-lam-tu-bep
+slug: /cach-lam-tu-bep
 sidebar_label: Cách làm tủ bếp
 ---
 

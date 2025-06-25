@@ -1,6 +1,6 @@
 ---
 title: Vị trí của mỹ phẩm
-slug: vi-tri-cua-my-pham
+slug: /vi-tri-cua-my-pham
 sidebar_label: Vị trí của mỹ phẩm
 ---
 

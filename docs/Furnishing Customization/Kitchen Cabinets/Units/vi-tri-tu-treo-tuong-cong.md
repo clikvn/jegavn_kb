@@ -1,6 +1,6 @@
 ---
 title: Vị trí tủ treo tường cong?
-slug: vi-tri-tu-treo-tuong-cong
+slug: /vi-tri-tu-treo-tuong-cong
 sidebar_label: Vị trí tủ treo tường cong?
 ---
 

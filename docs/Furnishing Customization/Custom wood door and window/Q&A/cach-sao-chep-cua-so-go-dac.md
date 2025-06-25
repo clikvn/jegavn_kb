@@ -1,6 +1,6 @@
 ---
 title: Cách sao chép cửa sổ gỗ đặc
-slug: cach-sao-chep-cua-so-go-dac
+slug: /cach-sao-chep-cua-so-go-dac
 sidebar_label: Cách sao chép cửa sổ gỗ đặc
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Công tắc ở đâu?
-slug: cong-tac-o-dau
+slug: /cong-tac-o-dau
 sidebar_label: Công tắc ở đâu?
 ---
 

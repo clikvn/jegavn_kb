@@ -1,6 +1,6 @@
 ---
 title: Cách thêm/sửa đổi dải đèn
-slug: cach-them-sua-doi-dai-den
+slug: /cach-them-sua-doi-dai-den
 sidebar_label: Cách thêm/sửa đổi dải đèn
 ---
 

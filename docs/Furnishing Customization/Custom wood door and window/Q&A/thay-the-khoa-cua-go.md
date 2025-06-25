@@ -1,6 +1,6 @@
 ---
 title: Thay thế khóa cửa gỗ
-slug: thay-the-khoa-cua-go
+slug: /thay-the-khoa-cua-go
 sidebar_label: Thay thế khóa cửa gỗ
 ---
 

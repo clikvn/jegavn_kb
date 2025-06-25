@@ -1,6 +1,6 @@
 ---
 title: Không Thể Thêm Phào Chỉ
-slug: khong-the-them-phao-chi
+slug: /khong-the-them-phao-chi
 sidebar_label: Không Thể Thêm Phào Chỉ
 ---
 

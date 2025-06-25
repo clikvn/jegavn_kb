@@ -1,6 +1,6 @@
 ---
 title: Không thể chỉnh sửa mặt bàn nâng cao sau khi đã tạo?
-slug: khong-the-chinh-sua-mat-ban-nang-cao-sau-khi-da-tao
+slug: /khong-the-chinh-sua-mat-ban-nang-cao-sau-khi-da-tao
 sidebar_label: Không thể chỉnh sửa mặt bàn nâng cao sau khi đã tạo?
 ---
 

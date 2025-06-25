@@ -1,6 +1,6 @@
 ---
 title: Tìm Giấy Dán Tường Ở Đâu
-slug: tim-giay-dan-tuong-o-dau
+slug: /tim-giay-dan-tuong-o-dau
 sidebar_label: Tìm Giấy Dán Tường Ở Đâu
 ---
 

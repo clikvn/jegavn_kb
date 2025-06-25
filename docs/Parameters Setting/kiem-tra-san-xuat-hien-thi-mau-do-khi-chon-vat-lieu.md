@@ -1,6 +1,6 @@
 ---
 title: "Kiểm Tra Sản Xuất: Hiển Thị Màu Đỏ Khi Chọn Vật Liệu"
-slug: kiem-tra-san-xuat-hien-thi-mau-do-khi-chon-vat-lieu
+slug: "/kiem-tra-san-xuat-hien-thi-mau-do-khi-chon-vat-lieu"
 sidebar_label: "Kiểm Tra Sản Xuất: Hiển Thị Màu Đỏ Khi Chọn Vật Liệu"
 ---
 

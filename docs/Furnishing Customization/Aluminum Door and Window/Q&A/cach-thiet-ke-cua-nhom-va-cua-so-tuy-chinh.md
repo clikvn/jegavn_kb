@@ -1,6 +1,6 @@
 ---
 title: Cách thiết kế cửa nhôm và cửa sổ tùy chỉnh
-slug: cach-thiet-ke-cua-nhom-va-cua-so-tuy-chinh
+slug: /cach-thiet-ke-cua-nhom-va-cua-so-tuy-chinh
 sidebar_label: Cách thiết kế cửa nhôm và cửa sổ tùy chỉnh
 ---
 

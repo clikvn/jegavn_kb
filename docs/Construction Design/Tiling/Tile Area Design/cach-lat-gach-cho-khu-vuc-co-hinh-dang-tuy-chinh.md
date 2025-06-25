@@ -1,6 +1,6 @@
 ---
 title: Cách lát gạch cho khu vực có hình dạng tùy chỉnh
-slug: cach-lat-gach-cho-khu-vuc-co-hinh-dang-tuy-chinh
+slug: /cach-lat-gach-cho-khu-vuc-co-hinh-dang-tuy-chinh
 sidebar_label: Cách lát gạch cho khu vực có hình dạng tùy chỉnh
 ---
 

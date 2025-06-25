@@ -1,6 +1,6 @@
 ---
 title: Hướng dẫn Tùy chỉnh Tiện ích
-slug: huong-dan-tuy-chinh-tien-ich
+slug: /huong-dan-tuy-chinh-tien-ich
 sidebar_label: Hướng dẫn Tùy chỉnh Tiện ích
 ---
 

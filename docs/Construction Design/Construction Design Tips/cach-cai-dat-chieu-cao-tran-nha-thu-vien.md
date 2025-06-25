@@ -1,6 +1,6 @@
 ---
 title: Cách Cài Đặt Chiều Cao Trần Nhà Thư Viện
-slug: cach-cai-dat-chieu-cao-tran-nha-thu-vien
+slug: /cach-cai-dat-chieu-cao-tran-nha-thu-vien
 sidebar_label: Cách Cài Đặt Chiều Cao Trần Nhà Thư Viện
 ---
 

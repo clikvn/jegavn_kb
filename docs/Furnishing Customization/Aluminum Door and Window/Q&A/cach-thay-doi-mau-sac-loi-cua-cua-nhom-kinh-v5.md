@@ -1,6 +1,6 @@
 ---
 title: Cách thay đổi màu sắc lõi cửa của cửa nhôm kính (V5)
-slug: cach-thay-doi-mau-sac-loi-cua-cua-nhom-kinh-v5
+slug: /cach-thay-doi-mau-sac-loi-cua-cua-nhom-kinh-v5
 sidebar_label: Cách thay đổi màu sắc lõi cửa của cửa nhôm kính (V5)
 ---
 

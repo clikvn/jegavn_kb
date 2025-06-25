@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để sửa đổi diện tích mặt bằng
-slug: lam-the-nao-de-sua-doi-dien-tich-mat-bang
+slug: /lam-the-nao-de-sua-doi-dien-tich-mat-bang
 sidebar_label: Làm thế nào để sửa đổi diện tích mặt bằng
 ---
 

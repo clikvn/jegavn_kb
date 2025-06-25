@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để đục lỗ trên tường?
-slug: lam-the-nao-de-duc-lo-tren-tuong
+slug: /lam-the-nao-de-duc-lo-tren-tuong
 sidebar_label: Làm thế nào để đục lỗ trên tường?
 ---
 

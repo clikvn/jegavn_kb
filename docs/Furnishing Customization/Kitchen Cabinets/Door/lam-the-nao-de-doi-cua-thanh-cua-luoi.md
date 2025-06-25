@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để đổi cửa thành cửa lưới
-slug: lam-the-nao-de-doi-cua-thanh-cua-luoi
+slug: /lam-the-nao-de-doi-cua-thanh-cua-luoi
 sidebar_label: Đổi cửa thành cửa lưới
 ---
 

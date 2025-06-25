@@ -1,14 +1,12 @@
 ---
 title: Cách sửa đổi đường chỉ đỉnh tủ
-slug: cach-sua-doi-duong-chi-dinh-tu
+slug: /cach-sua-doi-duong-chi-dinh-tu
 sidebar_label: Cách sửa đổi đường chỉ đỉnh tủ
 ---
 
 Trong tủ quần áo, đường chỉ đỉnh và đường chỉ chân tủ đều có thể được tạo cho toàn bộ, hoặc có thể sửa đổi kiểu dáng/vật liệu. Chúng cũng có thể được tạo riêng lẻ bằng cách chọn điểm. Lấy ví dụ về đường chỉ đỉnh tủ quần áo, thao tác như sau:
 
 :::info [Phương pháp 1]
-
-Phương pháp 1: Tạo toàn bộ đường chỉ đỉnh
 
 :::
 
@@ -21,8 +19,6 @@ Sau khi vào giao diện lắp đặt, bạn có thể tự do chọn kiểu dá
 ![Một người dùng đang ở 'Chế độ vẽ đường chỉ đỉnh' trong một ứng dụng thiết kế, điều chỉnh 'Mục và vật liệu' cho mặt bàn hoặc đảo bếp, và chuẩn bị xác nhận các thay đổi.](https://storage.googleapis.com/jegavn_kb/images/83f6ef34-ffce-4b3f-93e0-b43ffe1673b8.png)
 
 :::info [Phương pháp 2]
-
-Phương pháp 2: Tạo trong chế độ chọn điểm
 
 :::
 

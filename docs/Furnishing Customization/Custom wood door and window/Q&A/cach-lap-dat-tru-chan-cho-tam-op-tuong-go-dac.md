@@ -1,6 +1,6 @@
 ---
 title: Cách lắp đặt trụ chân cho tấm ốp tường gỗ đặc
-slug: cach-lap-dat-tru-chan-cho-tam-op-tuong-go-dac
+slug: /cach-lap-dat-tru-chan-cho-tam-op-tuong-go-dac
 sidebar_label: Cách lắp đặt trụ chân cho tấm ốp tường gỗ đặc
 ---
 

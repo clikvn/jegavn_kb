@@ -1,6 +1,6 @@
 ---
 title: Làm cách nào để căn chỉnh các đường ron gạch?
-slug: lam-cach-nao-de-can-chinh-cac-duong-ron-gach
+slug: /lam-cach-nao-de-can-chinh-cac-duong-ron-gach
 sidebar_label: Làm cách nào để căn chỉnh các đường ron gạch?
 ---
 
@@ -13,7 +13,5 @@ Nhấp chuột phải vào viên gạch và nhấp chuột trái vào **Căn ch�
 ![Gạch được căn chỉnh gọn gàng sau khi sử dụng chức năng căn chỉnh.](https://storage.googleapis.com/jegavn_kb/images/2082a9f1-8fa1-4b2d-8b59-5e0a0c17c089.png)
 
 :::note
-
-Kích thước gạch phải giống nhau và chức năng căn chỉnh chỉ có thể được sử dụng khi nhấp chuột phải vào gạch trong khu vực không có đường viền dạng sóng.
 
 :::

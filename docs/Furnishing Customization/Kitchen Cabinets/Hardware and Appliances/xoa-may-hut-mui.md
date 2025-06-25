@@ -1,6 +1,6 @@
 ---
 title: Xóa Máy Hút Mùi
-slug: xoa-may-hut-mui
+slug: /xoa-may-hut-mui
 sidebar_label: Xóa Máy Hút Mùi
 ---
 

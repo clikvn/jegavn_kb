@@ -1,6 +1,6 @@
 ---
 title: Xử lý họa tiết waterjet là đường spline
-slug: xu-ly-hoa-tiet-waterjet-la-duong-spline
+slug: /xu-ly-hoa-tiet-waterjet-la-duong-spline
 sidebar_label: Xử lý họa tiết waterjet là đường spline
 ---
 
@@ -13,16 +13,6 @@ Khi xử lý waterjet, nếu phát hiện waterjet được tạo bằng các đ
 2. Sau khi mỗi đường được chuyển đổi thành polyline, hãy làm theo các bước thao tác để xử lý waterjet.
 
 :::note
-
-Lưu ý: Nếu toàn bộ mẫu waterjet được tạo bằng các đường cong spline, sau khi tất cả các đường được chuyển đổi thành polyline, không cần nhập phím tắt 
-
-**IPP**
-
- để xử lý. Chỉ cần nhập phím tắt 
-
-**MY**
-
- để chuyển đổi mẫu waterjet thành một vùng trực tiếp.
 
 :::
 

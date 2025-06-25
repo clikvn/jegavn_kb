@@ -1,6 +1,6 @@
 ---
 title: Tôi có thể tìm tài liệu học tập ở đâu?
-slug: toi-co-the-tim-tai-lieu-hoc-tap-o-dau
+slug: /toi-co-the-tim-tai-lieu-hoc-tap-o-dau
 sidebar_label: Tôi có thể tìm tài liệu học tập ở đâu?
 ---
 

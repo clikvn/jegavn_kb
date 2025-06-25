@@ -1,6 +1,6 @@
 ---
 title: Cách Làm Cầu Thang
-slug: cach-lam-cau-thang
+slug: /cach-lam-cau-thang
 sidebar_label: Cách Làm Cầu Thang
 ---
 

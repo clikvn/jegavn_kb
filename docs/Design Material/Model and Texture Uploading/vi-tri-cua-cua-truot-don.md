@@ -1,6 +1,6 @@
 ---
 title: Vị trí của cửa trượt đơn
-slug: vi-tri-cua-cua-truot-don
+slug: /vi-tri-cua-cua-truot-don
 sidebar_label: Vị trí của cửa trượt đơn
 ---
 

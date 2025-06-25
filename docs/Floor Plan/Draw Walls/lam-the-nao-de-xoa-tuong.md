@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để xóa tường
-slug: lam-the-nao-de-xoa-tuong
+slug: /lam-the-nao-de-xoa-tuong
 sidebar_label: Làm thế nào để xóa tường
 ---
 

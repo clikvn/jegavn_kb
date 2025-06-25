@@ -1,6 +1,6 @@
 ---
 title: Cách tạo hình trụ trong Mô hình tự do
-slug: cach-tao-hinh-tru-trong-mo-hinh-tu-do
+slug: /cach-tao-hinh-tru-trong-mo-hinh-tu-do
 sidebar_label: Cách tạo hình trụ trong Mô hình tự do
 ---
 

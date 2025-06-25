@@ -1,6 +1,6 @@
 ---
 title: Cách thay đổi kiểu dáng cửa
-slug: cach-thay-doi-kieu-dang-cua
+slug: /cach-thay-doi-kieu-dang-cua
 sidebar_label: Cách thay đổi kiểu dáng cửa
 ---
 

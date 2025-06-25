@@ -1,12 +1,10 @@
 ---
 title: Tùy chỉnh Mặt đứng (Vẽ/Bù/Đặt đường viền...)
-slug: tuy-chinh-mat-dung-ve-bu-dat-duong-vien
+slug: /tuy-chinh-mat-dung-ve-bu-dat-duong-vien
 sidebar_label: Tùy chỉnh Mặt đứng (Vẽ/Bù/Đặt đường viền...)
 ---
 
-:::note
-
-Mặt đứng không thể thực hiện các thao tác như vẽ khu vực, bù trừ và đặt các đường viền cạnh trên khu vực, v.v.
+:::danger
 
 :::
 

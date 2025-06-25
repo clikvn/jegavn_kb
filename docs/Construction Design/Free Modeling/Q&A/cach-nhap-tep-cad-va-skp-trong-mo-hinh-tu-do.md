@@ -1,6 +1,6 @@
 ---
 title: Cách nhập tệp CAD và SKP trong Mô hình tự do
-slug: cach-nhap-tep-cad-va-skp-trong-mo-hinh-tu-do
+slug: /cach-nhap-tep-cad-va-skp-trong-mo-hinh-tu-do
 sidebar_label: Cách nhập tệp CAD và SKP
 ---
 

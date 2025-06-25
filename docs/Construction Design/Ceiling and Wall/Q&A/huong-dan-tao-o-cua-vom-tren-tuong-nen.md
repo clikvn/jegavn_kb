@@ -1,6 +1,6 @@
 ---
 title: Hướng dẫn tạo ô cửa vòm trên tường nền
-slug: huong-dan-tao-o-cua-vom-tren-tuong-nen
+slug: /huong-dan-tao-o-cua-vom-tren-tuong-nen
 sidebar_label: Hướng dẫn tạo ô cửa vòm trên tường nền
 ---
 

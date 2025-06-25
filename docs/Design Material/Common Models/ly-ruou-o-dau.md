@@ -1,6 +1,6 @@
 ---
 title: Ly rượu ở đâu?
-slug: ly-ruou-o-dau
+slug: /ly-ruou-o-dau
 sidebar_label: Ly rượu ở đâu?
 ---
 

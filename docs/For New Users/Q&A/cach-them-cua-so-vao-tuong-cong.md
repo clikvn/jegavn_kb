@@ -1,12 +1,10 @@
 ---
 title: Cách thêm cửa sổ vào tường cong
-slug: cach-them-cua-so-vao-tuong-cong
+slug: /cach-them-cua-so-vao-tuong-cong
 sidebar_label: Cách thêm cửa sổ vào tường cong
 ---
 
 :::note [Thao tác thiết kế phiên bản mới]
-
-Phiên bản 5 Plus tạm thời chưa có cửa đi và cửa sổ nhôm kính tùy chỉnh, sẽ được cập nhật sau khi tối ưu hóa. Các bước thao tác để làm cửa sổ cong trong phiên bản mới như sau:
 
 :::
 

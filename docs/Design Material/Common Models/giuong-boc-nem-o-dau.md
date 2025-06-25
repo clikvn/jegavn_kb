@@ -1,6 +1,6 @@
 ---
 title: Giường bọc nệm ở đâu?
-slug: giuong-boc-nem-o-dau
+slug: /giuong-boc-nem-o-dau
 sidebar_label: Giường bọc nệm ở đâu?
 ---
 

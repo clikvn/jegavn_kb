@@ -1,6 +1,6 @@
 ---
 title: Cách xuất bản vẽ không gian mô hình
-slug: cach-xuat-ban-ve-khong-gian-mo-hinh
+slug: /cach-xuat-ban-ve-khong-gian-mo-hinh
 sidebar_label: Cách xuất bản vẽ không gian mô hình
 ---
 

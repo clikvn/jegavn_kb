@@ -1,6 +1,6 @@
 ---
 title: Cấu hình vị trí lắp đặt cửa nhôm và cửa sổ
-slug: cau-hinh-vi-tri-lap-dat-cua-nhom-va-cua-so
+slug: /cau-hinh-vi-tri-lap-dat-cua-nhom-va-cua-so
 sidebar_label: Cấu hình vị trí lắp đặt cửa nhôm và cửa sổ
 ---
 

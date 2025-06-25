@@ -1,6 +1,6 @@
 ---
 title: Cách đặt tên cho phòng
-slug: cach-dat-ten-cho-phong
+slug: /cach-dat-ten-cho-phong
 sidebar_label: Cách đặt tên cho phòng
 ---
 
@@ -17,7 +17,5 @@ Xin chào, bạn có thể nhấp vào tên không gian của loại nhà trong 
 ![Một người dùng đang làm việc trên sơ đồ tầng trong phần mềm thiết kế AiHouse, với một phòng được chọn và các thuộc tính của nó được hiển thị, làm nổi bật chi tiết về việc di chuyển không gian mới được thêm vào.](https://storage.googleapis.com/jegavn_kb/images/1f44bb3d-5fb5-4270-8bd4-b7c84d1e2813.png)
 
 :::note
-
-Như được chỉ ra bởi chú thích (①) trong hình thứ ba, không gian mới được thêm vào có thể được di chuyển tự do trong không gian đó nhưng không thể di chuyển đến các không gian khác để sử dụng.
 
 :::

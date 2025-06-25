@@ -1,6 +1,6 @@
 ---
 title: Cách kéo và vẽ hình chữ nhật để vẽ phòng
-slug: cach-keo-va-ve-hinh-chu-nhat-de-ve-phong
+slug: /cach-keo-va-ve-hinh-chu-nhat-de-ve-phong
 sidebar_label: Cách kéo và vẽ hình chữ nhật để vẽ phòng
 ---
 

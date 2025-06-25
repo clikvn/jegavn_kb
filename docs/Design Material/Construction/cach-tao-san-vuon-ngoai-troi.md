@@ -1,6 +1,6 @@
 ---
 title: Cách tạo sân vườn ngoài trời
-slug: cach-tao-san-vuon-ngoai-troi
+slug: /cach-tao-san-vuon-ngoai-troi
 sidebar_label: Cách tạo sân vườn ngoài trời
 ---
 

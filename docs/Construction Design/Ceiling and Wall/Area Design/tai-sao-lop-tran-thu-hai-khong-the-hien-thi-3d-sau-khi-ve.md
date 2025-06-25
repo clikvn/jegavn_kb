@@ -1,6 +1,6 @@
 ---
 title: Tại sao lớp trần thứ hai không thể hiển thị 3D sau khi vẽ?
-slug: tai-sao-lop-tran-thu-hai-khong-the-hien-thi-3d-sau-khi-ve
+slug: /tai-sao-lop-tran-thu-hai-khong-the-hien-thi-3d-sau-khi-ve
 sidebar_label: Không hiển thị lớp trần thứ hai
 ---
 

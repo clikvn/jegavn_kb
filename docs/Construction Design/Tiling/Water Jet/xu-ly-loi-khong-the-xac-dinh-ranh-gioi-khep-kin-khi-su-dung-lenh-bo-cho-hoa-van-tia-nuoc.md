@@ -1,6 +1,6 @@
 ---
 title: Xử lý lỗi "Không thể xác định ranh giới khép kín" khi sử dụng lệnh BO cho hoa văn tia nước
-slug: xu-ly-loi-khong-the-xac-dinh-ranh-gioi-khep-kin-khi-su-dung-lenh-bo-cho-hoa-van-tia-nuoc
+slug: /xu-ly-loi-khong-the-xac-dinh-ranh-gioi-khep-kin-khi-su-dung-lenh-bo-cho-hoa-van-tia-nuoc
 sidebar_label: Lỗi không xác định ranh giới khép kín (lệnh BO)
 ---
 

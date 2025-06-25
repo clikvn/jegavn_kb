@@ -1,6 +1,6 @@
 ---
 title: Cách Vẽ Trần Không Theo Quy Tắc
-slug: cach-ve-tran-khong-theo-quy-tac
+slug: /cach-ve-tran-khong-theo-quy-tac
 sidebar_label: Cách Vẽ Trần Không Theo Quy Tắc
 ---
 

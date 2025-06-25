@@ -1,6 +1,6 @@
 ---
 title: Cách thay đổi vật liệu đá cho quầy bar
-slug: cach-thay-doi-vat-lieu-da-cho-quay-bar
+slug: /cach-thay-doi-vat-lieu-da-cho-quay-bar
 sidebar_label: Thay đổi vật liệu đá quầy bar
 ---
 

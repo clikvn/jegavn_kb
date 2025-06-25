@@ -1,6 +1,6 @@
 ---
 title: Cách Tạo Tấm Bên cho Bàn Đảo Bếp
-slug: cach-tao-tam-ben-cho-ban-dao-bep
+slug: /cach-tao-tam-ben-cho-ban-dao-bep
 sidebar_label: Cách Tạo Tấm Bên cho Bàn Đảo Bếp
 ---
 

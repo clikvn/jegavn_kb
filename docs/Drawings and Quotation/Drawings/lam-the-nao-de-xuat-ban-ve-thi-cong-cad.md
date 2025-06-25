@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để xuất bản vẽ thi công CAD
-slug: lam-the-nao-de-xuat-ban-ve-thi-cong-cad
+slug: /lam-the-nao-de-xuat-ban-ve-thi-cong-cad
 sidebar_label: Xuất bản vẽ thi công CAD
 ---
 

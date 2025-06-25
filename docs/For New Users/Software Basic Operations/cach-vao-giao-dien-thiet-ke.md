@@ -1,6 +1,6 @@
 ---
 title: Cách vào giao diện thiết kế
-slug: cach-vao-giao-dien-thiet-ke
+slug: /cach-vao-giao-dien-thiet-ke
 sidebar_label: Cách vào giao diện thiết kế
 ---
 

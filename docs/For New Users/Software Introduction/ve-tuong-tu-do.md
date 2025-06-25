@@ -1,6 +1,6 @@
 ---
 title: Vẽ tường tự do
-slug: ve-tuong-tu-do
+slug: /ve-tuong-tu-do
 sidebar_label: Vẽ tường tự do
 ---
 

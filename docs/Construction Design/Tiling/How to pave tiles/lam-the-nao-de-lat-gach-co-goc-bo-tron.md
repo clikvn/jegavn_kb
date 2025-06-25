@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để lát gạch có góc bo tròn
-slug: lam-the-nao-de-lat-gach-co-goc-bo-tron
+slug: /lam-the-nao-de-lat-gach-co-goc-bo-tron
 sidebar_label: Lát gạch góc bo tròn
 ---
 

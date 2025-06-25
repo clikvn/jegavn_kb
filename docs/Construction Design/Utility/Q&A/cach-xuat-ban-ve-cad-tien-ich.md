@@ -1,6 +1,6 @@
 ---
 title: Cách Xuất Bản Vẽ CAD Tiện Ích
-slug: cach-xuat-ban-ve-cad-tien-ich
+slug: /cach-xuat-ban-ve-cad-tien-ich
 sidebar_label: Cách Xuất Bản Vẽ CAD Tiện Ích
 ---
 
@@ -12,17 +12,7 @@ Chọn (①) **Bố cục ổ cắm (Socket layout)** mà bạn cần, đi đế
 
 ![Một người dùng đang trong ứng dụng vẽ, chuẩn bị xuất bản vẽ, đã chọn (①) Bố cục ổ cắm (Socket layout) từ menu bên trái và xác nhận cài đặt xuất trong một hộp thoại, bao gồm các nút (②) Xuất bản vẽ (Export drawing) và (③) Xuất (Export).](https://storage.googleapis.com/jegavn_kb/images/db489389-4e9d-4275-b52a-dca18a922e9b.png)
 
-:::note
-
-Nếu bạn có bất kỳ câu hỏi nào về nội dung trên hoặc các vấn đề vận hành phần mềm khác, bạn nên vào trang thiết kế 3D và di chuyển con trỏ đến (①) 
-
-**Trợ giúp (Help)**
-
-, nhấp chuột trái vào (②) 
-
-**Phản hồi (Feedback)**
-
- để gửi phản hồi cho chúng tôi. Cảm ơn bạn.
+:::info
 
 :::
 

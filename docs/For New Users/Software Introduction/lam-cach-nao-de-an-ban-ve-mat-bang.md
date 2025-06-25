@@ -1,6 +1,6 @@
 ---
 title: Làm cách nào để ẩn bản vẽ mặt bằng?
-slug: lam-cach-nao-de-an-ban-ve-mat-bang
+slug: /lam-cach-nao-de-an-ban-ve-mat-bang
 sidebar_label: Làm cách nào để ẩn bản vẽ mặt bằng?
 ---
 
@@ -19,15 +19,5 @@ Trong trang thiết kế, di chuyển chuột đến **Bản vẽ (Drawing)** ->
 ![Giao diện người dùng của phiên bản cũ phần mềm AiHouse, hiển thị menu 'Bản vẽ' và 'Cài đặt mặt bằng'.](https://storage.googleapis.com/jegavn_kb/images/9f2f5c82-e9a2-45eb-966d-da548f5ed3e8.png)
 
 :::note
-
-Nếu bạn cần xóa bản vẽ hiện tại, hãy nhấp vào 
-
-**Tệp (File)**
-
- -> 
-
-**Mới (New)**
-
-.
 
 :::

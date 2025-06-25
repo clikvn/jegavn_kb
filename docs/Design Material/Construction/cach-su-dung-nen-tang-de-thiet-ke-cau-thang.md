@@ -1,6 +1,6 @@
 ---
 title: Cách sử dụng nền tảng để thiết kế cầu thang
-slug: cach-su-dung-nen-tang-de-thiet-ke-cau-thang
+slug: /cach-su-dung-nen-tang-de-thiet-ke-cau-thang
 sidebar_label: Cách sử dụng nền tảng để thiết kế cầu thang
 ---
 

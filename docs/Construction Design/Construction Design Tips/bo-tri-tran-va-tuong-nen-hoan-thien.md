@@ -1,6 +1,6 @@
 ---
 title: Bố trí trần và tường nền hoàn thiện
-slug: bo-tri-tran-va-tuong-nen-hoan-thien
+slug: /bo-tri-tran-va-tuong-nen-hoan-thien
 sidebar_label: Bố trí trần và tường nền hoàn thiện
 ---
 

@@ -1,14 +1,12 @@
 ---
 title: Cách Tạo Hốc Tường
-slug: cach-tao-hoc-tuong
+slug: /cach-tao-hoc-tuong
 sidebar_label: Tạo Hốc Tường
 ---
 
 Xin chào, bạn có thể tạo các hốc tường (niches) bằng cách chọn các mẫu có sẵn hoặc tự tạo trên tường và trần. Trong phiên bản 5plus, bạn cũng có thể kéo và thả hốc tường trong mục Sơ đồ mặt bằng - Kết cấu. Dưới đây là các bước thực hiện chi tiết:
 
 :::info
-
-Phương pháp 1: Chọn từ Vật liệu đám mây
 
 :::
 
@@ -17,8 +15,6 @@ Chọn từ **Vật liệu đám mây (Cloud Materials)** > **Trang trí (Decora
 ![Giao diện người dùng hiển thị cách điều hướng đến các mẫu hốc tường có sẵn trong Vật liệu đám mây.](https://storage.googleapis.com/jegavn_kb/images/461bc8da-839f-449d-8045-8ab0088fd8a2.png)
 
 :::info
-
-Phương pháp 2: Sử dụng công cụ tạo mô hình
 
 :::
 
@@ -29,8 +25,6 @@ Bạn có thể tạo lỗ hổng bằng các chức năng của công cụ tạ
 ![Ảnh động minh họa quá trình tạo hốc tường bằng công cụ trên trần và tường.](https://storage.googleapis.com/jegavn_kb/images/2dcde4e9-d71b-4371-916e-175e02606de0.gif)
 
 :::info
-
-Phương pháp 3: Kéo và thả trong phiên bản 5plus
 
 :::
 

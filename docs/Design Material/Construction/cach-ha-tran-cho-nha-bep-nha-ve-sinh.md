@@ -1,6 +1,6 @@
 ---
 title: Cách hạ trần cho nhà bếp/nhà vệ sinh
-slug: cach-ha-tran-cho-nha-bep-nha-ve-sinh
+slug: /cach-ha-tran-cho-nha-bep-nha-ve-sinh
 sidebar_label: Cách hạ trần cho nhà bếp/nhà vệ sinh
 ---
 

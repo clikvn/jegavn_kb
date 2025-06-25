@@ -1,14 +1,12 @@
 ---
 title: Cài đặt ẩn tường ngoại thất
-slug: cai-dat-an-tuong-ngoai-that
+slug: /cai-dat-an-tuong-ngoai-that
 sidebar_label: Cài đặt ẩn tường ngoại thất
 ---
 
 Xin chào, trong quá trình vẽ, tường ngoại thất có thể được hiển thị hoặc ẩn đi. Các bước thực hiện như sau:
 
 :::note
-
-Tường ngoại thất không thể bị ẩn trên trang kết xuất.
 
 :::
 
@@ -21,8 +19,6 @@ Tường ngoại thất không thể bị ẩn trên trang kết xuất.
 2. Nhấp chuột trái vào **Thư viện Công cộng (Public Library)**, vào (①) **Hoàn thiện (Finishing)** --- (②) **Gạch men (Ceramic tile)**, chọn kiểu gạch mong muốn và kéo thả vào (③) tường trong khi giữ chuột trái.
 
 :::note
-
-Hiện tại, chỉ có thể áp dụng các hình ảnh gạch có sẵn; không thể sử dụng gạch tùy chỉnh.
 
 :::
 

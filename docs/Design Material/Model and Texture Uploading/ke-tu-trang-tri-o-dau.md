@@ -1,6 +1,6 @@
 ---
 title: Kệ tủ trang trí ở đâu
-slug: ke-tu-trang-tri-o-dau
+slug: /ke-tu-trang-tri-o-dau
 sidebar_label: Kệ tủ trang trí ở đâu
 ---
 

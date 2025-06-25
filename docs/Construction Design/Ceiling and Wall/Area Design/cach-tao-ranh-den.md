@@ -1,6 +1,6 @@
 ---
 title: Cách tạo rãnh đèn
-slug: cach-tao-ranh-den
+slug: /cach-tao-ranh-den
 sidebar_label: Cách tạo rãnh đèn
 ---
 

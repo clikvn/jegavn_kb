@@ -1,6 +1,6 @@
 ---
 title: Tạo Mặt Bàn Tiếp Đất
-slug: tao-mat-ban-tiep-dat
+slug: /tao-mat-ban-tiep-dat
 sidebar_label: Tạo Mặt Bàn Tiếp Đất
 ---
 
@@ -19,7 +19,5 @@ Trong tùy chỉnh tủ, việc tạo mặt bàn phụ cần được thực hi�
 ![Một người dùng đang chỉnh sửa các thuộc tính của bàn phụ hoặc tủ trong phần mềm mô hình 3D, tập trung vào mặt bàn và các cài đặt cơ bản thông qua một hộp thoại bật lên.](https://storage.googleapis.com/jegavn_kb/images/1dd81dda-f1df-4c63-88ad-33636013f4d2.png)
 
 :::note
-
-Lưu ý: Cạnh thẳng ở góc 45 độ hiện không được hỗ trợ.
 
 :::

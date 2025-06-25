@@ -1,6 +1,6 @@
 ---
 title: Cách thêm cửa sổ lồi
-slug: cach-them-cua-so-loi
+slug: /cach-them-cua-so-loi
 sidebar_label: Cách thêm cửa sổ lồi
 ---
 

@@ -1,12 +1,10 @@
 ---
 title: Cách tải lên họa tiết
-slug: cach-tai-len-hoa-tiet
+slug: /cach-tai-len-hoa-tiet
 sidebar_label: Cách tải lên họa tiết
 ---
 
 :::info
-
-Xin chào, tài khoản cá nhân có thể tải lên theo các bước sau: (Tài khoản doanh nghiệp cần hỏi quản trị viên doanh nghiệp trước để kiểm tra xem có quyền tải lên không.)
 
 :::
 

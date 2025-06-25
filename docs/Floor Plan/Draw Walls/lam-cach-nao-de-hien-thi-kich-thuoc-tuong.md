@@ -1,6 +1,6 @@
 ---
 title: Làm cách nào để hiển thị kích thước tường?
-slug: lam-cach-nao-de-hien-thi-kich-thuoc-tuong
+slug: /lam-cach-nao-de-hien-thi-kich-thuoc-tuong
 sidebar_label: Làm cách nào để hiển thị kích thước tường?
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Cách Nhập Trần Có Kiểu Dáng Đặc Biệt trong CAD
-slug: cach-nhap-tran-co-kieu-dang-dac-biet-trong-cad
+slug: /cach-nhap-tran-co-kieu-dang-dac-biet-trong-cad
 sidebar_label: Cách Nhập Trần Có Kiểu Dáng Đặc Biệt trong CAD
 ---
 

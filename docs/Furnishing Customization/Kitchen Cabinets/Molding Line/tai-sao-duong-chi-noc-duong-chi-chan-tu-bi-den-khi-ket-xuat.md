@@ -1,6 +1,6 @@
 ---
 title: Tại sao đường chỉ nóc / đường chỉ chân tủ bị đen khi kết xuất
-slug: tai-sao-duong-chi-noc-duong-chi-chan-tu-bi-den-khi-ket-xuat
+slug: /tai-sao-duong-chi-noc-duong-chi-chan-tu-bi-den-khi-ket-xuat
 sidebar_label: Tại sao đường chỉ nóc / đường chỉ chân tủ bị đen khi kết xuất
 ---
 

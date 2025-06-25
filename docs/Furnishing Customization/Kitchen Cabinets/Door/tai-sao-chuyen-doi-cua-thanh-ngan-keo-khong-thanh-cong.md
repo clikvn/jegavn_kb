@@ -1,6 +1,6 @@
 ---
 title: Tại sao chuyển đổi cửa thành ngăn kéo không thành công?
-slug: tai-sao-chuyen-doi-cua-thanh-ngan-keo-khong-thanh-cong
+slug: /tai-sao-chuyen-doi-cua-thanh-ngan-keo-khong-thanh-cong
 sidebar_label: Tại sao chuyển đổi cửa thành ngăn kéo không thành công?
 ---
 

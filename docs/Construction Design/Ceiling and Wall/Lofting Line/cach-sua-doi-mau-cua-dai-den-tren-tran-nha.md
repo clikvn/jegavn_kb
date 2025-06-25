@@ -1,6 +1,6 @@
 ---
 title: Cách sửa đổi màu của dải đèn trên trần nhà
-slug: cach-sua-doi-mau-cua-dai-den-tren-tran-nha
+slug: /cach-sua-doi-mau-cua-dai-den-tren-tran-nha
 sidebar_label: Cách sửa đổi màu của dải đèn trên trần nhà
 ---
 

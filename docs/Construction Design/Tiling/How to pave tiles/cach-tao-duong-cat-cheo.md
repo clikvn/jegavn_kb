@@ -1,6 +1,6 @@
 ---
 title: Cách tạo đường cắt chéo
-slug: cach-tao-duong-cat-cheo
+slug: /cach-tao-duong-cat-cheo
 sidebar_label: Cách tạo đường cắt chéo
 ---
 

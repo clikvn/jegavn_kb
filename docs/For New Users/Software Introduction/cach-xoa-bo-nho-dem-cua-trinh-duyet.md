@@ -1,6 +1,6 @@
 ---
 title: Cách xóa bộ nhớ đệm của trình duyệt
-slug: cach-xoa-bo-nho-dem-cua-trinh-duyet
+slug: /cach-xoa-bo-nho-dem-cua-trinh-duyet
 sidebar_label: Cách xóa bộ nhớ đệm của trình duyệt
 ---
 

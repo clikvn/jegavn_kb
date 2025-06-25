@@ -1,6 +1,6 @@
 ---
 title: Cách thiết kế tường nền treo
-slug: cach-thiet-ke-tuong-nen-treo
+slug: /cach-thiet-ke-tuong-nen-treo
 sidebar_label: Cách thiết kế tường nền treo
 ---
 

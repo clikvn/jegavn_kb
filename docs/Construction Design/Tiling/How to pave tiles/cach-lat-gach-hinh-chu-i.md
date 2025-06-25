@@ -1,6 +1,6 @@
 ---
 title: Cách lát gạch hình chữ I
-slug: cach-lat-gach-hinh-chu-i
+slug: /cach-lat-gach-hinh-chu-i
 sidebar_label: Cách lát gạch hình chữ I
 ---
 

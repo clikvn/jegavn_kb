@@ -1,6 +1,6 @@
 ---
 title: Cách thiết kế đường đèn trên tường
-slug: cach-thiet-ke-duong-den-tren-tuong
+slug: /cach-thiet-ke-duong-den-tren-tuong
 sidebar_label: Cách thiết kế đường đèn trên tường
 ---
 

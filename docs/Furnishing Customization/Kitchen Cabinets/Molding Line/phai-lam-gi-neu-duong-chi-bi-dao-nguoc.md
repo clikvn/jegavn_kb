@@ -1,6 +1,6 @@
 ---
 title: Phải làm gì nếu đường chỉ bị đảo ngược?
-slug: phai-lam-gi-neu-duong-chi-bi-dao-nguoc
+slug: /phai-lam-gi-neu-duong-chi-bi-dao-nguoc
 sidebar_label: Phải làm gì nếu đường chỉ bị đảo ngược?
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để sửa đổi khoảng cách vị trí của phào chỉ
-slug: lam-the-nao-de-sua-doi-khoang-cach-vi-tri-cua-phao-chi
+slug: /lam-the-nao-de-sua-doi-khoang-cach-vi-tri-cua-phao-chi
 sidebar_label: Làm thế nào để sửa đổi khoảng cách vị trí của phào chỉ
 ---
 

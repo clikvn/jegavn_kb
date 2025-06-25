@@ -1,6 +1,6 @@
 ---
 title: Vị trí của họa tiết kim loại
-slug: vi-tri-cua-hoa-tiet-kim-loai
+slug: /vi-tri-cua-hoa-tiet-kim-loai
 sidebar_label: Vị trí của họa tiết kim loại
 ---
 

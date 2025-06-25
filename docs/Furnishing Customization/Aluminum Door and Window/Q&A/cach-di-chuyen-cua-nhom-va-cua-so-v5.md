@@ -1,6 +1,6 @@
 ---
 title: Cách di chuyển cửa nhôm và cửa sổ (V5)
-slug: cach-di-chuyen-cua-nhom-va-cua-so-v5
+slug: /cach-di-chuyen-cua-nhom-va-cua-so-v5
 sidebar_label: Cách di chuyển cửa nhôm và cửa sổ (V5)
 ---
 

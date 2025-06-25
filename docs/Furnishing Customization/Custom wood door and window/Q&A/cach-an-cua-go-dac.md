@@ -1,6 +1,6 @@
 ---
 title: Cách ẩn cửa gỗ đặc
-slug: cach-an-cua-go-dac
+slug: /cach-an-cua-go-dac
 sidebar_label: Cách ẩn cửa gỗ đặc
 ---
 

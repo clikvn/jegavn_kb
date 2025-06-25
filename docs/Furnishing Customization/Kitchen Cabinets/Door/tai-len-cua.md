@@ -1,6 +1,6 @@
 ---
 title: Tải Lên Cửa
-slug: tai-len-cua
+slug: /tai-len-cua
 sidebar_label: Tải Lên Cửa
 ---
 
@@ -25,9 +25,5 @@ Xin chào, nếu bạn có các tệp mô hình 3D của tay nắm hoặc tấm 
 5. Trong **Thư viện kiểu dáng cửa (Door panel style library)**, chọn **Thư viện cá nhân (Personal Library)**, tìm danh mục vật liệu đã tải lên, và tìm kiếm và sử dụng trực tiếp các vật liệu.
 
 :::info
-
-Liên kết hướng dẫn tải lên mô hình tay nắm: [https://www.aihouse.com/global/study/detail/715](https://www.aihouse.com/global/study/detail/715)
-
-Liên kết hướng dẫn tải lên mô hình tấm cửa: [https://www.aihouse.com/global/study/detail/713](https://www.aihouse.com/global/study/detail/713)
 
 :::

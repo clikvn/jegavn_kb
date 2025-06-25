@@ -1,6 +1,6 @@
 ---
 title: Tại sao thao tác bị treo?
-slug: tai-sao-thao-tac-bi-treo
+slug: /tai-sao-thao-tac-bi-treo
 sidebar_label: Tại sao thao tác bị treo?
 ---
 

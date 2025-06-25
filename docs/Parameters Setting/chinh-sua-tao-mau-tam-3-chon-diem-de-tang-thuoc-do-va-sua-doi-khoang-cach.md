@@ -1,6 +1,6 @@
 ---
 title: "Chỉnh sửa Tạo mẫu Tấm 3: Chọn điểm để tăng thước đo và sửa đổi khoảng cách"
-slug: chinh-sua-tao-mau-tam-3-chon-diem-de-tang-thuoc-do-va-sua-doi-khoang-cach
+slug: "/chinh-sua-tao-mau-tam-3-chon-diem-de-tang-thuoc-do-va-sua-doi-khoang-cach"
 sidebar_label: "Chỉnh sửa Tạo mẫu Tấm 3: Chọn điểm để tăng thước đo và sửa đổi khoảng cách"
 ---
 

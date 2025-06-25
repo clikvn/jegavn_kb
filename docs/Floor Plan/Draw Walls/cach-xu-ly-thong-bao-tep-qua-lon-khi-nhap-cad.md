@@ -1,6 +1,6 @@
 ---
 title: Cách xử lý thông báo tệp quá lớn khi nhập CAD
-slug: cach-xu-ly-thong-bao-tep-qua-lon-khi-nhap-cad
+slug: /cach-xu-ly-thong-bao-tep-qua-lon-khi-nhap-cad
 sidebar_label: Cách xử lý thông báo tệp quá lớn khi nhập CAD
 ---
 

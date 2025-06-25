@@ -1,6 +1,6 @@
 ---
 title: Cách Nhanh Chóng Tìm Vật Liệu Hoàn Thiện
-slug: cach-nhanh-chong-tim-vat-lieu-hoan-thien
+slug: /cach-nhanh-chong-tim-vat-lieu-hoan-thien
 sidebar_label: Cách Nhanh Chóng Tìm Vật Liệu Hoàn Thiện
 ---
 

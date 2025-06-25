@@ -1,6 +1,6 @@
 ---
 title: Nệm nằm ở đâu?
-slug: nem-nam-o-dau
+slug: /nem-nam-o-dau
 sidebar_label: Nệm nằm ở đâu?
 ---
 

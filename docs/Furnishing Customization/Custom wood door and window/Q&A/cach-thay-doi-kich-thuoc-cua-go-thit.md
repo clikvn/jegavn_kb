@@ -1,6 +1,6 @@
 ---
 title: Cách thay đổi kích thước cửa gỗ thịt
-slug: cach-thay-doi-kich-thuoc-cua-go-thit
+slug: /cach-thay-doi-kich-thuoc-cua-go-thit
 sidebar_label: Cách thay đổi kích thước cửa gỗ thịt
 ---
 

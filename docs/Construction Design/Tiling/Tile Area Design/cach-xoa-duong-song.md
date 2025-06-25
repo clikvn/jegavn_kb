@@ -1,6 +1,6 @@
 ---
 title: Cách Xóa Đường Sóng
-slug: cach-xoa-duong-song
+slug: /cach-xoa-duong-song
 sidebar_label: Cách Xóa Đường Sóng
 ---
 
@@ -21,15 +21,5 @@ Nhấp chuột vào đường viền chân tường (①) để chọn nó và n
 ![Menu ngữ cảnh hiển thị tùy chọn (②) Xóa đường sóng cho đối tượng đường sóng (①) đã chọn.](https://storage.googleapis.com/jegavn_kb/images/deea572d-92d4-4baa-84a8-997ef8d71eef.png)
 
 :::note
-
-Lưu ý: Phương pháp thao tác để xóa 
-
-**khu vực cắt ngang (horizontal cutting area)**
-
- hoặc 
-
-**khu vực cắt dọc (vertical cutting area)**
-
- là tương tự.
 
 :::

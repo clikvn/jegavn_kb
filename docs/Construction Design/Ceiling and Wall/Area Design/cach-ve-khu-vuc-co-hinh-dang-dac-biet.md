@@ -1,6 +1,6 @@
 ---
 title: Cách Vẽ Khu Vực Có Hình Dạng Đặc Biệt
-slug: cach-ve-khu-vuc-co-hinh-dang-dac-biet
+slug: /cach-ve-khu-vuc-co-hinh-dang-dac-biet
 sidebar_label: Cách Vẽ Khu Vực Có Hình Dạng Đặc Biệt
 ---
 

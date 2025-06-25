@@ -1,6 +1,6 @@
 ---
 title: Phát hành Cập nhật Tính năng - Tháng 12 năm 2024
-slug: phat-hanh-cap-nhat-tinh-nang-thang-12-2024
+slug: /phat-hanh-cap-nhat-tinh-nang-thang-12-2024
 sidebar_label: Cập nhật Tháng 12 năm 2024
 ---
 

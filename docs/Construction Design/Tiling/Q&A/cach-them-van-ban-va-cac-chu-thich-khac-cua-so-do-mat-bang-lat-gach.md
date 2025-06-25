@@ -1,6 +1,6 @@
 ---
 title: Cách thêm văn bản và các chú thích khác của sơ đồ mặt bằng lát gạch
-slug: cach-them-van-ban-va-cac-chu-thich-khac-cua-so-do-mat-bang-lat-gach
+slug: /cach-them-van-ban-va-cac-chu-thich-khac-cua-so-do-mat-bang-lat-gach
 sidebar_label: Cách thêm văn bản và các chú thích khác của sơ đồ mặt bằng lát gạch
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Cách đặt nhiều phào chỉ
-slug: cach-dat-nhieu-phao-chi
+slug: /cach-dat-nhieu-phao-chi
 sidebar_label: Cách đặt nhiều phào chỉ
 ---
 

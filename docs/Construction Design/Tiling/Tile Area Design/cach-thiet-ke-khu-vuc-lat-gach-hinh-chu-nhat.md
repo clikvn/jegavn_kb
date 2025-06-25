@@ -1,6 +1,6 @@
 ---
 title: Cách thiết kế khu vực lát gạch hình chữ nhật
-slug: cach-thiet-ke-khu-vuc-lat-gach-hinh-chu-nhat
+slug: /cach-thiet-ke-khu-vuc-lat-gach-hinh-chu-nhat
 sidebar_label: Thiết kế khu vực lát gạch hình chữ nhật
 ---
 

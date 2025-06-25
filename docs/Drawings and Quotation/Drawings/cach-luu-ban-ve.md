@@ -1,6 +1,6 @@
 ---
 title: Cách Lưu Bản Vẽ
-slug: cach-luu-ban-ve
+slug: /cach-luu-ban-ve
 sidebar_label: Cách Lưu Bản Vẽ
 ---
 
@@ -17,11 +17,5 @@ Xin chào, bạn có thể nhấn tổ hợp phím tắt Ctrl+S để lưu nhanh
 Bạn cần đợi cho đến khi thông báo **Lưu thành công (Save success)** được hiển thị.
 
 :::note
-
-Lưu ý: 
-
-**Lưu vào máy tính cục bộ (Saving local)**
-
- là một quyền lợi dành cho thành viên đã mua Aihouse. Tài khoản miễn phí không thể sử dụng chức năng này.
 
 :::

@@ -1,6 +1,6 @@
 ---
 title: Đường viền cắt bằng tia nước đã nhập không lát được gạch
-slug: duong-vien-cat-bang-tia-nuoc-da-nhap-khong-lat-duoc-gach
+slug: /duong-vien-cat-bang-tia-nuoc-da-nhap-khong-lat-duoc-gach
 sidebar_label: Đường viền cắt bằng tia nước đã nhập không lát được gạch
 ---
 

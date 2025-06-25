@@ -1,6 +1,6 @@
 ---
 title: Tại sao dải đèn trên trần bị đen khi kết xuất
-slug: tai-sao-dai-den-tren-tran-bi-den-khi-ket-xuat
+slug: /tai-sao-dai-den-tren-tran-bi-den-khi-ket-xuat
 sidebar_label: Tại sao dải đèn trên trần bị đen khi kết xuất
 ---
 

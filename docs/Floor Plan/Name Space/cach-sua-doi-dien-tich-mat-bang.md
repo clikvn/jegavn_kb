@@ -1,6 +1,6 @@
 ---
 title: Cách sửa đổi diện tích mặt bằng
-slug: cach-sua-doi-dien-tich-mat-bang
+slug: /cach-sua-doi-dien-tich-mat-bang
 sidebar_label: Sửa đổi diện tích mặt bằng
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Cách Vẽ Hình Cung Trong Tạo Mẫu Tự Do
-slug: cach-ve-hinh-cung-trong-tao-mau-tu-do
+slug: /cach-ve-hinh-cung-trong-tao-mau-tu-do
 sidebar_label: Cách Vẽ Hình Cung Trong Tạo Mẫu Tự Do
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Cách thêm/thay đổi vật liệu mặt đất
-slug: cach-them-thay-doi-vat-lieu-mat-dat
+slug: /cach-them-thay-doi-vat-lieu-mat-dat
 sidebar_label: Cách thêm/thay đổi vật liệu mặt đất
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Cách sử dụng Tạo khối tự do
-slug: cach-su-dung-tao-khoi-tu-do
+slug: /cach-su-dung-tao-khoi-tu-do
 sidebar_label: Cách sử dụng Tạo khối tự do
 ---
 
@@ -11,7 +11,5 @@ Trong giao diện thiết kế, vào mục (①) **Sơ đồ mặt bằng (Floor
 ![Giao diện người dùng hiển thị các bước để truy cập Tạo khối tự do. (①) Sơ đồ mặt bằng được chọn trong thanh điều hướng bên trái và (②) Tạo khối tự do được đánh dấu trong các công cụ có sẵn.](https://storage.googleapis.com/jegavn_kb/images/db1357dc-5791-4c2d-b92c-d8a6678c97ef.png)
 
 :::note
-
-[**Nhấp vào đây để xem hướng dẫn chi tiết**](https://www.aihouse.com/global/study/detail/384)
 
 :::

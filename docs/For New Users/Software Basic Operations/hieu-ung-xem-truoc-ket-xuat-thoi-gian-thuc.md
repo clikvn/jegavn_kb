@@ -1,6 +1,6 @@
 ---
 title: Hiệu ứng xem trước kết xuất thời gian thực
-slug: hieu-ung-xem-truoc-ket-xuat-thoi-gian-thuc
+slug: /hieu-ung-xem-truoc-ket-xuat-thoi-gian-thuc
 sidebar_label: Hiệu ứng xem trước kết xuất thời gian thực
 ---
 

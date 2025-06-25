@@ -1,6 +1,6 @@
 ---
 title: Cách lắp đặt bồn rửa?
-slug: cach-lap-dat-bon-rua
+slug: /cach-lap-dat-bon-rua
 sidebar_label: Cách lắp đặt bồn rửa?
 ---
 
@@ -9,8 +9,6 @@ Trong giao diện tùy chỉnh tủ, nhấp chuột phải vào thân tủ đã 
 ![Một menu ngữ cảnh trong phần mềm thiết kế hiển thị các bước: chọn (②) Thiết bị và phụ kiện, sau đó chọn (③) Lắp đặt bồn rửa.](https://storage.googleapis.com/jegavn_kb/images/fb513ebf-386f-4b04-8866-11599621e1fd.png)
 
 :::note
-
-Lưu ý: Cần điều chỉnh chiều rộng của thân tủ đủ lớn để chứa hai bồn rửa trước khi lắp đặt.
 
 :::
 

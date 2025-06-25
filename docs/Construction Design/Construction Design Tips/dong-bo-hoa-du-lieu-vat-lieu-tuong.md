@@ -1,6 +1,6 @@
 ---
 title: Đồng bộ hóa dữ liệu vật liệu tường
-slug: dong-bo-hoa-du-lieu-vat-lieu-tuong
+slug: /dong-bo-hoa-du-lieu-vat-lieu-tuong
 sidebar_label: Đồng bộ hóa dữ liệu vật liệu tường
 ---
 

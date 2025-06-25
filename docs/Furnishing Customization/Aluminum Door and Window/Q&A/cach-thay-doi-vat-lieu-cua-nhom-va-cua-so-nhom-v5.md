@@ -1,6 +1,6 @@
 ---
 title: Cách thay đổi vật liệu của cửa nhôm và cửa sổ nhôm (V5)
-slug: cach-thay-doi-vat-lieu-cua-nhom-va-cua-so-nhom-v5
+slug: /cach-thay-doi-vat-lieu-cua-nhom-va-cua-so-nhom-v5
 sidebar_label: Cách thay đổi vật liệu của cửa nhôm và cửa sổ nhôm (V5)
 ---
 
@@ -9,8 +9,6 @@ Xin chào, khi tùy chỉnh cửa ra vào và cửa sổ bằng nhôm, bạn có
 Chọn toàn bộ hoặc một phần cửa ra vào/cửa sổ bằng nhôm, trên thanh chỉnh sửa bên phải - **Kiểu dáng (Style)**, và thay thế vật liệu bằng cách di chuột lần lượt lên các biểu tượng vật liệu bề mặt A/B.
 
 :::note
-
-Lưu ý: Vật liệu bề mặt A/B là vật liệu của khung trong và khung ngoài, cần được thay thế riêng biệt.
 
 :::
 

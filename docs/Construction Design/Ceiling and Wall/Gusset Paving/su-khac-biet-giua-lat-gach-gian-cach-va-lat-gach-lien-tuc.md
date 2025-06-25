@@ -1,6 +1,6 @@
 ---
 title: Sự khác biệt giữa lát gạch giãn cách và lát gạch liên tục
-slug: su-khac-biet-giua-lat-gach-gian-cach-va-lat-gach-lien-tuc
+slug: /su-khac-biet-giua-lat-gach-gian-cach-va-lat-gach-lien-tuc
 sidebar_label: Sự khác biệt giữa lát gạch giãn cách và lát gạch liên tục
 ---
 

@@ -1,18 +1,14 @@
 ---
 title: Xuất bản vẽ chi tiết
-slug: xuat-ban-ve-chi-tiet
+slug: /xuat-ban-ve-chi-tiet
 sidebar_label: Xuất bản vẽ chi tiết
 ---
 
-:::note
-
-Sau khi nhà thiết kế hoàn thành thiết kế cửa và cửa sổ, họ có thể xuất bản vẽ chi tiết chỉ bằng một cú nhấp chuột và chú thích bằng văn bản, đường dẫn và kích thước, sau đó nhanh chóng xuất ra file PDF. Điều này có thể cung cấp các bản vẽ chính xác cho việc sản xuất tại nhà máy và lắp đặt trong tương lai.
+:::info
 
 :::
 
-:::note
-
-Việc xuất nhanh và chú thích có thể chỉnh sửa của bản vẽ chi tiết quy trình cửa và cửa sổ giải quyết vấn đề tải xuống PDF chậm trước đây.
+:::success
 
 :::
 

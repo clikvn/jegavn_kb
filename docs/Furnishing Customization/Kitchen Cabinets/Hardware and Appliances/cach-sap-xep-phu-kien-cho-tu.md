@@ -1,6 +1,6 @@
 ---
 title: Cách sắp xếp phụ kiện cho tủ
-slug: cach-sap-xep-phu-kien-cho-tu
+slug: /cach-sap-xep-phu-kien-cho-tu
 sidebar_label: Cách sắp xếp phụ kiện cho tủ
 ---
 

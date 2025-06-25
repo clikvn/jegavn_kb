@@ -1,14 +1,12 @@
 ---
 title: Làm thế nào để xóa đường len chân tường
-slug: lam-the-nao-de-xoa-duong-len-chan-tuong
+slug: /lam-the-nao-de-xoa-duong-len-chan-tuong
 sidebar_label: Xóa đường len chân tường
 ---
 
 Xin chào, để xóa hoặc chỉ giữ lại một bên của đường len chân tường, bạn có thể thực hiện theo các phương pháp dưới đây.
 
 :::info [Phương pháp 1: Xóa trực tiếp]
-
-Phương pháp 1: Xóa trực tiếp
 
 :::
 
@@ -17,8 +15,6 @@ Bạn có thể nhấp chuột trái vào một bên của (①) **đường len
 ![Giao diện người dùng hiển thị cách xóa một bên của đường len chân tường bằng cách nhấp vào (①) đường len chân tường và sau đó là (②) biểu tượng thùng rác.](https://storage.googleapis.com/jegavn_kb/images/b6f3a5a2-46ae-41f5-95b9-a37d25fc6573.png)
 
 :::info [Phương pháp 2: Sử dụng công cụ Lát gạch tùy chỉnh]
-
-Phương pháp 2: Sử dụng công cụ Lát gạch tùy chỉnh
 
 :::
 
@@ -31,8 +27,6 @@ Nhấp chuột trái vào đường len chân tường trong chế độ lát g�
 ![Giao diện người dùng hiển thị bảng thuộc tính ở bên phải để chỉnh sửa các thông số của đường len chân tường được chọn.](https://storage.googleapis.com/jegavn_kb/images/6dd6d5a8-01c6-4337-9ac9-dbad45083a6f.png)
 
 :::info [Phương pháp 3: Xóa một đoạn của đường len chân tường]
-
-Phương pháp 3: Xóa một đoạn của đường len chân tường
 
 :::
 

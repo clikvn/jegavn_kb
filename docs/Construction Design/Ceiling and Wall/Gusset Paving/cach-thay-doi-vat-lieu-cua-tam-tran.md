@@ -1,6 +1,6 @@
 ---
 title: Cách thay đổi vật liệu của tấm trần
-slug: cach-thay-doi-vat-lieu-cua-tam-tran
+slug: /cach-thay-doi-vat-lieu-cua-tam-tran
 sidebar_label: Cách thay đổi vật liệu của tấm trần
 ---
 

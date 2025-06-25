@@ -1,6 +1,6 @@
 ---
 title: Cách sắp xếp các tấm trần có khoảng cách đều nhau
-slug: cach-sap-xep-cac-tam-tran-co-khoang-cach-deu-nhau
+slug: /cach-sap-xep-cac-tam-tran-co-khoang-cach-deu-nhau
 sidebar_label: Cách sắp xếp các tấm trần có khoảng cách đều nhau
 ---
 

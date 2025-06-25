@@ -1,6 +1,6 @@
 ---
 title: Xuất sơ đồ mặt bằng lát gạch toàn bộ ngôi nhà
-slug: xuat-so-do-mat-bang-lat-gach-toan-bo-ngoi-nha
+slug: /xuat-so-do-mat-bang-lat-gach-toan-bo-ngoi-nha
 sidebar_label: Xuất sơ đồ mặt bằng lát gạch toàn bộ ngôi nhà
 ---
 
@@ -15,9 +15,5 @@ Tùy theo nhu cầu của bạn, sau khi chọn **toàn bộ ngôi nhà (whole h
 ![Giao diện người dùng hiển thị sơ đồ mặt bằng với cài đặt bản vẽ, hiển thị các tùy chọn để xuất bản vẽ.](https://storage.googleapis.com/jegavn_kb/images/de5fd470-1e2d-4b46-9f14-a9ddb6ab6160.png)
 
 :::note
-
-Để xem hướng dẫn chi tiết, vui lòng nhấp vào: 
-
-
 
 :::

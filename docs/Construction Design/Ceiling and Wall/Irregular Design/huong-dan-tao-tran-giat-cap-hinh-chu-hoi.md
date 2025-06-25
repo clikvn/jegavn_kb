@@ -1,6 +1,6 @@
 ---
 title: Hướng dẫn tạo trần giật cấp hình chữ 'hồi'
-slug: huong-dan-tao-tran-giat-cap-hinh-chu-hoi
+slug: /huong-dan-tao-tran-giat-cap-hinh-chu-hoi
 sidebar_label: Hướng dẫn tạo trần giật cấp hình chữ 'hồi'
 ---
 

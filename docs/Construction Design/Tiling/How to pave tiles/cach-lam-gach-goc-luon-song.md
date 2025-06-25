@@ -1,6 +1,6 @@
 ---
 title: Cách làm gạch góc lượn sóng
-slug: cach-lam-gach-goc-luon-song
+slug: /cach-lam-gach-goc-luon-song
 sidebar_label: Cách làm gạch góc lượn sóng
 ---
 

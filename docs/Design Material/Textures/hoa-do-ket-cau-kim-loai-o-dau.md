@@ -1,6 +1,6 @@
 ---
 title: Họa đồ kết cấu kim loại ở đâu
-slug: hoa-do-ket-cau-kim-loai-o-dau
+slug: /hoa-do-ket-cau-kim-loai-o-dau
 sidebar_label: Họa đồ kết cấu kim loại ở đâu
 ---
 

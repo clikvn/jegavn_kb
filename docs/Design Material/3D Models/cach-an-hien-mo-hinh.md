@@ -1,6 +1,6 @@
 ---
 title: Cách ẩn / hiện mô hình
-slug: cach-an-hien-mo-hinh
+slug: /cach-an-hien-mo-hinh
 sidebar_label: Cách ẩn / hiện mô hình
 ---
 

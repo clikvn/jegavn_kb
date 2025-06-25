@@ -1,6 +1,6 @@
 ---
 title: Cách thay đổi mật khẩu
-slug: cach-thay-doi-mat-khau
+slug: /cach-thay-doi-mat-khau
 sidebar_label: Cách thay đổi mật khẩu
 ---
 
@@ -19,7 +19,5 @@ Tiếp theo, chọn **Bảo mật tài khoản (Account Security)** và nhấp v
 ![Một người dùng đang xem trang cài đặt Bảo mật, làm nổi bật phần bảo mật Mật khẩu và điều hướng bên trái cho Bảo mật.](https://storage.googleapis.com/jegavn_kb/images/9f6a90e4-b200-45c5-aefa-89c76d6f5a82.png)
 
 :::note
-
-
 
 :::

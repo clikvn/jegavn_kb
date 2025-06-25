@@ -1,14 +1,12 @@
 ---
 title: Thêm Sắp xếp Tùy chỉnh cho Thư mục Bộ sưu tập
-slug: them-sap-xep-tuy-chinh-cho-thu-muc-bo-suu-tap
+slug: /them-sap-xep-tuy-chinh-cho-thu-muc-bo-suu-tap
 sidebar_label: Sắp xếp Tùy chỉnh Thư mục Bộ sưu tập
 ---
 
 Chức năng này cho phép sắp xếp tùy chỉnh các danh mục trong trang "Bộ sưu tập của tôi" trên thanh điều hướng bên trái.
 
 :::info [Hướng dẫn]
-
-Các bước thao tác bằng hình ảnh và văn bản:
 
 :::
 
@@ -27,8 +25,6 @@ Các bước thao tác bằng hình ảnh và văn bản:
 ![Danh sách danh mục đã được sắp xếp lại sau khi lưu.](https://storage.googleapis.com/jegavn_kb/images/ff4ca1c2-3398-4354-9c51-be9b5c49329b.png)
 
 :::info [Minh họa]
-
-Minh họa bằng ảnh GIF:
 
 :::
 

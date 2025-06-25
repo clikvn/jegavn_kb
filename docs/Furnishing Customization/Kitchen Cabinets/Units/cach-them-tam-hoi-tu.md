@@ -1,6 +1,6 @@
 ---
 title: Cách thêm tấm hồi tủ
-slug: cach-them-tam-hoi-tu
+slug: /cach-them-tam-hoi-tu
 sidebar_label: Cách thêm tấm hồi tủ
 ---
 

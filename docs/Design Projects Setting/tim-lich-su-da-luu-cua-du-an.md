@@ -1,6 +1,6 @@
 ---
 title: Tìm lịch sử đã lưu của dự án
-slug: tim-lich-su-da-luu-cua-du-an
+slug: /tim-lich-su-da-luu-cua-du-an
 sidebar_label: Tìm lịch sử đã lưu của dự án
 ---
 
@@ -15,7 +15,5 @@ Xin chào, nếu tình huống này xảy ra, vui lòng thực hiện như sau.
 ![Một người dùng đang tương tác với menu 'Tệp' để truy cập hồ sơ 'Dự án của tôi', được hiển thị trong một cửa sổ modal với các tùy chọn lọc.](https://storage.googleapis.com/jegavn_kb/images/ad82108b-3e55-4dbb-aec6-acac3eeb9b75.png)
 
 :::note
-
-Giới hạn trên hiện tại để lưu hồ sơ các lần xem lịch sử là 30 lần.
 
 :::

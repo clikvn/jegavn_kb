@@ -1,6 +1,6 @@
 ---
 title: Cách tăng kích thước của tấm gusset
-slug: cach-tang-kich-thuoc-cua-tam-gusset
+slug: /cach-tang-kich-thuoc-cua-tam-gusset
 sidebar_label: Cách tăng kích thước của tấm gusset
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Cập nhật tháng 10 năm 2024
-slug: cap-nhat-thang-10-nam-2024
+slug: /cap-nhat-thang-10-nam-2024
 sidebar_label: Cập nhật tháng 10 năm 2024
 ---
 
@@ -130,8 +130,6 @@ Khi lưu dự án, các trường sẽ xuất hiện/ẩn dựa trên cài đặ
 
 :::note
 
-Tính năng này yêu cầu tài khoản doanh nghiệp có quyền cài đặt nâng cao
-
 :::
 
 * * *
@@ -182,8 +180,6 @@ Phiên bản trước chỉ cho phép một yếu tố chiếu sáng trên mỗi
 
 :::note
 
-Đèn không thể chồng chéo hoặc giao nhau
-
 :::
 
 * * *
@@ -229,8 +225,6 @@ Trước đây chỉ hỗ trợ đặt cửa 3D và chế độ xem 2D không hi
 2. Chuyển sang chế độ xem 2D → kéo cửa tấm từ thanh bên vào tường (mặc định: đặt bên phải-bên ngoài)
 
 :::note
-
-Phải tuân theo thông số kỹ thuật cửa tủ quần áo của thư viện nền tảng
 
 :::
 
@@ -315,8 +309,6 @@ Sự không nhất quán giữa các phiên bản cũ (v3.0/4.0) và hiện tạ
 **Không gian làm việc (Workspace)** → **Quản lý Backend toàn nhà (Whole-Home Backend Management)** → **Cài đặt nâng cao tùy chỉnh (Custom Advanced Settings)** → **Cài đặt chức năng 3D (3D Function Settings)** → **Cài đặt đối tượng đã tạo (Generated Object Settings)** → Đặt tiêu chuẩn tham chiếu độ sâu
 
 :::note
-
-Không khuyến nghị cho các doanh nghiệp không có nâng cấp phiên bản lớn
 
 :::
 
@@ -440,8 +432,6 @@ Phiên bản trước chỉ cho phép sử dụng các kiểu lưới chắn cô
 
 :::note
 
-Một số sê-ri chỉ có một kiểu lưới liên quan - việc thay thế có thể không khả dụng trong những trường hợp này
-
 :::
 
 * * *
@@ -523,8 +513,6 @@ Trước đây không thể xem thuộc tính thành phần hoặc điều khi�
 Tự động kích hoạt khi trở về thiết kế đám mây sau khi hoàn thành bản vẽ 2D
 
 :::note
-
-Nhiều lần tạo đồng thời có thể yêu cầu chờ đợi do tải tính toán
 
 :::
 

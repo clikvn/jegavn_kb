@@ -1,12 +1,10 @@
 ---
 title: Tối ưu hóa việc kéo và hấp phụ vật liệu trong 2D và 3D
-slug: toi-uu-hoa-viec-keo-va-hap-phu-vat-lieu-trong-2d-va-3d
+slug: /toi-uu-hoa-viec-keo-va-hap-phu-vat-lieu-trong-2d-va-3d
 sidebar_label: Tối ưu hóa việc kéo và hấp phụ vật liệu trong 2D và 3D
 ---
 
 :::info [Vấn đề cần giải quyết]
-
-Giải quyết vấn đề nhấp nháy khi kéo vật liệu vào tường và cải thiện trải nghiệm tương tác.
 
 :::
 

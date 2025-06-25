@@ -1,6 +1,6 @@
 ---
 title: Đồng hồ gas ở đâu?
-slug: dong-ho-gas-o-dau
+slug: /dong-ho-gas-o-dau
 sidebar_label: Đồng hồ gas ở đâu?
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Cách xóa len chân tường/phào chỉ ở một không gian duy nhất
-slug: cach-xoa-len-chan-tuong-phao-chi-o-mot-khong-gian-duy-nhat
+slug: /cach-xoa-len-chan-tuong-phao-chi-o-mot-khong-gian-duy-nhat
 sidebar_label: Xóa len chân tường/phào chỉ ở một không gian duy nhất
 ---
 

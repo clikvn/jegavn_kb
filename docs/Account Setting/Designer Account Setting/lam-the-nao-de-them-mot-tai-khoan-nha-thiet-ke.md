@@ -1,12 +1,10 @@
 ---
 title: Làm thế nào để thêm một tài khoản nhà thiết kế
-slug: lam-the-nao-de-them-mot-tai-khoan-nha-thiet-ke
+slug: /lam-the-nao-de-them-mot-tai-khoan-nha-thiet-ke
 sidebar_label: Làm thế nào để thêm một tài khoản nhà thiết kế
 ---
 
 :::info
-
-Nếu bạn là người dùng cá nhân, bạn có thể thêm tài khoản phụ theo các bước sau. Nếu bạn là tài khoản người dùng doanh nghiệp, bạn cần tham khảo ý kiến của ban quản lý doanh nghiệp để kích hoạt. (Chỉ tài khoản chính mới có thể thêm tài khoản phụ)
 
 :::
 

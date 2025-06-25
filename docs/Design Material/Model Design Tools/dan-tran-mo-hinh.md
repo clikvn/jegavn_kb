@@ -1,6 +1,6 @@
 ---
 title: Dàn Trận Mô Hình
-slug: dan-tran-mo-hinh
+slug: /dan-tran-mo-hinh
 sidebar_label: Dàn Trận Mô Hình
 ---
 
@@ -14,9 +14,7 @@ Lối vào 2: Trong chế độ xem (①) **3D (3D)**, chọn mô hình → than
 
 ![Giao diện người dùng hiển thị các tùy chọn dàn trận trong chế độ xem 3D, với menu thả xuống hiển thị các lựa chọn dàn trận theo đường thẳng và vòng tròn.](https://storage.googleapis.com/jegavn_kb/images/3ad561fb-357b-4053-a7a0-7e29db6984ae.png)
 
-:::note
-
-Dàn trận theo đường thẳng
+:::info
 
 :::
 
@@ -28,9 +26,7 @@ Nếu cần dàn trận nhiều mô hình, trước tiên hãy nhóm các mô h�
 
 ![Một nhóm các đối tượng được chọn trong không gian làm việc, sẵn sàng cho thao tác dàn trận.](https://storage.googleapis.com/jegavn_kb/images/54fed9ec-17b9-4cbc-9524-6e7add356b29.png)
 
-:::note
-
-Dàn trận theo vòng tròn
+:::info
 
 :::
 

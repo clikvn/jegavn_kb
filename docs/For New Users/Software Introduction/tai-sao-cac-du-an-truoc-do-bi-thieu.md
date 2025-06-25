@@ -1,16 +1,10 @@
 ---
 title: Tại sao các dự án trước đó bị thiếu?
-slug: tai-sao-cac-du-an-truoc-do-bi-thieu
+slug: /tai-sao-cac-du-an-truoc-do-bi-thieu
 sidebar_label: Tại sao các dự án trước đó bị thiếu?
 ---
 
-:::note
-
-Hiện tại, chỉ các dự án trong ba tháng qua được hiển thị trong giao diện thiết kế. Để tìm các dự án cũ hơn, hãy sử dụng thanh tìm kiếm trong 
-
-**Dự án của tôi (My Projects)**
-
- và chọn khoảng thời gian thích hợp.
+:::info
 
 :::
 

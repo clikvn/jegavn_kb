@@ -1,6 +1,6 @@
 ---
 title: Cách tạo cầu thang
-slug: cach-tao-cau-thang
+slug: /cach-tao-cau-thang
 sidebar_label: Cách tạo cầu thang
 ---
 

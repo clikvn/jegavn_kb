@@ -1,12 +1,10 @@
 ---
 title: Cách xử lý bóng đen trên trần nhà
-slug: cach-xu-ly-bong-den-tren-tran-nha
+slug: /cach-xu-ly-bong-den-tren-tran-nha
 sidebar_label: Cách xử lý bóng đen trên trần nhà
 ---
 
-:::note
-
-Nếu trần/sàn chồng lên nhau và bị nhấp nháy, vui lòng kiểm tra xem chiều cao từ đỉnh có bằng 0 không. Trong tùy chỉnh trần và tường, giá trị tối thiểu của chiều cao từ đỉnh là 1 và không thể bằng 0, vì nếu bằng 0, nó sẽ chồng lên trần/sàn ban đầu.
+:::info
 
 :::
 

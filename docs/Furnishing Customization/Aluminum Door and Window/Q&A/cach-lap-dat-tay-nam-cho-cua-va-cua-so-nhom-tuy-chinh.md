@@ -1,6 +1,6 @@
 ---
 title: Cách lắp đặt tay nắm cho cửa và cửa sổ nhôm tùy chỉnh
-slug: cach-lap-dat-tay-nam-cho-cua-va-cua-so-nhom-tuy-chinh
+slug: /cach-lap-dat-tay-nam-cho-cua-va-cua-so-nhom-tuy-chinh
 sidebar_label: Lắp đặt tay nắm cửa nhôm tùy chỉnh
 ---
 

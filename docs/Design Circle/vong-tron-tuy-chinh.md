@@ -1,14 +1,12 @@
 ---
 title: Vòng tròn Tùy chỉnh
-slug: vong-tron-tuy-chinh
+slug: /vong-tron-tuy-chinh
 sidebar_label: Vòng tròn Tùy chỉnh
 ---
 
 1. Tạo Vòng tròn Thiết kế Tùy chỉnh
 
-:::note
-
-Hiện tại, tính năng Vòng tròn Tùy chỉnh đang được phát hành giới hạn và chỉ dành cho các khách hàng được mời. Các Vòng tròn Tùy chỉnh được chúng tôi tạo ra cho các doanh nghiệp. Các khách hàng doanh nghiệp khác quan tâm có thể liên hệ với đại diện bán hàng của họ. Chúng tôi sẽ chọn lọc để kích hoạt tính năng này dựa trên nhu cầu kinh doanh cụ thể.
+:::info
 
 :::
 
@@ -82,8 +80,6 @@ Chỉ phê duyệt thôi không cấp quyền truy cập ngay lập tức. Bạn
 
 :::note
 
-Một thành viên có thể tham gia nhiều Vòng tròn Tùy chỉnh, nhưng mỗi module chỉ có thể sử dụng một Vòng tròn Tùy chỉnh tại một thời điểm.
-
 :::
 
 ![Giao diện người dùng hiển thị danh sách các vai trò trong tab 'Vai trò Mặc định của Hệ thống', hiển thị các chi tiết như tên vai trò, chức năng và số lượng thành viên.](https://storage.googleapis.com/jegavn_kb/images/91ef7a4b-3b1c-4f13-9944-99c547b8f365.png)
@@ -99,8 +95,6 @@ Sau khi cho phép tài khoản phụ đăng ký tham gia các Vòng tròn Tùy c
 5. Sử dụng Vòng tròn Tùy chỉnh trong JEGA AiHouse
 
 :::note
-
-Tính năng này chỉ có sẵn trong phiên bản Aihouse 5 Plus.
 
 :::
 

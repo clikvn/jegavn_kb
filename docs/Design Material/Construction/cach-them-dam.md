@@ -1,6 +1,6 @@
 ---
 title: Cách Thêm Dầm
-slug: cach-them-dam
+slug: /cach-them-dam
 sidebar_label: Cách Thêm Dầm
 ---
 

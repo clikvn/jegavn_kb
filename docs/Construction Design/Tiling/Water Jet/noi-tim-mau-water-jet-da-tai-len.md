@@ -1,6 +1,6 @@
 ---
 title: Nơi tìm mẫu water jet đã tải lên
-slug: noi-tim-mau-water-jet-da-tai-len
+slug: /noi-tim-mau-water-jet-da-tai-len
 sidebar_label: Nơi tìm mẫu water jet đã tải lên
 ---
 

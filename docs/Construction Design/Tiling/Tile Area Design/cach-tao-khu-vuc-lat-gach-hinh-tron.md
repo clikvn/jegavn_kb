@@ -1,6 +1,6 @@
 ---
 title: Cách tạo khu vực lát gạch hình tròn
-slug: cach-tao-khu-vuc-lat-gach-hinh-tron
+slug: /cach-tao-khu-vuc-lat-gach-hinh-tron
 sidebar_label: Cách tạo khu vực lát gạch hình tròn
 ---
 

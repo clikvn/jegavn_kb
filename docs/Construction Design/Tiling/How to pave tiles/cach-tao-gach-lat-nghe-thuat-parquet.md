@@ -1,6 +1,6 @@
 ---
 title: Cách tạo gạch lát nghệ thuật (parquet)
-slug: cach-tao-gach-lat-nghe-thuat-parquet
+slug: /cach-tao-gach-lat-nghe-thuat-parquet
 sidebar_label: Cách tạo gạch lát nghệ thuật (parquet)
 ---
 

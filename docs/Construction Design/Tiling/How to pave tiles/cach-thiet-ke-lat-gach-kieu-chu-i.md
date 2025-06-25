@@ -1,6 +1,6 @@
 ---
 title: Cách thiết kế lát gạch kiểu chữ I
-slug: cach-thiet-ke-lat-gach-kieu-chu-i
+slug: /cach-thiet-ke-lat-gach-kieu-chu-i
 sidebar_label: Thiết kế lát gạch kiểu chữ I
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để thêm phào chỉ trần/len chân tường
-slug: lam-the-nao-de-them-phao-chi-tran-len-chan-tuong
+slug: /lam-the-nao-de-them-phao-chi-tran-len-chan-tuong
 sidebar_label: Thêm phào chỉ trần/len chân tường
 ---
 

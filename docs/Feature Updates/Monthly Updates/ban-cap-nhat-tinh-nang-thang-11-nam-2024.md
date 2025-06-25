@@ -1,6 +1,6 @@
 ---
 title: Bản cập nhật tính năng tháng 11 năm 2024
-slug: ban-cap-nhat-tinh-nang-thang-11-nam-2024
+slug: /ban-cap-nhat-tinh-nang-thang-11-nam-2024
 sidebar_label: Bản cập nhật tháng 11 năm 2024
 ---
 

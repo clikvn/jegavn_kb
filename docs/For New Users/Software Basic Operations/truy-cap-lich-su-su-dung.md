@@ -1,20 +1,12 @@
 ---
 title: Truy Cập Lịch Sử Sử Dụng
-slug: truy-cap-lich-su-su-dung
+slug: /truy-cap-lich-su-su-dung
 sidebar_label: Bản ghi lịch sử mới
 ---
 
 Mục **Của tôi (Mine)** ở thanh điều hướng bên trái đã được bổ sung thêm danh mục **Lịch sử (History)**, hiển thị 100 mô hình và vật liệu mà người dùng đã sử dụng gần đây.
 
-:::note
-
-Thanh điều hướng bên trái → 
-
-**Của tôi (Mine)**
-
- → 
-
-**Lịch sử (History)**
+:::info
 
 :::
 

@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để thêm chậu rửa liền khối vào tủ?
-slug: lam-the-nao-de-them-chau-rua-lien-khoi-vao-tu
+slug: /lam-the-nao-de-them-chau-rua-lien-khoi-vao-tu
 sidebar_label: Thêm chậu rửa liền khối vào tủ
 ---
 

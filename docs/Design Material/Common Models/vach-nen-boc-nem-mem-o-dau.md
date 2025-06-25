@@ -1,6 +1,6 @@
 ---
 title: Vách nền bọc nệm mềm ở đâu
-slug: vach-nen-boc-nem-mem-o-dau
+slug: /vach-nen-boc-nem-mem-o-dau
 sidebar_label: Vách nền bọc nệm mềm ở đâu
 ---
 

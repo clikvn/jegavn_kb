@@ -1,6 +1,6 @@
 ---
 title: Thay đổi kiểu dáng đường viền cửa gỗ tự nhiên
-slug: thay-doi-kieu-dang-duong-vien-cua-go-tu-nhien
+slug: /thay-doi-kieu-dang-duong-vien-cua-go-tu-nhien
 sidebar_label: Thay đổi kiểu dáng đường viền cửa gỗ tự nhiên
 ---
 
@@ -13,7 +13,5 @@ Chọn toàn bộ cửa gỗ, nhấp chuột phải và chọn **Kiểu dáng (S
 ![Thư viện vật liệu hiển thị các kiểu dáng đường viền khác nhau để lựa chọn.](https://storage.googleapis.com/jegavn_kb/images/3a45c054-be65-4bd1-9032-92b4068a0735.png)
 
 :::note
-
-Thao tác đối với cửa sổ/yakou tùy chỉnh cũng tương tự.
 
 :::

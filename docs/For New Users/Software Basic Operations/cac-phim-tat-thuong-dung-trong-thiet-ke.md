@@ -1,6 +1,6 @@
 ---
 title: Các phím tắt thường dùng trong thiết kế
-slug: cac-phim-tat-thuong-dung-trong-thiet-ke
+slug: /cac-phim-tat-thuong-dung-trong-thiet-ke
 sidebar_label: Các phím tắt thường dùng trong thiết kế
 ---
 
@@ -13,7 +13,5 @@ Xin chào, danh sách các phím tắt nằm ở góc trên bên phải của tr
 Các mô-đun tùy chỉnh khác nhau có các phím tắt tương ứng khác nhau và cần chuyển đổi giao diện để xem.
 
 :::note
-
-Vui lòng sử dụng Google Chrome và client. Các trình duyệt khác không tương thích và không hỗ trợ các phím tắt tùy chỉnh.
 
 :::

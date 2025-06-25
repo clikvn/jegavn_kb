@@ -1,6 +1,6 @@
 ---
 title: Mô-đun gỗ thịt làm thế nào để gỡ bỏ khóa cửa
-slug: mo-dun-go-thit-lam-the-nao-de-go-bo-khoa-cua
+slug: /mo-dun-go-thit-lam-the-nao-de-go-bo-khoa-cua
 sidebar_label: Cách gỡ bỏ khóa cửa gỗ thịt
 ---
 

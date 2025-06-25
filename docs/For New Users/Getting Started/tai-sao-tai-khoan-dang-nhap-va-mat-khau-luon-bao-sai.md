@@ -1,6 +1,6 @@
 ---
 title: Tại sao tài khoản đăng nhập và mật khẩu luôn báo sai
-slug: tai-sao-tai-khoan-dang-nhap-va-mat-khau-luon-bao-sai
+slug: /tai-sao-tai-khoan-dang-nhap-va-mat-khau-luon-bao-sai
 sidebar_label: Tại sao tài khoản đăng nhập và mật khẩu luôn báo sai
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Cách thay đổi màu sắc đá ngưỡng cửa gỗ đặc
-slug: cach-thay-doi-mau-sac-da-nguong-cua-go-dac
+slug: /cach-thay-doi-mau-sac-da-nguong-cua-go-dac
 sidebar_label: Cách thay đổi màu sắc đá ngưỡng cửa
 ---
 

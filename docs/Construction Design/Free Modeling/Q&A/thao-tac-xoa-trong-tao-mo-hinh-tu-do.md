@@ -1,6 +1,6 @@
 ---
 title: Thao Tác Xóa trong Tạo Mô Hình Tự Do
-slug: thao-tac-xoa-trong-tao-mo-hinh-tu-do
+slug: /thao-tac-xoa-trong-tao-mo-hinh-tu-do
 sidebar_label: Thao Tác Xóa trong Tạo Mô Hình Tự Do
 ---
 

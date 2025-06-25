@@ -1,6 +1,6 @@
 ---
 title: Thiết kế đường lượn sóng không đều
-slug: thiet-ke-duong-luon-song-khong-deu
+slug: /thiet-ke-duong-luon-song-khong-deu
 sidebar_label: Thiết kế đường lượn sóng không đều
 ---
 

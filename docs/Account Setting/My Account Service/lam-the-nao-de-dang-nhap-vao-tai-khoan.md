@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để đăng nhập vào tài khoản?
-slug: lam-the-nao-de-dang-nhap-vao-tai-khoan
+slug: /lam-the-nao-de-dang-nhap-vao-tai-khoan
 sidebar_label: Làm thế nào để đăng nhập vào tài khoản?
 ---
 

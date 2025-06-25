@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để lát gạch cho tường ngoại thất?
-slug: lam-the-nao-de-lat-gach-cho-tuong-ngoai-that
+slug: /lam-the-nao-de-lat-gach-cho-tuong-ngoai-that
 sidebar_label: Làm thế nào để lát gạch cho tường ngoại thất?
 ---
 
@@ -11,7 +11,5 @@ Kéo một (①) **Nền tảng (Platform)**, điều chỉnh kích thước c�
 ![Hình ảnh hiển thị menu Kết cấu trong phần mềm thiết kế, với chú thích (①) chỉ vào tùy chọn Nền tảng (Platform).](https://storage.googleapis.com/jegavn_kb/images/9d8120ba-f8fa-4608-9ad5-c44187fc5dac.png)
 
 :::note
-
-Nếu có cửa ra vào và cửa sổ, bạn sẽ cần ghép nhiều nền tảng lại với nhau để chừa ra vị trí cho chúng.
 
 :::

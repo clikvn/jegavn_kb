@@ -1,6 +1,6 @@
 ---
 title: Lỗi thiếu vùng lát gạch khi nhập Waterjet
-slug: loi-thieu-vung-lat-gach-khi-nhap-waterjet
+slug: /loi-thieu-vung-lat-gach-khi-nhap-waterjet
 sidebar_label: Lỗi thiếu vùng lát gạch khi nhập Waterjet
 ---
 

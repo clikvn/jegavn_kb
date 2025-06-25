@@ -1,6 +1,6 @@
 ---
 title: Cách thêm đèn downlight trên trần phẳng
-slug: cach-them-den-downlight-tren-tran-phang
+slug: /cach-them-den-downlight-tren-tran-phang
 sidebar_label: Cách thêm đèn downlight trên trần phẳng
 ---
 
@@ -12,20 +12,6 @@ Phương pháp 1: Chọn mẫu đèn downlight trong **thư viện vật liệu 
 
 :::note
 
-Trong giao diện phiên bản mới, điều hướng đến thư viện vật liệu. Chọn (①) 
-
-**Trang trí (Decoration)**
-
-, sau đó chọn (②) 
-
-**Đèn rọi (Spotlight)**
-
-. Chọn một mẫu đèn từ (③) lưới xem trước và sử dụng công cụ (④) 
-
-**Di chuyển (Move)**
-
- để định vị đèn. Nhấn giữ phím Shift trong khi di chuyển để sao chép.
-
 :::
 
 Phương pháp 2: Chọn mẫu đèn downlight trong **trần tùy chỉnh (customized ceiling)**, và thực hiện lát trực tiếp và liên tục.
@@ -35,28 +21,6 @@ Phương pháp 2: Chọn mẫu đèn downlight trong **trần tùy chỉnh (cust
 ![Một menu ngữ cảnh được hiển thị trên một đối tượng đèn đã chọn. (①) Đối tượng đã chọn được tô sáng, (②) tùy chọn Lát trong menu được chọn, và (③) tùy chọn Lát liên tục trong menu phụ được chọn.](https://storage.googleapis.com/jegavn_kb/images/5dee2d52-42e7-4e4e-93f0-80797d2ef626.png)
 
 :::note
-
-Trong công cụ tùy chỉnh trần, chọn tab (①) 
-
-**Thiết bị điện (Electrical)**
-
-. Lọc theo (②) 
-
-**Đèn downlight (Downlight)**
-
- và chọn một (③) 
-
-**Đèn âm trần (Down lamp)**
-
- để đặt lên (④) trần nhà. Sau khi đặt đèn đầu tiên, nhấp chuột phải vào đối tượng đã chọn để mở menu ngữ cảnh. Chọn (②) 
-
-**Lát (Paving)**
-
-, sau đó chọn (③) 
-
-**Lát liên tục (Continuous paving)**
-
- để nhanh chóng thêm nhiều đèn.
 
 :::
 

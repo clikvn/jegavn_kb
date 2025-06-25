@@ -1,6 +1,6 @@
 ---
 title: Tổ hợp cửa sổ
-slug: to-hop-cua-so
+slug: /to-hop-cua-so
 sidebar_label: Tổ hợp cửa sổ
 ---
 

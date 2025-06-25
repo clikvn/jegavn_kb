@@ -1,6 +1,6 @@
 ---
 title: Tại Sao Trần Nhà Không Hiển Thị
-slug: tai-sao-tran-nha-khong-hien-thi
+slug: /tai-sao-tran-nha-khong-hien-thi
 sidebar_label: Tại Sao Trần Nhà Không Hiển Thị
 ---
 

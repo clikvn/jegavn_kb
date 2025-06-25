@@ -1,6 +1,6 @@
 ---
 title: Hiệu ứng áp dụng tăng nhiệt độ màu và độ sáng cho cùng một sản phẩm
-slug: hieu-ung-ap-dung-tang-nhiet-do-mau-va-do-sang-cho-cung-mot-san-pham
+slug: /hieu-ung-ap-dung-tang-nhiet-do-mau-va-do-sang-cho-cung-mot-san-pham
 sidebar_label: Áp dụng hiệu ứng ánh sáng cho sản phẩm tương tự
 ---
 

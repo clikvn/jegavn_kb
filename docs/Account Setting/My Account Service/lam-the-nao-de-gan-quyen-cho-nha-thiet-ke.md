@@ -1,14 +1,12 @@
 ---
 title: Làm thế nào để gán quyền cho nhà thiết kế？
-slug: lam-the-nao-de-gan-quyen-cho-nha-thiet-ke
+slug: /lam-the-nao-de-gan-quyen-cho-nha-thiet-ke
 sidebar_label: Gán quyền cho nhà thiết kế
 ---
 
 Xin chào, sau khi mua tài khoản, bạn cần liên hệ với đại diện bán hàng đã bán tài khoản cho bạn. Họ sẽ hỗ trợ bạn gán các quyền cần thiết trong phần quản trị để bạn có thể sử dụng mô-đun tùy chỉnh. Ngoài ra, bạn có thể cung cấp ảnh mặt trước và mặt sau của CMND/CCCD, biên lai thanh toán, số điện thoại và thông tin tài khoản của bạn cho bộ phận chăm sóc khách hàng sau bán hàng. Họ sẽ giúp bạn liên hệ với đại diện bán hàng để gán quyền. Thời gian sử dụng tài khoản sẽ bắt đầu tính từ ngày các quyền được gán.
 
 :::note
-
-Trước khi gán quyền, bạn cần hoàn thành chứng nhận cửa hàng. Mỗi dịch vụ hoặc gói dịch vụ cũng có thể được thu hồi trong vòng 72 giờ sau lần gán đầu tiên, với tối đa ba lần thu hồi. Sau 72 giờ, các dịch vụ không thể được thu hồi, nhưng có thể được gán lại.
 
 :::
 

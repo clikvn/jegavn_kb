@@ -1,6 +1,6 @@
 ---
 title: Cách Phân Vùng Trần Nhà
-slug: cach-phan-vung-tran-nha
+slug: /cach-phan-vung-tran-nha
 sidebar_label: Cách Phân Vùng Trần Nhà
 ---
 

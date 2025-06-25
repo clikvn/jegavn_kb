@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để xây dựng một tòa nhà song lập
-slug: lam-the-nao-de-xay-dung-mot-toa-nha-song-lap
+slug: /lam-the-nao-de-xay-dung-mot-toa-nha-song-lap
 sidebar_label: Làm thế nào để xây dựng một tòa nhà song lập
 ---
 

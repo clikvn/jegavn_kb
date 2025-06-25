@@ -1,6 +1,6 @@
 ---
 title: Cách thiết kế bục có hình dạng tùy chỉnh
-slug: cach-thiet-ke-buc-co-hinh-dang-tuy-chinh
+slug: /cach-thiet-ke-buc-co-hinh-dang-tuy-chinh
 sidebar_label: Cách thiết kế bục có hình dạng tùy chỉnh
 ---
 

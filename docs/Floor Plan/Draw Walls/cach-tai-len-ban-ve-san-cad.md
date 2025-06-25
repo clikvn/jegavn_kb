@@ -1,14 +1,12 @@
 ---
 title: Cách Tải Lên Bản Vẽ Sàn CAD
-slug: cach-tai-len-ban-ve-san-cad
+slug: /cach-tai-len-ban-ve-san-cad
 sidebar_label: Cách Tải Lên Bản Vẽ Sàn CAD
 ---
 
 Xin chào, để tải lên bản vẽ sàn CAD, các cài đặt như sau:
 
-:::note
-
-
+:::info
 
 :::
 

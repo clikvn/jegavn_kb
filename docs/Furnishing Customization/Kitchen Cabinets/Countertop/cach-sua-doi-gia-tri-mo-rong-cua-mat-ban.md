@@ -1,6 +1,6 @@
 ---
 title: Cách sửa đổi giá trị mở rộng của mặt bàn?
-slug: cach-sua-doi-gia-tri-mo-rong-cua-mat-ban
+slug: /cach-sua-doi-gia-tri-mo-rong-cua-mat-ban
 sidebar_label: Cách sửa đổi giá trị mở rộng của mặt bàn?
 ---
 
@@ -13,8 +13,6 @@ Xin chào, trong giao diện tùy chỉnh tủ, để điều chỉnh độ vư�
 3. Nhấn **Xác nhận (Confirm)** để hoàn tất.
 
 :::note
-
-Giá trị dương là để mở rộng ra ngoài, và giá trị âm là để thụt vào trong.
 
 :::
 

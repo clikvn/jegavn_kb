@@ -1,6 +1,6 @@
 ---
 title: Tại sao không di chuyển được tay nắm?
-slug: tai-sao-khong-di-chuyen-duoc-tay-nam
+slug: /tai-sao-khong-di-chuyen-duoc-tay-nam
 sidebar_label: Tại sao không di chuyển được tay nắm?
 ---
 

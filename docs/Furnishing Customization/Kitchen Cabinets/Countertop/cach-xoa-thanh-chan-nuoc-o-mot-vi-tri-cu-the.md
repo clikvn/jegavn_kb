@@ -1,6 +1,6 @@
 ---
 title: Cách xóa thanh chắn nước ở một vị trí cụ thể
-slug: cach-xoa-thanh-chan-nuoc-o-mot-vi-tri-cu-the
+slug: /cach-xoa-thanh-chan-nuoc-o-mot-vi-tri-cu-the
 sidebar_label: Cách xóa thanh chắn nước ở một vị trí cụ thể
 ---
 
@@ -13,9 +13,5 @@ Khi lắp đặt mặt bàn, bạn có thể thiết lập đường dẫn chắ
 2. Bỏ chọn tùy chọn đường dẫn chắn nước mà bạn không cần, ví dụ như **Chắn nước sau (Back water retaining)**, để xóa nó khỏi vị trí đó.
 
 :::note
-
-Để xem hướng dẫn chi tiết, vui lòng nhấp vào: 
-
-
 
 :::

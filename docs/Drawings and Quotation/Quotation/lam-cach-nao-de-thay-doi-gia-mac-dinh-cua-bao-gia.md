@@ -1,6 +1,6 @@
 ---
 title: Làm cách nào để thay đổi giá mặc định của báo giá?
-slug: lam-cach-nao-de-thay-doi-gia-mac-dinh-cua-bao-gia
+slug: /lam-cach-nao-de-thay-doi-gia-mac-dinh-cua-bao-gia
 sidebar_label: Thay đổi giá mặc định của báo giá
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Cách làm trần giật cấp nhiều lớp
-slug: cach-lam-tran-giat-cap-nhieu-lop
+slug: /cach-lam-tran-giat-cap-nhieu-lop
 sidebar_label: Cách làm trần giật cấp nhiều lớp
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Cách vẽ tường xiên?
-slug: cach-ve-tuong-xien
+slug: /cach-ve-tuong-xien
 sidebar_label: Cách vẽ tường xiên?
 ---
 

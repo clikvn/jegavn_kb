@@ -1,12 +1,10 @@
 ---
 title: Thêm Thước Đo Để Di Chuyển Các Bộ Phận Chức Năng Được Gắn Trên Cửa
-slug: them-thuoc-do-de-di-chuyen-cac-bo-phan-chuc-nang-duoc-gan-tren-cua
+slug: /them-thuoc-do-de-di-chuyen-cac-bo-phan-chuc-nang-duoc-gan-tren-cua
 sidebar_label: Thêm Thước Đo Để Di Chuyển Các Bộ Phận Chức Năng Được Gắn Trên Cửa
 ---
 
-:::note
-
-Khi một bộ phận chức năng dạng veneer được lắp trên tấm cửa, không có thang đo hiển thị và không thể sửa đổi vị trí theo thang đo. Điều này gây khó khăn cho nhà thiết kế trong việc xác định vị trí lắp đặt cụ thể, làm cho việc sửa đổi vị trí tốn nhiều thời gian và dễ xảy ra lỗi.
+:::info
 
 :::
 

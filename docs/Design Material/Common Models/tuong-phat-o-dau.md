@@ -1,6 +1,6 @@
 ---
 title: Tượng Phật ở đâu?
-slug: tuong-phat-o-dau
+slug: /tuong-phat-o-dau
 sidebar_label: Tượng Phật ở đâu?
 ---
 

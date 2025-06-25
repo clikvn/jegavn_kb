@@ -1,6 +1,6 @@
 ---
 title: Cách vẽ trần cong
-slug: cach-ve-tran-cong
+slug: /cach-ve-tran-cong
 sidebar_label: Cách vẽ trần cong
 ---
 

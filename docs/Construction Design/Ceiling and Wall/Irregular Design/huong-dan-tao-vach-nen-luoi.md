@@ -1,6 +1,6 @@
 ---
 title: Hướng Dẫn Tạo Vách Nền Lưới
-slug: huong-dan-tao-vach-nen-luoi
+slug: /huong-dan-tao-vach-nen-luoi
 sidebar_label: Hướng Dẫn Tạo Vách Nền Lưới
 ---
 

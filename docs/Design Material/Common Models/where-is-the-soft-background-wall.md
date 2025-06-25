@@ -1,6 +1,6 @@
 ---
 title: Vách nền mềm ở đâu?
-slug: where-is-the-soft-background-wall
+slug: /where-is-the-soft-background-wall
 sidebar_label: Vách nền mềm ở đâu?
 ---
 

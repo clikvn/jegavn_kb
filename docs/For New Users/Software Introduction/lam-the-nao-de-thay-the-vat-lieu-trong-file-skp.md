@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để thay thế vật liệu trong file SKP?
-slug: lam-the-nao-de-thay-the-vat-lieu-trong-file-skp
+slug: /lam-the-nao-de-thay-the-vat-lieu-trong-file-skp
 sidebar_label: Làm thế nào để thay thế vật liệu trong file SKP?
 ---
 

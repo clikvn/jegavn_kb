@@ -1,6 +1,6 @@
 ---
 title: Cửa và Cửa Sổ Góc Nhôm (V5)
-slug: cua-va-cua-so-goc-nhom-v5
+slug: /cua-va-cua-so-goc-nhom-v5
 sidebar_label: Cửa và Cửa Sổ Góc Nhôm (V5)
 ---
 
@@ -13,8 +13,6 @@ Xin chào, trong việc tùy chỉnh cửa và cửa sổ nhôm, các cửa và 
 2. Chọn toàn bộ cửa và cửa sổ nhôm trong không gian 3D cho đến khi nó chuyển sang màu đỏ, sửa đổi kích thước tương ứng trong cột chỉnh sửa ở bên phải, sau đó nhấp để vào: **Thiết kế 2D (2D Design)**.
 
 :::note
-
-Lưu ý: Sau khi nhấp để vào Thiết kế 2D, bạn không thể sửa đổi kích thước của cửa và cửa sổ góc nhôm nữa.
 
 :::
 

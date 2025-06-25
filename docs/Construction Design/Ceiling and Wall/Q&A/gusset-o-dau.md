@@ -1,6 +1,6 @@
 ---
 title: Gusset ở đâu?
-slug: gusset-o-dau
+slug: /gusset-o-dau
 sidebar_label: Gusset ở đâu?
 ---
 

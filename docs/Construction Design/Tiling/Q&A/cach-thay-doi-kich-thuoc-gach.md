@@ -1,6 +1,6 @@
 ---
 title: Cách thay đổi kích thước gạch
-slug: cach-thay-doi-kich-thuoc-gach
+slug: /cach-thay-doi-kich-thuoc-gach
 sidebar_label: Cách thay đổi kích thước gạch
 ---
 

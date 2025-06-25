@@ -1,6 +1,6 @@
 ---
 title: Truy vấn thời hạn còn lại của tài khoản
-slug: truy-van-thoi-han-con-lai-cua-tai-khoan
+slug: /truy-van-thoi-han-con-lai-cua-tai-khoan
 sidebar_label: Truy vấn thời hạn còn lại của tài khoản
 ---
 

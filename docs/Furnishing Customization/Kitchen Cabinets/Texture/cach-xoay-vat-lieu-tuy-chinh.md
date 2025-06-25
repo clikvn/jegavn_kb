@@ -1,6 +1,6 @@
 ---
 title: Cách xoay vật liệu tùy chỉnh
-slug: cach-xoay-vat-lieu-tuy-chinh
+slug: /cach-xoay-vat-lieu-tuy-chinh
 sidebar_label: Cách xoay vật liệu tùy chỉnh
 ---
 

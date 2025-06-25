@@ -1,6 +1,6 @@
 ---
 title: Đàn piano ở đâu?
-slug: dan-piano-o-dau
+slug: /dan-piano-o-dau
 sidebar_label: Đàn piano ở đâu?
 ---
 

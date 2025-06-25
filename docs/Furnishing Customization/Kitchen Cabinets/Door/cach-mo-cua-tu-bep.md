@@ -1,6 +1,6 @@
 ---
 title: Cách Mở Cửa Tủ Bếp
-slug: cach-mo-cua-tu-bep
+slug: /cach-mo-cua-tu-bep
 sidebar_label: Cách Mở Cửa Tủ Bếp
 ---
 

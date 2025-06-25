@@ -1,6 +1,6 @@
 ---
 title: Cách vẽ lỗ cầu thang trên tầng hai
-slug: cach-ve-lo-cau-thang-tren-tang-hai
+slug: /cach-ve-lo-cau-thang-tren-tang-hai
 sidebar_label: Cách vẽ lỗ cầu thang trên tầng hai
 ---
 

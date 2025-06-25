@@ -1,6 +1,6 @@
 ---
 title: Tại sao tủ góc không thể tránh các góc để tạo thanh chắn nước?
-slug: tai-sao-tu-goc-khong-the-tranh-cac-goc-de-tao-thanh-chan-nuoc
+slug: /tai-sao-tu-goc-khong-the-tranh-cac-goc-de-tao-thanh-chan-nuoc
 sidebar_label: Tại sao tủ góc không thể tránh các góc để tạo thanh chắn nước?
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Cập nhật tháng 8 năm 2024
-slug: cap-nhat-thang-8-nam-2024
+slug: /cap-nhat-thang-8-nam-2024
 sidebar_label: Cập nhật tháng 8 năm 2024
 ---
 
@@ -254,8 +254,6 @@ Cảm hứng AI
 
 :::note
 
-Thuộc tính tải lên cho tay nắm của đơn vị cửa: Tay nắm > thay thế vật liệu; Cần đặt thông số hướng mở tay nắm LSKMFX và mô hình nhập khẩu phải vượt ra ngoài vị trí khung; nếu hướng mở của tấm cửa khác với hướng mở của tay nắm, đầu trước sẽ tự động phản chiếu tay nắm.
-
 :::
 
 **03 Lắp đặt viền tấm cho tấm tường (dành cho tất cả) --- Tính năng mới**
@@ -331,8 +329,6 @@ Thuộc tính tải lên cho tay nắm của đơn vị cửa: Tay nắm > thay 
 2. Chọn một tủ để lắp đặt đèn, chọn một kiểu đèn, và chỉ có tab đèn kệ sẽ được hiển thị nếu đèn mặt bên và đèn bên bị tắt ở phía sau.
 
 :::note
-
-Phía sau-mở kiểu đèn-Thông tin-Cài đặt-Đèn mặc định-Bật-Lưu
 
 :::
 
@@ -493,8 +489,6 @@ Phía sau-mở kiểu đèn-Thông tin-Cài đặt-Đèn mặc định-Bật-Lư
 ![Một người dùng đang xem hộp thoại 'Cài đặt' trong ứng dụng AiHouse, với một cài đặt cụ thể liên quan đến 'Chế độ thiết kế tủ miễn phí' (①) được tô sáng.](https://storage.googleapis.com/jegavn_kb/images/f2ff478f-2e3a-4c34-a25e-45ff9adffe7f.png)
 
 :::note
-
-1. Chế độ cách ly: Có sẵn trong giao diện thiết kế phiên bản 5.0, yêu cầu quyền truy cập vào một trang phụ để thiết kế tủ miễn phí. 2. Chế độ phổ thông: Một chế độ mới trong phiên bản 5plus cho phép thiết kế tủ miễn phí mà không cần truy cập vào một trang phụ.
 
 :::
 

@@ -1,12 +1,10 @@
 ---
 title: Tìm kiếm bằng hình ảnh - Tối ưu hóa hiệu quả
-slug: tim-kiem-bang-hinh-anh-toi-uu-hoa-hieu-qua
+slug: /tim-kiem-bang-hinh-anh-toi-uu-hoa-hieu-qua
 sidebar_label: Tìm kiếm bằng hình ảnh - Tối ưu hóa hiệu quả
 ---
 
-:::note
-
-Sau khi thay đổi tương tác tìm kiếm hình ảnh sang phương thức phân đoạn và tìm kiếm bằng hình ảnh, chất lượng tìm kiếm đã giảm đáng kể. Bản cập nhật này tiến hành đào tạo và tối ưu hóa dựa trên phân phối dữ liệu được tạo ra bởi phương thức tương tác này để cải thiện hiệu quả tìm kiếm hình ảnh.
+:::info
 
 :::
 

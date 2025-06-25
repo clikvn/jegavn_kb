@@ -1,6 +1,6 @@
 ---
 title: Cách tạo gạch men cắt góc μωσαϊκό
-slug: cach-tao-gach-men-cat-goc-mosaic
+slug: /cach-tao-gach-men-cat-goc-mosaic
 sidebar_label: Gạch men cắt góc μωσαϊκό
 ---
 

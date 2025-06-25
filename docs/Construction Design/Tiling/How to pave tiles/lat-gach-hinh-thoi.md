@@ -1,6 +1,6 @@
 ---
 title: Lát gạch hình thoi
-slug: lat-gach-hinh-thoi
+slug: /lat-gach-hinh-thoi
 sidebar_label: Lát gạch hình thoi
 ---
 

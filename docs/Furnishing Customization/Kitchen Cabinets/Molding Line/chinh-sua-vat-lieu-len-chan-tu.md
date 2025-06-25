@@ -1,6 +1,6 @@
 ---
 title: Chỉnh sửa vật liệu len chân tủ
-slug: chinh-sua-vat-lieu-len-chan-tu
+slug: /chinh-sua-vat-lieu-len-chan-tu
 sidebar_label: Chỉnh sửa vật liệu len chân tủ
 ---
 

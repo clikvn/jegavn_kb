@@ -1,6 +1,6 @@
 ---
 title: Cách di chuyển vị trí vòi nước
-slug: cach-di-chuyen-vi-tri-voi-nuoc
+slug: /cach-di-chuyen-vi-tri-voi-nuoc
 sidebar_label: Cách di chuyển vị trí vòi nước
 ---
 

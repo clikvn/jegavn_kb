@@ -1,6 +1,6 @@
 ---
 title: Cách xem nhật ký lịch sử
-slug: cach-xem-nhat-ky-lich-su
+slug: /cach-xem-nhat-ky-lich-su
 sidebar_label: Cách xem nhật ký lịch sử
 ---
 

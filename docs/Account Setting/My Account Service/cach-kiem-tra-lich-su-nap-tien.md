@@ -1,6 +1,6 @@
 ---
 title: Cách kiểm tra lịch sử nạp tiền?
-slug: cach-kiem-tra-lich-su-nap-tien
+slug: /cach-kiem-tra-lich-su-nap-tien
 sidebar_label: Cách kiểm tra lịch sử nạp tiền?
 ---
 

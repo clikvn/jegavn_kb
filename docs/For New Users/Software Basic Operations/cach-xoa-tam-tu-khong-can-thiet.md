@@ -1,6 +1,6 @@
 ---
 title: Cách xóa tấm tủ không cần thiết
-slug: cach-xoa-tam-tu-khong-can-thiet
+slug: /cach-xoa-tam-tu-khong-can-thiet
 sidebar_label: Cách xóa tấm tủ không cần thiết
 ---
 

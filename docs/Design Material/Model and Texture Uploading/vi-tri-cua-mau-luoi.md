@@ -1,6 +1,6 @@
 ---
 title: Vị trí của mẫu lưới
-slug: vi-tri-cua-mau-luoi
+slug: /vi-tri-cua-mau-luoi
 sidebar_label: Vị trí của mẫu lưới
 ---
 

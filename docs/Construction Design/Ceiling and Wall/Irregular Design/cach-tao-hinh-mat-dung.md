@@ -1,6 +1,6 @@
 ---
 title: Cách Tạo Hình Mặt Đứng
-slug: cach-tao-hinh-mat-dung
+slug: /cach-tao-hinh-mat-dung
 sidebar_label: Cách Tạo Hình Mặt Đứng
 ---
 

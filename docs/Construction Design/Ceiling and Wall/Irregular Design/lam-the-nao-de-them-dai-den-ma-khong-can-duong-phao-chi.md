@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để thêm dải đèn mà không cần đường phào chỉ?
-slug: lam-the-nao-de-them-dai-den-ma-khong-can-duong-phao-chi
+slug: /lam-the-nao-de-them-dai-den-ma-khong-can-duong-phao-chi
 sidebar_label: Làm thế nào để thêm dải đèn mà không cần đường phào chỉ?
 ---
 

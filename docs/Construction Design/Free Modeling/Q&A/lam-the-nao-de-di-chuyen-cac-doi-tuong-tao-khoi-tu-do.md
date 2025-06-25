@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để di chuyển các đối tượng tạo khối tự do?
-slug: lam-the-nao-de-di-chuyen-cac-doi-tuong-tao-khoi-tu-do
+slug: /lam-the-nao-de-di-chuyen-cac-doi-tuong-tao-khoi-tu-do
 sidebar_label: Di chuyển đối tượng tạo khối tự do
 ---
 

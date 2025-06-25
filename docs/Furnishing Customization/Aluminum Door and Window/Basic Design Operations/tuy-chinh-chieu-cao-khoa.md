@@ -1,6 +1,6 @@
 ---
 title: Tùy chỉnh chiều cao khóa
-slug: tuy-chinh-chieu-cao-khoa
+slug: /tuy-chinh-chieu-cao-khoa
 sidebar_label: Tùy chỉnh chiều cao khóa
 ---
 
@@ -11,8 +11,6 @@ I. Giới thiệu chức năng:
 2. Một mục cấu hình chỉnh sửa chiều cao khóa mới được thêm vào bảng thuộc tính bên phải.
 
 :::note
-
-Tính năng này giải quyết vấn đề trước đây khi các nhà thiết kế không thể tùy chỉnh và điều chỉnh chiều cao khóa theo ý muốn.
 
 :::
 

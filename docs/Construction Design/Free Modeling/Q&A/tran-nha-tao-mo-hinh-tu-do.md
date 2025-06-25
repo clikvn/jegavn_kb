@@ -1,6 +1,6 @@
 ---
 title: Trần nhà tạo mô hình tự do
-slug: tran-nha-tao-mo-hinh-tu-do
+slug: /tran-nha-tao-mo-hinh-tu-do
 sidebar_label: Trần nhà tạo mô hình tự do
 ---
 

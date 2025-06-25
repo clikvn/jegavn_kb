@@ -1,6 +1,6 @@
 ---
 title: Tấm ốp góc ở đâu
-slug: tam-op-goc-o-dau
+slug: /tam-op-goc-o-dau
 sidebar_label: Tấm ốp góc ở đâu
 ---
 

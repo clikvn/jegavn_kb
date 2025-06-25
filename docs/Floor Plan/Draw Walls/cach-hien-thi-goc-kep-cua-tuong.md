@@ -1,6 +1,6 @@
 ---
 title: Cách hiển thị góc kẹp của tường
-slug: cach-hien-thi-goc-kep-cua-tuong
+slug: /cach-hien-thi-goc-kep-cua-tuong
 sidebar_label: Cách hiển thị góc kẹp của tường
 ---
 
@@ -17,8 +17,6 @@ Sau khi bật tính năng này, hãy nhấp vào bức tường tương ứng �
 ![Một sơ đồ mặt bằng hiển thị góc 135 độ giữa hai bức tường sau khi tính năng được kích hoạt.](https://storage.googleapis.com/jegavn_kb/images/2ad097db-2d89-4bb5-98e1-daaa9e4e2b1a.png)
 
 :::note
-
-
 
 :::
 

@@ -1,6 +1,6 @@
 ---
 title: Cách vào lại và xóa tường/trần đã tùy chỉnh
-slug: cach-vao-lai-va-xoa-tuong-tran-da-tuy-chinh
+slug: /cach-vao-lai-va-xoa-tuong-tran-da-tuy-chinh
 sidebar_label: Cách vào lại và xóa tường/trần đã tùy chỉnh
 ---
 

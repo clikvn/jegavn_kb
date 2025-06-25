@@ -1,6 +1,6 @@
 ---
 title: Cách tạo tấm ốp tường
-slug: cach-tao-tam-op-tuong
+slug: /cach-tao-tam-op-tuong
 sidebar_label: Cách tạo tấm ốp tường
 ---
 

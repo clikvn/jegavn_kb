@@ -1,6 +1,6 @@
 ---
 title: Dải Đèn Đa Năng Ở Đâu
-slug: dai-den-da-nang-o-dau
+slug: /dai-den-da-nang-o-dau
 sidebar_label: Dải Đèn Đa Năng Ở Đâu
 ---
 

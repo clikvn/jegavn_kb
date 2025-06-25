@@ -1,6 +1,6 @@
 ---
 title: Làm cách nào để thêm cửa sổ vào mái nghiêng?
-slug: lam-cach-nao-de-them-cua-so-vao-mai-nghieng
+slug: /lam-cach-nao-de-them-cua-so-vao-mai-nghieng
 sidebar_label: Làm cách nào để thêm cửa sổ vào mái nghiêng?
 ---
 

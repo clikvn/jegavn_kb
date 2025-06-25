@@ -1,6 +1,6 @@
 ---
 title: Cách Làm Trần Hai Lớp
-slug: cach-lam-tran-hai-lop
+slug: /cach-lam-tran-hai-lop
 sidebar_label: Cách Làm Trần Hai Lớp
 ---
 
@@ -15,12 +15,6 @@ Xin chào, bạn có thể sử dụng công cụ tường trần để tạo tr
 ![Giao diện phần mềm thiết kế hiển thị cách sử dụng chức năng thụt vào, với trường nhập giá trị được đánh dấu.](https://storage.googleapis.com/jegavn_kb/images/fcead01a-506e-4e5b-a9e5-80ac3201199b.png)
 
 :::note
-
-Để tạo hình dạng trần hai lớp, bạn cần thụt vào hai lần để tạo thành một cấu trúc ba lớp. Ví dụ:
-- Lớp 1: cách trần 300
-- Lớp 2: cách trần 200
-- Lớp 3: cách trần 100
-Điều này sẽ tạo ra một thiết kế trần hai lớp.
 
 :::
 

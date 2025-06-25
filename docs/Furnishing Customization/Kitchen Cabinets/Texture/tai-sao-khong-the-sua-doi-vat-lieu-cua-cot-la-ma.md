@@ -1,6 +1,6 @@
 ---
 title: Tại sao không thể sửa đổi vật liệu của cột La Mã?
-slug: tai-sao-khong-the-sua-doi-vat-lieu-cua-cot-la-ma
+slug: /tai-sao-khong-the-sua-doi-vat-lieu-cua-cot-la-ma
 sidebar_label: Tại sao không thể sửa đổi vật liệu của cột La Mã?
 ---
 

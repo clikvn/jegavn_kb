@@ -1,6 +1,6 @@
 ---
 title: Giá treo quần áo ở đâu
-slug: gia-treo-quan-ao-o-dau
+slug: /gia-treo-quan-ao-o-dau
 sidebar_label: Giá treo quần áo ở đâu
 ---
 

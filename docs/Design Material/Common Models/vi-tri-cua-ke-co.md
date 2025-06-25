@@ -1,6 +1,6 @@
 ---
 title: Vị trí của kệ cổ?
-slug: vi-tri-cua-ke-co
+slug: /vi-tri-cua-ke-co
 sidebar_label: Vị trí của kệ cổ?
 ---
 

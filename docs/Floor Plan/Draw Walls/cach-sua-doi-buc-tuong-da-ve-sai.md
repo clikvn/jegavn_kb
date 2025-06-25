@@ -1,6 +1,6 @@
 ---
 title: Cách sửa đổi bức tường đã vẽ sai
-slug: cach-sua-doi-buc-tuong-da-ve-sai
+slug: /cach-sua-doi-buc-tuong-da-ve-sai
 sidebar_label: Cách sửa đổi bức tường đã vẽ sai
 ---
 

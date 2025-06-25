@@ -1,6 +1,6 @@
 ---
 title: Cách sửa đổi vật liệu dầm
-slug: cach-sua-doi-vat-lieu-dam
+slug: /cach-sua-doi-vat-lieu-dam
 sidebar_label: Cách sửa đổi vật liệu dầm
 ---
 

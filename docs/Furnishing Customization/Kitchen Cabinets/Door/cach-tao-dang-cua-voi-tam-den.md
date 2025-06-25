@@ -1,6 +1,6 @@
 ---
 title: Cách tạo dáng cửa với tấm đèn
-slug: cach-tao-dang-cua-voi-tam-den
+slug: /cach-tao-dang-cua-voi-tam-den
 sidebar_label: Cách tạo dáng cửa với tấm đèn
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Vị trí Cửa tùy chỉnh
-slug: vi-tri-cua-tuy-chinh
+slug: /vi-tri-cua-tuy-chinh
 sidebar_label: Vị trí Cửa tùy chỉnh
 ---
 

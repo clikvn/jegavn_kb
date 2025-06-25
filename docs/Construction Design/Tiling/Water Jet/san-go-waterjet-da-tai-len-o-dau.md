@@ -1,6 +1,6 @@
 ---
 title: Sàn gỗ waterjet đã tải lên ở đâu?
-slug: san-go-waterjet-da-tai-len-o-dau
+slug: /san-go-waterjet-da-tai-len-o-dau
 sidebar_label: Sàn gỗ waterjet đã tải lên ở đâu?
 ---
 

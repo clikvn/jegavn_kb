@@ -1,6 +1,6 @@
 ---
 title: Cách Tạo Rãnh Đèn Một Bên
-slug: cach-tao-ranh-den-mot-ben
+slug: /cach-tao-ranh-den-mot-ben
 sidebar_label: Cách Tạo Rãnh Đèn Một Bên
 ---
 

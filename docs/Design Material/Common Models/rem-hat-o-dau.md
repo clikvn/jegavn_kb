@@ -1,6 +1,6 @@
 ---
 title: Rèm hạt ở đâu?
-slug: rem-hat-o-dau
+slug: /rem-hat-o-dau
 sidebar_label: Rèm hạt ở đâu?
 ---
 

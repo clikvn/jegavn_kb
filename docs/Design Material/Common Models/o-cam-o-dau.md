@@ -1,6 +1,6 @@
 ---
 title: Ổ cắm ở đâu
-slug: o-cam-o-dau
+slug: /o-cam-o-dau
 sidebar_label: Ổ cắm ở đâu
 ---
 

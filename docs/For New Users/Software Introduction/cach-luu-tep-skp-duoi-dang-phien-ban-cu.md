@@ -1,12 +1,10 @@
 ---
 title: Cách lưu tệp SKP dưới dạng phiên bản cũ
-slug: cach-luu-tep-skp-duoi-dang-phien-ban-cu
+slug: /cach-luu-tep-skp-duoi-dang-phien-ban-cu
 sidebar_label: Cách lưu tệp SKP dưới dạng phiên bản cũ
 ---
 
-:::note
-
-Làm thế nào để lưu tệp dưới dạng phiên bản cũ?
+:::question
 
 :::
 

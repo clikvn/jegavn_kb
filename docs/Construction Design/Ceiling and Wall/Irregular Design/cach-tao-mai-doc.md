@@ -1,6 +1,6 @@
 ---
 title: Cách tạo mái dốc
-slug: cach-tao-mai-doc
+slug: /cach-tao-mai-doc
 sidebar_label: Cách tạo mái dốc
 ---
 

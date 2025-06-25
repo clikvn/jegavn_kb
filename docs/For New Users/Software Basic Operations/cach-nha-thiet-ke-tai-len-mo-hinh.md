@@ -1,14 +1,12 @@
 ---
 title: Cách nhà thiết kế tải lên mô hình
-slug: cach-nha-thiet-ke-tai-len-mo-hinh
+slug: /cach-nha-thiet-ke-tai-len-mo-hinh
 sidebar_label: Cách nhà thiết kế tải lên mô hình
 ---
 
 Xin chào, nếu đó là mô hình đã hoàn thiện, người dùng nền tảng có thể tự tải lên và sử dụng. Nếu đó là vật liệu mô hình tùy chỉnh, chẳng hạn như kiểu tấm cửa, kiểu tủ, v.v., vật liệu cần được cung cấp cho giáo viên dịch vụ khách hàng trực tuyến để đăng ký và sản xuất. Chi tiết như sau:
 
 :::info
-
-
 
 :::
 

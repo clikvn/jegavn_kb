@@ -1,6 +1,6 @@
 ---
 title: Cách ẩn trần nhà
-slug: cach-an-tran-nha
+slug: /cach-an-tran-nha
 sidebar_label: Cách ẩn trần nhà
 ---
 

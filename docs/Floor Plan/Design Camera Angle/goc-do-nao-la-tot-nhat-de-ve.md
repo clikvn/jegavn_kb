@@ -1,6 +1,6 @@
 ---
 title: Góc Độ Nào Là Tốt Nhất Để Vẽ
-slug: goc-do-nao-la-tot-nhat-de-ve
+slug: /goc-do-nao-la-tot-nhat-de-ve
 sidebar_label: Góc Độ Nào Là Tốt Nhất Để Vẽ
 ---
 
@@ -15,13 +15,5 @@ Camera nên được đặt ở vị trí cách mặt đất khoảng 1100 - 130
 ![Giao diện người dùng hiển thị bảng (①) Cài đặt camera để điều chỉnh độ cao và góc của camera trước khi kết xuất.](https://storage.googleapis.com/jegavn_kb/images/3813fbc0-f68a-4662-a022-d98af23b7f28.png)
 
 :::info
-
-
-
-
-
-
-
-
 
 :::

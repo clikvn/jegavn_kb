@@ -1,6 +1,6 @@
 ---
 title: Hướng dẫn tùy chỉnh đường dẫn để tạo vách nền
-slug: huong-dan-tuy-chinh-duong-dan-de-tao-vach-nen
+slug: /huong-dan-tuy-chinh-duong-dan-de-tao-vach-nen
 sidebar_label: Tùy chỉnh đường dẫn để tạo vách nền
 ---
 

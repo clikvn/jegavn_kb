@@ -1,6 +1,6 @@
 ---
 title: Vị trí của gương
-slug: vi-tri-cua-guong
+slug: /vi-tri-cua-guong
 sidebar_label: Vị trí của gương
 ---
 

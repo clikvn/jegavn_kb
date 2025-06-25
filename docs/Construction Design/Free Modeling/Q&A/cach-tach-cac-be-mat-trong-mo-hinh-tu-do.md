@@ -1,6 +1,6 @@
 ---
 title: Cách tách các bề mặt trong mô hình tự do
-slug: cach-tach-cac-be-mat-trong-mo-hinh-tu-do
+slug: /cach-tach-cac-be-mat-trong-mo-hinh-tu-do
 sidebar_label: Cách tách các bề mặt trong mô hình tự do
 ---
 

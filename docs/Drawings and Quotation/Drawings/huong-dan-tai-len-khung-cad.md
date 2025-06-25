@@ -1,14 +1,12 @@
 ---
 title: Hướng dẫn Tải lên Khung CAD
-slug: huong-dan-tai-len-khung-cad
+slug: /huong-dan-tai-len-khung-cad
 sidebar_label: Hướng dẫn Tải lên Khung CAD
 ---
 
 Hướng dẫn này trình bày cách tải lên, thiết kế và quản lý các khung tùy chỉnh cho bản vẽ CAD trong AiHouse.
 
 :::info
-
-Áp dụng cho: Bản vẽ Trang trí Nội thất (Interior Decoration Drawings), Bản vẽ Tủ (Cabinet Drawings), Bản vẽ Tủ Hệ thống (System Cabinet Drawings), Bản vẽ Tủ Lavabo (Vanity Drawings).
 
 :::
 

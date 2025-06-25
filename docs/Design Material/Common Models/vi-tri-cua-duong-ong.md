@@ -1,6 +1,6 @@
 ---
 title: Vị trí của đường ống
-slug: vi-tri-cua-duong-ong
+slug: /vi-tri-cua-duong-ong
 sidebar_label: Vị trí của đường ống
 ---
 

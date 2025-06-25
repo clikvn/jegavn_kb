@@ -1,6 +1,6 @@
 ---
 title: Cách vẽ tường nghiêng
-slug: cach-ve-tuong-nghieng
+slug: /cach-ve-tuong-nghieng
 sidebar_label: Cách vẽ tường nghiêng
 ---
 

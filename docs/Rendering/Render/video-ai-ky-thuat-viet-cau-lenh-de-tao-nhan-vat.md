@@ -1,7 +1,7 @@
 ---
 title: "Video AI: Kỹ thuật viết câu lệnh để tạo nhân vật"
-slug: video-ai-ky-thuat-viet-cau-lenh-de-tao-nhan-vat
-sidebar_label: Kỹ thuật viết câu lệnh Video AI
+slug: "/video-ai-ky-thuat-viet-cau-lenh-de-tao-nhan-vat"
+sidebar_label: "Kỹ thuật viết câu lệnh Video AI"
 ---
 
 Video AI: Kỹ thuật viết câu lệnh để tạo nhân vật

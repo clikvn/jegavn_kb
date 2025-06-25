@@ -1,6 +1,6 @@
 ---
 title: Loft Biên Dạng trong Tạo Mẫu Tự Do
-slug: loft-bien-dang-trong-tao-mau-tu-do
+slug: /loft-bien-dang-trong-tao-mau-tu-do
 sidebar_label: Loft Biên Dạng trong Tạo Mẫu Tự Do
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Cách thêm máy lạnh trung tâm ở cạnh trần nhà
-slug: cach-them-may-lanh-trung-tam-o-canh-tran-nha
+slug: /cach-them-may-lanh-trung-tam-o-canh-tran-nha
 sidebar_label: Cách thêm máy lạnh trung tâm ở cạnh trần nhà
 ---
 

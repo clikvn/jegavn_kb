@@ -1,14 +1,12 @@
 ---
 title: Cách Xem Hồ Sơ Giấy Phép
-slug: cach-xem-ho-so-giay-phep
+slug: /cach-xem-ho-so-giay-phep
 sidebar_label: Cách Xem Hồ Sơ Giấy Phép
 ---
 
 Xin chào, sau khi mua tài khoản, bạn cần liên hệ với nhân viên bán hàng đã bán tài khoản cho bạn. Họ cần phân bổ các quyền cần thiết trong hệ thống backend trước khi bạn có thể sử dụng mô-đun tùy chỉnh. Ngoài ra, bạn có thể cung cấp ảnh hai mặt của chứng minh nhân dân, hóa đơn thanh toán, số điện thoại và chi tiết tài khoản cho bộ phận chăm sóc khách hàng, họ sẽ giúp bạn liên hệ với nhân viên bán hàng để phân bổ quyền. Thời gian sử dụng tài khoản sẽ được tính từ ngày các quyền được phân bổ.
 
 :::note
-
-Lưu ý: Cần hoàn tất xác thực cửa hàng trước khi phân bổ. Mỗi dịch vụ hoặc gói dịch vụ có thể được thu hồi trong vòng 72 giờ sau lần phân bổ đầu tiên, tối đa 3 lần. Sau 72 giờ, việc thu hồi dịch vụ bị cấm, nhưng được phép phân bổ lại.
 
 :::
 

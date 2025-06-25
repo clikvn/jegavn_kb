@@ -1,6 +1,6 @@
 ---
 title: Cách xóa đường phân chia
-slug: cach-xoa-duong-phan-chia
+slug: /cach-xoa-duong-phan-chia
 sidebar_label: Cách xóa đường phân chia
 ---
 

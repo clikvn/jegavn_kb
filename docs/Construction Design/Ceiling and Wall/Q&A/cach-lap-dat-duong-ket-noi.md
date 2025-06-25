@@ -1,6 +1,6 @@
 ---
 title: Cách lắp đặt Đường kết nối
-slug: cach-lap-dat-duong-ket-noi
+slug: /cach-lap-dat-duong-ket-noi
 sidebar_label: Cách lắp đặt Đường kết nối
 ---
 

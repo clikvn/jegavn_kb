@@ -1,6 +1,6 @@
 ---
 title: Bản vẽ đã tải xuống ở đâu?
-slug: ban-ve-da-tai-xuong-o-dau
+slug: /ban-ve-da-tai-xuong-o-dau
 sidebar_label: Bản vẽ đã tải xuống ở đâu?
 ---
 

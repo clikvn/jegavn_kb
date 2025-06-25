@@ -1,6 +1,6 @@
 ---
 title: Cách vẽ đường len chân tường
-slug: cach-ve-duong-len-chan-tuong
+slug: /cach-ve-duong-len-chan-tuong
 sidebar_label: Cách vẽ đường len chân tường
 ---
 

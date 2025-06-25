@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để sửa đổi vật liệu của một mô hình đã hoàn thiện?
-slug: lam-the-nao-de-sua-doi-vat-lieu-cua-mot-mo-hinh-da-hoan-thien
+slug: /lam-the-nao-de-sua-doi-vat-lieu-cua-mot-mo-hinh-da-hoan-thien
 sidebar_label: Sửa đổi vật liệu của mô hình hoàn thiện
 ---
 
@@ -9,7 +9,5 @@ Vui lòng truy cập **Hoàn thiện tùy chỉnh (Custom finishing)** và chọ
 ![Một người dùng đang xem mục 'Vật liệu đám mây (Cloud material)' trong phần mềm AiHouse, cụ thể là trong các vật liệu 'Hoàn thiện (Finishing)', với một menu thả xuống cho 'Bản đồ trang trí (Decorative map)' đang mở.](https://storage.googleapis.com/jegavn_kb/images/611ad165-390e-4451-a3d7-5a2afe5cc5fc.png)
 
 :::note
-
-Nếu mô hình hiển thị thông báo không thể thay thế, điều đó có nghĩa là mô hình này được thiết lập không cho phép thay thế vật liệu. Bạn chỉ có thể sử dụng vật liệu gốc để kết xuất hoặc sử dụng một mô hình khác.
 
 :::

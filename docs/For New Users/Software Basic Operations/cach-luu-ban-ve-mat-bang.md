@@ -1,6 +1,6 @@
 ---
 title: Cách lưu bản vẽ mặt bằng
-slug: cach-luu-ban-ve-mat-bang
+slug: /cach-luu-ban-ve-mat-bang
 sidebar_label: Cách lưu bản vẽ mặt bằng
 ---
 
@@ -13,7 +13,5 @@ Sau đó, nhấp vào (①) **Tải xuống ngay (Download now)**.
 ![Giao diện người dùng hiển thị các thuộc tính bản vẽ và bản vẽ mặt bằng, với tiêu điểm là nút tải xuống.](https://storage.googleapis.com/jegavn_kb/images/5c42f7ea-fee7-41e3-a4b9-e408e20381af.png)
 
 :::note
-
-
 
 :::

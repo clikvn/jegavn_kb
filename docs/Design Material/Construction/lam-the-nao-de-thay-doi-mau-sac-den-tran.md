@@ -1,12 +1,10 @@
 ---
 title: Làm thế nào để thay đổi màu sắc đèn trần
-slug: lam-the-nao-de-thay-doi-mau-sac-den-tran
+slug: /lam-the-nao-de-thay-doi-mau-sac-den-tran
 sidebar_label: Làm thế nào để thay đổi màu sắc đèn trần
 ---
 
 :::note
-
-Trần nhà hoàn thiện không hỗ trợ thay đổi dải đèn.
 
 :::
 

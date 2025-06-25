@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để Xóa Trần nhà
-slug: lam-the-nao-de-xoa-tran-nha
+slug: /lam-the-nao-de-xoa-tran-nha
 sidebar_label: Làm thế nào để Xóa Trần nhà
 ---
 

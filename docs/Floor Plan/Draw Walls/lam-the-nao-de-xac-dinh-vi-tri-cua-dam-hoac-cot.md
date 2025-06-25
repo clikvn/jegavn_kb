@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để xác định vị trí của dầm hoặc cột?
-slug: lam-the-nao-de-xac-dinh-vi-tri-cua-dam-hoac-cot
+slug: /lam-the-nao-de-xac-dinh-vi-tri-cua-dam-hoac-cot
 sidebar_label: Làm thế nào để xác định vị trí của dầm hoặc cột?
 ---
 

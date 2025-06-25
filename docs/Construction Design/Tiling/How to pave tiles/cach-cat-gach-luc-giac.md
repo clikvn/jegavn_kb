@@ -1,6 +1,6 @@
 ---
 title: Cách Cắt Gạch Lục Giác
-slug: cach-cat-gach-luc-giac
+slug: /cach-cat-gach-luc-giac
 sidebar_label: Cách Cắt Gạch Lục Giác
 ---
 

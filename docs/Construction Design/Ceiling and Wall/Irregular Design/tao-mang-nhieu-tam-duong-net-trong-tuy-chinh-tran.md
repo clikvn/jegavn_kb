@@ -1,6 +1,6 @@
 ---
 title: Tạo Mảng Nhiều Tấm & Đường Nét Trong Tùy Chỉnh Trần
-slug: tao-mang-nhieu-tam-duong-net-trong-tuy-chinh-tran
+slug: /tao-mang-nhieu-tam-duong-net-trong-tuy-chinh-tran
 sidebar_label: Tạo Mảng Nhiều Tấm & Đường Nét Trong Tùy Chỉnh Trần
 ---
 

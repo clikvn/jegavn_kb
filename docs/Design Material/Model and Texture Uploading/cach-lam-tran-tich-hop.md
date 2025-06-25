@@ -1,6 +1,6 @@
 ---
 title: Cách làm trần tích hợp
-slug: cach-lam-tran-tich-hop
+slug: /cach-lam-tran-tich-hop
 sidebar_label: Cách làm trần tích hợp
 ---
 

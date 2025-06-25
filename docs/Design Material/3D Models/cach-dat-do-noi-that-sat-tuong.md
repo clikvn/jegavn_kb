@@ -1,6 +1,6 @@
 ---
 title: Cách đặt đồ nội thất sát tường
-slug: cach-dat-do-noi-that-sat-tuong
+slug: /cach-dat-do-noi-that-sat-tuong
 sidebar_label: Cách đặt đồ nội thất sát tường
 ---
 

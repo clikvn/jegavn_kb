@@ -1,6 +1,6 @@
 ---
 title: Cách thay đổi màu vật liệu của mô hình hoàn thiện
-slug: cach-thay-doi-mau-vat-lieu-cua-mo-hinh-hoan-thien
+slug: /cach-thay-doi-mau-vat-lieu-cua-mo-hinh-hoan-thien
 sidebar_label: Cách thay đổi màu vật liệu của mô hình hoàn thiện
 ---
 
@@ -13,7 +13,5 @@ Như được minh họa trong hình bên dưới, hãy chọn (①) **Hoàn thi
 ![Một người dùng đang áp dụng một họa tiết trang trí cho mô hình 3D từ thư viện vật liệu.](https://storage.googleapis.com/jegavn_kb/images/57f95d0a-21fa-484f-9ad1-91cc8e6d73d9.png)
 
 :::note
-
-
 
 :::

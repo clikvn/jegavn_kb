@@ -1,6 +1,6 @@
 ---
 title: Bố trí tủ bếp thông minh
-slug: bo-tri-tu-bep-thong-minh
+slug: /bo-tri-tu-bep-thong-minh
 sidebar_label: Bố trí tủ bếp thông minh
 ---
 

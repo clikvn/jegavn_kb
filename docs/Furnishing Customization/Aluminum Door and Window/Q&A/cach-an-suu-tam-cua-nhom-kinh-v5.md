@@ -1,6 +1,6 @@
 ---
 title: Cách ẩn/sưu tầm cửa nhôm kính (V5)
-slug: cach-an-suu-tam-cua-nhom-kinh-v5
+slug: /cach-an-suu-tam-cua-nhom-kinh-v5
 sidebar_label: Cách ẩn/sưu tầm cửa nhôm kính (V5)
 ---
 

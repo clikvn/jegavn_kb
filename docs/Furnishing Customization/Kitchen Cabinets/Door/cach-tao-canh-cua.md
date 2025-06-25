@@ -1,6 +1,6 @@
 ---
 title: Cách tạo cánh cửa
-slug: cach-tao-canh-cua
+slug: /cach-tao-canh-cua
 sidebar_label: Cách tạo cánh cửa
 ---
 

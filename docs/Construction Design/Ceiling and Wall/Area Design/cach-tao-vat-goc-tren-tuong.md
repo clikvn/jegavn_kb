@@ -1,6 +1,6 @@
 ---
 title: Cách tạo vát góc trên tường
-slug: cach-tao-vat-goc-tren-tuong
+slug: /cach-tao-vat-goc-tren-tuong
 sidebar_label: Cách tạo vát góc trên tường
 ---
 

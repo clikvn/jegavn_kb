@@ -1,6 +1,6 @@
 ---
 title: Cách đối xứng Phào chỉ
-slug: cach-doi-xung-phao-chi
+slug: /cach-doi-xung-phao-chi
 sidebar_label: Cách đối xứng Phào chỉ
 ---
 

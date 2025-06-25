@@ -1,6 +1,6 @@
 ---
 title: Tại sao một mô hình nhất định vẫn hiển thị ngay cả sau khi đã bị xóa
-slug: tai-sao-mot-mo-hinh-nhat-dinh-van-hien-thi-ngay-ca-sau-khi-da-bi-xoa
+slug: /tai-sao-mot-mo-hinh-nhat-dinh-van-hien-thi-ngay-ca-sau-khi-da-bi-xoa
 sidebar_label: Mô hình vẫn hiển thị sau khi xóa
 ---
 

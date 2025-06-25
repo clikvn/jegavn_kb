@@ -1,6 +1,6 @@
 ---
 title: Tại sao phím tắt để điều chỉnh góc không hoạt động
-slug: tai-sao-phim-tat-de-dieu-chinh-goc-khong-hoat-dong
+slug: /tai-sao-phim-tat-de-dieu-chinh-goc-khong-hoat-dong
 sidebar_label: Tại sao phím tắt điều chỉnh góc không hoạt động
 ---
 

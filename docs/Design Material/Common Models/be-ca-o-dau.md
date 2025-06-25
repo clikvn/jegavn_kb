@@ -1,6 +1,6 @@
 ---
 title: Bể cá ở đâu
-slug: be-ca-o-dau
+slug: /be-ca-o-dau
 sidebar_label: Bể cá ở đâu
 ---
 

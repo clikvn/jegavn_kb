@@ -1,6 +1,6 @@
 ---
 title: Cách tạo đường lượn sóng đôi
-slug: cach-tao-duong-luon-song-doi
+slug: /cach-tao-duong-luon-song-doi
 sidebar_label: Cách tạo đường lượn sóng đôi
 ---
 

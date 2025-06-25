@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để lát gạch liên tục
-slug: lam-the-nao-de-lat-gach-lien-tuc
+slug: /lam-the-nao-de-lat-gach-lien-tuc
 sidebar_label: Lát gạch liên tục
 ---
 

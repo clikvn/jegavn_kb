@@ -1,6 +1,6 @@
 ---
 title: Cách cài đặt độ trong suốt của tường
-slug: cach-cai-dat-do-trong-suot-cua-tuong
+slug: /cach-cai-dat-do-trong-suot-cua-tuong
 sidebar_label: Cách cài đặt độ trong suốt của tường
 ---
 

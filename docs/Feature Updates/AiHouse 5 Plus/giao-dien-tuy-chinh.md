@@ -1,12 +1,10 @@
 ---
 title: Giao diện Tùy chỉnh
-slug: giao-dien-tuy-chinh
+slug: /giao-dien-tuy-chinh
 sidebar_label: Giao diện Tùy chỉnh
 ---
 
 :::info
-
-Bài viết này giới thiệu về giao diện tùy chỉnh mới trong AiHouse 5 Plus, bao gồm các tính năng mới, mô tả chi tiết bố cục giao diện người dùng và các câu hỏi thường gặp.
 
 :::
 

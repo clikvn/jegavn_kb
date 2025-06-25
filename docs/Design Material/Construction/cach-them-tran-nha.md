@@ -1,6 +1,6 @@
 ---
 title: Cách thêm trần nhà
-slug: cach-them-tran-nha
+slug: /cach-them-tran-nha
 sidebar_label: Cách thêm trần nhà
 ---
 

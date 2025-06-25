@@ -1,6 +1,6 @@
 ---
 title: Cách Thêm Dải Đèn LED vào Trần Thạch Cao Giật Cấp Đôi
-slug: cach-them-dai-den-led-vao-tran-thach-cao-giat-cap-doi
+slug: /cach-them-dai-den-led-vao-tran-thach-cao-giat-cap-doi
 sidebar_label: Thêm Dải Đèn vào Trần Giật Cấp Đôi
 ---
 

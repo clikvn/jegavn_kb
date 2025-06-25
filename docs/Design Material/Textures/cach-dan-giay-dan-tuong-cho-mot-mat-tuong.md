@@ -1,12 +1,10 @@
 ---
 title: Cách Dán Giấy Dán Tường Cho Một Mặt Tường
-slug: cach-dan-giay-dan-tuong-cho-mot-mat-tuong
+slug: /cach-dan-giay-dan-tuong-cho-mot-mat-tuong
 sidebar_label: Cách Dán Giấy Dán Tường Cho Một Mặt Tường
 ---
 
-:::note
-
-Dán cho một mặt tường
+:::info
 
 :::
 
@@ -14,9 +12,7 @@ Vui lòng chọn giấy dán tường/sơn từ mục **Hoàn thiện (Finishing
 
 ![Một người dùng đang điều hướng thư viện vật liệu trong phần mềm thiết kế, tập trung vào các tùy chọn (①) Hoàn thiện (Finishing) như (②) Giấy dán tường (Wallpaper).](https://storage.googleapis.com/jegavn_kb/images/ef405253-cd8e-4899-a951-77170bc86370.png)
 
-:::note
-
-Dán cho toàn bộ ngôi nhà
+:::info
 
 :::
 

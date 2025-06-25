@@ -1,6 +1,6 @@
 ---
 title: Cách nhập CAD vào tấm để tạo mô hình hình dạng đặc biệt
-slug: cach-nhap-cad-vao-tam-de-tao-mo-hinh-hinh-dang-dac-biet
+slug: /cach-nhap-cad-vao-tam-de-tao-mo-hinh-hinh-dang-dac-biet
 sidebar_label: Nhập CAD để tạo mô hình hình dạng đặc biệt
 ---
 

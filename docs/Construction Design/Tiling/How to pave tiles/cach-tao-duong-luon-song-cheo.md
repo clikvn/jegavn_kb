@@ -1,6 +1,6 @@
 ---
 title: Cách tạo đường lượn sóng chéo
-slug: cach-tao-duong-luon-song-cheo
+slug: /cach-tao-duong-luon-song-cheo
 sidebar_label: Cách tạo đường lượn sóng chéo
 ---
 

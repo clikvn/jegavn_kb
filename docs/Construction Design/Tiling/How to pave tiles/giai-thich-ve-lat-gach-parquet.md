@@ -1,6 +1,6 @@
 ---
 title: Giải thích về lát gạch Parquet
-slug: giai-thich-ve-lat-gach-parquet
+slug: /giai-thich-ve-lat-gach-parquet
 sidebar_label: Giải thích về lát gạch Parquet
 ---
 

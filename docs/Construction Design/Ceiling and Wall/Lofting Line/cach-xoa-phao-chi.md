@@ -1,6 +1,6 @@
 ---
 title: Cách xóa Phào chỉ
-slug: cach-xoa-phao-chi
+slug: /cach-xoa-phao-chi
 sidebar_label: Cách xóa Phào chỉ
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để lưu dự án thành một tệp khác
-slug: lam-the-nao-de-luu-du-an-thanh-mot-tep-khac
+slug: /lam-the-nao-de-luu-du-an-thanh-mot-tep-khac
 sidebar_label: Lưu dự án thành tệp khác
 ---
 

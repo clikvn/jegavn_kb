@@ -1,6 +1,6 @@
 ---
 title: Cách tạo tường kính
-slug: cach-tao-tuong-kinh
+slug: /cach-tao-tuong-kinh
 sidebar_label: Cách tạo tường kính
 ---
 

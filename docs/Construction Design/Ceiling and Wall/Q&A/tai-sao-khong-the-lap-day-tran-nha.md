@@ -1,6 +1,6 @@
 ---
 title: Tại sao không thể lấp đầy trần nhà
-slug: tai-sao-khong-the-lap-day-tran-nha
+slug: /tai-sao-khong-the-lap-day-tran-nha
 sidebar_label: Tại sao không thể lấp đầy trần nhà
 ---
 
@@ -9,7 +9,5 @@ Xin chào. Đối với các loại phòng thông thường, bạn có thể nh�
 ![Một hình ảnh hiển thị thông báo lỗi trong phần mềm thiết kế, cho biết rằng một hình dạng không đều không thể được lấp đầy và cần phải được ghép bằng hai trần nhà.](https://storage.googleapis.com/jegavn_kb/images/fc119592-a623-458b-90fa-eea18da16609.png)
 
 :::note
-
-
 
 :::

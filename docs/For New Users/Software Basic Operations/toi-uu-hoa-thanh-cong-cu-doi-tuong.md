@@ -1,12 +1,10 @@
 ---
 title: Tối ưu hóa thanh công cụ đối tượng
-slug: toi-uu-hoa-thanh-cong-cu-doi-tuong
+slug: /toi-uu-hoa-thanh-cong-cu-doi-tuong
 sidebar_label: Tối ưu hóa thanh công cụ đối tượng
 ---
 
 :::info [Giới thiệu chức năng]
-
-Bài viết này giới thiệu các tối ưu hóa cho thanh công cụ đối tượng, bao gồm giao diện hợp nhất, khả năng di chuyển và ghim, cũng như việc kết hợp các công cụ đo lường.
 
 :::
 

@@ -1,6 +1,6 @@
 ---
 title: Cách sửa đổi vật liệu của Phào chỉ
-slug: cach-sua-doi-vat-lieu-cua-phao-chi
+slug: /cach-sua-doi-vat-lieu-cua-phao-chi
 sidebar_label: Cách sửa đổi vật liệu của Phào chỉ
 ---
 

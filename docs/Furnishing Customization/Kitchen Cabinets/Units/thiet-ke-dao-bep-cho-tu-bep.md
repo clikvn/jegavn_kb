@@ -1,6 +1,6 @@
 ---
 title: Thiết kế đảo bếp cho tủ bếp
-slug: thiet-ke-dao-bep-cho-tu-bep
+slug: /thiet-ke-dao-bep-cho-tu-bep
 sidebar_label: Thiết kế đảo bếp
 ---
 
@@ -27,9 +27,5 @@ Kết quả cuối cùng sẽ hiển thị một cấu trúc chân mặt bàn (�
 ![Thiết kế hoàn thiện của đảo bếp với cấu trúc chân mặt bàn được tạo ra.](https://storage.googleapis.com/jegavn_kb/images/b8bcf94f-92c3-485f-a42e-31dc8b3ec921.png)
 
 :::note
-
-Để xem hướng dẫn về đảo tủ, vui lòng nhấp vào: 
-
-
 
 :::

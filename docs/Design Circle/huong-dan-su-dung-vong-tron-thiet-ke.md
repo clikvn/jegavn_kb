@@ -1,12 +1,10 @@
 ---
 title: Hướng dẫn sử dụng Vòng tròn Thiết kế
-slug: huong-dan-su-dung-vong-tron-thiet-ke
+slug: /huong-dan-su-dung-vong-tron-thiet-ke
 sidebar_label: Hướng dẫn sử dụng
 ---
 
 :::info [FAQ]
-
-Câu hỏi thường gặp
 
 :::
 
@@ -31,8 +29,6 @@ A: Mặc định là tối đa 10 Vòng tròn. Để biết thêm, vui lòng li�
 
 :::info
 
-1. Bảng điều khiển quản trị
-
 :::
 
 Đăng nhập vào Bảng điều khiển quản trị Vòng tròn Thiết kế:
@@ -46,8 +42,6 @@ https://www.aihouse.com/work/material-manager-pc/material-management/enterprise-
 
 :::info
 
-2. Tạo một Vòng tròn Thiết kế
-
 :::
 
 Đường dẫn: **Quản lý sản phẩm (Product Management)** → **Vòng tròn thiết kế (Design Circle)** → **Tạo một vòng tròn thiết kế (Create a design circle)**
@@ -56,8 +50,6 @@ https://www.aihouse.com/work/material-manager-pc/material-management/enterprise-
 
 :::info
 
-3. Tìm một Vòng tròn
-
 :::
 
 https://circle.3vjia.com/work/index/search
@@ -65,8 +57,6 @@ https://circle.3vjia.com/work/index/search
 ![Giao diện 'Bàn làm việc vòng tròn thiết kế' nơi người dùng có thể tìm kiếm và xem chi tiết các 'vòng tròn' hoặc nhóm khác nhau.](https://storage.googleapis.com/jegavn_kb/images/589a28d8-2f24-46a1-be43-f99b71f2954e.png)
 
 :::info
-
-4. Mời người dùng tham gia Vòng tròn
 
 :::
 
@@ -80,15 +70,11 @@ Thao tác này sẽ hiển thị mã QR mời hoặc một liên kết. Quản t
 
 :::info
 
-5. Xem xét đơn đăng ký
-
 :::
 
 ![Giao diện quản lý thành viên hiển thị tab 'Đang xem xét' với 36 mục đang chờ xử lý trong một ứng dụng 'NA Lib'.](https://storage.googleapis.com/jegavn_kb/images/0ca8581a-c24e-47c1-90ce-1be658cb8a15.png)
 
 :::info
-
-6. Chia sẻ tài sản
 
 :::
 
@@ -108,8 +94,6 @@ Các tài sản đã được chia sẻ sẽ được tự động chọn. Chỉ
 
 :::info
 
-6.2 Thêm liên kết sản phẩm để kết nối với cửa hàng trực tuyến của bạn
-
 :::
 
 Đường dẫn: **Bàn làm việc AiHouse (AiHouse Workbench)** → **Quản lý sản phẩm (Product Management)** → **Chỉnh sửa mô hình (Edit Model)** → **Bật báo giá hàng hóa (Enable Commodity Quotation)** → **Thêm liên kết trang web (Add Website Link)**
@@ -122,8 +106,6 @@ Các tài sản đã được chia sẻ sẽ được tự động chọn. Chỉ
 
 :::info
 
-7. Quản lý tài sản Vòng tròn
-
 :::
 
 Đường dẫn: **Bàn làm việc vòng tròn thiết kế (Design circle workbench)** → **Chức năng vòng tròn - Thư viện (Circle function - Library)**
@@ -132,8 +114,6 @@ Các tài sản đã được chia sẻ sẽ được tự động chọn. Chỉ
 
 :::info
 
-7.1 Xem xét tài sản được chia sẻ
-
 :::
 
 Đường dẫn: **Bàn làm việc vòng tròn thiết kế (Design circle workbench)** → **Chức năng vòng tròn - Thư viện - Đang xem xét (Circle function - Library - Under Review)**
@@ -141,8 +121,6 @@ Các tài sản đã được chia sẻ sẽ được tự động chọn. Chỉ
 ![Người dùng đang xem 'Thư viện vật liệu chung' và cụ thể là phần 'Đang xem xét' trong ứng dụng bàn làm việc thiết kế.](https://storage.googleapis.com/jegavn_kb/images/cbd3696c-7767-4566-a592-1ad29dbcf65f.png)
 
 :::info
-
-7.3 Đặt danh mục tài sản
 
 :::
 
@@ -154,13 +132,9 @@ Sử dụng tính năng này để sắp xếp các tài sản được chia s�
 
 :::info
 
-8. Cách sử dụng tài sản trong vòng tròn thiết kế trên Bảng điều khiển của Nhà thiết kế
-
 :::
 
 :::info
-
-8.1 Sử dụng tài sản của Vòng tròn
 
 :::
 
@@ -175,8 +149,6 @@ Vào AiHouse (Lưu ý: chỉ được hỗ trợ trong phiên bản thiết kế
 ![Một hình ảnh hiển thị hai phần riêng biệt của phần mềm AiHouse: một 'Thư viện đám mây' để tìm kiếm mô hình và một 'Mô-đun tùy chỉnh' để thiết kế.](https://storage.googleapis.com/jegavn_kb/images/0c2b1ce3-518b-47c4-b39a-abe440241dcb.png)
 
 :::info
-
-Tìm và tham gia các Vòng tròn
 
 :::
 

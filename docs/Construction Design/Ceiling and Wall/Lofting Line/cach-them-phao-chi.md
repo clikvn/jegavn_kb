@@ -1,6 +1,6 @@
 ---
 title: Cách thêm phào chỉ
-slug: cach-them-phao-chi
+slug: /cach-them-phao-chi
 sidebar_label: Cách thêm phào chỉ
 ---
 
@@ -15,7 +15,5 @@ Giao diện của tường trên cùng để đặt và nhận đường viền 
 ![Một người dùng đang tùy chỉnh thiết kế trần nhà, chọn một thành phần phào chỉ (①) từ thư viện vật liệu và xem bản xem trước 3D với các khu vực đặt được làm nổi bật (②, ③, ④).](https://storage.googleapis.com/jegavn_kb/images/ab1a69ee-5128-4ce9-ac81-1cb5b8250eb9.png)
 
 :::note
-
-Phào chỉ không được chồng lên trục tọa độ, nếu không kết xuất sẽ bị đen.
 
 :::

@@ -1,14 +1,12 @@
 ---
 title: Cách vẽ một bức tường thấp
-slug: cach-ve-mot-buc-tuong-thap
+slug: /cach-ve-mot-buc-tuong-thap
 sidebar_label: Cách vẽ một bức tường thấp
 ---
 
 Phiên bản mới có thể sử dụng chức năng tường lửng để tạo ra một bức tường lửng. Phiên bản cũ cần sử dụng cột hoặc bệ để làm tường của bức tường thấp.
 
 :::info [Phiên bản mới]
-
-Thao tác của phiên bản mới như sau:
 
 :::
 
@@ -17,8 +15,6 @@ Nhấp vào bức tường (①) cần thiết lập chiều cao, sau đó nhấ
 ![Một người dùng đang điều chỉnh chiều cao của một bức tường được chọn (①) trong phần mềm thiết kế, thay đổi giá trị trong trường (②) Chiều cao (Height).](https://storage.googleapis.com/jegavn_kb/images/cc55b9fb-3fe9-4d87-b52c-e51c5eb6121a.png)
 
 :::info [Phiên bản cũ]
-
-Thao tác của phiên bản cũ như sau:
 
 :::
 

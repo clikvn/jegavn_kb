@@ -1,6 +1,6 @@
 ---
 title: Tại sao không thể đặt thanh định hình?
-slug: tai-sao-khong-the-dat-thanh-dinh-hinh
+slug: /tai-sao-khong-the-dat-thanh-dinh-hinh
 sidebar_label: Tại sao không thể đặt thanh định hình?
 ---
 

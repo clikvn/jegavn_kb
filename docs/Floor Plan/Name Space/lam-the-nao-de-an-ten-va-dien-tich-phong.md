@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để ẩn tên và diện tích phòng
-slug: lam-the-nao-de-an-ten-va-dien-tich-phong
+slug: /lam-the-nao-de-an-ten-va-dien-tich-phong
 sidebar_label: Ẩn tên và diện tích phòng
 ---
 

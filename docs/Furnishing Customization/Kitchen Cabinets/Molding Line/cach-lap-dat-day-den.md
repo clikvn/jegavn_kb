@@ -1,6 +1,6 @@
 ---
 title: Cách lắp đặt dây đèn
-slug: cach-lap-dat-day-den
+slug: /cach-lap-dat-day-den
 sidebar_label: Cách lắp đặt dây đèn
 ---
 
@@ -19,7 +19,5 @@ sidebar_label: Cách lắp đặt dây đèn
 ![Hình ảnh hiển thị đèn đã được tạo và lắp đặt thành công trên tủ.](https://storage.googleapis.com/jegavn_kb/images/86bce269-4baf-4120-9b0e-6e753910d822.png)
 
 :::note
-
-Lưu ý: Việc tạo dây đèn chỉ áp dụng cho tủ tùy chỉnh.
 
 :::

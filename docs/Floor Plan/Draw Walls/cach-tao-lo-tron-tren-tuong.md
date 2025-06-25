@@ -1,6 +1,6 @@
 ---
 title: Cách tạo lỗ tròn trên tường
-slug: cach-tao-lo-tron-tren-tuong
+slug: /cach-tao-lo-tron-tren-tuong
 sidebar_label: Cách tạo lỗ tròn
 ---
 
@@ -9,8 +9,6 @@ Xin chào, để tạo một lỗ tròn, bạn có thể chọn một trong các
 ![Một sơ đồ hiển thị bốn lựa chọn để tạo lỗ tròn trên vách ngăn: Mô hình hoàn thiện, Chỉnh sửa hình dạng của tấm, Tạo mô hình tự do và Tùy chỉnh tường.](https://storage.googleapis.com/jegavn_kb/images/b6c236aa-5028-4f85-9e80-ac62d0b92906.png)
 
 :::info
-
-Dưới đây là các bước chi tiết cho hai phương pháp phổ biến:
 
 :::
 

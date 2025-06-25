@@ -1,6 +1,6 @@
 ---
 title: Tại sao gạch render lại phản quang?
-slug: tai-sao-gach-render-lai-phan-quang
+slug: /tai-sao-gach-render-lai-phan-quang
 sidebar_label: Tại sao gạch render lại phản quang?
 ---
 

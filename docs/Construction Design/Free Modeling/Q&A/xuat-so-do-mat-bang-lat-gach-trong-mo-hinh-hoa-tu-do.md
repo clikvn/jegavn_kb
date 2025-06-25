@@ -1,6 +1,6 @@
 ---
 title: Xuất Sơ Đồ Mặt Bằng Lát Gạch trong Mô Hình Hóa Tự Do
-slug: xuat-so-do-mat-bang-lat-gach-trong-mo-hinh-hoa-tu-do
+slug: /xuat-so-do-mat-bang-lat-gach-trong-mo-hinh-hoa-tu-do
 sidebar_label: Xuất Sơ Đồ Mặt Bằng Lát Gạch trong Mô Hình Hóa Tự Do
 ---
 
@@ -9,8 +9,6 @@ Xin chào, trong phần lát gạch tùy chỉnh, bạn có thể xuất bản v
 1. Nhấp chuột trái vào tường để vào canvas, di chuyển chuột đến **Bản vẽ (Drawing)** (①), sau đó nhấp chuột trái vào **Sơ đồ mặt bằng (Floor plan)** (②).
 
 :::note
-
-Tường trên cùng tùy chỉnh và lát gạch trong mô hình hóa tự do không hỗ trợ xuất sơ đồ mặt bằng.
 
 :::
 

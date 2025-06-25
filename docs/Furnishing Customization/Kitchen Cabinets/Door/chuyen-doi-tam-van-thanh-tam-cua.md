@@ -1,6 +1,6 @@
 ---
 title: Chuyển Đổi Tấm Ván Thành Tấm Cửa
-slug: chuyen-doi-tam-van-thanh-tam-cua
+slug: /chuyen-doi-tam-van-thanh-tam-cua
 sidebar_label: Chuyển Đổi Tấm Ván Thành Tấm Cửa
 ---
 

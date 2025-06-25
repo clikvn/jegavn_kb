@@ -1,6 +1,6 @@
 ---
 title: Vị trí của cảnh ngoại thất
-slug: vi-tri-cua-canh-ngoai-that
+slug: /vi-tri-cua-canh-ngoai-that
 sidebar_label: Vị trí của cảnh ngoại thất
 ---
 
@@ -19,10 +19,5 @@ Trong chế độ 3D, nhấp vào biểu tượng thay thế vật liệu trong 
 ![Giao diện thay thế sản phẩm hiển thị (①) nút Thay thế sản phẩm, (②) bảng điều khiển thay thế, và (③) trường Kích thước.](https://storage.googleapis.com/jegavn_kb/images/51855ba4-c719-4799-be99-1079b8b38332.png)
 
 :::note
-
-Video hướng dẫn chi tiết:
-
-
-
 
 :::

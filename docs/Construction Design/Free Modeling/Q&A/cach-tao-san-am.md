@@ -1,6 +1,6 @@
 ---
 title: Cách tạo sàn âm
-slug: cach-tao-san-am
+slug: /cach-tao-san-am
 sidebar_label: Cách tạo sàn âm
 ---
 

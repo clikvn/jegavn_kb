@@ -1,6 +1,6 @@
 ---
 title: Lắp đặt tay nắm cửa
-slug: lap-dat-tay-nam-cua
+slug: /lap-dat-tay-nam-cua
 sidebar_label: Lắp đặt tay nắm cửa
 ---
 

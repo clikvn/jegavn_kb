@@ -1,6 +1,6 @@
 ---
 title: Thêm Chức Năng Phím Tắt Để Xoay Đối Tượng 45°
-slug: them-chuc-nang-phim-tat-de-xoay-doi-tuong-45
+slug: /them-chuc-nang-phim-tat-de-xoay-doi-tuong-45
 sidebar_label: Xoay Đối Tượng 45° Bằng Phím Tắt
 ---
 

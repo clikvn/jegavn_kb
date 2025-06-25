@@ -1,6 +1,6 @@
 ---
 title: Xử lý lỗi parquet thất bại
-slug: xu-ly-loi-parquet-that-bai
+slug: /xu-ly-loi-parquet-that-bai
 sidebar_label: Xử lý lỗi parquet thất bại
 ---
 
@@ -17,16 +17,6 @@ Tạo một file CAD mới, sao chép riêng nó ra, lưu lại và tải lên.
 1. Nếu chỉ có một mẫu trong toàn bộ file CAD, nhưng nó vẫn không hiển thị hoặc bị thiếu dòng khi nhập. Cần phải kiểm tra loại cấu trúc của water jet này,
 
 :::note
-
-Water jet 3.0 không hỗ trợ 
-
-**vùng (regions)**
-
-! Ngoài ra, water jet 3.0 không hỗ trợ 
-
-**khối (blocks)**
-
-!
 
 :::
 

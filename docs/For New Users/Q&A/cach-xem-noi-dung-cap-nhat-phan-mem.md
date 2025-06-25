@@ -1,6 +1,6 @@
 ---
 title: Cách xem nội dung cập nhật phần mềm
-slug: cach-xem-noi-dung-cap-nhat-phan-mem
+slug: /cach-xem-noi-dung-cap-nhat-phan-mem
 sidebar_label: Cách xem nội dung cập nhật phần mềm
 ---
 

@@ -1,14 +1,12 @@
 ---
 title: Cách sửa đổi màu sắc của kính cửa nhôm và cửa sổ (V5)
-slug: cach-sua-doi-mau-sac-cua-kinh-cua-nhom-va-cua-so-v5
+slug: /cach-sua-doi-mau-sac-cua-kinh-cua-nhom-va-cua-so-v5
 sidebar_label: Cách sửa đổi màu sắc của kính cửa nhôm và cửa sổ (V5)
 ---
 
 Xin chào, bạn có thể sửa đổi màu sắc vật liệu kính của cửa ra vào và cửa sổ trong **mô-đun cửa nhôm và cửa sổ tùy chỉnh (custom aluminum door and window module)**.
 
 :::note
-
-Sau khi sửa đổi, cần xem hiệu ứng kết xuất, kính vẫn hiển thị ở dạng trong suốt trong phần mềm.
 
 :::
 

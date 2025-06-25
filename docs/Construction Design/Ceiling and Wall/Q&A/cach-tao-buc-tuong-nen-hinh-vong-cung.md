@@ -1,6 +1,6 @@
 ---
 title: Cách tạo bức tường nền hình vòng cung
-slug: cach-tao-buc-tuong-nen-hinh-vong-cung
+slug: /cach-tao-buc-tuong-nen-hinh-vong-cung
 sidebar_label: Cách tạo bức tường nền hình vòng cung
 ---
 

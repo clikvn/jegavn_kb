@@ -1,6 +1,6 @@
 ---
 title: Cập Nhật Tháng 2 Năm 2025
-slug: feature-updates-monthly-updates-february-2025
+slug: /feature-updates-monthly-updates-february-2025
 sidebar_label: Tháng 2 năm 2025
 ---
 

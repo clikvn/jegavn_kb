@@ -1,6 +1,6 @@
 ---
 title: Cách xóa gạch nhanh chóng
-slug: cach-xoa-gach-nhanh-chong
+slug: /cach-xoa-gach-nhanh-chong
 sidebar_label: Cách xóa gạch nhanh chóng
 ---
 

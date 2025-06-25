@@ -1,6 +1,6 @@
 ---
 title: Xử lý mô hình - Sản phẩm hoàn thiện
-slug: xu-ly-mo-hinh-san-pham-hoan-thien
+slug: /xu-ly-mo-hinh-san-pham-hoan-thien
 sidebar_label: Xử lý mô hình - Sản phẩm hoàn thiện
 ---
 

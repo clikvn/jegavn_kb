@@ -1,12 +1,10 @@
 ---
 title: Hướng dẫn Lát gạch Tùy chỉnh
-slug: huong-dan-lat-gach-tuy-chinh
+slug: /huong-dan-lat-gach-tuy-chinh
 sidebar_label: Hướng dẫn Lát gạch Tùy chỉnh
 ---
 
-:::note
-
-Giao diện lát gạch tùy chỉnh yêu cầu mua gói dịch vụ trước, sau đó nhấp vào chức năng tùy chỉnh để vào giao diện lát gạch và tiến hành thao tác.
+:::info
 
 :::
 

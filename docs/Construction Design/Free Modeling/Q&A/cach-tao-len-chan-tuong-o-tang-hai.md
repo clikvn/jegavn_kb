@@ -1,6 +1,6 @@
 ---
 title: Cách tạo len chân tường ở tầng hai
-slug: cach-tao-len-chan-tuong-o-tang-hai
+slug: /cach-tao-len-chan-tuong-o-tang-hai
 sidebar_label: Cách tạo len chân tường ở tầng hai
 ---
 

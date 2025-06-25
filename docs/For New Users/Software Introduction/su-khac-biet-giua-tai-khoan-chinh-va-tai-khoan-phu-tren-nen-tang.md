@@ -1,14 +1,12 @@
 ---
 title: Sự khác biệt giữa tài khoản chính và tài khoản phụ trên nền tảng
-slug: su-khac-biet-giua-tai-khoan-chinh-va-tai-khoan-phu-tren-nen-tang
+slug: /su-khac-biet-giua-tai-khoan-chinh-va-tai-khoan-phu-tren-nen-tang
 sidebar_label: Sự khác biệt giữa tài khoản chính và tài khoản phụ
 ---
 
 Bài viết này sẽ trình bày sự khác biệt giữa tài khoản chính và tài khoản phụ, cũng như cách quản lý chúng.
 
 :::info [Mẹo]
-
-Tài khoản chính là tài khoản được đăng ký trực tiếp trên nền tảng, trong khi tài khoản phụ là tài khoản do tài khoản chính tạo ra trong trung tâm doanh nghiệp. Một tài khoản chính có thể tạo miễn phí tối đa 5 tài khoản phụ.
 
 :::
 

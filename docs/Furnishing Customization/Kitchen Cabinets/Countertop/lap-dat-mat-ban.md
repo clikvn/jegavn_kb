@@ -1,12 +1,10 @@
 ---
 title: Lắp đặt mặt bàn
-slug: lap-dat-mat-ban
+slug: /lap-dat-mat-ban
 sidebar_label: Lắp đặt mặt bàn
 ---
 
 :::info
-
-Vui lòng lắp đặt bồn rửa trước rồi mới tạo mặt bàn để tránh bồn rửa bị mặt bàn che khuất.
 
 :::
 

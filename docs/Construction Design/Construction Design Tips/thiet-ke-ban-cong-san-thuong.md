@@ -1,6 +1,6 @@
 ---
 title: Thiết kế Ban công Sân thượng
-slug: thiet-ke-ban-cong-san-thuong
+slug: /thiet-ke-ban-cong-san-thuong
 sidebar_label: Thiết kế Ban công Sân thượng
 ---
 

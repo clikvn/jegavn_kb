@@ -1,6 +1,6 @@
 ---
 title: Cách Quay Lại Chế Độ Tùy Chỉnh hoặc Xóa Trần Đã Tạo
-slug: cach-quay-lai-che-do-tuy-chinh-hoac-xoa-tran-da-tao
+slug: /cach-quay-lai-che-do-tuy-chinh-hoac-xoa-tran-da-tao
 sidebar_label: Quay lại chế độ tùy chỉnh hoặc xóa trần
 ---
 

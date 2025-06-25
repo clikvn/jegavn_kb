@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để báo giá gạch
-slug: lam-the-nao-de-bao-gia-gach
+slug: /lam-the-nao-de-bao-gia-gach
 sidebar_label: Làm thế nào để báo giá gạch
 ---
 

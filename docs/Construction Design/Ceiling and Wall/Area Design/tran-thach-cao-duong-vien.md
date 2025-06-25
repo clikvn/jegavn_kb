@@ -1,6 +1,6 @@
 ---
 title: Trần Thạch Cao Đường Viền
-slug: tran-thach-cao-duong-vien
+slug: /tran-thach-cao-duong-vien
 sidebar_label: Trần Thạch Cao Đường Viền
 ---
 

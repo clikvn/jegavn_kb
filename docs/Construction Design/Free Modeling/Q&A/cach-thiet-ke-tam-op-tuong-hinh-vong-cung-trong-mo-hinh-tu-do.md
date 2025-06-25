@@ -1,6 +1,6 @@
 ---
 title: Cách thiết kế tấm ốp tường hình vòng cung trong mô hình tự do
-slug: cach-thiet-ke-tam-op-tuong-hinh-vong-cung-trong-mo-hinh-tu-do
+slug: /cach-thiet-ke-tam-op-tuong-hinh-vong-cung-trong-mo-hinh-tu-do
 sidebar_label: Cách thiết kế tấm ốp tường hình vòng cung trong mô hình tự do
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Xuất bản vẽ phẳng lát gạch bằng một cú nhấp chuột
-slug: xuat-ban-ve-phang-lat-gach-bang-mot-cu-nhap-chuot
+slug: /xuat-ban-ve-phang-lat-gach-bang-mot-cu-nhap-chuot
 sidebar_label: Xuất bản vẽ phẳng lát gạch
 ---
 
@@ -11,8 +11,6 @@ Xin chào, trong phần lát gạch tùy chỉnh, bạn có thể xuất bản v
 ![Giao diện phần mềm thiết kế hiển thị menu thả xuống từ tùy chọn 'Bản vẽ', với 'Bản vẽ mặt bằng' được chọn.](https://storage.googleapis.com/jegavn_kb/images/b13cab22-2c5c-4355-acf8-47cf91551d3d.png)
 
 :::note
-
-Tường trên tùy chỉnh và lát gạch trong mô hình tự do không hỗ trợ xuất bản vẽ mặt bằng.
 
 :::
 

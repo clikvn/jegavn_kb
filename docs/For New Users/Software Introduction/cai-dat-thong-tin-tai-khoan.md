@@ -1,12 +1,10 @@
 ---
 title: Cài đặt thông tin tài khoản
-slug: cai-dat-thong-tin-tai-khoan
+slug: /cai-dat-thong-tin-tai-khoan
 sidebar_label: Cài đặt thông tin tài khoản
 ---
 
 :::note
-
-Để bảo vệ an ninh tài khoản, vui lòng không tiết lộ thông tin tài khoản cá nhân của bạn cho người khác!
 
 :::
 

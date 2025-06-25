@@ -1,6 +1,6 @@
 ---
 title: Cách Tăng Kích Thước Tấm Trần
-slug: cach-tang-kich-thuoc-tam-tran
+slug: /cach-tang-kich-thuoc-tam-tran
 sidebar_label: Cách Tăng Kích Thước Tấm Trần
 ---
 

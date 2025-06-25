@@ -1,6 +1,6 @@
 ---
 title: Tìm ô cửa không có cánh
-slug: tim-o-cua-khong-co-canh
+slug: /tim-o-cua-khong-co-canh
 sidebar_label: Tìm ô cửa không có cánh
 ---
 

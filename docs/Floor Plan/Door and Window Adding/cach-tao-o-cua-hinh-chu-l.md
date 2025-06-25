@@ -1,6 +1,6 @@
 ---
 title: Cách tạo ô cửa hình chữ L
-slug: cach-tao-o-cua-hinh-chu-l
+slug: /cach-tao-o-cua-hinh-chu-l
 sidebar_label: Cách tạo ô cửa hình chữ L
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Cách sửa đổi tên dự án
-slug: cach-sua-doi-ten-du-an
+slug: /cach-sua-doi-ten-du-an
 sidebar_label: Cách sửa đổi tên dự án
 ---
 

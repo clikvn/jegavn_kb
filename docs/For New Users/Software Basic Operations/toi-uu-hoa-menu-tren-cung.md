@@ -1,6 +1,6 @@
 ---
 title: Tối ưu hóa menu trên cùng
-slug: toi-uu-hoa-menu-tren-cung
+slug: /toi-uu-hoa-menu-tren-cung
 sidebar_label: Tối ưu hóa menu trên cùng
 ---
 

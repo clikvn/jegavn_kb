@@ -1,6 +1,6 @@
 ---
 title: Tại sao không thể chọn gạch?
-slug: tai-sao-khong-the-chon-gach
+slug: /tai-sao-khong-the-chon-gach
 sidebar_label: Tại sao không thể chọn gạch?
 ---
 

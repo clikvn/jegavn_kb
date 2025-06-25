@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để tạo lỗ trên mặt đất ban đầu
-slug: lam-the-nao-de-tao-lo-tren-mat-dat-ban-dau
+slug: /lam-the-nao-de-tao-lo-tren-mat-dat-ban-dau
 sidebar_label: Tạo lỗ trên mặt đất
 ---
 

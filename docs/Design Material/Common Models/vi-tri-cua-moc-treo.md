@@ -1,6 +1,6 @@
 ---
 title: Vị trí của móc treo
-slug: vi-tri-cua-moc-treo
+slug: /vi-tri-cua-moc-treo
 sidebar_label: Vị trí của móc treo
 ---
 
@@ -23,7 +23,5 @@ Có hai loại móc treo: móc treo thành phẩm và móc treo tùy chỉnh.
 ![Một menu ngữ cảnh trong phần mềm thiết kế tủ, hiển thị việc lựa chọn danh mục Móc và các thiết kế móc có sẵn.](https://storage.googleapis.com/jegavn_kb/images/db019eaf-23db-4d28-92b7-de563d17359c.png)
 
 :::note
-
-Móc treo quần áo tùy chỉnh tạm thời không hỗ trợ sửa đổi màu sắc phần cứng. Nếu bạn cần sửa đổi màu sắc, vui lòng sử dụng vật liệu thành phẩm.
 
 :::

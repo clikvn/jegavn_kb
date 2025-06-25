@@ -1,6 +1,6 @@
 ---
 title: Cách lát gạch xương cá
-slug: cach-lat-gach-xuong-ca
+slug: /cach-lat-gach-xuong-ca
 sidebar_label: Cách lát gạch xương cá
 ---
 

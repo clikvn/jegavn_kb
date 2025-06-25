@@ -1,6 +1,6 @@
 ---
 title: Cách ẩn hoặc sửa đổi phào chỉ trần và len chân tường
-slug: cach-an-hoac-sua-doi-phao-chi-tran-va-len-chan-tuong
+slug: /cach-an-hoac-sua-doi-phao-chi-tran-va-len-chan-tuong
 sidebar_label: Cách ẩn hoặc sửa đổi phào chỉ trần và len chân tường
 ---
 

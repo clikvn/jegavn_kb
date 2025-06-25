@@ -1,6 +1,6 @@
 ---
 title: Cách thực hiện cài đặt phần mềm?
-slug: cach-thuc-hien-cai-dat-phan-mem
+slug: /cach-thuc-hien-cai-dat-phan-mem
 sidebar_label: Cách thực hiện cài đặt phần mềm?
 ---
 

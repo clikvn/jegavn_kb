@@ -1,6 +1,6 @@
 ---
 title: Bố cục AI (Chỉ dành cho Premium)
-slug: bo-cuc-ai
+slug: /bo-cuc-ai
 sidebar_label: Bố cục AI
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Cách lát gạch bo góc tròn
-slug: cach-lat-gach-bo-goc-tron
+slug: /cach-lat-gach-bo-goc-tron
 sidebar_label: Cách lát gạch bo góc tròn
 ---
 

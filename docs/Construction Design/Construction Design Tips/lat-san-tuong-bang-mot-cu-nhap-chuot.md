@@ -1,6 +1,6 @@
 ---
 title: Lát Sàn/Tường Bằng Một Cú Nhấp Chuột
-slug: lat-san-tuong-bang-mot-cu-nhap-chuot
+slug: /lat-san-tuong-bang-mot-cu-nhap-chuot
 sidebar_label: Lát Sàn/Tường Bằng Một Cú Nhấp Chuột
 ---
 

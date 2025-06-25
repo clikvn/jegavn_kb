@@ -1,6 +1,6 @@
 ---
 title: Tải lên mô hình hoàn thiện
-slug: tai-len-mo-hinh-hoan-thien
+slug: /tai-len-mo-hinh-hoan-thien
 sidebar_label: Tải lên mô hình hoàn thiện
 ---
 

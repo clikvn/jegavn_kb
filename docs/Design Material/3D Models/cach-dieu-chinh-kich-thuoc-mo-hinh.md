@@ -1,6 +1,6 @@
 ---
 title: Cách điều chỉnh kích thước mô hình
-slug: cach-dieu-chinh-kich-thuoc-mo-hinh
+slug: /cach-dieu-chinh-kich-thuoc-mo-hinh
 sidebar_label: Cách điều chỉnh kích thước mô hình
 ---
 

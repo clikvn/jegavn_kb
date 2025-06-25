@@ -1,12 +1,10 @@
 ---
 title: Bảng "Giới thiệu" thêm thông tin chính
-slug: bang-gioi-thieu-them-thong-tin-chinh
+slug: /bang-gioi-thieu-them-thong-tin-chinh
 sidebar_label: Bảng "Giới thiệu" thêm thông tin chính
 ---
 
-:::note
-
-Bảng "Giới thiệu" nay đã được bổ sung các thông tin quan trọng như: số dự án, CPU, card đồ họa, bộ nhớ và hệ thống để giúp việc truy vấn nguyên nhân lỗi dễ dàng hơn.
+:::info
 
 :::
 

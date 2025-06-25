@@ -1,6 +1,6 @@
 ---
 title: Vị trí của họa tiết da
-slug: vi-tri-cua-hoa-tiet-da
+slug: /vi-tri-cua-hoa-tiet-da
 sidebar_label: Vị trí của họa tiết da
 ---
 

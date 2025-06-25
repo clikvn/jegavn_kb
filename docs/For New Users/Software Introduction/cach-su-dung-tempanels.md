@@ -1,6 +1,6 @@
 ---
 title: Cách sử dụng tempanels?
-slug: cach-su-dung-tempanels
+slug: /cach-su-dung-tempanels
 sidebar_label: Cách sử dụng tempanels?
 ---
 

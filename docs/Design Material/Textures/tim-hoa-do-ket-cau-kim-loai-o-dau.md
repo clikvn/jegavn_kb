@@ -1,6 +1,6 @@
 ---
 title: Tìm họa đồ kết cấu kim loại ở đâu
-slug: tim-hoa-do-ket-cau-kim-loai-o-dau
+slug: /tim-hoa-do-ket-cau-kim-loai-o-dau
 sidebar_label: Tìm họa đồ kết cấu kim loại ở đâu
 ---
 

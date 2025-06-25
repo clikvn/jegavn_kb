@@ -1,14 +1,12 @@
 ---
 title: Menu trên cùng thêm lối tắt cho mô-đun tùy chỉnh
-slug: menu-tren-cung-them-loi-tat-cho-mo-dun-tuy-chinh
+slug: /menu-tren-cung-them-loi-tat-cho-mo-dun-tuy-chinh
 sidebar_label: Lối tắt mô-đun tùy chỉnh
 ---
 
 Tối ưu hóa đường dẫn người dùng và thêm một lối tắt cho mô-đun tùy chỉnh trong menu trên cùng.
 
-:::note
-
-
+:::info
 
 :::
 

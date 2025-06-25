@@ -1,6 +1,6 @@
 ---
 title: Bản đồ kết cấu vân gỗ ở đâu
-slug: ban-do-ket-cau-van-go-o-dau
+slug: /ban-do-ket-cau-van-go-o-dau
 sidebar_label: Bản đồ kết cấu vân gỗ ở đâu
 ---
 

@@ -1,14 +1,12 @@
 ---
 title: Cửa trượt góc ở đâu
-slug: cua-truot-goc-o-dau
+slug: /cua-truot-goc-o-dau
 sidebar_label: Cửa trượt góc ở đâu
 ---
 
 Xin chào, cửa trượt góc có thể được thiết kế bằng cách sử dụng cửa và cửa sổ nhôm kính hoàn thiện hoặc tùy chỉnh.
 
 :::info
-
-Phương pháp 1: Bạn có thể tìm kiếm trực tiếp "cửa trượt góc" trong thư viện công cộng, hoặc tìm kiếm mã "13473708" để sử dụng.
 
 :::
 
@@ -17,8 +15,6 @@ Phương pháp 1: Bạn có thể tìm kiếm trực tiếp "cửa trượt góc
 ![Một người dùng đang xem phần Vật liệu đám mây (Cloud material) trong phần mềm thiết kế, với một tìm kiếm được thực hiện cho mã số (①) 13473708.](https://storage.googleapis.com/jegavn_kb/images/ce7438e4-d262-4a18-9d40-182cf51adc08.png)
 
 :::info
-
-Phương pháp 2: Nếu bạn cần làm một cửa góc kết hợp với cửa sổ, sau khi đặt khung góc "06846919", hãy tìm kiếm "148891349" và "148904972" để lắp ráp.
 
 :::
 

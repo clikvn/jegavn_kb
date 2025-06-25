@@ -1,6 +1,6 @@
 ---
 title: Cài đặt Đề xuất Liên kết Mẫu và Đề xuất Tương tự
-slug: cai-dat-de-xuat-lien-ket-mau-va-de-xuat-tuong-tu
+slug: /cai-dat-de-xuat-lien-ket-mau-va-de-xuat-tuong-tu
 sidebar_label: Cài đặt Đề xuất Liên kết Mẫu
 ---
 
@@ -15,9 +15,5 @@ Xin chào, các mẫu tương tự có thể được hiển thị cùng nhau d�
 Lúc này, nhà thiết kế có thể chọn sử dụng mô hình đã được liên kết.
 
 :::note
-
-Để biết thêm chi tiết, hãy truy cập: 
-
-
 
 :::

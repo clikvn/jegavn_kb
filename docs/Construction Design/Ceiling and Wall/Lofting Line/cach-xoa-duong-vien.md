@@ -1,6 +1,6 @@
 ---
 title: Cách xóa đường viền
-slug: cach-xoa-duong-vien
+slug: /cach-xoa-duong-vien
 sidebar_label: Cách xóa đường viền
 ---
 

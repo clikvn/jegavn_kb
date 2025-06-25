@@ -1,14 +1,12 @@
 ---
 title: Tại sao lại có thông báo không thể tạo len chân tủ trong điều kiện này?
-slug: tai-sao-lai-co-thong-bao-khi-tao-len-chan-tu-rang-dieu-kien-nay-khong-the-tao-ra-len-chan-tu
+slug: /tai-sao-lai-co-thong-bao-khi-tao-len-chan-tu-rang-dieu-kien-nay-khong-the-tao-ra-len-chan-tu
 sidebar_label: Tại sao lại có thông báo không thể tạo len chân tủ trong điều kiện này?
 ---
 
 Xin chào, trong mô-đun tủ tùy chỉnh, len chân tủ có thể được lắp đặt trực tiếp bằng cách nhấp chuột phải và tạo:
 
 :::info
-
-Tủ cần có chiều cao khoảng hở so với mặt đất.
 
 :::
 

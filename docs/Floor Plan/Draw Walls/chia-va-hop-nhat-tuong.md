@@ -1,6 +1,6 @@
 ---
 title: Chia và hợp nhất tường
-slug: chia-va-hop-nhat-tuong
+slug: /chia-va-hop-nhat-tuong
 sidebar_label: Chia và hợp nhất tường
 ---
 
@@ -9,8 +9,6 @@ Xin chào, bằng cách sử dụng các chức năng chia và hợp nhất tư�
 ![Một người dùng tương tác với một đoạn tường trong phần mềm thiết kế sơ đồ tầng, làm nổi bật bức tường và một tùy chọn menu ngữ cảnh.](https://storage.googleapis.com/jegavn_kb/images/e263f550-8ba0-461f-bc0a-02bfa2e01f37.png)
 
 :::note
-
-Nếu đó là thao tác hợp nhất hai loại nhà (cửa và cửa sổ đã chia sẽ di chuyển theo, các thiết kế trong không gian sẽ không di chuyển theo. Nên hoàn thành việc cài đặt chia và hợp nhất loại nhà trước khi tiến hành thiết kế phụ kiện, v.v.)
 
 :::
 
@@ -35,8 +33,6 @@ Như trong hình, đảm bảo bạn đang ở chế độ (①) **2D (2D)**, ch
 ![Ảnh động hiển thị quá trình chia tường trong giao diện mới.](https://storage.googleapis.com/jegavn_kb/images/2fd84e70-ce87-4bef-a1c4-e9a08ffa38de.gif)
 
 :::note
-
-Nếu đó là thao tác hợp nhất hai loại nhà (cửa và cửa sổ đã chia sẽ di chuyển theo, các thiết kế trong không gian sẽ không di chuyển theo. Nên hoàn thành việc cài đặt chia và hợp nhất loại nhà trước khi tiến hành thiết kế phụ kiện, v.v.)
 
 :::
 

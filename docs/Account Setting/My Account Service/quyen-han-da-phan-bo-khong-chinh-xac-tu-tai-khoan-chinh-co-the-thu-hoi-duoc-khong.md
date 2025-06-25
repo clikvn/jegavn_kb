@@ -1,6 +1,6 @@
 ---
 title: Quyền hạn đã phân bổ không chính xác từ tài khoản chính có thể thu hồi được không?
-slug: quyen-han-da-phan-bo-khong-chinh-xac-tu-tai-khoan-chinh-co-the-thu-hoi-duoc-khong
+slug: /quyen-han-da-phan-bo-khong-chinh-xac-tu-tai-khoan-chinh-co-the-thu-hoi-duoc-khong
 sidebar_label: Thu hồi quyền hạn đã phân bổ không chính xác
 ---
 

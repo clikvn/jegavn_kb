@@ -1,6 +1,6 @@
 ---
 title: Cập nhật tháng 7 năm 2024
-slug: cap-nhat-thang-7-nam-2024
+slug: /cap-nhat-thang-7-nam-2024
 sidebar_label: Cập nhật tháng 7 năm 2024
 ---
 
@@ -173,8 +173,6 @@ Lối vào tính năng 2: Dưới cùng - **Cài đặt hiệu suất (Performan
 2. Thêm chức năng bắt điểm chuột
 
 :::note
-
-
 
 :::
 

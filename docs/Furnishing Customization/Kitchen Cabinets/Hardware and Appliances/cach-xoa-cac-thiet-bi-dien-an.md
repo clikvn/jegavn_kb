@@ -1,6 +1,6 @@
 ---
 title: Cách xóa các thiết bị điện ẩn
-slug: cach-xoa-cac-thiet-bi-dien-an
+slug: /cach-xoa-cac-thiet-bi-dien-an
 sidebar_label: Xóa thiết bị điện ẩn
 ---
 

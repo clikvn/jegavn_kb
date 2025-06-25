@@ -1,6 +1,6 @@
 ---
 title: Cài Đặt Camera
-slug: cai-dat-camera
+slug: /cai-dat-camera
 sidebar_label: Cài Đặt Camera
 ---
 
@@ -9,8 +9,6 @@ Xin chào, các bước để kết xuất ảnh hiệu ứng như sau:
 1. Trong chế độ (①) **Chuyển vùng (Roam)**, điều chỉnh góc nhìn kết xuất. Sau đó, nhấp vào (②) **Kết xuất (Render)** ở menu trên cùng và chọn (③) **Kết xuất (Render(Alt+R))**.
 
 :::note
-
-Hệ thống sẽ tự động thêm ánh sáng bổ sung. Sau khi tạo ảnh hiệu ứng, bạn có thể kết xuất trực tiếp mà không cần thêm đèn bổ sung trước, sau đó điều chỉnh dựa trên hiệu ứng kết xuất.
 
 :::
 

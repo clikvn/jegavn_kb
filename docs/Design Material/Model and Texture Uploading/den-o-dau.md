@@ -1,6 +1,6 @@
 ---
 title: Đèn ở đâu?
-slug: den-o-dau
+slug: /den-o-dau
 sidebar_label: Đèn ở đâu?
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Cách chọn tạo phào chỉ/chân tủ một bên
-slug: cach-chon-tao-phao-chi-chan-tu-mot-ben
+slug: /cach-chon-tao-phao-chi-chan-tu-mot-ben
 sidebar_label: Cách chọn tạo phào chỉ/chân tủ một bên
 ---
 

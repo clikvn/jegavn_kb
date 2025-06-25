@@ -1,6 +1,6 @@
 ---
 title: Cách Làm Trần Tầng Dưới
-slug: cach-lam-tran-tang-duoi
+slug: /cach-lam-tran-tang-duoi
 sidebar_label: Cách Làm Trần Tầng Dưới
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Xuất bản vẽ trần
-slug: xuat-ban-ve-tran
+slug: /xuat-ban-ve-tran
 sidebar_label: Xuất bản vẽ trần
 ---
 

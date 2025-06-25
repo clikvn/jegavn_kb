@@ -1,6 +1,6 @@
 ---
 title: Chỉnh sửa kích thước gạch lát waterjet
-slug: chinh-sua-kich-thuoc-gach-lat-waterjet
+slug: /chinh-sua-kich-thuoc-gach-lat-waterjet
 sidebar_label: Chỉnh sửa kích thước gạch lát waterjet
 ---
 

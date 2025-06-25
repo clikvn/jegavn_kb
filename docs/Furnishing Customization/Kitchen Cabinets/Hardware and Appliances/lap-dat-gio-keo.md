@@ -1,6 +1,6 @@
 ---
 title: Lắp đặt giỏ kéo
-slug: lap-dat-gio-keo
+slug: /lap-dat-gio-keo
 sidebar_label: Lắp đặt giỏ kéo
 ---
 
@@ -17,8 +17,6 @@ Việc đặt giỏ kéo tủ được thực hiện theo các bước sau:
 3. Chọn giỏ kéo - giữ chuột trái và kéo nó để căn chỉnh với mặt ngăn kéo để đặt.
 
 :::note
-
-Lưu ý: Khi chọn giỏ kéo, kích thước của giỏ phải phù hợp với thân tủ. Đối với ngăn kéo, hãy chọn giỏ kéo chuyên dụng.
 
 :::
 

@@ -1,14 +1,12 @@
 ---
 title: Cách vẽ đường lượn sóng xiên
-slug: cach-ve-duong-luon-song-xien
+slug: /cach-ve-duong-luon-song-xien
 sidebar_label: Cách vẽ đường lượn sóng xiên
 ---
 
 Để vẽ các đường lượn sóng xiên, bạn có thể sử dụng hai phương pháp.
 
 :::info
-
-Phương pháp 1: Sử dụng đường đa tuyến
 
 :::
 
@@ -21,8 +19,6 @@ Vẽ các đường trên (①) **Vùng thiết kế chính (Main design canvas)
 ![Vùng thiết kế chính nơi các đường lượn sóng được vẽ và định hình.](https://storage.googleapis.com/jegavn_kb/images/2981f058-232f-4bff-9548-d10be50baf41.png)
 
 :::info
-
-Phương pháp 2: Sử dụng đường thẳng
 
 :::
 

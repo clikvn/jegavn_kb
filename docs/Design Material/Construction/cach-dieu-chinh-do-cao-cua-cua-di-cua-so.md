@@ -1,6 +1,6 @@
 ---
 title: Cách điều chỉnh độ cao của cửa đi/cửa sổ
-slug: cach-dieu-chinh-do-cao-cua-cua-di-cua-so
+slug: /cach-dieu-chinh-do-cao-cua-cua-di-cua-so
 sidebar_label: Cách điều chỉnh độ cao của cửa đi/cửa sổ
 ---
 

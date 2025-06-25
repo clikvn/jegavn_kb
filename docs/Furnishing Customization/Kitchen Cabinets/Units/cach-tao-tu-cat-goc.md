@@ -1,6 +1,6 @@
 ---
 title: Cách tạo tủ cắt góc
-slug: cach-tao-tu-cat-goc
+slug: /cach-tao-tu-cat-goc
 sidebar_label: Cách tạo tủ cắt góc
 ---
 

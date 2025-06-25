@@ -1,6 +1,6 @@
 ---
 title: Xuất File CAD Tủ Bếp
-slug: xuat-file-cad-tu-bep
+slug: /xuat-file-cad-tu-bep
 sidebar_label: Xuất File CAD Tủ Bếp
 ---
 
@@ -17,9 +17,5 @@ Trong cửa sổ bật lên, chọn (①) **Tủ bếp (Kitchen cabinet)**, sau 
 ![Một cửa sổ bật lên để xuất bản vẽ kỹ thuật, với (①) ô Tủ bếp được chọn và (②) nút Xuất bằng một cú nhấp chuột được tô sáng.](https://storage.googleapis.com/jegavn_kb/images/b321605e-288f-407c-a00f-271ac8046ac5.png)
 
 :::note
-
-Để xem hướng dẫn chi tiết về xuất file CAD, vui lòng nhấp vào: 
-
-
 
 :::

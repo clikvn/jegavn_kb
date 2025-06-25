@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để tạo mặt bàn cao và thấp?
-slug: lam-the-nao-de-tao-mat-ban-cao-va-thap
+slug: /lam-the-nao-de-tao-mat-ban-cao-va-thap
 sidebar_label: Làm thế nào để tạo mặt bàn cao và thấp?
 ---
 

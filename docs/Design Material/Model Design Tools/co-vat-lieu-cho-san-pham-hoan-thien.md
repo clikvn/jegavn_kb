@@ -1,26 +1,12 @@
 ---
 title: Cọ Vật Liệu Cho Sản Phẩm Hoàn Thiện
-slug: co-vat-lieu-cho-san-pham-hoan-thien
+slug: /co-vat-lieu-cho-san-pham-hoan-thien
 sidebar_label: Cọ Vật Liệu Cho Sản Phẩm Hoàn Thiện
 ---
 
 Xin chào, trong phiên bản thiết kế mới, bạn có thể sử dụng cọ vật liệu để lấy và áp dụng bản đồ kết cấu của trang trí cứng, tùy chỉnh và trang trí mềm chỉ bằng một cú nhấp chuột. Các bước vận hành cụ thể như sau:
 
 :::note
-
-Các mô-đun tạm thời không được hỗ trợ: 
-
-**gỗ nguyên khối (solid wood)**
-
-, 
-
-**phòng tắm (shower room)**
-
-, 
-
-**cửa và cửa sổ nhôm (aluminum doors and windows)**
-
-; không thể lấy bản đồ kết cấu trang trí mềm; không thể áp dụng cho các mô hình tùy chỉnh toàn bộ ngôi nhà có vật liệu liên quan; các bản đồ kết cấu đã lấy có thể được sử dụng trực tiếp trong vật liệu hàng hóa, nhưng nếu doanh nghiệp có hạn chế về việc thay thế vật liệu của mô hình thì không thể áp dụng.
 
 :::
 

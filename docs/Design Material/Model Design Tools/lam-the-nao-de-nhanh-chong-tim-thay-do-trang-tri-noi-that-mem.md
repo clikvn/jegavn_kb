@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để nhanh chóng tìm thấy đồ trang trí nội thất mềm
-slug: lam-the-nao-de-nhanh-chong-tim-thay-do-trang-tri-noi-that-mem
+slug: /lam-the-nao-de-nhanh-chong-tim-thay-do-trang-tri-noi-that-mem
 sidebar_label: Làm thế nào để nhanh chóng tìm thấy đồ trang trí nội thất mềm
 ---
 

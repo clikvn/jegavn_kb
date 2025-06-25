@@ -1,6 +1,6 @@
 ---
 title: Cập Nhật Tính Năng Tháng 1 Năm 2025
-slug: cap-nhat-tinh-nang-thang-1-nam-2025
+slug: /cap-nhat-tinh-nang-thang-1-nam-2025
 sidebar_label: Cập Nhật Tính Năng Tháng 1 Năm 2025
 ---
 
@@ -34,21 +34,15 @@ Các cập nhật lớn trong tháng này bao gồm **Bố cục AI (AI Layout)*
 
 1. Tối ưu hóa việc xếp chồng cho các mô hình hoàn thiện
 
-:::note
-
-
+:::tip
 
 :::
 
-:::note
-
-
+:::tip
 
 :::
 
-:::note
-
-
+:::tip
 
 :::
 
@@ -62,21 +56,15 @@ Cách sử dụng:
 
 2. Tùy chỉnh ưu tiên xoay chuột (Chế độ di chuyển)
 
-:::note
-
-
+:::tip
 
 :::
 
-:::note
-
-
+:::tip
 
 :::
 
-:::note
-
-
+:::tip
 
 :::
 
@@ -90,21 +78,15 @@ Cách sử dụng:
 
 3. Cắt camera trong Cài đặt Camera
 
-:::note
-
-
+:::tip
 
 :::
 
-:::note
-
-
+:::tip
 
 :::
 
-:::note
-
-
+:::tip
 
 :::
 
@@ -120,23 +102,15 @@ Cách sử dụng:
 
 1. Chỉnh sửa bản vẽ mặt bằng
 
-:::note
-
-
-
-
+:::tip
 
 :::
 
-:::note
-
-
+:::tip
 
 :::
 
-:::note
-
-
+:::tip
 
 :::
 
@@ -154,29 +128,15 @@ Cách sử dụng:
 
 2. Vẽ AI
 
-:::note
-
-
-
-
+:::tip
 
 :::
 
-:::note
-
-
-
-
+:::tip
 
 :::
 
-:::note
-
-
-
-
-
-
+:::tip
 
 :::
 
@@ -200,21 +160,15 @@ Cách sử dụng:
 
 1. Tối ưu hóa ràng buộc đố cửa
 
-:::note
-
-
+:::tip
 
 :::
 
-:::note
-
-
+:::tip
 
 :::
 
-:::note
-
-
+:::tip
 
 :::
 
@@ -222,21 +176,15 @@ Cách sử dụng:
 
 2. Phần "Tài sản của tôi" trong chế độ vẽ 2D
 
-:::note
-
-
+:::tip
 
 :::
 
-:::note
-
-
+:::tip
 
 :::
 
-:::note
-
-
+:::tip
 
 :::
 
@@ -244,25 +192,15 @@ Cách sử dụng:
 
 3. Cải thiện bắt điểm cho nhiều đối tượng & tường
 
-:::note
-
-
-
-
-
-
+:::tip
 
 :::
 
-:::note
-
-
+:::tip
 
 :::
 
-:::note
-
-
+:::tip
 
 :::
 
@@ -270,25 +208,15 @@ Cách sử dụng:
 
 4. Xem trước 3D với hiển thị & chỉnh sửa thước đo
 
-:::note
-
-
-
-
-
-
+:::tip
 
 :::
 
-:::note
-
-
+:::tip
 
 :::
 
-:::note
-
-
+:::tip
 
 :::
 

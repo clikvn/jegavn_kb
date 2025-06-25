@@ -1,6 +1,6 @@
 ---
 title: Cách cài đặt hướng mở cửa nhôm kính (V5)
-slug: cach-cai-dat-huong-mo-cua-nhom-kinh-v5
+slug: /cach-cai-dat-huong-mo-cua-nhom-kinh-v5
 sidebar_label: Cách cài đặt hướng mở cửa nhôm kính (V5)
 ---
 

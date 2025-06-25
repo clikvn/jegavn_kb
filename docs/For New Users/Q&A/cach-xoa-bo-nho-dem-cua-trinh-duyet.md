@@ -1,6 +1,6 @@
 ---
 title: Cách Xóa Bộ Nhớ Đệm Của Trình Duyệt
-slug: cach-xoa-bo-nho-dem-cua-trinh-duyet
+slug: /cach-xoa-bo-nho-dem-cua-trinh-duyet
 sidebar_label: Cách Xóa Bộ Nhớ Đệm Của Trình Duyệt
 ---
 

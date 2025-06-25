@@ -1,14 +1,12 @@
 ---
 title: Cửa không tay nắm không lắp đặt tay nắm nổi
-slug: cua-khong-tay-nam-khong-lap-dat-tay-nam-noi
+slug: /cua-khong-tay-nam-khong-lap-dat-tay-nam-noi
 sidebar_label: Cửa không tay nắm không lắp đặt tay nắm nổi
 ---
 
 Khi lắp đặt tay nắm hoặc thay thế tấm cửa, tay nắm âm sẽ không được lắp đặt cùng với tay nắm nổi.
 
 :::info [Giải quyết vấn đề]
-
-Tay nắm âm không cần lắp đặt tay nắm nổi. Tuy nhiên, không có sự phân biệt khi lắp đặt tay nắm hoặc thay thế tấm cửa, và chúng cần được gỡ bỏ thủ công sau khi lắp đặt hoặc thay thế.
 
 :::
 

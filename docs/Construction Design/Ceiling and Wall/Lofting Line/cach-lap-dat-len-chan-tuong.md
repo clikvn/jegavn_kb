@@ -1,6 +1,6 @@
 ---
 title: Cách lắp đặt len chân tường
-slug: cach-lap-dat-len-chan-tuong
+slug: /cach-lap-dat-len-chan-tuong
 sidebar_label: Cách lắp đặt len chân tường
 ---
 

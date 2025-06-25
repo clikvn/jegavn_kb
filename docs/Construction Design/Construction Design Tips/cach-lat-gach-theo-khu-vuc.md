@@ -1,14 +1,12 @@
 ---
 title: Cách Lát Gạch Theo Khu Vực
-slug: cach-lat-gach-theo-khu-vuc
+slug: /cach-lat-gach-theo-khu-vuc
 sidebar_label: Cách Lát Gạch Theo Khu Vực
 ---
 
 Việc phân chia khu vực có thể được thiết lập thông qua đường phân chia. Bạn có thể thiết lập bằng cách chia ngang, dọc, chia tự do hoặc tùy chỉnh khu vực lát gạch.
 
 :::info [Phương pháp 1]
-
-Phương pháp 1: Chia Cắt Ngang, Dọc và Tự Do trong không gian 3D
 
 :::
 
@@ -19,8 +17,6 @@ Nhấp chuột trái vào sàn/tường và chọn một trong các công cụ t
 ![Giao diện người dùng của một phần mềm thiết kế hiển thị bảng chọn vật liệu và thuộc tính, với các mẫu kết cấu được kéo vào tường.](https://storage.googleapis.com/jegavn_kb/images/d248be49-37b8-4006-a9ee-c2f317f91aa8.png)
 
 :::info [Phương pháp 2]
-
-Phương pháp 2: Tùy Chỉnh Khu Vực Lát Gạch
 
 :::
 

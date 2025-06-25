@@ -1,6 +1,6 @@
 ---
 title: Cách cài đặt tốc độ của góc nhìn di chuyển
-slug: cach-cai-dat-toc-do-cua-goc-nhin-di-chuyen
+slug: /cach-cai-dat-toc-do-cua-goc-nhin-di-chuyen
 sidebar_label: Cách cài đặt tốc độ của góc nhìn di chuyển
 ---
 

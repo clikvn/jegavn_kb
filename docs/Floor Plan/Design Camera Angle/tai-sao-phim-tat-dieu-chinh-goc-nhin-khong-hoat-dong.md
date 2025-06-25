@@ -1,6 +1,6 @@
 ---
 title: Tại sao phím tắt điều chỉnh góc nhìn không hoạt động
-slug: tai-sao-phim-tat-dieu-chinh-goc-nhin-khong-hoat-dong
+slug: /tai-sao-phim-tat-dieu-chinh-goc-nhin-khong-hoat-dong
 sidebar_label: Tại sao phím tắt điều chỉnh góc nhìn không hoạt động
 ---
 

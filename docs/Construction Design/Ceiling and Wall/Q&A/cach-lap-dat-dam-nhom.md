@@ -1,6 +1,6 @@
 ---
 title: Cách lắp đặt dầm nhôm
-slug: cach-lap-dat-dam-nhom
+slug: /cach-lap-dat-dam-nhom
 sidebar_label: Cách lắp đặt dầm nhôm
 ---
 

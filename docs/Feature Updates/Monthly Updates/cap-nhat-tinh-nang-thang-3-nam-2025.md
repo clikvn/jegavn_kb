@@ -1,6 +1,6 @@
 ---
 title: Cập nhật tính năng tháng 3 năm 2025
-slug: cap-nhat-tinh-nang-thang-3-nam-2025
+slug: /cap-nhat-tinh-nang-thang-3-nam-2025
 sidebar_label: Cập nhật tháng 3 năm 2025
 ---
 
@@ -49,10 +49,6 @@ Phân chia tủ cho thú cưng - Phương pháp cắt trực tiếp
 ![GIF minh họa phương pháp Cắt trực tiếp trên tủ cho thú cưng.](https://storage.googleapis.com/jegavn_kb/images/682266307491676185_1742969963917_%E3%80%90design%E3%80%91%E6%9D%BF%E4%BB%B6%E5%88%92%E5%88%86.gif)
 
 :::note
-
-
-
-
 
 :::
 

@@ -1,6 +1,6 @@
 ---
 title: Hướng dẫn làm tủ ban công
-slug: huong-dan-lam-tu-ban-cong
+slug: /huong-dan-lam-tu-ban-cong
 sidebar_label: Hướng dẫn làm tủ ban công
 ---
 
@@ -15,7 +15,5 @@ sidebar_label: Hướng dẫn làm tủ ban công
 ![Giao diện người dùng hiển thị việc chọn (①) Tủ giặt trong danh mục Phòng tắm.](https://storage.googleapis.com/jegavn_kb/images/035b5681-7553-45cc-8662-dbb4e2173a27.png)
 
 :::note
-
-
 
 :::

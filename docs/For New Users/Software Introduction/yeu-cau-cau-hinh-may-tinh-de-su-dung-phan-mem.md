@@ -1,6 +1,6 @@
 ---
 title: Yêu cầu cấu hình máy tính để sử dụng phần mềm
-slug: yeu-cau-cau-hinh-may-tinh-de-su-dung-phan-mem
+slug: /yeu-cau-cau-hinh-may-tinh-de-su-dung-phan-mem
 sidebar_label: Yêu cầu cấu hình máy tính để sử dụng phần mềm
 ---
 

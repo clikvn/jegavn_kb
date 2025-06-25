@@ -1,6 +1,6 @@
 ---
 title: Cách Tạo Trần Nhà
-slug: cach-tao-tran-nha
+slug: /cach-tao-tran-nha
 sidebar_label: Cách Tạo Trần Nhà
 ---
 

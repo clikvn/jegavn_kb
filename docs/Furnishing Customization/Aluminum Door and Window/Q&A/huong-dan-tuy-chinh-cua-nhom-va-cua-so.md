@@ -1,6 +1,6 @@
 ---
 title: Hướng dẫn tùy chỉnh cửa nhôm và cửa sổ
-slug: huong-dan-tuy-chinh-cua-nhom-va-cua-so
+slug: /huong-dan-tuy-chinh-cua-nhom-va-cua-so
 sidebar_label: Hướng dẫn tùy chỉnh cửa nhôm và cửa sổ
 ---
 

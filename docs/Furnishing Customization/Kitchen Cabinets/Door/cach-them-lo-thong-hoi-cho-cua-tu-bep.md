@@ -1,6 +1,6 @@
 ---
 title: Cách thêm lỗ thông hơi cho cửa tủ bếp
-slug: cach-them-lo-thong-hoi-cho-cua-tu-bep
+slug: /cach-them-lo-thong-hoi-cho-cua-tu-bep
 sidebar_label: Cách thêm lỗ thông hơi cho cửa tủ bếp
 ---
 

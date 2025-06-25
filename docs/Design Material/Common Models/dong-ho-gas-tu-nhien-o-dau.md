@@ -1,6 +1,6 @@
 ---
 title: Đồng hồ gas tự nhiên ở đâu
-slug: dong-ho-gas-tu-nhien-o-dau
+slug: /dong-ho-gas-tu-nhien-o-dau
 sidebar_label: Đồng hồ gas tự nhiên ở đâu
 ---
 

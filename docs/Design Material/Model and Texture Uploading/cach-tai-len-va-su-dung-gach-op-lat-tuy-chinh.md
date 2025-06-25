@@ -1,6 +1,6 @@
 ---
 title: Cách tải lên và sử dụng gạch ốp lát tùy chỉnh
-slug: cach-tai-len-va-su-dung-gach-op-lat-tuy-chinh
+slug: /cach-tai-len-va-su-dung-gach-op-lat-tuy-chinh
 sidebar_label: Cách tải lên và sử dụng gạch ốp lát tùy chỉnh
 ---
 

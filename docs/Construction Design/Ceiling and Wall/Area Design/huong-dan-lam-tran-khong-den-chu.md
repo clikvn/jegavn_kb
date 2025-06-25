@@ -1,6 +1,6 @@
 ---
 title: Hướng Dẫn Làm Trần Không Đèn Chủ
-slug: huong-dan-lam-tran-khong-den-chu
+slug: /huong-dan-lam-tran-khong-den-chu
 sidebar_label: Trần Không Đèn Chủ
 ---
 

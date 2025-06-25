@@ -1,6 +1,6 @@
 ---
 title: Gương toàn thân ở đâu
-slug: guong-toan-than-o-dau
+slug: /guong-toan-than-o-dau
 sidebar_label: Gương toàn thân ở đâu
 ---
 

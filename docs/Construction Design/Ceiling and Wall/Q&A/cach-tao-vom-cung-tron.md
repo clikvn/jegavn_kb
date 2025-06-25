@@ -1,6 +1,6 @@
 ---
 title: Cách tạo vòm cung tròn
-slug: cach-tao-vom-cung-tron
+slug: /cach-tao-vom-cung-tron
 sidebar_label: Cách tạo vòm cung tròn
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Cách tải lên bản vẽ mặt bằng
-slug: cach-tai-len-ban-ve-mat-bang
+slug: /cach-tai-len-ban-ve-mat-bang
 sidebar_label: Cách tải lên bản vẽ mặt bằng
 ---
 
@@ -21,8 +21,6 @@ Xin chào, bạn có thể tải lên bản vẽ mặt bằng ở định dạng
 ![Một bản vẽ mặt bằng 3D được hiển thị trong phần mềm thiết kế AiHouse, cho thấy bố cục ngôi nhà với nhiều phòng và một bảng điều khiển chi tiết cho các thuộc tính sàn và cài đặt bố cục.](https://storage.googleapis.com/jegavn_kb/images/229f3e93-cce7-459a-a8e2-094585dd2364.png)
 
 :::note
-
-Nếu bạn cần vẽ tường thủ công trong phiên bản thiết kế, bạn có thể điều chỉnh độ trong suốt của tấm sàn để hiển thị hình ảnh tham chiếu. Ảnh chụp màn hình như sau:
 
 :::
 

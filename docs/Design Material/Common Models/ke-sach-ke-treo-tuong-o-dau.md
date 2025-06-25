@@ -1,6 +1,6 @@
 ---
 title: Kệ sách/kệ treo tường ở đâu?
-slug: ke-sach-ke-treo-tuong-o-dau
+slug: /ke-sach-ke-treo-tuong-o-dau
 sidebar_label: Kệ sách/kệ treo tường ở đâu?
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Cách chuyển đổi cạnh thẳng thành cạnh cong trong tùy chỉnh trần
-slug: cach-chuyen-doi-canh-thang-thanh-canh-cong-trong-tuy-chinh-tran
+slug: /cach-chuyen-doi-canh-thang-thanh-canh-cong-trong-tuy-chinh-tran
 sidebar_label: Cách chuyển đổi cạnh thẳng thành cạnh cong trong tùy chỉnh trần
 ---
 

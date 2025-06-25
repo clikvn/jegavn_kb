@@ -1,6 +1,6 @@
 ---
 title: Module cơ bản hỗ trợ đặt đồ trang trí trong tủ
-slug: module-co-ban-ho-tro-dat-do-trang-tri-trong-tu
+slug: /module-co-ban-ho-tro-dat-do-trang-tri-trong-tu
 sidebar_label: Đặt đồ trang trí trong tủ
 ---
 

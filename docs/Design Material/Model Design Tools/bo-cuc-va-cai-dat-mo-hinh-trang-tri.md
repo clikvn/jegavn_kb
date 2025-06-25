@@ -1,6 +1,6 @@
 ---
 title: Bố cục và Cài đặt Mô hình Trang trí
-slug: bo-cuc-va-cai-dat-mo-hinh-trang-tri
+slug: /bo-cuc-va-cai-dat-mo-hinh-trang-tri
 sidebar_label: Bố cục và Cài đặt Mô hình Trang trí
 ---
 

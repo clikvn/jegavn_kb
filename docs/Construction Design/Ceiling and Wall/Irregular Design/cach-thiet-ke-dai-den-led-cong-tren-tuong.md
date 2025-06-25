@@ -1,6 +1,6 @@
 ---
 title: Cách thiết kế dải đèn LED cong trên tường
-slug: cach-thiet-ke-dai-den-led-cong-tren-tuong
+slug: /cach-thiet-ke-dai-den-led-cong-tren-tuong
 sidebar_label: Cách thiết kế dải đèn LED cong trên tường
 ---
 

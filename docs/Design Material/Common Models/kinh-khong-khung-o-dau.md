@@ -1,6 +1,6 @@
 ---
 title: Kính không khung ở đâu?
-slug: kinh-khong-khung-o-dau
+slug: /kinh-khong-khung-o-dau
 sidebar_label: Kính không khung ở đâu?
 ---
 

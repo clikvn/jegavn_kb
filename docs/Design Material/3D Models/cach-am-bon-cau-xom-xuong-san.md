@@ -1,6 +1,6 @@
 ---
 title: Cách âm bồn cầu xổm xuống sàn
-slug: cach-am-bon-cau-xom-xuong-san
+slug: /cach-am-bon-cau-xom-xuong-san
 sidebar_label: Cách âm bồn cầu xổm xuống sàn
 ---
 

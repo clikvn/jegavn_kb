@@ -1,6 +1,6 @@
 ---
 title: Xử lý mặt bàn bị gãy
-slug: xu-ly-mat-ban-bi-gay
+slug: /xu-ly-mat-ban-bi-gay
 sidebar_label: Xử lý mặt bàn bị gãy
 ---
 

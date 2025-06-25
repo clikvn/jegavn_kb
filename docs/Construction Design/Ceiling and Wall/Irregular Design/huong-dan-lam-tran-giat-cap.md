@@ -1,6 +1,6 @@
 ---
 title: Hướng dẫn làm trần giật cấp
-slug: huong-dan-lam-tran-giat-cap
+slug: /huong-dan-lam-tran-giat-cap
 sidebar_label: Hướng dẫn làm trần giật cấp
 ---
 

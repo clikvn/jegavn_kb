@@ -1,6 +1,6 @@
 ---
 title: "Chỉnh sửa kiểu dáng tấm 2: khoảng cách thước, cài đặt lưới"
-slug: chinh-sua-kieu-dang-tam-2-khoang-cach-thuoc-cai-dat-luoi
+slug: "/chinh-sua-kieu-dang-tam-2-khoang-cach-thuoc-cai-dat-luoi"
 sidebar_label: "Chỉnh sửa kiểu dáng tấm 2: khoảng cách thước, cài đặt lưới"
 ---
 

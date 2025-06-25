@@ -1,6 +1,6 @@
 ---
 title: Cách sử dụng vật liệu của tôi
-slug: cach-su-dung-vat-lieu-cua-toi
+slug: /cach-su-dung-vat-lieu-cua-toi
 sidebar_label: Cách sử dụng vật liệu của tôi
 ---
 
@@ -17,11 +17,5 @@ Xin chào, đối với các vật liệu đã tải lên, bạn có thể tìm 
 ![Thư viện vật liệu hiển thị tab 'Của tôi', nơi người dùng có thể chọn các vật liệu tùy chỉnh đã tải lên.](https://storage.googleapis.com/jegavn_kb/images/e2b47328-e9ac-498c-9a5a-bfca3485e524.png)
 
 :::note
-
-
-
-
-
-
 
 :::

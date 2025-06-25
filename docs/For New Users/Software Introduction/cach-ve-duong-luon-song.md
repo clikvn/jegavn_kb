@@ -1,6 +1,6 @@
 ---
 title: Cách Vẽ Đường Lượn Sóng
-slug: cach-ve-duong-luon-song
+slug: /cach-ve-duong-luon-song
 sidebar_label: Cách Vẽ Đường Lượn Sóng
 ---
 

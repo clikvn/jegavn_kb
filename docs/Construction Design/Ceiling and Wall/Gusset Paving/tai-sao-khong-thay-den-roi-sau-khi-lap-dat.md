@@ -1,6 +1,6 @@
 ---
 title: Tại sao không thấy đèn rọi sau khi lắp đặt?
-slug: tai-sao-khong-thay-den-roi-sau-khi-lap-dat
+slug: /tai-sao-khong-thay-den-roi-sau-khi-lap-dat
 sidebar_label: Không thấy đèn rọi sau khi lắp đặt
 ---
 

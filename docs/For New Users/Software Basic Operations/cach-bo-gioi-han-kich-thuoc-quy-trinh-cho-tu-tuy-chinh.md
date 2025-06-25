@@ -1,12 +1,10 @@
 ---
 title: Cách bỏ giới hạn kích thước quy trình cho tủ tùy chỉnh
-slug: cach-bo-gioi-han-kich-thuoc-quy-trinh-cho-tu-tuy-chinh
+slug: /cach-bo-gioi-han-kich-thuoc-quy-trinh-cho-tu-tuy-chinh
 sidebar_label: Cách bỏ giới hạn kích thước quy trình cho tủ tùy chỉnh
 ---
 
 :::note
-
-Một số tủ trong mục tủ tùy chỉnh có thể được thiết lập để bỏ qua giới hạn kích thước quy trình, cho phép sửa đổi kích thước tủ một cách tự do. Lưu ý: Chức năng này chỉ khả dụng cho phiên bản doanh nghiệp và cần được kích hoạt. Nếu không thấy tùy chọn này, vui lòng liên hệ với quản trị viên doanh nghiệp. Sau khi bật, cần làm mới trang và mở lại phần mềm để cài đặt có hiệu lực.
 
 :::
 

@@ -1,6 +1,6 @@
 ---
 title: Khi lắp đặt mặt bàn, mặt bàn quá cao
-slug: khi-lap-dat-mat-ban-mat-ban-qua-cao
+slug: /khi-lap-dat-mat-ban-mat-ban-qua-cao
 sidebar_label: Khi lắp đặt mặt bàn, mặt bàn quá cao
 ---
 

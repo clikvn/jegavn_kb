@@ -1,6 +1,6 @@
 ---
 title: Cách xem phím tắt?
-slug: cach-xem-phim-tat
+slug: /cach-xem-phim-tat
 sidebar_label: Cách xem phím tắt?
 ---
 

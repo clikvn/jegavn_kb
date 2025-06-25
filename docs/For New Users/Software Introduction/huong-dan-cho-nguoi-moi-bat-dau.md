@@ -1,6 +1,6 @@
 ---
 title: Hướng dẫn cho người mới bắt đầu
-slug: huong-dan-cho-nguoi-moi-bat-dau
+slug: /huong-dan-cho-nguoi-moi-bat-dau
 sidebar_label: Hướng dẫn cho người mới bắt đầu
 ---
 

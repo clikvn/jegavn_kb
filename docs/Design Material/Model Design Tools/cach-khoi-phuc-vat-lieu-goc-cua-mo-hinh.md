@@ -1,6 +1,6 @@
 ---
 title: Cách khôi phục vật liệu gốc của mô hình
-slug: cach-khoi-phuc-vat-lieu-goc-cua-mo-hinh
+slug: /cach-khoi-phuc-vat-lieu-goc-cua-mo-hinh
 sidebar_label: Cách khôi phục vật liệu gốc của mô hình
 ---
 

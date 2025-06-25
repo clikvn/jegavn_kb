@@ -1,6 +1,6 @@
 ---
 title: Cách nhóm các ô gạch
-slug: cach-nhom-cac-o-gach
+slug: /cach-nhom-cac-o-gach
 sidebar_label: Cách nhóm các ô gạch
 ---
 

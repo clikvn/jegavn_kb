@@ -1,6 +1,6 @@
 ---
 title: Xử lý lỗi phím tắt MY không chuyển đổi được vùng
-slug: xu-ly-loi-phim-tat-my-khong-chuyen-doi-duoc-vung
+slug: /xu-ly-loi-phim-tat-my-khong-chuyen-doi-duoc-vung
 sidebar_label: Xử lý lỗi phím tắt MY không chuyển đổi được vùng
 ---
 

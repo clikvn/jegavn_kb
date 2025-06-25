@@ -1,6 +1,6 @@
 ---
 title: Cách lắp đặt nẹp tăng dày cho bộ cửa gỗ
-slug: cach-lap-dat-nep-tang-day-cho-bo-cua-go
+slug: /cach-lap-dat-nep-tang-day-cho-bo-cua-go
 sidebar_label: Cách lắp đặt nẹp tăng dày cho bộ cửa gỗ
 ---
 

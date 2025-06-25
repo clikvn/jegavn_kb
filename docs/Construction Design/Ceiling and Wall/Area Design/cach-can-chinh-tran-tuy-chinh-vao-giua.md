@@ -1,6 +1,6 @@
 ---
 title: Cách căn chỉnh trần tùy chỉnh vào giữa
-slug: cach-can-chinh-tran-tuy-chinh-vao-giua
+slug: /cach-can-chinh-tran-tuy-chinh-vao-giua
 sidebar_label: Cách căn chỉnh trần tùy chỉnh vào giữa
 ---
 

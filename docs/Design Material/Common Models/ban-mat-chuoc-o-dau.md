@@ -1,6 +1,6 @@
 ---
 title: Bàn mạt chược ở đâu
-slug: ban-mat-chuoc-o-dau
+slug: /ban-mat-chuoc-o-dau
 sidebar_label: Bàn mạt chược ở đâu
 ---
 

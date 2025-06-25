@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để chọn toàn bộ tủ?
-slug: lam-the-nao-de-chon-toan-bo-tu
+slug: /lam-the-nao-de-chon-toan-bo-tu
 sidebar_label: Làm thế nào để chọn toàn bộ tủ?
 ---
 

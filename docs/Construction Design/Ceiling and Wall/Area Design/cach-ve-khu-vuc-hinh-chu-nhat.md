@@ -1,6 +1,6 @@
 ---
 title: Cách Vẽ Khu Vực Hình Chữ Nhật
-slug: cach-ve-khu-vuc-hinh-chu-nhat
+slug: /cach-ve-khu-vuc-hinh-chu-nhat
 sidebar_label: Cách Vẽ Khu Vực Hình Chữ Nhật
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Sản phẩm được đề xuất thông minh
-slug: san-pham-duoc-de-xuat-thong-minh
+slug: /san-pham-duoc-de-xuat-thong-minh
 sidebar_label: Sản phẩm được đề xuất thông minh
 ---
 

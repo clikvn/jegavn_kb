@@ -1,6 +1,6 @@
 ---
 title: Cách Vẽ Khu Vực Hình Tròn
-slug: cach-ve-khu-vuc-hinh-tron
+slug: /cach-ve-khu-vuc-hinh-tron
 sidebar_label: Cách Vẽ Khu Vực Hình Tròn
 ---
 

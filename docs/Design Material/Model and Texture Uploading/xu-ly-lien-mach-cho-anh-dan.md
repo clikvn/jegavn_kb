@@ -1,6 +1,6 @@
 ---
 title: Xử lý liền mạch cho ảnh dán
-slug: xu-ly-lien-mach-cho-anh-dan
+slug: /xu-ly-lien-mach-cho-anh-dan
 sidebar_label: Xử lý liền mạch cho ảnh dán
 ---
 

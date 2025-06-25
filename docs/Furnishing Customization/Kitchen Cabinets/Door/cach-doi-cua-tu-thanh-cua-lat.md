@@ -1,6 +1,6 @@
 ---
 title: Cách đổi cửa tủ thành cửa lật
-slug: cach-doi-cua-tu-thanh-cua-lat
+slug: /cach-doi-cua-tu-thanh-cua-lat
 sidebar_label: Cách đổi cửa tủ thành cửa lật
 ---
 

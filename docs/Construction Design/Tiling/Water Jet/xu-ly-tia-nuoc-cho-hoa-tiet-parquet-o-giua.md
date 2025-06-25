@@ -1,6 +1,6 @@
 ---
 title: Xử lý tia nước cho họa tiết parquet ở giữa
-slug: xu-ly-tia-nuoc-cho-hoa-tiet-parquet-o-giua
+slug: /xu-ly-tia-nuoc-cho-hoa-tiet-parquet-o-giua
 sidebar_label: Xử lý tia nước cho họa tiết parquet ở giữa
 ---
 

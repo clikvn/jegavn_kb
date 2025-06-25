@@ -1,6 +1,6 @@
 ---
 title: Cách thêm chi tiết chạm khắc cho gỗ thịt
-slug: cach-them-chi-tiet-cham-khac-cho-go-thit
+slug: /cach-them-chi-tiet-cham-khac-cho-go-thit
 sidebar_label: Cách thêm chi tiết chạm khắc cho gỗ thịt
 ---
 

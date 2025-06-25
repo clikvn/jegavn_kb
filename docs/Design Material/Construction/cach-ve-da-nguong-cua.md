@@ -1,6 +1,6 @@
 ---
 title: Cách vẽ đá ngưỡng cửa
-slug: cach-ve-da-nguong-cua
+slug: /cach-ve-da-nguong-cua
 sidebar_label: Cách vẽ đá ngưỡng cửa
 ---
 

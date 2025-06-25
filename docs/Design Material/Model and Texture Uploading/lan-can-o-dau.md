@@ -1,6 +1,6 @@
 ---
 title: Lan can ở đâu
-slug: lan-can-o-dau
+slug: /lan-can-o-dau
 sidebar_label: Lan can ở đâu
 ---
 

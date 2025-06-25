@@ -1,6 +1,6 @@
 ---
 title: Sao chép/Xóa cửa nhôm và cửa sổ (V5)
-slug: sao-chep-xoa-cua-nhom-va-cua-so-v5
+slug: /sao-chep-xoa-cua-nhom-va-cua-so-v5
 sidebar_label: Sao chép/Xóa cửa nhôm và cửa sổ (V5)
 ---
 

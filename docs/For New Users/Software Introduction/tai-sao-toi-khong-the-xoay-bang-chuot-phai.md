@@ -1,6 +1,6 @@
 ---
 title: Tại sao tôi không thể xoay bằng chuột phải?
-slug: tai-sao-toi-khong-the-xoay-bang-chuot-phai
+slug: /tai-sao-toi-khong-the-xoay-bang-chuot-phai
 sidebar_label: Tại sao tôi không thể xoay bằng chuột phải?
 ---
 

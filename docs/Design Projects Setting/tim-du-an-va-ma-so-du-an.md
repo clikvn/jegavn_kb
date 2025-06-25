@@ -1,12 +1,10 @@
 ---
 title: Tìm dự án và mã số dự án
-slug: tim-du-an-va-ma-so-du-an
+slug: /tim-du-an-va-ma-so-du-an
 sidebar_label: Tìm dự án và mã số dự án
 ---
 
 :::note
-
-Khi gửi mã số phương án cho nhân viên chăm sóc khách hàng, hãy cố gắng không chụp ảnh màn hình. Thay vào đó, hãy sao chép và gửi mã số ID; từ trái sang phải, giữ nút chuột trái, chọn mã số ID, sau đó nhấn Ctrl+C để sao chép.
 
 :::
 

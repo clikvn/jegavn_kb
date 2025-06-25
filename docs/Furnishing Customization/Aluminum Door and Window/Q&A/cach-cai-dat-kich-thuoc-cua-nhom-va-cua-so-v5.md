@@ -1,6 +1,6 @@
 ---
 title: Cách cài đặt kích thước cửa nhôm và cửa sổ (V5)
-slug: cach-cai-dat-kich-thuoc-cua-nhom-va-cua-so-v5
+slug: /cach-cai-dat-kich-thuoc-cua-nhom-va-cua-so-v5
 sidebar_label: Cách cài đặt kích thước cửa nhôm và cửa sổ (V5)
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Lắp đặt dải đèn LED trên tấm ốp tường gỗ
-slug: lap-dat-dai-den-led-tren-tam-op-tuong-go
+slug: /lap-dat-dai-den-led-tren-tam-op-tuong-go
 sidebar_label: Lắp đặt dải đèn LED trên tấm ốp tường gỗ
 ---
 

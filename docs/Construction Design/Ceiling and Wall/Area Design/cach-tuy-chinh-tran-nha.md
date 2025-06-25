@@ -1,6 +1,6 @@
 ---
 title: Cách tùy chỉnh trần nhà
-slug: cach-tuy-chinh-tran-nha
+slug: /cach-tuy-chinh-tran-nha
 sidebar_label: Cách tùy chỉnh trần nhà
 ---
 

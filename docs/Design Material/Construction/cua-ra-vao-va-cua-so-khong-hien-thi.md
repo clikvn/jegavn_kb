@@ -1,6 +1,6 @@
 ---
 title: Cửa Ra Vào và Cửa Sổ Không Hiển Thị
-slug: cua-ra-vao-va-cua-so-khong-hien-thi
+slug: /cua-ra-vao-va-cua-so-khong-hien-thi
 sidebar_label: Cửa Ra Vào và Cửa Sổ Không Hiển Thị
 ---
 

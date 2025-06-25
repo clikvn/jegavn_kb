@@ -1,6 +1,6 @@
 ---
 title: Vách kính không khung ở đâu
-slug: vach-kinh-khong-khung-o-dau
+slug: /vach-kinh-khong-khung-o-dau
 sidebar_label: Vách kính không khung ở đâu
 ---
 

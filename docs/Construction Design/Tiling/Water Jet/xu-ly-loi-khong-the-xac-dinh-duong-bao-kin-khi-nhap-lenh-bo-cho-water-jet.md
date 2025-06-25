@@ -1,6 +1,6 @@
 ---
 title: Xử lý lỗi không thể xác định đường bao kín khi nhập lệnh BO cho water jet
-slug: xu-ly-loi-khong-the-xac-dinh-duong-bao-kin-khi-nhap-lenh-bo-cho-water-jet
+slug: /xu-ly-loi-khong-the-xac-dinh-duong-bao-kin-khi-nhap-lenh-bo-cho-water-jet
 sidebar_label: Lỗi không xác định được đường bao kín (lệnh BO)
 ---
 

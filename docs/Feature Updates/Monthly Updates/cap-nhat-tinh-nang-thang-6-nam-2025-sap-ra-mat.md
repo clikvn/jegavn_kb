@@ -1,6 +1,6 @@
 ---
 title: Cập Nhật Tính Năng Tháng 6 Năm 2025 - Sắp Ra Mắt
-slug: cap-nhat-tinh-nang-thang-6-nam-2025-sap-ra-mat
+slug: /cap-nhat-tinh-nang-thang-6-nam-2025-sap-ra-mat
 sidebar_label: Tháng 6/2025 - Sắp Ra Mắt
 ---
 
@@ -219,8 +219,6 @@ Các bước:
 5. Hoạt ảnh
 
 :::note
-
-Kết xuất video AI tốn chi phí gấp đôi so với kết xuất hoạt ảnh thông thường. Điều này có nghĩa là mỗi video AI 5 giây sẽ tiêu thụ một phiếu kết xuất video 10 giây.
 
 :::
 

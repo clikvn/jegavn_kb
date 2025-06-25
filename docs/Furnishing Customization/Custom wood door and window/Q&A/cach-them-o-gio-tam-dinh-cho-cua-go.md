@@ -1,6 +1,6 @@
 ---
 title: Cách thêm ô gió/tấm đỉnh cho cửa gỗ
-slug: cach-them-o-gio-tam-dinh-cho-cua-go
+slug: /cach-them-o-gio-tam-dinh-cho-cua-go
 sidebar_label: Cách thêm ô gió/tấm đỉnh cho cửa gỗ
 ---
 

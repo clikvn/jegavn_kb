@@ -1,6 +1,6 @@
 ---
 title: Cách thay thế kiểu tay nắm cửa
-slug: cach-thay-the-kieu-tay-nam-cua
+slug: /cach-thay-the-kieu-tay-nam-cua
 sidebar_label: Cách thay thế kiểu tay nắm cửa
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Cách Điều Chỉnh Khoảng Cách Thả Trần Cho Trần Tùy Chỉnh
-slug: cach-dieu-chinh-khoang-cach-tha-tran-cho-tran-tuy-chinh
+slug: /cach-dieu-chinh-khoang-cach-tha-tran-cho-tran-tuy-chinh
 sidebar_label: Cách Điều Chỉnh Khoảng Cách Thả Trần
 ---
 

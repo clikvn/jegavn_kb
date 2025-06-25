@@ -1,6 +1,6 @@
 ---
 title: Tại sao mặt bàn bị nhấp nháy bóng đổ
-slug: tai-sao-mat-ban-bi-nhap-nhay-bong-do
+slug: /tai-sao-mat-ban-bi-nhap-nhay-bong-do
 sidebar_label: Tại sao mặt bàn bị nhấp nháy bóng đổ
 ---
 
@@ -8,31 +8,9 @@ Khi có hiện tượng nhấp nháy bóng đổ trên mặt bàn, có 2 lý do 
 
 :::note
 
-
-
-
-
 :::
 
 :::note
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 :::
 

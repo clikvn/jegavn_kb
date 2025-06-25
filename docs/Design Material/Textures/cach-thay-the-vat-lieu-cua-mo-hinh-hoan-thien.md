@@ -1,6 +1,6 @@
 ---
 title: Cách thay thế vật liệu của mô hình hoàn thiện
-slug: cach-thay-the-vat-lieu-cua-mo-hinh-hoan-thien
+slug: /cach-thay-the-vat-lieu-cua-mo-hinh-hoan-thien
 sidebar_label: Thay thế vật liệu mô hình hoàn thiện
 ---
 
@@ -11,8 +11,6 @@ Phương pháp 1: Chọn vật liệu cần thiết trong **Hoàn thiện (Finis
 ![Giao diện phần mềm thiết kế hiển thị quy trình kéo và thả vật liệu. (①) Danh mục Hoàn thiện được chọn. (②) Danh mục con Nghệ thuật vải được chọn. (③) Một đối tượng hình cầu màu xanh lam được tô sáng trong không gian làm việc.](https://storage.googleapis.com/jegavn_kb/images/9f0dd897-db07-4977-b12c-7dc2ed2a7fb5.png)
 
 :::note
-
-Xin lưu ý: Nếu mô hình hiển thị thông báo rằng nó không thể được thay thế và trình chỉnh sửa vật liệu vẫn nhắc nhở, điều đó có nghĩa là mô hình được mặc định không thể thay thế vật liệu. Bạn chỉ có thể sử dụng vật liệu gốc để kết xuất hoặc thay đổi sang một mô hình khác để sử dụng.
 
 :::
 

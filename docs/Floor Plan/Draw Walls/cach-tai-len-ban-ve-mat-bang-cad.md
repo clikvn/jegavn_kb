@@ -1,14 +1,12 @@
 ---
 title: Cách tải lên bản vẽ mặt bằng CAD
-slug: cach-tai-len-ban-ve-mat-bang-cad
+slug: /cach-tai-len-ban-ve-mat-bang-cad
 sidebar_label: Cách tải lên bản vẽ mặt bằng CAD
 ---
 
 Để tải lên bản vẽ mặt bằng, bạn có thể vào **Tệp (File)** - **Nhập Bản vẽ mặt bằng (Import Floor Plan)** - **Nhập CAD (Import CAD)**, hoặc nhấp vào cột bên trái - **Bản vẽ mặt bằng (Floor Plan)** - **Tải lên Bản vẽ phác thảo (Upload Sketch Map)** để tải lên.
 
-:::note
-
-
+:::info
 
 :::
 

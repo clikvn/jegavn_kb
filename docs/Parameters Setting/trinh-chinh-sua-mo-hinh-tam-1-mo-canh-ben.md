@@ -1,6 +1,6 @@
 ---
 title: "Trình chỉnh sửa mô hình tấm 1: Mở cạnh bên"
-slug: trinh-chinh-sua-mo-hinh-tam-1-mo-canh-ben
+slug: "/trinh-chinh-sua-mo-hinh-tam-1-mo-canh-ben"
 sidebar_label: "Trình chỉnh sửa mô hình tấm 1: Mở cạnh bên"
 ---
 

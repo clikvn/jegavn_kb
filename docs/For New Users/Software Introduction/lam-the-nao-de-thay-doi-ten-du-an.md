@@ -1,22 +1,18 @@
 ---
 title: Làm thế nào để thay đổi tên dự án?
-slug: lam-the-nao-de-thay-doi-ten-du-an
+slug: /lam-the-nao-de-thay-doi-ten-du-an
 sidebar_label: Làm thế nào để thay đổi tên dự án?
 ---
 
 Có ba phương pháp để thay đổi tên dự án:
 
-:::note
-
-
+:::info
 
 :::
 
 ![Một người dùng tương tác với menu 'Tệp' trong phần mềm AiHouse, cụ thể là trỏ vào tùy chọn 'Lưu thành'.](https://storage.googleapis.com/jegavn_kb/images/54e115af-b722-4d09-bd57-2f59b94a5eb4.png)
 
-:::note
-
-
+:::info
 
 :::
 

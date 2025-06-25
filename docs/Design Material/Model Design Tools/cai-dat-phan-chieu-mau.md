@@ -1,14 +1,12 @@
 ---
 title: Cài đặt Phản chiếu Mẫu
-slug: cai-dat-phan-chieu-mau
+slug: /cai-dat-phan-chieu-mau
 sidebar_label: Cài đặt Phản chiếu Mẫu
 ---
 
 Đối với mẫu nội thất đã hoàn thiện, bạn có thể nhấp vào mẫu và chọn nút phản chiếu trên thanh công cụ ở đầu giao diện để thực hiện phản chiếu.
 
 :::note
-
-Các tổ hợp không thể được phản chiếu trực tiếp. Bạn cần nhấn Ctrl+B để rã nhóm và sau đó phản chiếu từng món đồ nội thất riêng lẻ.
 
 :::
 

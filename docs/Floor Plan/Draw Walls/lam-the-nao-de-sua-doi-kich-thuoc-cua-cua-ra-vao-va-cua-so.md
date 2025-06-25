@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để sửa đổi kích thước của cửa ra vào và cửa sổ
-slug: lam-the-nao-de-sua-doi-kich-thuoc-cua-cua-ra-vao-va-cua-so
+slug: /lam-the-nao-de-sua-doi-kich-thuoc-cua-cua-ra-vao-va-cua-so
 sidebar_label: Sửa đổi kích thước cửa
 ---
 

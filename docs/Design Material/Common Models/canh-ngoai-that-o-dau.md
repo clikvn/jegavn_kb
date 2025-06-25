@@ -1,6 +1,6 @@
 ---
 title: Cảnh ngoại thất ở đâu?
-slug: canh-ngoai-that-o-dau
+slug: /canh-ngoai-that-o-dau
 sidebar_label: Cảnh ngoại thất ở đâu?
 ---
 
@@ -17,11 +17,5 @@ Thay thế cảnh ngoại thất: Nếu bạn muốn thay thế cảnh ngoại t
 ![Giao diện người dùng hiển thị môi trường mô hình hóa 3D nơi hình ảnh nền có thể được thay thế và điều chỉnh.](https://storage.googleapis.com/jegavn_kb/images/1d0117e2-21f7-4f61-895d-1064aee775de.png)
 
 :::note
-
-Trong chế độ xem 3D, hãy nhấp vào (②) nền. Bảng điều khiển (①) 
-
-**Thay thế sản phẩm (Replace product)**
-
- sẽ xuất hiện, cho phép bạn chọn một cảnh quan khác.
 
 :::

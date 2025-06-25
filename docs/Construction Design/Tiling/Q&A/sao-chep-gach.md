@@ -1,6 +1,6 @@
 ---
 title: Sao chép gạch
-slug: sao-chep-gach
+slug: /sao-chep-gach
 sidebar_label: Sao chép gạch
 ---
 

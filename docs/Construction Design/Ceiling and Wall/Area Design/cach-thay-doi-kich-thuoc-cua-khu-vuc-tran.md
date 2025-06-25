@@ -1,6 +1,6 @@
 ---
 title: Cách thay đổi kích thước của khu vực Trần
-slug: cach-thay-doi-kich-thuoc-cua-khu-vuc-tran
+slug: /cach-thay-doi-kich-thuoc-cua-khu-vuc-tran
 sidebar_label: Cách thay đổi kích thước của khu vực Trần
 ---
 

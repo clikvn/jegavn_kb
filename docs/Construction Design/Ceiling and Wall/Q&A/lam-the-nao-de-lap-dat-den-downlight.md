@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để lắp đặt đèn downlight
-slug: lam-the-nao-de-lap-dat-den-downlight
+slug: /lam-the-nao-de-lap-dat-den-downlight
 sidebar_label: Lắp đặt đèn downlight
 ---
 
@@ -8,9 +8,7 @@ Xin chào, nếu đó là trần phẳng hoặc đèn downlight được lắp �
 
 ![Một người dùng đang duyệt các tùy chọn chiếu sáng trong thư viện 'Vật liệu đám mây', cụ thể là danh mục (①) Đèn chiếu (Spotlight).](https://storage.googleapis.com/jegavn_kb/images/04fa680f-e9f6-41df-a92f-e80b79bdde92.png)
 
-:::note
-
-
+:::info
 
 :::
 

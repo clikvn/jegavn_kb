@@ -1,6 +1,6 @@
 ---
 title: Xoay Tay Nắm
-slug: xoay-tay-nam
+slug: /xoay-tay-nam
 sidebar_label: Xoay Tay Nắm
 ---
 

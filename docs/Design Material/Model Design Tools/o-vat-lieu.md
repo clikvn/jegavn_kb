@@ -1,6 +1,6 @@
 ---
 title: Ô Vật Liệu
-slug: o-vat-lieu
+slug: /o-vat-lieu
 sidebar_label: Ô Vật Liệu
 ---
 

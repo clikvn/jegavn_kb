@@ -1,6 +1,6 @@
 ---
 title: Vẽ phần tường lồi ra bên ngoài
-slug: ve-phan-tuong-loi-ra-ben-ngoai
+slug: /ve-phan-tuong-loi-ra-ben-ngoai
 sidebar_label: Vẽ phần tường lồi ra bên ngoài
 ---
 

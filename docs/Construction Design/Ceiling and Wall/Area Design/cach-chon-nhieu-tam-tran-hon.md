@@ -1,6 +1,6 @@
 ---
 title: Cách chọn nhiều tấm trần hơn
-slug: cach-chon-nhieu-tam-tran-hon
+slug: /cach-chon-nhieu-tam-tran-hon
 sidebar_label: Cách chọn nhiều tấm trần hơn
 ---
 

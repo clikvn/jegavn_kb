@@ -1,19 +1,10 @@
 ---
 title: Thư viện vật liệu - Hộp thoại Thư viện vật liệu trong tùy chỉnh có khả năng thích ứng với kích thước màn hình
-slug: thu-vien-vat-lieu-thich-ung-man-hinh
+slug: /thu-vien-vat-lieu-thich-ung-man-hinh
 sidebar_label: Thư viện vật liệu thích ứng với màn hình
 ---
 
-:::note
-
-Để giải quyết vấn đề người dùng phản hồi rằng có quá ít vật liệu được hiển thị trong cửa sổ bật lên 
-
-**Thư viện vật liệu (Material Library)**
-
-. Kích thước của cửa sổ bật lên được thay đổi thành:
-- Chiều rộng bằng 40% chiều rộng của trình duyệt
-- Chiều cao lấp đầy khu vực bên dưới menu trên cùng, cách đáy 8px
-Khi người dùng di chuyển/điều chỉnh kích thước của cửa sổ bật lên, hệ thống sẽ ghi nhớ kích thước và vị trí mà người dùng đã điều chỉnh.
+:::info
 
 :::
 

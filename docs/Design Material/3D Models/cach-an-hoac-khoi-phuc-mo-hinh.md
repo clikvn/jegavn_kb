@@ -1,6 +1,6 @@
 ---
 title: Cách ẩn hoặc khôi phục mô hình
-slug: cach-an-hoac-khoi-phuc-mo-hinh
+slug: /cach-an-hoac-khoi-phuc-mo-hinh
 sidebar_label: Cách ẩn hoặc khôi phục mô hình
 ---
 
@@ -18,7 +18,7 @@ sidebar_label: Cách ẩn hoặc khôi phục mô hình
 
 ![Giao diện người dùng hiển thị quy trình bỏ ẩn một mô hình: (1) Nhấp vào Hiển thị, (2) chọn Quản lý Vật liệu, (3) vào tab Đã ẩn, (4) chọn mô hình, và (5) nhấp vào nút Hiển thị.](https://storage.googleapis.com/jegavn_kb/images/0c86ab2b-7de4-43f1-9ceb-546a21b09f2f.png)
 
-:::undefined
+:::note
 
 Phím tắt để ẩn là “H”, và không có phím tắt để hiển thị.
 

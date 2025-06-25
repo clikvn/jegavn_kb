@@ -1,6 +1,6 @@
 ---
 title: Báo giá cho Trần và Tường Hoàn thiện
-slug: bao-gia-cho-tran-va-tuong-hoan-thien
+slug: /bao-gia-cho-tran-va-tuong-hoan-thien
 sidebar_label: Báo giá cho Trần và Tường Hoàn thiện
 ---
 

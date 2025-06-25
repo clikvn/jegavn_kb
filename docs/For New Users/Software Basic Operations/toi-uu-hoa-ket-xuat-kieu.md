@@ -1,14 +1,12 @@
 ---
 title: Tối ưu hóa kết xuất kiểu
-slug: toi-uu-hoa-ket-xuat-kieu
+slug: /toi-uu-hoa-ket-xuat-kieu
 sidebar_label: Tối ưu hóa kết xuất kiểu
 ---
 
 Để giúp các nhà thiết kế đắm mình vào trong không gian thiết kế, mẫu kết xuất kiểu đã thêm vào cài đặt ánh sáng mặt trời. Các nhà thiết kế có thể điều chỉnh độ sáng, độ cao, màu sắc và góc của mặt trời để đạt được hiệu ứng mong muốn.
 
 :::info
-
-Trong phiên bản này, các tùy chọn "Chế độ xem mắt chim ban ngày (Daylight Bird's Eye View)" và "Cân bằng trong nhà (Indoor Balance)" của kết xuất cách điệu đã được loại bỏ.
 
 :::
 

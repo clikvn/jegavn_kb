@@ -1,6 +1,6 @@
 ---
 title: Phím tắt tùy chỉnh
-slug: phim-tat-tuy-chinh
+slug: /phim-tat-tuy-chinh
 sidebar_label: Phím tắt tùy chỉnh
 ---
 
@@ -21,8 +21,6 @@ Lối vào: Nhấp vào (①) **Trợ giúp (Help)** → (②) **Phím tắt (Sh
 ![Giao diện phần mềm thiết kế hiển thị hộp thoại (①) Phím tắt đang mở, liệt kê các phím tắt khác nhau cho các hành động khác nhau.](https://storage.googleapis.com/jegavn_kb/images/8ea4d458-f2c7-48ca-ad8d-f2e2eaa287ce.png)
 
 :::note
-
-Lưu ý: Sau khi sửa đổi các phím tắt mặc định, các phím tắt tùy chỉnh sẽ được ưu tiên.
 
 :::
 

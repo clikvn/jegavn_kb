@@ -1,6 +1,6 @@
 ---
 title: Lát đều các tấm ốp tường gỗ đặc
-slug: lat-deu-cac-tam-op-tuong-go-dac
+slug: /lat-deu-cac-tam-op-tuong-go-dac
 sidebar_label: Lát đều các tấm ốp tường gỗ đặc
 ---
 

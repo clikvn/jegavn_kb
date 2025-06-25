@@ -1,6 +1,6 @@
 ---
 title: Cách sơn màu cho tấm ốp tường gỗ đặc
-slug: cach-son-mau-cho-tam-op-tuong-go-dac
+slug: /cach-son-mau-cho-tam-op-tuong-go-dac
 sidebar_label: Cách sơn màu cho tấm ốp tường gỗ đặc
 ---
 

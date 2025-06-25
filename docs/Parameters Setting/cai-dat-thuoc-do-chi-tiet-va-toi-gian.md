@@ -1,6 +1,6 @@
 ---
 title: "Cài đặt thước đo cho bộ phận chức năng: Chế độ Chi tiết và Tối giản"
-slug: cai-dat-thuoc-do-chi-tiet-va-toi-gian
+slug: "/cai-dat-thuoc-do-chi-tiet-va-toi-gian"
 sidebar_label: "Thước đo: Chế độ Chi tiết & Tối giản"
 ---
 

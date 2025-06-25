@@ -1,14 +1,12 @@
 ---
 title: Cài Đặt Âm cho Len Chân Tường
-slug: cai-dat-am-cho-len-chan-tuong
+slug: /cai-dat-am-cho-len-chan-tuong
 sidebar_label: Cài Đặt Âm cho Len Chân Tường
 ---
 
 Xin chào, đối với len chân tường âm sàn hoặc lắp chìm, bạn nên tạo chúng bằng cách sử dụng mô hình hóa tự do hoặc ánh xạ kết cấu len chân tường. Các thao tác như sau:
 
 :::info [Phương pháp 1]
-
-Phương pháp 1: Sử dụng Mô hình hóa tự do (Free modeling)
 
 :::
 
@@ -25,8 +23,6 @@ Phương pháp 1: Sử dụng Mô hình hóa tự do (Free modeling)
 ![Đối tượng len chân tường (①) đã được chọn trong không gian làm việc 3D, với (②) thanh công cụ sửa đổi kích thước hiển thị ở dưới cùng.](https://storage.googleapis.com/jegavn_kb/images/793c7bf4-3126-45c4-a03a-8aeb04c223cc.png)
 
 :::info [Phương pháp 2]
-
-Phương pháp 2: Sử dụng Thuộc tính tường
 
 :::
 

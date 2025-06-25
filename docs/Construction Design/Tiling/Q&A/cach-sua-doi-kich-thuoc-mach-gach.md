@@ -1,6 +1,6 @@
 ---
 title: Cách sửa đổi kích thước mạch gạch
-slug: cach-sua-doi-kich-thuoc-mach-gach
+slug: /cach-sua-doi-kich-thuoc-mach-gach
 sidebar_label: Cách sửa đổi kích thước mạch gạch
 ---
 

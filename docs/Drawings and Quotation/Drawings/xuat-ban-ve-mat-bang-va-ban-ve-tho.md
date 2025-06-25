@@ -1,6 +1,6 @@
 ---
 title: Xuất Bản Vẽ Mặt Bằng và Bản Vẽ Thô
-slug: xuat-ban-ve-mat-bang-va-ban-ve-tho
+slug: /xuat-ban-ve-mat-bang-va-ban-ve-tho
 sidebar_label: Xuất Bản Vẽ Mặt Bằng và Bản Vẽ Thô
 ---
 

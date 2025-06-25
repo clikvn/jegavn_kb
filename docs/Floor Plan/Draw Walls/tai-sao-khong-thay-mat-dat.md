@@ -1,6 +1,6 @@
 ---
 title: Tại sao không thấy mặt đất
-slug: tai-sao-khong-thay-mat-dat
+slug: /tai-sao-khong-thay-mat-dat
 sidebar_label: Tại sao không thấy mặt đất
 ---
 
@@ -13,9 +13,5 @@ sidebar_label: Tại sao không thấy mặt đất
 ![Hộp thoại cài đặt hiển thị phần (①) Toàn bộ nhà và thanh trượt (②) Độ trong suốt của hiệu ứng đã chọn được đặt thành 100%.](https://storage.googleapis.com/jegavn_kb/images/d763d05e-1c8b-4cc6-bcdb-ce3d6a3306a1.png)
 
 :::note
-
-Để xem thêm hướng dẫn, vui lòng nhấp vào: 
-
-
 
 :::

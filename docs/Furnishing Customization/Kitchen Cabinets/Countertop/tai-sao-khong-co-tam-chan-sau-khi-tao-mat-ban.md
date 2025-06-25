@@ -1,6 +1,6 @@
 ---
 title: Tại sao không có tấm chắn sau khi tạo mặt bàn?
-slug: tai-sao-khong-co-tam-chan-sau-khi-tao-mat-ban
+slug: /tai-sao-khong-co-tam-chan-sau-khi-tao-mat-ban
 sidebar_label: Tại sao không có tấm chắn sau khi tạo mặt bàn?
 ---
 

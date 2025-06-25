@@ -1,6 +1,6 @@
 ---
 title: Cách Xây Dựng Hồ Bơi
-slug: cach-xay-dung-ho-boi
+slug: /cach-xay-dung-ho-boi
 sidebar_label: Cách Xây Dựng Hồ Bơi
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Tạo phào chỉ/chân tủ không hoàn chỉnh
-slug: tao-phao-chi-chan-tu-khong-hoan-chinh
+slug: /tao-phao-chi-chan-tu-khong-hoan-chinh
 sidebar_label: Tạo phào chỉ/chân tủ không hoàn chỉnh
 ---
 
@@ -19,7 +19,5 @@ Phương pháp 1. Khi đường phào chỉ/chân tủ của tủ bị lệch tr
 Phương pháp 2. Kiểm tra xem các tủ có được đặt đúng vị trí không. Kéo và gắn các tủ chưa được đặt đúng vị trí, sau đó nhấp chuột phải vào tường trống - **Tất cả các đường kẻ (All Lines)** - **Lắp đặt phào chỉ (Top Line Installation)** - Chọn mẫu và vật liệu để lắp đặt - **Đồng ý (OK)**;
 
 :::note
-
-Phương pháp 3. Nếu các thao tác trên đều chính xác, bạn có thể gửi số kế hoạch cho nhân viên dịch vụ khách hàng trong giờ làm việc để kiểm tra xem có vấn đề gì với tủ không.
 
 :::

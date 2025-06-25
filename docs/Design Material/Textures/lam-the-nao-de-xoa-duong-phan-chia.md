@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để xóa đường phân chia
-slug: lam-the-nao-de-xoa-duong-phan-chia
+slug: /lam-the-nao-de-xoa-duong-phan-chia
 sidebar_label: Làm thế nào để xóa đường phân chia
 ---
 

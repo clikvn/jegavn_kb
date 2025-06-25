@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để thêm tài khoản phụ
-slug: lam-the-nao-de-them-tai-khoan-phu
+slug: /lam-the-nao-de-them-tai-khoan-phu
 sidebar_label: Làm thế nào để thêm tài khoản phụ
 ---
 

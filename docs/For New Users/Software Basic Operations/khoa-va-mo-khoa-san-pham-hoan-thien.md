@@ -1,6 +1,6 @@
 ---
 title: Khóa và Mở khóa Sản phẩm Hoàn thiện
-slug: khoa-va-mo-khoa-san-pham-hoan-thien
+slug: /khoa-va-mo-khoa-san-pham-hoan-thien
 sidebar_label: Khóa và Mở khóa Sản phẩm Hoàn thiện
 ---
 
@@ -29,7 +29,5 @@ II. Các bước thao tác bằng hình ảnh và văn bản:
 ![Giao diện phần mềm thiết kế 3D hiển thị khu vực ăn uống, với một chiếc ghế được chọn và thông báo cho biết các mẫu đã khóa không thể bị xóa.](https://storage.googleapis.com/jegavn_kb/images/8890d127-9a83-483d-9a98-3795ccbf854c.png)
 
 :::note
-
-
 
 :::

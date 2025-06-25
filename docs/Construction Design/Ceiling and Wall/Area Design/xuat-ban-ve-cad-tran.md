@@ -1,14 +1,12 @@
 ---
 title: Xuất Bản Vẽ CAD Trần
-slug: xuat-ban-ve-cad-tran
+slug: /xuat-ban-ve-cad-tran
 sidebar_label: Xuất Bản Vẽ CAD Trần
 ---
 
 Tường trên cùng có thể xuất bản vẽ mặt phẳng và bản vẽ thi công CAD.
 
 :::info [Xuất bản vẽ mặt phẳng]
-
-Xuất bản vẽ mặt phẳng
 
 :::
 
@@ -21,8 +19,6 @@ Xuất bản vẽ mặt phẳng
 ![Giao diện chỉnh sửa bản vẽ trần, hiển thị các tùy chọn chú thích và nút Xuất bản vẽ.](https://storage.googleapis.com/jegavn_kb/images/6e6b9eb1-d7e3-45dc-b5e7-7b5b12db7805.png)
 
 :::info [Xuất bản vẽ CAD]
-
-Xuất bản vẽ CAD
 
 :::
 

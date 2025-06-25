@@ -1,6 +1,6 @@
 ---
 title: Cách xóa bản vẽ đã nhập
-slug: cach-xoa-ban-ve-da-nhap
+slug: /cach-xoa-ban-ve-da-nhap
 sidebar_label: Cách xóa bản vẽ đã nhập
 ---
 

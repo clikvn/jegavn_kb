@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để thay thế vật liệu của ngăn kéo?
-slug: lam-the-nao-de-thay-the-vat-lieu-cua-ngan-keo
+slug: /lam-the-nao-de-thay-the-vat-lieu-cua-ngan-keo
 sidebar_label: Làm thế nào để thay thế vật liệu của ngăn kéo?
 ---
 

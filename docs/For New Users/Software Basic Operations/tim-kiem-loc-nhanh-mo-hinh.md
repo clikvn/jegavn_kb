@@ -1,6 +1,6 @@
 ---
 title: Tìm kiếm / lọc nhanh mô hình
-slug: tim-kiem-loc-nhanh-mo-hinh
+slug: /tim-kiem-loc-nhanh-mo-hinh
 sidebar_label: Tìm kiếm / lọc nhanh mô hình
 ---
 

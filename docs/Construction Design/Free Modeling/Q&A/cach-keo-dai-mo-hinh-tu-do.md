@@ -1,6 +1,6 @@
 ---
 title: Cách kéo dài mô hình tự do
-slug: cach-keo-dai-mo-hinh-tu-do
+slug: /cach-keo-dai-mo-hinh-tu-do
 sidebar_label: Cách kéo dài mô hình tự do
 ---
 

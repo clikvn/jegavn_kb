@@ -1,6 +1,6 @@
 ---
 title: Đề xuất Cấu hình Máy tính
-slug: de-xuat-cau-hinh-may-tinh
+slug: /de-xuat-cau-hinh-may-tinh
 sidebar_label: Đề xuất Cấu hình Máy tính
 ---
 

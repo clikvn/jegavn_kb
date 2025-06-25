@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để sửa đổi vật liệu mạch gạch
-slug: lam-the-nao-de-sua-doi-vat-lieu-mach-gach
+slug: /lam-the-nao-de-sua-doi-vat-lieu-mach-gach
 sidebar_label: Sửa đổi vật liệu mạch gạch
 ---
 

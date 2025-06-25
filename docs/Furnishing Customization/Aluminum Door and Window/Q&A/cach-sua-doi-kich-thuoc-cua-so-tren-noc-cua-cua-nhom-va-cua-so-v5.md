@@ -1,6 +1,6 @@
 ---
 title: Cách sửa đổi kích thước cửa sổ trên nóc cửa của cửa nhôm và cửa sổ (V5)
-slug: cach-sua-doi-kich-thuoc-cua-so-tren-noc-cua-cua-nhom-va-cua-so-v5
+slug: /cach-sua-doi-kich-thuoc-cua-so-tren-noc-cua-cua-nhom-va-cua-so-v5
 sidebar_label: Cách sửa đổi kích thước cửa sổ trên nóc cửa của cửa nhôm và cửa sổ (V5)
 ---
 

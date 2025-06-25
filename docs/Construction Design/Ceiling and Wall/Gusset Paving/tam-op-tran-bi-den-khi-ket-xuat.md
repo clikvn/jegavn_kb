@@ -1,6 +1,6 @@
 ---
 title: Tấm ốp trần bị đen khi kết xuất
-slug: tam-op-tran-bi-den-khi-ket-xuat
+slug: /tam-op-tran-bi-den-khi-ket-xuat
 sidebar_label: Tấm ốp trần bị đen khi kết xuất
 ---
 

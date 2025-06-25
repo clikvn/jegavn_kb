@@ -1,6 +1,6 @@
 ---
 title: Ngoại cảnh ở đâu?
-slug: ngoai-canh-o-dau
+slug: /ngoai-canh-o-dau
 sidebar_label: Ngoại cảnh ở đâu?
 ---
 
@@ -23,9 +23,5 @@ Sau khi chọn một kết cấu, bạn có thể sử dụng chức năng (①)
 ![Giao diện hiển thị chức năng thay thế sản phẩm và điều chỉnh kích thước.](https://storage.googleapis.com/jegavn_kb/images/51855ba4-c719-4799-be99-1079b8b38332.png)
 
 :::note
-
-Video hướng dẫn chi tiết: 
-
-
 
 :::

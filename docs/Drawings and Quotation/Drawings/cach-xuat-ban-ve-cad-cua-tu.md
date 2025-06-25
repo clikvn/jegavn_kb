@@ -1,6 +1,6 @@
 ---
 title: Cách xuất bản vẽ CAD của tủ
-slug: cach-xuat-ban-ve-cad-cua-tu
+slug: /cach-xuat-ban-ve-cad-cua-tu
 sidebar_label: Cách xuất bản vẽ CAD của tủ
 ---
 

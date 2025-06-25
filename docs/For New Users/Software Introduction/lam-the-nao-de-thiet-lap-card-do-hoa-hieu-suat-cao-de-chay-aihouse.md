@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để thiết lập card đồ họa hiệu suất cao để chạy Aihouse?
-slug: lam-the-nao-de-thiet-lap-card-do-hoa-hieu-suat-cao-de-chay-aihouse
+slug: /lam-the-nao-de-thiet-lap-card-do-hoa-hieu-suat-cao-de-chay-aihouse
 sidebar_label: Thiết lập card đồ họa hiệu suất cao
 ---
 
@@ -13,9 +13,6 @@ Khi máy tính có nhiều hơn một card đồ họa, làm thế nào để t�
 3. Vui lòng làm theo các bước dưới đây nếu bạn đang sử dụng máy tính xách tay:
 
 :::note
-
-Chúng tôi sẽ sử dụng một máy tính xách tay Dell với trình duyệt Chrome và một card đồ họa chuyên dụng cấu hình cao để minh họa:
-Hệ điều hành: win 10.
 
 :::
 

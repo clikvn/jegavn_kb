@@ -1,6 +1,6 @@
 ---
 title: Cách thêm bục/nền
-slug: cach-them-buc-nen
+slug: /cach-them-buc-nen
 sidebar_label: Cách thêm bục/nền
 ---
 

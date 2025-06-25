@@ -1,6 +1,6 @@
 ---
 title: Vị trí của tấm ốp chân tường (wainscot)
-slug: vi-tri-cua-tam-op-chan-tuong-wainscot
+slug: /vi-tri-cua-tam-op-chan-tuong-wainscot
 sidebar_label: Vị trí của tấm ốp chân tường (wainscot)
 ---
 

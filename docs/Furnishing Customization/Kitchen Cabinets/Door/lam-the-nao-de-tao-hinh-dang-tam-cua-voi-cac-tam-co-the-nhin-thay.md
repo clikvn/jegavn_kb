@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để tạo hình dạng tấm cửa với các tấm có thể nhìn thấy
-slug: lam-the-nao-de-tao-hinh-dang-tam-cua-voi-cac-tam-co-the-nhin-thay
+slug: /lam-the-nao-de-tao-hinh-dang-tam-cua-voi-cac-tam-co-the-nhin-thay
 sidebar_label: Tạo hình dạng tấm cửa
 ---
 

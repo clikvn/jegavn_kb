@@ -1,6 +1,6 @@
 ---
 title: Cách sửa đổi vật liệu của mô hình tạo khối tự do
-slug: cach-sua-doi-vat-lieu-cua-mo-hinh-tao-khoi-tu-do
+slug: /cach-sua-doi-vat-lieu-cua-mo-hinh-tao-khoi-tu-do
 sidebar_label: Sửa đổi vật liệu của mô hình tạo khối tự do
 ---
 

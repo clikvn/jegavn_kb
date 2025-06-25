@@ -1,6 +1,6 @@
 ---
 title: Rượu ở đâu?
-slug: ruou-o-dau
+slug: /ruou-o-dau
 sidebar_label: Rượu ở đâu?
 ---
 

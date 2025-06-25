@@ -1,6 +1,6 @@
 ---
 title: Các Trường Hợp Sử Dụng
-slug: cac-truong-hop-su-dung
+slug: /cac-truong-hop-su-dung
 sidebar_label: Các Trường Hợp Sử Dụng
 ---
 

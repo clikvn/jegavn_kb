@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để phân chia khu vực
-slug: lam-the-nao-de-phan-chia-khu-vuc
+slug: /lam-the-nao-de-phan-chia-khu-vuc
 sidebar_label: Làm thế nào để phân chia khu vực
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Cách chọn một không gian duy nhất để vẽ
-slug: cach-chon-mot-khong-gian-duy-nhat-de-ve
+slug: /cach-chon-mot-khong-gian-duy-nhat-de-ve
 sidebar_label: Cách chọn một không gian duy nhất để vẽ
 ---
 

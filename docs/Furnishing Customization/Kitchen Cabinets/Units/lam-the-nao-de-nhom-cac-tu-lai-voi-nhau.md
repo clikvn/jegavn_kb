@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để nhóm các tủ lại với nhau?
-slug: lam-the-nao-de-nhom-cac-tu-lai-voi-nhau
+slug: /lam-the-nao-de-nhom-cac-tu-lai-voi-nhau
 sidebar_label: Làm thế nào để nhóm?
 ---
 
@@ -18,8 +18,6 @@ Xin chào, trong tùy chỉnh tủ và tủ quần áo, bạn có thể chọn h
 
 :::note
 
-Giữ phím Shift, khi đường màu xanh lam xuất hiện, bạn có thể nhấn Ctrl+B để bỏ nhóm hoặc di chuyển toàn bộ nhóm.
-
 :::
 
 Nếu bạn cần kết hợp tủ với các phụ kiện để sử dụng, bạn có thể sửa đổi trong (①) **Công cụ (Tool)** - (②) **Cài đặt (Settings)** - (③) **Tùy chỉnh toàn bộ nhà (Whole hous...)**. Bạn có thể bật (④) **Liên kết phụ kiện với tủ (di chuyển, xóa, ẩn) (Associate accessories with cabinet(move,delete,hide))** trong tùy chỉnh.
@@ -27,7 +25,5 @@ Nếu bạn cần kết hợp tủ với các phụ kiện để sử dụng, b�
 ![Cài đặt để liên kết các phụ kiện với tủ để di chuyển, xóa và ẩn cùng nhau.](https://storage.googleapis.com/jegavn_kb/images/ecddc3eb-6e2d-4f9f-b920-ef47218d6a04.png)
 
 :::note
-
-
 
 :::

@@ -1,6 +1,6 @@
 ---
 title: Mô hình hóa tự do nhóm/bỏ nhóm nhiều mô hình
-slug: mo-hinh-hoa-tu-do-nhom-bo-nhom-nhieu-mo-hinh
+slug: /mo-hinh-hoa-tu-do-nhom-bo-nhom-nhieu-mo-hinh
 sidebar_label: Mô hình hóa tự do nhóm/bỏ nhóm nhiều mô hình
 ---
 
@@ -19,7 +19,5 @@ Mô hình hóa tự do cho phép kết hợp hoặc phân rã nhiều hình dạ
 ![Một người dùng đang áp dụng vật liệu cho một nhóm mô hình trong phần mềm thiết kế 3D.](https://storage.googleapis.com/jegavn_kb/images/bc1e5dc7-0e02-4a37-80a2-dd4568ea5d97.png)
 
 :::note
-
-Mẹo: Nhấn giữ phím Ctrl để áp dụng vật liệu cho một phần nhỏ nhất trong nhóm. Nhấn giữ phím Shift để áp dụng vật liệu cho toàn bộ nhóm.
 
 :::

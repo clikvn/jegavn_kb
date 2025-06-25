@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để thêm ô cửa?
-slug: lam-the-nao-de-them-o-cua
+slug: /lam-the-nao-de-them-o-cua
 sidebar_label: Làm thế nào để thêm ô cửa?
 ---
 

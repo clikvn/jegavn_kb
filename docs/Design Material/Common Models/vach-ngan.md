@@ -1,6 +1,6 @@
 ---
 title: Vách ngăn
-slug: vach-ngan
+slug: /vach-ngan
 sidebar_label: Vách ngăn
 ---
 

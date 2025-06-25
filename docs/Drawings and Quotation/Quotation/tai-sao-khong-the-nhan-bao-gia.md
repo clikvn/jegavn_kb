@@ -1,6 +1,6 @@
 ---
 title: Tại sao không thể nhận báo giá?
-slug: tai-sao-khong-the-nhan-bao-gia
+slug: /tai-sao-khong-the-nhan-bao-gia
 sidebar_label: Tại sao không thể nhận báo giá?
 ---
 
@@ -11,7 +11,5 @@ Xin chào, để xuất báo giá, bạn cần phải đặt tên cho không gia
 ![Giao diện người dùng của phần mềm thiết kế AiHouse hiển thị một menu bật lên dưới mục 'Danh sách' trên thanh điều hướng trên cùng, cung cấp các tùy chọn 'Báo giá mô-đun' và 'Báo giá thư viện thương hiệu'.](https://storage.googleapis.com/jegavn_kb/images/53d56e8a-a7f3-4ae9-aa5a-a5f4c90d18be.png)
 
 :::info
-
-Nếu vẫn không thể lấy được báo giá, bạn nên gửi phản hồi cho chúng tôi để được hỗ trợ.
 
 :::

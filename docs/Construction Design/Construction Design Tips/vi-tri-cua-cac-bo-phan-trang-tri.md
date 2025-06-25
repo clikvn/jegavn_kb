@@ -1,6 +1,6 @@
 ---
 title: Vị trí của các bộ phận trang trí
-slug: vi-tri-cua-cac-bo-phan-trang-tri
+slug: /vi-tri-cua-cac-bo-phan-trang-tri
 sidebar_label: Vị trí của các bộ phận trang trí
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Tại sao ảnh render bị đen?
-slug: tai-sao-anh-render-bi-den
+slug: /tai-sao-anh-render-bi-den
 sidebar_label: Tại sao ảnh render bị đen?
 ---
 

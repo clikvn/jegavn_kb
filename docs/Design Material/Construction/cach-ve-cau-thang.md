@@ -1,6 +1,6 @@
 ---
 title: Cách vẽ cầu thang
-slug: cach-ve-cau-thang
+slug: /cach-ve-cau-thang
 sidebar_label: Cách vẽ cầu thang
 ---
 

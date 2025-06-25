@@ -1,6 +1,6 @@
 ---
 title: Cách chỉnh sửa hình dạng tường?
-slug: cach-chinh-sua-hinh-dang-tuong
+slug: /cach-chinh-sua-hinh-dang-tuong
 sidebar_label: Cách chỉnh sửa hình dạng tường?
 ---
 

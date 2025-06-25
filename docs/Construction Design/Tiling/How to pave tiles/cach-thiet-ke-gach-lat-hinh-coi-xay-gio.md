@@ -1,6 +1,6 @@
 ---
 title: Cách thiết kế gạch lát hình cối xay gió
-slug: cach-thiet-ke-gach-lat-hinh-coi-xay-gio
+slug: /cach-thiet-ke-gach-lat-hinh-coi-xay-gio
 sidebar_label: Cách thiết kế gạch lát hình cối xay gió
 ---
 

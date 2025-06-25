@@ -1,6 +1,6 @@
 ---
 title: Tại sao không có tùy chỉnh?
-slug: tai-sao-khong-co-tuy-chinh
+slug: /tai-sao-khong-co-tuy-chinh
 sidebar_label: Tại sao không có tùy chỉnh?
 ---
 

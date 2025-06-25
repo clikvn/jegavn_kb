@@ -1,6 +1,6 @@
 ---
 title: Chức năng lật đối xứng cho tổ hợp sản phẩm hoàn thiện
-slug: chuc-nang-lat-doi-xung-cho-to-hop-san-pham-hoan-thien
+slug: /chuc-nang-lat-doi-xung-cho-to-hop-san-pham-hoan-thien
 sidebar_label: Chức năng lật đối xứng cho tổ hợp sản phẩm hoàn thiện
 ---
 
@@ -21,8 +21,6 @@ II. Các bước thao tác bằng hình ảnh và văn bản:
 ![Giao diện phần mềm thiết kế 3D cho thấy một món đồ nội thất đang được điều chỉnh trong bố cục phòng, với thư viện đồ nội thất hiển thị bên trái và thuộc tính bên phải.](https://storage.googleapis.com/jegavn_kb/images/e1dfecfe-8596-4479-86bc-2ceea4119af0.png)
 
 :::note
-
-Lưu ý: Các tổ hợp chứa tủ tùy chỉnh tạm thời không được hỗ trợ lật đối xứng.
 
 :::
 

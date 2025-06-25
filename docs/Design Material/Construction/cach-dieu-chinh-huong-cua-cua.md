@@ -1,6 +1,6 @@
 ---
 title: Cách điều chỉnh hướng của cửa
-slug: cach-dieu-chinh-huong-cua-cua
+slug: /cach-dieu-chinh-huong-cua-cua
 sidebar_label: Điều chỉnh hướng của cửa
 ---
 

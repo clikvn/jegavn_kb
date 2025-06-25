@@ -1,6 +1,6 @@
 ---
 title: Xử lý lỗi nhận dạng sai khi nhập file CAD
-slug: xu-ly-loi-nhan-dang-sai-khi-nhap-file-cad
+slug: /xu-ly-loi-nhan-dang-sai-khi-nhap-file-cad
 sidebar_label: Xử lý lỗi nhận dạng sai khi nhập file CAD
 ---
 

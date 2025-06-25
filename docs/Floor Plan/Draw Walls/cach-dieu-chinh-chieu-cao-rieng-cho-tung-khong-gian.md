@@ -1,6 +1,6 @@
 ---
 title: Cách điều chỉnh chiều cao riêng cho từng không gian
-slug: cach-dieu-chinh-chieu-cao-rieng-cho-tung-khong-gian
+slug: /cach-dieu-chinh-chieu-cao-rieng-cho-tung-khong-gian
 sidebar_label: Điều chỉnh chiều cao riêng cho từng không gian
 ---
 

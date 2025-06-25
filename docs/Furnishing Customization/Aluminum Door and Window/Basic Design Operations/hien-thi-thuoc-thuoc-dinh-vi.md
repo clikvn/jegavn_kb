@@ -1,6 +1,6 @@
 ---
 title: Hiển thị Thước - Thước Định vị
-slug: hien-thi-thuoc-thuoc-dinh-vi
+slug: /hien-thi-thuoc-thuoc-dinh-vi
 sidebar_label: Hiển thị Thước - Thước Định vị
 ---
 
@@ -21,8 +21,6 @@ III. Các bước thao tác bằng hình ảnh và văn bản:
 3. Có thể chỉnh sửa thước sau khi nhấp đúp và có thể thực hiện bốn phép tính số học.
 
 :::note
-
-Nếu điểm trung tâm của cạnh vượt ra ngoài canvas, thước đo khoảng cách cạnh ở hướng đó sẽ không được hiển thị.
 
 :::
 

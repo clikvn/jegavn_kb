@@ -1,6 +1,6 @@
 ---
 title: Phương pháp xử lý đồ họa waterjet bị khối
-slug: phuong-phap-xu-ly-do-hoa-waterjet-bi-khoi
+slug: /phuong-phap-xu-ly-do-hoa-waterjet-bi-khoi
 sidebar_label: Phương pháp xử lý đồ họa waterjet bị khối
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Cách xoay gạch
-slug: cach-xoay-gach
+slug: /cach-xoay-gach
 sidebar_label: Cách xoay gạch
 ---
 

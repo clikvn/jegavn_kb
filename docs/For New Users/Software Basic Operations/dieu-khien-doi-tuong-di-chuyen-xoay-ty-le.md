@@ -1,12 +1,10 @@
 ---
 title: Điều khiển đối tượng (di chuyển, xoay, tỷ lệ)
-slug: dieu-khien-doi-tuong-di-chuyen-xoay-ty-le
+slug: /dieu-khien-doi-tuong-di-chuyen-xoay-ty-le
 sidebar_label: Điều khiển đối tượng (di chuyển, xoay, tỷ lệ)
 ---
 
 :::note
-
-Điều khiển đối tượng: Các quy tắc và tương tác để điều khiển việc di chuyển, xoay và thay đổi tỷ lệ của mô hình. Lần này, các quy tắc hấp phụ, phương pháp tương tác và giao diện người dùng đã được tối ưu hóa để nâng cao trải nghiệm tương tác.
 
 :::
 

@@ -1,6 +1,6 @@
 ---
 title: Chú thích và Xuất CAD Tủ Bếp
-slug: chu-thich-va-xuat-cad-tu-bep
+slug: /chu-thich-va-xuat-cad-tu-bep
 sidebar_label: Chú thích và Xuất CAD Tủ Bếp
 ---
 
@@ -14,8 +14,6 @@ Xuất bản vẽ có chú thích: Trên thanh công cụ tùy chỉnh phía tr�
 
 :::note
 
-[**Nhấp vào đây để xem hướng dẫn chi tiết**](https://www.aihouse.com/global/study/detail/651)
-
 :::
 
 Xuất CAD tủ: Trên thanh công cụ - **Bản vẽ (Drawings)** - **Xuất bản vẽ CAD (Export CAD drawings)** - Chọn mô-đun tủ tương ứng và nhấp vào xuất bằng một cú nhấp chuột.
@@ -25,7 +23,5 @@ Xuất CAD tủ: Trên thanh công cụ - **Bản vẽ (Drawings)** - **Xuất b
 ![Một người dùng đang tương tác với hộp thoại 'Xuất bản vẽ kỹ thuật' trong phần mềm thiết kế tủ, chọn các tùy chọn để xuất.](https://storage.googleapis.com/jegavn_kb/images/6ae43d68-9b8c-44c0-89db-292fb2c688e0.png)
 
 :::note
-
-Xuất CAD tủ: [**Nhấp vào đây để xem hướng dẫn chi tiết**](https://www.aihouse.com/global/study/detail/651)
 
 :::

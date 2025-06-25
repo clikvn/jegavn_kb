@@ -1,6 +1,6 @@
 ---
 title: Cách cài đặt kiểu mối nối cho Tấm ốp tường tích hợp
-slug: cach-cai-dat-kieu-moi-noi-cho-tam-op-tuong-tich-hop
+slug: /cach-cai-dat-kieu-moi-noi-cho-tam-op-tuong-tich-hop
 sidebar_label: Cách cài đặt kiểu mối nối cho Tấm ốp tường tích hợp
 ---
 

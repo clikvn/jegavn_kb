@@ -1,6 +1,6 @@
 ---
 title: Cách xem phiên bản hiện tại
-slug: cach-xem-phien-ban-hien-tai
+slug: /cach-xem-phien-ban-hien-tai
 sidebar_label: Cách xem phiên bản hiện tại
 ---
 

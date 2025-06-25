@@ -1,6 +1,6 @@
 ---
 title: Cách đục lỗ trên trần nhà mặc định
-slug: cach-duc-lo-tren-tran-nha-mac-dinh
+slug: /cach-duc-lo-tren-tran-nha-mac-dinh
 sidebar_label: Cách đục lỗ trên trần nhà mặc định
 ---
 
@@ -11,8 +11,6 @@ Xin chào, bạn không thể xóa trực tiếp trần nhà mặc định của
 2. Nếu trên trần của một không gian cần cả lỗ mở và thiết kế trần, bạn cần phải tạo hình dạng trần trong công cụ **Tạo khối tự do (Free Modeling)** trước, sau đó nhấp đúp vào bề mặt của khối tự do trong công cụ **tùy chỉnh trần và tường (custom ceiling and wall)** để tạo trần. Xem hoạt ảnh minh họa bên dưới:
 
 :::note [Lưu ý]
-
-
 
 :::
 

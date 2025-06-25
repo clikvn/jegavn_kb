@@ -1,6 +1,6 @@
 ---
 title: Vị trí của Tatami?
-slug: vi-tri-cua-tatami
+slug: /vi-tri-cua-tatami
 sidebar_label: Vị trí của Tatami?
 ---
 

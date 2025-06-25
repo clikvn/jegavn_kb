@@ -1,6 +1,6 @@
 ---
 title: Cài Đặt Tấm Lưng Phát Sáng Cho Tủ Khung Nhôm
-slug: cai-dat-tam-lung-phat-sang-cho-tu-khung-nhom
+slug: /cai-dat-tam-lung-phat-sang-cho-tu-khung-nhom
 sidebar_label: Cài Đặt Tấm Lưng Phát Sáng Cho Tủ Khung Nhôm
 ---
 

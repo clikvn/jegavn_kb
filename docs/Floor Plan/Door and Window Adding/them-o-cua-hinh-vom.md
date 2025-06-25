@@ -1,14 +1,12 @@
 ---
 title: Thêm ô cửa hình vòm
-slug: them-o-cua-hinh-vom
+slug: /them-o-cua-hinh-vom
 sidebar_label: Thêm ô cửa hình vòm
 ---
 
 Xin chào, để thiết kế một ô cửa hình vòm, có các phương pháp sau:
 
 :::info [Phương pháp 1]
-
-Phương pháp 1: Chọn trực tiếp từ thư viện
 
 :::
 
@@ -22,8 +20,6 @@ Nếu có tình trạng mặt cắt khi đặt vào tường, hãy chuyển sang
 
 :::info [Phương pháp 2]
 
-Phương pháp 2: Sử dụng Mô hình tự do
-
 :::
 
 Bạn cũng có thể sử dụng chức năng **Mô hình tự do (Free Modeling)** để tạo một ô cửa hình vòm có hình dạng đặc biệt. Hoạt ảnh thao tác như sau:
@@ -33,8 +29,6 @@ Bạn cũng có thể sử dụng chức năng **Mô hình tự do (Free Modelin
 ![Hoạt ảnh minh họa việc hoàn thiện và cắt tường bằng hình dạng vòm đã tạo.](https://storage.googleapis.com/jegavn_kb/images/ce9cecc7-55c6-4342-a3ff-18be12b27eae.gif)
 
 :::info [Phương pháp 3]
-
-Phương pháp 3: Chỉnh sửa trực tiếp ô cửa
 
 :::
 

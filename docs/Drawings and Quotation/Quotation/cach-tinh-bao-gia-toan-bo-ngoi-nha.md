@@ -1,6 +1,6 @@
 ---
 title: Cách tính báo giá toàn bộ ngôi nhà
-slug: cach-tinh-bao-gia-toan-bo-ngoi-nha
+slug: /cach-tinh-bao-gia-toan-bo-ngoi-nha
 sidebar_label: Cách tính báo giá toàn bộ ngôi nhà
 ---
 

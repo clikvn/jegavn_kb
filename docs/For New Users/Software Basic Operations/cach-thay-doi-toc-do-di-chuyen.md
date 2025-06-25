@@ -1,6 +1,6 @@
 ---
 title: Cách thay đổi tốc độ di chuyển
-slug: cach-thay-doi-toc-do-di-chuyen
+slug: /cach-thay-doi-toc-do-di-chuyen
 sidebar_label: Cách thay đổi tốc độ di chuyển
 ---
 

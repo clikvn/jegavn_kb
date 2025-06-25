@@ -1,6 +1,6 @@
 ---
 title: Cách vẽ ô mở
-slug: cach-ve-o-mo
+slug: /cach-ve-o-mo
 sidebar_label: Cách vẽ ô mở
 ---
 

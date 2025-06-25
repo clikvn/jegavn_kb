@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để làm mịn các đường tạo khối tự do
-slug: lam-the-nao-de-lam-min-cac-duong-tao-khoi-tu-do
+slug: /lam-the-nao-de-lam-min-cac-duong-tao-khoi-tu-do
 sidebar_label: Làm mịn các đường tạo khối tự do
 ---
 
@@ -16,16 +16,6 @@ Xin chào, bạn có thể thiết lập mức độ mịn của cung tạo kh�
 
 ![Một mô hình 3D với một vật thể hình trụ (①) hiển thị các đường cong mượt mà, minh họa cho cài đặt 'Cao (hiệu suất thấp)'.](https://storage.googleapis.com/jegavn_kb/images/ff4c60f3-b57e-49bf-bbc9-46bfdfef60de.png)
 
-:::note
-
-Nên chọn 
-
-**Thấp (hiệu suất cao) (Low (High Performance))**
-
- để thiết kế bản vẽ, và sau đó chọn tùy chọn 
-
-**Cao (hiệu suất thấp) (High (Low Performance))**
-
- trong quá trình kết xuất.
+:::tip
 
 :::

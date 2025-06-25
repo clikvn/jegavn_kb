@@ -1,6 +1,6 @@
 ---
 title: Cách xóa giấy dán tường
-slug: cach-xoa-giay-dan-tuong
+slug: /cach-xoa-giay-dan-tuong
 sidebar_label: Cách xóa giấy dán tường
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Cách sử dụng tính năng tạo mô hình tự do để thiết kế ô cửa
-slug: cach-su-dung-tinh-nang-tao-mo-hinh-tu-do-de-thiet-ke-o-cua
+slug: /cach-su-dung-tinh-nang-tao-mo-hinh-tu-do-de-thiet-ke-o-cua
 sidebar_label: Thiết kế ô cửa bằng tạo mô hình tự do
 ---
 

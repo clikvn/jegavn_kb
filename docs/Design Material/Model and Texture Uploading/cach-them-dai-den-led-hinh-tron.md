@@ -1,6 +1,6 @@
 ---
 title: Cách thêm dải đèn LED hình tròn
-slug: cach-them-dai-den-led-hinh-tron
+slug: /cach-them-dai-den-led-hinh-tron
 sidebar_label: Cách thêm dải đèn LED hình tròn
 ---
 

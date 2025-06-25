@@ -1,6 +1,6 @@
 ---
 title: Cách chia cánh cửa
-slug: cach-chia-canh-cua
+slug: /cach-chia-canh-cua
 sidebar_label: Cách chia cánh cửa
 ---
 
@@ -17,7 +17,5 @@ Trong tủ tùy chỉnh và tủ quần áo, bạn có thể chia các tấm c�
 ![Cài đặt phân chia được định cấu hình thành 'Chia đều' thành 2 phần (①) và nút 'OK' (②) được tô sáng để xác nhận.](https://storage.googleapis.com/jegavn_kb/images/50a1c31e-0b0e-4a8f-889a-abbc6f8493f5.png)
 
 :::note
-
-Lưu ý: Nếu chia sai, bạn có thể nhấn Ctrl + Z để hoàn tác, hoặc xóa tấm cửa và tạo lại rồi chia lại.
 
 :::

@@ -1,6 +1,6 @@
 ---
 title: Cách tạo gờ chặn nước cho mặt bàn bếp
-slug: cach-tao-go-chan-nuoc-cho-mat-ban-bep
+slug: /cach-tao-go-chan-nuoc-cho-mat-ban-bep
 sidebar_label: Cách tạo gờ chặn nước cho mặt bàn bếp
 ---
 
@@ -14,8 +14,6 @@ Xin chào, khi lắp đặt mặt bàn bếp, bạn có thể thiết lập đư
 
 :::note
 
-
-
 :::
 
 ![Người dùng đang ở chế độ vẽ mặt bàn bếp, với mô hình 3D hiện tại được tô sáng và tùy chọn để thêm điểm giữa.](https://storage.googleapis.com/jegavn_kb/images/96355220-4fcf-4e55-8c1e-303e7aa55071.png)
@@ -25,8 +23,6 @@ Thao tác được minh họa trong ảnh động (GIF) dưới đây:
 ![Ảnh động minh họa việc kéo đường dẫn màu đỏ để chuyển thành màu xanh lá cây, loại bỏ gờ chặn nước phía sau.](https://storage.googleapis.com/jegavn_kb/images/9ff547c9-a03a-4903-bdc6-abb9a612eb2a.gif)
 
 :::note
-
-
 
 :::
 

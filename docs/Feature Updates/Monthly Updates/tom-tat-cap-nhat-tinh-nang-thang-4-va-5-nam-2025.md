@@ -1,12 +1,10 @@
 ---
 title: Tóm Tắt Cập Nhật Tính Năng Tháng 4 & 5 Năm 2025
-slug: tom-tat-cap-nhat-tinh-nang-thang-4-va-5-nam-2025
+slug: /tom-tat-cap-nhat-tinh-nang-thang-4-va-5-nam-2025
 sidebar_label: Tóm Tắt Cập Nhật Tính Năng Tháng 4 & 5 Năm 2025
 ---
 
 :::info [TÓM TẮT]
-
-Tóm Tắt Cập Nhật Tính Năng Tháng 4 & 5
 
 :::
 
@@ -22,28 +20,19 @@ Tóm Tắt Cập Nhật Tính Năng Tháng 4 & 5
 
 :::info [ĐIỂM NỔI BẬT]
 
-Đối với vật liệu nội thất không phát sáng, người dùng có thể áp dụng riêng kết cấu/vật liệu và kích thước đã sửa đổi cho các mô hình giống hệt nhau.
-Đối với vật liệu phát sáng, người dùng có thể áp dụng riêng kết cấu/vật liệu, kích thước, nhiệt độ màu và độ sáng đã sửa đổi.
-
 :::
 
 :::success [VẤN ĐỀ ĐƯỢC GIẢI QUYẾT]
 
-Cho phép người dùng áp dụng có chọn lọc một số thay đổi nhất định cho các mô hình giống hệt nhau thay vì tất cả các thay đổi cùng một lúc.
-
 :::
 
 :::note [GIÁ TRỊ TÍNH NĂNG]
-
-Cải thiện hiệu quả khi điều chỉnh các thông số mô hình.
 
 :::
 
 ![Một người dùng đang làm việc trong phần mềm thiết kế 3D, với thư viện vật liệu hiển thị ở bên trái và cảnh 3D hiển thị đèn sàn ở bên phải, nơi một menu ngữ cảnh với các tùy chọn để áp dụng hiệu ứng đang mở.](https://storage.googleapis.com/jegavn_kb/images/16bce897-6280-4a70-ae44-a4a1c197df90.png)
 
 :::tip [CÁC BƯỚC]
-
-
 
 :::
 
@@ -61,8 +50,6 @@ Cải thiện hiệu quả khi điều chỉnh các thông số mô hình.
 
 :::info [ĐIỂM NỔI BẬT CỦA TÍNH NĂNG]
 
-
-
 :::
 
 1. Tích hợp Mô-đun tùy chỉnh, Trung tâm vật liệu và Vòng tròn thiết kế vào một giao diện duy nhất.
@@ -79,8 +66,6 @@ Cải thiện hiệu quả khi điều chỉnh các thông số mô hình.
 
 :::note [TỐI ƯU HÓA]
 
-
-
 :::
 
 7. Mục **Mục của tôi (My Items)** trong Tủ tự do được chuyển đến **Yêu thích (Favorites)**.
@@ -90,8 +75,6 @@ Cải thiện hiệu quả khi điều chỉnh các thông số mô hình.
 9. Thư viện sản phẩm (Product Library) của menu trên cùng đã bị xóa và thay thế bằng chế độ xếp kề.
 
 :::success [VẤN ĐỀ ĐƯỢC GIẢI QUYẾT]
-
-
 
 :::
 
@@ -107,8 +90,6 @@ Cải thiện hiệu quả khi điều chỉnh các thông số mô hình.
 
 :::tip [CÁC BƯỚC]
 
-
-
 :::
 
 13. Mở một dự án thiết kế, vào mô-đun **Tủ (Cabinet)** hoặc **Hoàn thiện cứng (Hard Finish)**, và nhấp vào menu trên cùng.
@@ -123,9 +104,6 @@ Cải thiện hiệu quả khi điều chỉnh các thông số mô hình.
 
 :::info [ĐIỂM NỔI BẬT]
 
-Cải thiện trải nghiệm thiết kế của người dùng với các vật liệu cửa được cập nhật phù hợp với xu hướng hiện tại.
-Các kiểu mới được thêm vào bảng điều khiển bên trái của bố cục bao gồm cửa đơn, cửa đôi, cửa không đều và khung cửa.
-
 :::
 
 ![Một người dùng đang xem các loại cửa và cửa sổ khác nhau trong phần 'Cửa & cửa sổ' của một công cụ thiết kế sơ đồ tầng, với một lựa chọn các loại cửa phổ biến được đánh dấu.](https://storage.googleapis.com/jegavn_kb/images/5585fbc0-eab2-40f2-8d05-5ad7de7cef3d.png)
@@ -134,35 +112,15 @@ Các kiểu mới được thêm vào bảng điều khiển bên trái của b�
 
 :::info [ĐIỂM NỔI BẬT]
 
-Hợp lý hóa việc quản lý cấu hình trong workbench, giúp việc duy trì và áp dụng các bản cập nhật một cách thống nhất trở nên dễ dàng hơn.
-
 :::
 
 :::success [VẤN ĐỀ ĐƯỢC GIẢI QUYẾT]
-
-Workbench hiện là nền tảng để phát triển các tính năng trong tương lai. Các cài đặt Cấu hình quy trình và Cấu hình ngăn kéo trong AiHouse sẽ bị đóng.
 
 :::
 
 ![Giao diện người dùng hiển thị các cài đặt và cấu hình chức năng 3D khác nhau trong phần mềm AiHouse, bao gồm cài đặt mẫu vật liệu, quy trình và bảng ngăn kéo.](https://storage.googleapis.com/jegavn_kb/images/d8dca45e-1ccb-4ffe-91fb-d0d567381d66.png)
 
 :::danger [YÊU CẦU QUYỀN]
-
-Tài khoản phải có quyền truy cập. Đường dẫn: 
-
-**Workbench (Workbench)**
-
- > 
-
-**Quản lý backend toàn nhà (Whole-Home Backend Management)**
-
- > 
-
-**Cài đặt tùy chỉnh nâng cao (Advanced Customization Settings)**
-
- > 
-
-**Cài đặt chức năng 3D (Xem/Chỉnh sửa) (3D Function Settings (View/Edit))**
 
 :::
 
@@ -172,15 +130,9 @@ Tài khoản phải có quyền truy cập. Đường dẫn:
 
 :::info [ĐIỂM NỔI BẬT CỦA TÍNH NĂNG]
 
-So sánh:
-Phiên bản trước sử dụng định vị trước/sau, có thể dẫn đến khoảng cách không đều giữa các lỗ. Một số doanh nghiệp yêu cầu khoảng cách nhất quán giữa tất cả các lỗ.
-Phiên bản mới giới thiệu thuật toán (①) Khoảng cách đều cố định để đảm bảo khoảng cách đồng đều giữa các lỗ ở giữa.
-
 :::
 
 :::note [GIÁ TRỊ TÍNH NĂNG]
-
-Cải thiện việc phân bổ phần cứng khi chiều cao tủ không chia hết cho 32, dẫn đến các lỗ được giãn cách đều hơn.
 
 :::
 
@@ -197,13 +149,9 @@ Cho phép định vị trục của đầu nối linh hoạt hơn, cho phép th�
 
 :::note [PHIÊN BẢN TRƯỚC]
 
-Loại phủ (toàn phần, nửa, lọt lòng) được mã hóa cứng và người dùng không thể tùy chỉnh.
-
 :::
 
 :::info [PHIÊN BẢN MỚI]
-
-Cung cấp một giao diện cấu hình cho phép người dùng xác định cách hệ thống xác định các loại phủ dựa trên các giá trị đã đặt.
 
 :::
 

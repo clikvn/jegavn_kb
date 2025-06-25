@@ -1,6 +1,6 @@
 ---
 title: Không tìm thấy phương án đã thiết kế trước đó. Phải làm thế nào?
-slug: khong-tim-thay-phuong-an-da-thiet-ke-truoc-do-phai-lam-the-nao
+slug: /khong-tim-thay-phuong-an-da-thiet-ke-truoc-do-phai-lam-the-nao
 sidebar_label: Không tìm thấy phương án đã thiết kế
 ---
 
@@ -15,9 +15,5 @@ Xin chào, các phương án sẽ được lưu trực tuyến nếu không bị
 ![Một người dùng đang xem các dự án của họ trong phần mềm AiHouse, với một menu thả xuống của bộ lọc đang mở để chọn khoảng thời gian hiển thị dự án.](https://storage.googleapis.com/jegavn_kb/images/17db7c57-f578-4e4c-b859-3a87eb88b418.png)
 
 :::note
-
-
-
-
 
 :::

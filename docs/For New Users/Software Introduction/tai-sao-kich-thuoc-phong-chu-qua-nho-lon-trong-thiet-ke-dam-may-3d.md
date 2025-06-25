@@ -1,6 +1,6 @@
 ---
 title: Tại sao kích thước phông chữ quá nhỏ/lớn trong Thiết kế đám mây 3D?
-slug: tai-sao-kich-thuoc-phong-chu-qua-nho-lon-trong-thiet-ke-dam-may-3d
+slug: /tai-sao-kich-thuoc-phong-chu-qua-nho-lon-trong-thiet-ke-dam-may-3d
 sidebar_label: Tại sao kích thước phông chữ quá nhỏ/lớn trong Thiết kế đám mây 3D?
 ---
 

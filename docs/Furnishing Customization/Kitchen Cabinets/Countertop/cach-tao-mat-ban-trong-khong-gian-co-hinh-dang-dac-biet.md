@@ -1,6 +1,6 @@
 ---
 title: Cách tạo mặt bàn trong không gian có hình dạng đặc biệt
-slug: cach-tao-mat-ban-trong-khong-gian-co-hinh-dang-dac-biet
+slug: /cach-tao-mat-ban-trong-khong-gian-co-hinh-dang-dac-biet
 sidebar_label: Cách tạo mặt bàn trong không gian có hình dạng đặc biệt
 ---
 

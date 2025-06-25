@@ -1,6 +1,6 @@
 ---
 title: Tại sao không có tấm chắn nước phía sau trên mặt bàn được tạo?
-slug: tai-sao-khong-co-tam-chan-nuoc-phia-sau-tren-mat-ban-duoc-tao
+slug: /tai-sao-khong-co-tam-chan-nuoc-phia-sau-tren-mat-ban-duoc-tao
 sidebar_label: Tại sao không có tấm chắn nước phía sau trên mặt bàn được tạo?
 ---
 

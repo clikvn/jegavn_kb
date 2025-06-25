@@ -1,6 +1,6 @@
 ---
 title: Tại sao gạch render bị phản quang?
-slug: tai-sao-gach-render-bi-phan-quang
+slug: /tai-sao-gach-render-bi-phan-quang
 sidebar_label: Tại sao gạch render bị phản quang?
 ---
 

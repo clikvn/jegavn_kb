@@ -1,6 +1,6 @@
 ---
 title: Tại sao kết cấu gạch render không rõ nét?
-slug: tai-sao-ket-cau-gach-render-khong-ro-net
+slug: /tai-sao-ket-cau-gach-render-khong-ro-net
 sidebar_label: Tại sao kết cấu gạch render không rõ nét?
 ---
 

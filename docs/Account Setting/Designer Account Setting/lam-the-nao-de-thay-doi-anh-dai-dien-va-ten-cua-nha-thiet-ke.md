@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để thay đổi ảnh đại diện và tên của nhà thiết kế?
-slug: lam-the-nao-de-thay-doi-anh-dai-dien-va-ten-cua-nha-thiet-ke
+slug: /lam-the-nao-de-thay-doi-anh-dai-dien-va-ten-cua-nha-thiet-ke
 sidebar_label: Làm thế nào để thay đổi ảnh đại diện và tên của nhà thiết kế?
 ---
 

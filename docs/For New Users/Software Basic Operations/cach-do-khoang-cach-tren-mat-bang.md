@@ -1,6 +1,6 @@
 ---
 title: Cách đo khoảng cách trên mặt bằng
-slug: cach-do-khoang-cach-tren-mat-bang
+slug: /cach-do-khoang-cach-tren-mat-bang
 sidebar_label: Cách đo khoảng cách trên mặt bằng
 ---
 

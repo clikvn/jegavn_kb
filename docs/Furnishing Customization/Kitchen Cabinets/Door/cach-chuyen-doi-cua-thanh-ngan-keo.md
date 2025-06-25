@@ -1,6 +1,6 @@
 ---
 title: Cách chuyển đổi cửa thành ngăn kéo
-slug: cach-chuyen-doi-cua-thanh-ngan-keo
+slug: /cach-chuyen-doi-cua-thanh-ngan-keo
 sidebar_label: Cách chuyển đổi cửa thành ngăn kéo
 ---
 

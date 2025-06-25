@@ -1,6 +1,6 @@
 ---
 title: Cách nhóm các tấm gỗ đặc
-slug: cach-nhom-cac-tam-go-dac
+slug: /cach-nhom-cac-tam-go-dac
 sidebar_label: Cách nhóm các tấm gỗ đặc
 ---
 

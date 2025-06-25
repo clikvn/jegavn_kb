@@ -1,12 +1,10 @@
 ---
 title: Nhấp Chuột Phải Vào Vật Liệu Gỗ Đặc - Lối Vào Thiết Kế Tường Nền Mới
-slug: go-dac-nhap-chuot-phai-thiet-ke-tuong-nen
+slug: /go-dac-nhap-chuot-phai-thiet-ke-tuong-nen
 sidebar_label: Nhấp Chuột Phải Vào Vật Liệu Gỗ Đặc Để Thiết Kế Tường Nền
 ---
 
 :::info [Vấn đề]
-
-Khi toàn bộ bức tường được bao phủ bởi vật liệu gỗ, việc phải ẩn vật liệu đi để nhấp vào tường và vào trình thiết kế tường nền mới là một trải nghiệm không tốt và thao tác rườm rà. Việc thêm lối vào thiết kế tường nền mới bằng cách nhấp chuột phải vào vật liệu cho phép truy cập nhanh vào tường mà vật liệu đó thuộc về để thiết kế, giúp cải thiện hiệu quả và trải nghiệm thiết kế của người dùng.
 
 :::
 

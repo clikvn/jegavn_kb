@@ -1,6 +1,6 @@
 ---
 title: Cách căn chỉnh các tủ
-slug: cach-can-chinh-cac-tu
+slug: /cach-can-chinh-cac-tu
 sidebar_label: Cách căn chỉnh các tủ
 ---
 
@@ -17,9 +17,5 @@ Các vật liệu hoàn thiện hoặc các tùy chỉnh có thể sử dụng c
 ![Giao diện người dùng để thiết kế tủ tùy chỉnh, hiển thị thư viện sản phẩm ở bên trái và chế độ xem 3D của tủ trong một căn phòng, với một hộp hướng dẫn để đặt vị trí.](https://storage.googleapis.com/jegavn_kb/images/b60ef456-e039-4f06-be0f-d4b9087f6866.png)
 
 :::note
-
-Để xem hướng dẫn chi tiết, vui lòng nhấp vào: 
-
-
 
 :::

@@ -1,6 +1,6 @@
 ---
 title: Máy sưởi ở đâu
-slug: may-suoi-o-dau
+slug: /may-suoi-o-dau
 sidebar_label: Máy sưởi ở đâu
 ---
 

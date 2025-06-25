@@ -1,14 +1,12 @@
 ---
 title: Bố cục phòng thông minh AI
-slug: bo-cuc-phong-thong-minh-ai
+slug: /bo-cuc-phong-thong-minh-ai
 sidebar_label: Bố cục phòng thông minh AI
 ---
 
 Xin chào, chức năng thiết kế thông minh (bố cục phòng mẫu thông minh) có thể tạo bản vẽ nhanh chóng. Các bước thực hiện như sau:
 
 :::note
-
-Xin lưu ý rằng trước khi bố trí, cần đặt tên phòng, bố trí cửa ra vào và cửa sổ, và lưu lại phương án trước khi áp dụng thông minh.
 
 :::
 

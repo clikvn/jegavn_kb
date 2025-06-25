@@ -1,6 +1,6 @@
 ---
 title: Cửa trượt ở đâu
-slug: cua-truot-o-dau
+slug: /cua-truot-o-dau
 sidebar_label: Cửa trượt ở đâu
 ---
 

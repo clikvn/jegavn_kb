@@ -1,6 +1,6 @@
 ---
 title: Cách Tạo Hình Dạng Tường Không Đều
-slug: cach-tao-hinh-dang-tuong-khong-deu
+slug: /cach-tao-hinh-dang-tuong-khong-deu
 sidebar_label: Cách Tạo Hình Dạng Tường Không Đều
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Phím tắt thu gọn/mở rộng thanh điều hướng bên trái
-slug: phim-tat-thu-gon-mo-rong-thanh-dieu-huong-ben-trai
+slug: /phim-tat-thu-gon-mo-rong-thanh-dieu-huong-ben-trai
 sidebar_label: Phím tắt thu gọn/mở rộng thanh điều hướng
 ---
 

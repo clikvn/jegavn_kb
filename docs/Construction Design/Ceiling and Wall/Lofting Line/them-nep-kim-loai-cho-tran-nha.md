@@ -1,6 +1,6 @@
 ---
 title: Thêm Nẹp Kim Loại cho Trần nhà
-slug: them-nep-kim-loai-cho-tran-nha
+slug: /them-nep-kim-loai-cho-tran-nha
 sidebar_label: Thêm Nẹp Kim Loại cho Trần nhà
 ---
 

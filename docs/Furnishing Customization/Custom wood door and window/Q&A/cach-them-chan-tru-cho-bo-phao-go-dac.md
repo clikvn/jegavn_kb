@@ -1,6 +1,6 @@
 ---
 title: Cách thêm chân trụ cho bộ phào gỗ đặc
-slug: cach-them-chan-tru-cho-bo-phao-go-dac
+slug: /cach-them-chan-tru-cho-bo-phao-go-dac
 sidebar_label: Cách thêm chân trụ cho bộ phào gỗ đặc
 ---
 
