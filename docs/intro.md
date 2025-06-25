@@ -2,27 +2,28 @@
 sidebar_position: 1
 ---
 
-# Welcome to Jega Knowledgebase
+# Jega Knowledge Base
 
-Chào mừng bạn đến với tài liệu hướng dẫn toàn diện về phần mềm Jega, công cụ thiết kế và xây dựng 3D của bạn.
+Welcome to the comprehensive knowledge base for Jega and AiHouse software.
 
-## Bắt đầu
+## Getting Started
 
-Chọn một danh mục từ thanh bên để khám phá tài liệu của chúng tôi:
+This knowledge base contains detailed documentation, tutorials, and guides for using Jega and AiHouse design software effectively.
 
-- **Account Setting** - Quản lý cài đặt tài khoản và hồ sơ
-- **Construction Design** - Tìm hiểu về thiết kế trần, tường và ốp lát
-- **Design Circle** - Hiểu về vòng tròn thiết kế và ứng dụng
-- **Design Material** - Làm việc với mô hình 3D, kết cấu và vật liệu
-- **Floor Plan** - Tạo và quản lý mặt bằng
-- **Furnishing Customization** - Tùy chỉnh nội thất và thiết bị
-- **Rendering** - Tạo render đẹp và panorama
-- **Và nhiều hơn nữa...**
+### What you'll find here
 
-## Điều hướng nhanh
+- **Account Settings**: Manage your account, permissions, and project settings
+- **Construction Design**: Learn about ceiling, wall, and tiling design
+- **Design Materials**: Explore 3D models, textures, and material management
+- **Floor Plan**: Master floor plan creation and wall drawing
+- **Furnishing Customization**: Customize furniture, kitchen cabinets, and more
+- **Rendering**: Create beautiful renders and panoramas
+- **And much more...**
 
-Sử dụng thanh bên bên trái để điều hướng qua các phần khác nhau, hoặc sử dụng chức năng tìm kiếm để tìm chủ đề cụ thể.
+## Quick Navigation
 
-## Cần trợ giúp?
+Use the sidebar to navigate through different sections of the documentation. Each section contains detailed guides, tutorials, and frequently asked questions.
 
-Nếu bạn không tìm thấy những gì bạn đang tìm kiếm, hãy kiểm tra phần FAQ của chúng tôi hoặc liên hệ với đội ngũ hỗ trợ. 
+## Need Help?
+
+If you can't find what you're looking for, check the Q&A sections in each category or contact our support team.

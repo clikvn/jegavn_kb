@@ -8,8 +8,8 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Jega Knowledgebase',
-  tagline: 'Welcome to Jega Knowledgebase',
+  title: 'Jega Knowledge Base',
+  tagline: 'Complete guide for Jega and AiHouse software',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -20,8 +20,8 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'jega', // Usually your GitHub org/user name.
+  projectName: 'knowledge-base', // Usually your repo name.
 
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
@@ -41,9 +41,15 @@ const config = {
       ({
         docs: {
           sidebarPath: './sidebars.js',
+          // Please change this to your repo.
+          editUrl:
+            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
         blog: {
           showReadingTime: true,
+          // Please change this to your repo.
+          editUrl:
+            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -58,7 +64,7 @@ const config = {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'Jega Knowledgebase',
+        title: 'Jega Knowledge Base',
         logo: {
           alt: 'Jega Logo',
           src: 'img/logo.svg',
@@ -77,11 +83,19 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
+            title: 'Documentation',
             items: [
               {
-                label: 'Documentation',
+                label: 'Getting Started',
                 to: '/docs/intro',
+              },
+              {
+                label: 'Account Settings',
+                to: '/docs/Account Setting/intro',
+              },
+              {
+                label: 'Construction Design',
+                to: '/docs/Construction Design/intro',
               },
             ],
           },
@@ -92,10 +106,14 @@ const config = {
                 label: 'Blog',
                 to: '/blog',
               },
+              {
+                label: 'GitHub',
+                href: 'https://github.com/jega/knowledge-base',
+              },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Jega. Built with Docusaurus.`,
       },
       prism: {
         theme: prismThemes.github,
