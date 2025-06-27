@@ -1,30 +1,819 @@
 /**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
+ * Mintlify-inspired design system for JEGA Knowledge Base
+ * Using OKLCH color space and modern typography
  */
 
-/* You can override the default Infima variables here. */
+/* Import Inter font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Design System Variables */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.142 0.005 158.4);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.142 0.005 158.4);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.142 0.005 158.4);
+  --primary: oklch(0.592 0.164 163.3);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.951 0.004 165);
+  --secondary-foreground: oklch(0.231 0.004 159.2);
+  --muted: oklch(0.951 0.004 165);
+  --muted-foreground: oklch(0.609 0.004 162.2);
+  --accent: oklch(0.792 0.16 163.4);
+  --accent-foreground: oklch(0.231 0.004 159.2);
+  --destructive: oklch(0.5770 0.2450 27.3250);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.893 0.003 169.3);
+  --input: oklch(0.893 0.003 169.3);
+  --ring: oklch(0.592 0.164 163.3);
+  --chart-1: oklch(0.8100 0.1000 252);
+  --chart-2: oklch(0.6200 0.1900 260);
+  --chart-3: oklch(0.5500 0.2200 263);
+  --chart-4: oklch(0.4900 0.2200 264);
+  --chart-5: oklch(0.4200 0.1800 266);
+  --sidebar: oklch(0.9850 0 0);
+  --sidebar-foreground: oklch(0.1450 0 0);
+  --sidebar-primary: oklch(0.2050 0 0);
+  --sidebar-primary-foreground: oklch(0.9850 0 0);
+  --sidebar-accent: oklch(0.9700 0 0);
+  --sidebar-accent-foreground: oklch(0.2050 0 0);
+  --sidebar-border: oklch(0.9220 0 0);
+  --sidebar-ring: oklch(0.7080 0 0);
+  --font-sans: 'Inter', 'Inter Fallback', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-mono: 'JetBrains Mono', 'JetBrains Mono Fallback', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --radius: 0.625rem;
+  --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+  --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+  --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10);
+  --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10);
+  --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 2px 4px -1px hsl(0 0% 0% / 0.10);
+  --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 4px 6px -1px hsl(0 0% 0% / 0.10);
+  --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 8px 10px -1px hsl(0 0% 0% / 0.10);
+  --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+
+  /* Override Docusaurus variables with our design system */
+  --ifm-color-primary: var(--primary);
+  --ifm-color-primary-dark: oklch(0.532 0.164 163.3);
+  --ifm-color-primary-darker: oklch(0.512 0.164 163.3);
+  --ifm-color-primary-darkest: oklch(0.452 0.164 163.3);
+  --ifm-color-primary-light: oklch(0.652 0.164 163.3);
+  --ifm-color-primary-lighter: oklch(0.672 0.164 163.3);
+  --ifm-color-primary-lightest: oklch(0.732 0.164 163.3);
   --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --docusaurus-highlighted-code-line-bg: oklch(0.95 0.01 163.3 / 0.1);
+  --ifm-background-color: var(--background);
+  --ifm-background-surface-color: var(--card);
+  --ifm-color-content: var(--foreground);
+  --ifm-color-content-secondary: var(--muted-foreground);
+  --ifm-font-family-base: var(--font-sans);
+  --ifm-font-family-monospace: var(--font-mono);
+  --ifm-line-height-base: 1.6;
+  --ifm-heading-font-weight: 600;
+  --ifm-font-size-base: 16px;
+  --ifm-h1-font-size: 2rem;
+  --ifm-h2-font-size: 1.875rem;
+  --ifm-h3-font-size: 1.5rem;
+  --ifm-h4-font-size: 1.25rem;
+  --ifm-h5-font-size: 1.125rem;
+  --ifm-h6-font-size: 1rem;
+
+  /* Font variables for flexibility */
+  --font-inter: 'Inter', 'Inter Fallback', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-inter-variable: 'Inter var', 'Inter Variable', var(--font-inter);
+
+  /* Make theme toggle icon visible in light mode */
+  --theme-toggle-icon-color: #222;
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
+/* Dark mode overrides */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --background: oklch(0.05 0 0);
+  --foreground: oklch(0.95 0 0);
+  --card: oklch(0.08 0 0);
+  --card-foreground: oklch(0.95 0 0);
+  --popover: oklch(0.08 0 0);
+  --popover-foreground: oklch(0.95 0 0);
+  --primary: oklch(0.652 0.164 163.3);
+  --primary-foreground: oklch(0.05 0 0);
+  --secondary: oklch(0.15 0 0);
+  --secondary-foreground: oklch(0.85 0 0);
+  --muted: oklch(0.15 0 0);
+  --muted-foreground: oklch(0.65 0 0);
+  --accent: oklch(0.15 0 0);
+  --accent-foreground: oklch(0.85 0 0);
+  --border: oklch(0.2 0 0);
+  --input: oklch(0.2 0 0);
+  --sidebar: oklch(0.08 0 0);
+  --sidebar-foreground: oklch(0.85 0 0);
+  --sidebar-primary: oklch(0.15 0 0);
+  --sidebar-primary-foreground: oklch(0.95 0 0);
+  --sidebar-accent: oklch(0.12 0 0);
+  --sidebar-accent-foreground: oklch(0.85 0 0);
+  --sidebar-border: oklch(0.15 0 0);
+  --sidebar-ring: oklch(0.25 0 0);
+  --docusaurus-highlighted-code-line-bg: oklch(0.15 0.01 163.3 / 0.3);
+}
+
+/* Global styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  font-family: var(--font-inter-variable);
+}
+
+body {
+  font-family: var(--font-inter-variable);
+  background-color: var(--background);
+  color: var(--foreground);
+  line-height: var(--ifm-line-height-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--ifm-heading-font-weight);
+  line-height: 1.2;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: var(--foreground);
+}
+
+h1 {
+  font-size: var(--ifm-h1-font-size) !important;
+  margin-top: 0;
+  /* Force the font size to be exactly what we want */
+  font-size: 2rem !important;
+}
+
+h2 {
+  font-size: var(--ifm-h2-font-size);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
+}
+
+h3 {
+  font-size: var(--ifm-h3-font-size);
+}
+
+h4 {
+  font-size: var(--ifm-h4-font-size);
+}
+
+h5 {
+  font-size: var(--ifm-h5-font-size);
+}
+
+h6 {
+  font-size: var(--ifm-h6-font-size);
+}
+
+p {
+  margin-bottom: 1.5rem;
+  color: var(--foreground);
+}
+
+/* Links */
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--ifm-color-primary-dark);
+  text-decoration: underline;
+}
+
+/* Code blocks */
+code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background-color: var(--muted);
+  color: var(--muted-foreground);
+  padding: 0.125rem 0.25rem;
+  border-radius: calc(var(--radius) / 2);
+}
+
+pre {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  box-shadow: var(--shadow-sm);
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  color: var(--foreground);
+}
+
+/* Navigation */
+.navbar {
+  background-color: var(--background);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(10px);
+  background-color: var(--background / 0.95);
+}
+
+.navbar__item {
+  font-weight: 500;
+}
+
+.navbar__link {
+  color: var(--muted-foreground);
+  transition: color 0.2s ease;
+}
+
+.navbar__link:hover {
+  color: var(--foreground);
+  text-decoration: none;
+}
+
+/* Sidebar */
+.theme-doc-sidebar-container {
+  background-color: var(--sidebar);
+  border-right: 1px solid var(--sidebar-border);
+}
+
+.theme-doc-sidebar-menu {
+  padding: 1rem 0;
+}
+
+.theme-doc-sidebar-item-category {
+  margin-bottom: 2rem !important;
+}
+
+/* Sidebar section headers */
+.theme-doc-sidebar-item-category__label {
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: #9ca3af !important; /* Tailwind gray-400 */
+  text-transform: capitalize;
+  letter-spacing: 0.03em;
+  margin-top: 2rem !important;
+  margin-bottom: 0.5rem !important;
+  padding-left: 0.5rem !important;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Sidebar menu items */
+.theme-doc-sidebar-item-link {
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  color: #222 !important;
+  border-left: 2px solid transparent !important;
+  padding-left: 1rem !important;
+  background: none !important;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+/* Active menu item */
+.theme-doc-sidebar-item-link.theme-doc-sidebar-item-link--active[aria-current] {
+  color: #009568 !important; /* Mintlify/Vercel green */
+  font-weight: 500 !important;
+  border-left: 2px solid #009568 !important;
+  background: none !important;
+}
+
+/* Main content */
+.main-wrapper {
+  background-color: var(--background);
+}
+
+.theme-doc-markdown {
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+/* Cards and containers */
+.card {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Callouts */
+.theme-admonition {
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 1rem;
+  margin: 1.5rem 0;
+  background-color: var(--card);
+}
+
+.theme-admonition-note {
+  border-left: 4px solid var(--primary);
+}
+
+.theme-admonition-warning {
+  border-left: 4px solid var(--destructive);
+}
+
+.theme-admonition-tip {
+  border-left: 4px solid var(--accent);
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  background-color: var(--card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+th, td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+th {
+  background-color: var(--muted);
+  font-weight: 600;
+  color: var(--muted-foreground);
+}
+
+/* Footer */
+.footer {
+  background-color: var(--card);
+  border-top: 1px solid var(--border);
+  margin-top: 4rem;
+}
+
+.footer__inner {
+  max-width: 90%;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* Docusaurus specific footer */
+.theme-doc-footer {
+  max-width: 95%;
+  margin: 0 auto;
+}
+
+/* Breadcrumbs container */
+.breadcrumbsContainer_Z_bl {
+  max-width: 95%;
+  margin: 0 auto;
+}
+
+/* Pagination navigation */
+.docusaurus-mt-lg.pagination-nav {
+  max-width: 95%;
+  margin: 0 auto;
+}
+
+/* Search */
+.theme-search-bar {
+  background-color: var(--input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.5rem 1rem;
+}
+
+.theme-search-bar:focus {
+  outline: none;
+  border-color: var(--ring);
+  box-shadow: 0 0 0 2px var(--ring / 0.2);
+}
+
+/* Table of Contents - Mintlify style */
+.theme-doc-toc-desktop {
+  position: sticky;
+  top: 2rem;
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
+  padding: 1rem;
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.theme-doc-toc-desktop .table-of-contents__link {
+  color: var(--muted-foreground);
+  text-decoration: none;
+  padding: 0.25rem 0;
+  display: block;
+  transition: color 0.2s ease;
+  font-size: 0.875rem;
+}
+
+.theme-doc-toc-desktop .table-of-contents__link:hover {
+  color: var(--foreground);
+}
+
+.theme-doc-toc-desktop .table-of-contents__link--active {
+  color: var(--primary);
+  font-weight: 500;
+}
+
+/* Announcement bar - Mintlify style */
+.announcementBar {
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  color: var(--primary-foreground);
+  padding: 0.75rem 1rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+.announcementBar a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+/* Breadcrumbs - Mintlify style */
+.breadcrumbs {
+  padding: 1rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.breadcrumbs__item {
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+}
+
+.breadcrumbs__item--active {
+  color: var(--foreground);
+  font-weight: 500;
+}
+
+/* Pagination - Mintlify style */
+.pagination-nav {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.pagination-nav__link {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  display: block;
+}
+
+.pagination-nav__link:hover {
+  background-color: var(--muted);
+  border-color: var(--primary);
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.pagination-nav__label {
+  font-size: 14px !important;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .theme-doc-markdown {
+    max-width: 95%;
+  }
+  
+  .navbar__inner {
+    max-width: 95%;
+    padding: 0.5rem 1rem;
+  }
+  
+  .footer__inner {
+    max-width: 95%;
+    padding: 1.5rem 1rem;
+  }
+  
+  .theme-doc-footer {
+    max-width: 95%;
+  }
+  
+  .breadcrumbsContainer_Z_bl {
+    max-width: 95%;
+  }
+  
+  .docusaurus-mt-lg.pagination-nav {
+    max-width: 95%;
+  }
+  
+  .navbar {
+    padding: 0;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  .theme-doc-toc-desktop {
+    display: none;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--muted);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-foreground);
+}
+
+/* Focus styles for accessibility */
+*:focus {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Button styles */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: var(--ifm-color-primary-dark);
+  text-decoration: none;
+}
+
+.button--secondary {
+  background-color: var(--secondary);
+  color: var(--secondary-foreground);
+}
+
+.button--secondary:hover {
+  background-color: var(--muted);
+}
+
+/* Mintlify-inspired animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.theme-doc-markdown {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Mintlify-inspired hover effects */
+.theme-doc-sidebar-item-link,
+.navbar__link,
+.theme-doc-toc-desktop .table-of-contents__link {
+  position: relative;
+}
+
+.theme-doc-sidebar-item-link::after,
+.navbar__link::after,
+.theme-doc-toc-desktop .table-of-contents__link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary);
+  transition: width 0.2s ease;
+}
+
+.theme-doc-sidebar-item-link:hover::after,
+.navbar__link:hover::after,
+.theme-doc-toc-desktop .table-of-contents__link:hover::after {
+  width: 100%;
+}
+
+/* Mintlify-inspired loading states */
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid var(--border);
+  border-top: 2px solid var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Mintlify-inspired tooltips */
+[data-tooltip] {
+  position: relative;
+}
+
+[data-tooltip]:hover::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--foreground);
+  color: var(--background);
+  padding: 0.5rem;
+  border-radius: var(--radius);
+  font-size: 0.75rem;
+  white-space: nowrap;
+  z-index: 1000;
+  box-shadow: var(--shadow-lg);
+}
+
+/* Mintlify-inspired selection */
+::selection {
+  background-color: var(--primary / 0.2);
+  color: var(--foreground);
+}
+
+/* Mintlify-inspired focus ring */
+.focus-ring {
+  position: relative;
+}
+
+.focus-ring:focus::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: 2px solid var(--ring);
+  border-radius: calc(var(--radius) + 2px);
+  pointer-events: none;
+}
+
+/* Sidebar: parent folders 500, children menu items 400 */
+.menu,
+.menu__link,
+.theme-doc-sidebar-item-category__link {
+  font-family: var(--font-inter-variable) !important;
+  font-size: 0.875rem !important;
+  line-height: 1.25rem !important;
+  font-weight: 500 !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
+.theme-doc-sidebar-item-link {
+  font-family: var(--font-inter-variable) !important;
+  font-size: 0.875rem !important;
+  line-height: 1.25rem !important;
+  font-weight: 400 !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
+
+/* Utility classes */
+.text-sm {
+  font-size: 0.875rem !important; /* 14px */
+  line-height: 1.25rem !important; /* 20px */
+}
+.antialiased {
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
+
+/* Apply font system and smoothing globally */
+html {
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  font-family: var(--font-inter-variable);
+}
+body {
+  font-family: var(--font-inter-variable);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Remove underline or bottom border from sidebar links */
+.theme-doc-sidebar-item-link,
+.theme-doc-sidebar-item-link::after {
+  border-bottom: none !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+  background-image: none !important;
+}
+
+/* Only show left border for active or hovered menu item */
+.theme-doc-sidebar-item-link.theme-doc-sidebar-item-link--active[aria-current],
+.theme-doc-sidebar-item-link:hover {
+  border-left: 2px solid #009568 !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+/* Remove underline effect on hover */
+.theme-doc-sidebar-item-link:hover::after {
+  width: 0 !important;
+}
+
+/* Inactive parent folders: gray, normal weight, no border */
+.theme-doc-sidebar-item-category__link {
+  color: #9ca3af !important;
+  font-weight: 500 !important;
+  border-left: 2px solid transparent !important;
+}
+
+/* Active parent folder: green, bold, left border */
+.menu__list-item--active > .theme-doc-sidebar-item-category__link {
+  color: #009568 !important;
+  font-weight: 600 !important;
+  border-left: 2px solid #009568 !important;
+  background: none !important;
+}
+
+/* Highlight parent folder when clicked/expanded directly */
+.theme-doc-sidebar-item-category__link--active {
+  color: #009568 !important;
+  font-weight: 600 !important;
+  border-left: 2px solid #009568 !important;
+  background: none !important;
+}
+
+.theme-doc-sidebar-item-category__link[aria-expanded="true"] {
+  color: #009568 !important;
+  font-weight: 600 !important;
+  border-left: 2px solid #009568 !important;
+  background: none !important;
+}
+
+/* Make theme toggle icon visible in light mode */
+[data-theme='light'] .navbar [type="button"].clean-btn,
+[data-theme='light'] .navbar .toggleButton_gllP,
+[data-theme='light'] .navbar .navbar__toggle {
+  color: var(--theme-toggle-icon-color) !important;
+  opacity: 1 !important;
+}
+
+[data-theme='light'] .navbar [type="button"].clean-btn svg,
+[data-theme='light'] .navbar [type="button"].clean-btn svg path {
+  color: #222 !important;
+  fill: #222 !important;
+}
+
+/* FontAwesome Chat Icon Styles */
+.chat-icon {
+  color: #63E6BE;
+  cursor: pointer;
+  vertical-align: middle;
+  margin-left: 4px;
+  transition: opacity 0.2s ease;
+}
+
+.chat-icon:hover {
+  opacity: 0.8;
 }

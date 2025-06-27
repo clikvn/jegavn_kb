@@ -8,12 +8,12 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Jega Knowledge Base',
+  title: 'JEGA Knowledge Base',
   tagline: 'Complete guide for Jega and AiHouse software',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
+  url: 'https://jegavn-kb.vercel.app',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
@@ -30,8 +30,8 @@ const config = {
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
+    defaultLocale: 'vi',
+    locales: ['vi'],
   },
 
   presets: [
@@ -43,13 +43,18 @@ const config = {
           sidebarPath: './sidebars.js',
           // Please change this to your repo.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/jega/knowledge-base/tree/main/',
+          routeBasePath: '/docs',
+          showLastUpdateTime: true,
+          showLastUpdateAuthor: true,
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/jega/knowledge-base/tree/main/',
+          blogSidebarTitle: 'Recent Posts',
+          blogSidebarCount: 5,
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -63,11 +68,13 @@ const config = {
     ({
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
+      
+      // Mintlify-inspired navbar
       navbar: {
-        title: 'Jega Knowledge Base',
         logo: {
-          alt: 'Jega Logo',
-          src: 'img/logo.svg',
+          alt: 'JEGA Official Logo',
+          src: 'img/jega_logo.png',
+          srcDark: 'img/jega_logo.png',
         },
         items: [
           {
@@ -75,51 +82,51 @@ const config = {
             sidebarId: 'tutorialSidebar',
             position: 'left',
             label: 'Documentation',
-          },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          }
         ],
-      },
-      footer: {
         style: 'dark',
-        links: [
-          {
-            title: 'Documentation',
-            items: [
-              {
-                label: 'Getting Started',
-                to: '/docs/intro',
-              },
-              {
-                label: 'Account Settings',
-                to: '/docs/Account Setting/intro',
-              },
-              {
-                label: 'Construction Design',
-                to: '/docs/Construction Design/intro',
-              },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'Blog',
-                to: '/blog',
-              },
-              {
-                label: 'GitHub',
-                href: 'https://github.com/jega/knowledge-base',
-              },
-            ],
-          },
-        ],
-        copyright: `Copyright © ${new Date().getFullYear()} Jega. Built with Docusaurus.`,
+        hideOnScroll: false,
       },
+
+      // Mintlify-inspired footer
+      footer: {
+        style: 'light',
+        links: [],
+        copyright: 'Powered by Clik JSC',
+      },
+
+      // Mintlify-inspired prism theme
       prism: {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
+        additionalLanguages: ['bash', 'json', 'yaml', 'toml'],
+        defaultLanguage: 'bash',
+      },
+
+      // Mintlify-inspired color mode
+      colorMode: {
+        defaultMode: 'light',
+        disableSwitch: false,
+        respectPrefersColorScheme: true,
+      },
+
+      // Mintlify-inspired docs
+      docs: {
+        sidebar: {
+          hideable: true,
+          autoCollapseCategories: true,
+        },
       },
     }),
+
+  // Mintlify-inspired stylesheets
+  stylesheets: [
+    {
+      href: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap',
+      type: 'text/css',
+    },
+    'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css',
+  ],
 };
 
 export default config;

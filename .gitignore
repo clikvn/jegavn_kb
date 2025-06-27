@@ -45,4 +45,8 @@ coverage/
 
 # Temporary folders
 tmp/
-temp/ 
+temp/
+
+# Google Cloud Service Account Keys
+*.json
+jega-chatbot-service-key.json 

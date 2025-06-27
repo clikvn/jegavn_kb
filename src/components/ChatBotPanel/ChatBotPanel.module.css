@@ -1,0 +1,468 @@
+/* Backdrop overlay */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1001;
+  backdrop-filter: blur(2px);
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.panel {
+  position: fixed;
+  top: 0;
+  right: -420px;
+  width: 400px;
+  height: 100vh;
+  background: #fff;
+  box-shadow: -2px 0 16px rgba(0,0,0,0.08);
+  z-index: 9999;
+  transition: right 0.3s cubic-bezier(.4,0,.2,1);
+  display: flex;
+  flex-direction: column;
+}
+.panel.open {
+  right: 0;
+}
+.close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #009568;
+}
+
+/* Apply the new design system variables to the panel */
+.chatBotPanel {
+  /* Design System Variables from User - OKLCH */
+  --background: oklch(1 0 0); /* White */
+  --foreground: oklch(0.231 0.004 159.2); /* Dark Gray/Black text */
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.231 0.004 159.2);
+  --primary: oklch(0.592 0.164 163.3); /* A shade of teal/green */
+  --primary-foreground: oklch(1 0 0); /* White text on primary */
+  --secondary: oklch(0.951 0.004 165); /* Very light gray */
+  --secondary-foreground: oklch(0.231 0.004 159.2);
+  --muted: oklch(0.951 0.004 165); /* Very light gray for hovers etc. */
+  --muted-foreground: oklch(0.481 0.003 161.5); /* Medium Gray text */
+  --accent: oklch(0.792 0.16 163.4);
+  --accent-foreground: oklch(0.231 0.004 159.2);
+  --font-sans: 'Inter', 'Inter Fallback', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --radius: 0.5rem; /* 8px, closer to Tailwind default md */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05); /* Tailwind SM shadow */
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); /* Tailwind XL shadow */
+
+  /* Variables from Inspection (Tailwind-like grays) */
+  --gray-50-rgb: 243 247 246;
+  --gray-100-rgb: 238 242 241;
+  --gray-200-rgb: 222 226 226;
+  --gray-300-rgb: 206 210 209;
+  --gray-400-rgb: 158 163 162;
+  --gray-500-rgb: 112 116 115;
+  --gray-600-rgb: 80 84 83;
+  --gray-700-rgb: 62 67 66;
+  --gray-800-rgb: 37 41 40;
+  --gray-900-rgb: 23 27 26;
+
+  --border-color-rgb: var(--gray-200-rgb);
+  --border: rgb(var(--border-color-rgb));
+
+  /* Panel Styling */
+  position: fixed;
+  top: 0;
+  right: -427px; 
+  width: 427px;
+  height: 100%;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  box-shadow: var(--shadow-xl);
+  display: flex;
+  flex-direction: column;
+  z-index: 1002;
+  transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border-left: 1px solid var(--border);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.chatBotPanel.open {
+  right: 0;
+}
+
+/* Wrapper for the content passed as children, which will be the ChatBot UI */
+.panelContentWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+}
+
+.panelHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem !important;
+  min-height: 56px !important;
+  height: 56px !important;
+  background-color: #FFFFFF !important;
+  border-bottom: none !important;
+  flex-shrink: 0;
+  border-radius: 0 !important;
+}
+
+.panelTitleContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* 8px */
+  height: 100%;
+}
+
+.panelTitleSparkle {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  display: block;
+  align-self: center;
+}
+
+.panelTitle {
+  font-family: inter-variable, sans-serif !important;
+  font-size: 16px !important;
+  line-height: 24px !important;
+  font-weight: 600 !important;
+  letter-spacing: normal !important;
+  color: var(--primary) !important;
+  margin: 0;
+  padding: 0 !important;
+  background: none;
+  border: none !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+  align-items: center;
+  display: flex;
+}
+
+.panelHeaderActions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* 8px */
+}
+
+.actionButton {
+  background: none;
+  border: none;
+  color: rgb(var(--gray-400-rgb)); /* Muted icon color (gray-400) */
+  cursor: pointer;
+  padding: 0.375rem; /* 6px */
+  border-radius: var(--radius);
+  transition: background-color 0.2s ease, color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  min-height: 32px;
+}
+
+.actionButton:hover {
+  background-color: rgb(var(--gray-100-rgb)); /* Lighter hover (gray-100) */
+  color: rgb(var(--gray-500-rgb)); /* Darker icon on hover (gray-500) */
+}
+
+.actionButton:active {
+  transform: scale(0.95);
+}
+
+.actionButton:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Styling for ChatBot.js elements when inside the panel */
+/* This will target classes from styles.module.css of ChatBot component */
+
+/* Hide the original ChatBot header entirely when in panel mode */
+/* Changed from direct child (>) to descendant selector (space) for robustness */
+.panelContentWrapper :global(.chatHeader) {
+  display: none !important;
+}
+
+.panelContentWrapper > :global(.chatMessages) {
+  background-color: white !important;
+  padding: 1rem !important;
+  overflow-y: auto !important;
+  flex: 1 1 0% !important;
+  position: relative !important;
+  gap: 14px !important;
+  /* Ensure body matches header color */
+}
+
+.panelContentWrapper :global(.messageBubble) {
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow-sm) !important; 
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.4;
+  padding: 0.625rem 0.875rem; /* 10px 14px */
+}
+
+.panelContentWrapper :global(.botMessage) :global(.messageBubble) {
+  background-color: var(--card) !important; /* Typically white or very light gray */
+  color: var(--card-foreground) !important;
+  border: none !important;
+  max-width: 100% !important;
+  font-size: 14px !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+.panelContentWrapper :global(.botMessage) :global(.messageBubble) p {
+  color: var(--card-foreground) !important;
+}
+
+.panelContentWrapper :global(.userMessage) :global(.messageBubble) {
+  /* User messages usually have a brand color, using OKLCH primary for this */
+  background: var(--primary) !important; 
+  color: var(--primary-foreground) !important;
+  border: 1px solid var(--primary) !important;
+}
+.panelContentWrapper :global(.userMessage) :global(.messageBubble) p {
+  color: var(--primary-foreground) !important;
+}
+
+.panelContentWrapper :global(.sourcesSection) {
+  border-top: 1px solid var(--border) !important;
+  margin-top: 10px !important;
+  padding-top: 10px !important;
+}
+.panelContentWrapper :global(.sourcesHeader) {
+  color: var(--primary) !important;
+  font-size: 12px !important;
+}
+.panelContentWrapper :global(.sourcesList) {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.panelContentWrapper :global(.sourceLink) {
+  background-color: transparent !important;
+  border: none !important;
+  color: var(--primary) !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  font-size: 12px !important;
+  font-weight: normal !important;
+}
+.panelContentWrapper :global(.sourceLink:hover) {
+  text-decoration: underline !important;
+}
+
+/* Override any inline styles on source links in panel */
+.panelContentWrapper :global(.sourceLink[style]) {
+  color: var(--primary) !important;
+  font-size: 12px !important;
+  font-weight: normal !important;
+  text-decoration: none !important;
+  background: transparent !important;
+  border: none !important;
+}
+.panelContentWrapper :global(.sourceLink[style]:hover) {
+  text-decoration: underline !important;
+}
+
+/* Target any anchor tags within bot messages in panel */
+.panelContentWrapper :global(.botMessage) :global(.messageBubble) a {
+  color: var(--primary) !important;
+  font-size: 12px !important;
+  font-weight: normal !important;
+  text-decoration: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  border: none !important;
+  display: inline !important;
+  align-items: normal !important;
+  gap: 0 !important;
+  transition: none !important;
+}
+
+.panelContentWrapper :global(.botMessage) :global(.messageBubble) a:hover {
+  background: transparent !important;
+  color: var(--primary) !important;
+  border: none !important;
+  transform: none !important;
+  box-shadow: none !important;
+  text-decoration: underline !important;
+}
+
+/* Chat Input Area Styling */
+.panelContentWrapper :global(.chatInput) {
+  background-color: var(--background) !important;
+  border-top: 1px solid var(--border) !important;
+  padding: 0.75rem 1rem; /* Equivalent to pb-3 (12px), px-4 (16px) */
+  margin-top: auto; /* Push to bottom */
+}
+
+.panelContentWrapper :global(.inputContainer) {
+  background-color: var(--background) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+  transition: border-color 0.2s;
+}
+.panelContentWrapper :global(.inputContainer:focus-within) {
+  border-color: var(--primary) !important;
+}
+
+.panelContentWrapper :global(.messageInput) {
+  background-color: var(--background) !important;
+  color: var(--foreground) !important;
+  font-size: 0.875rem !important;
+  flex: 1;
+  border: none !important;
+  outline: none !important;
+  padding: 0.5rem 0.25rem !important;
+  line-height: 1.5;
+}
+
+.panelContentWrapper :global(.messageInput)::placeholder {
+  color: rgb(var(--gray-400-rgb)) !important; /* Placeholder text color (gray-400) */
+}
+
+.panelContentWrapper :global(.sendButton) {
+  background: var(--primary) !important;
+  color: var(--primary-foreground) !important;
+  border-radius: 50% !important;
+  width: 32px !important;
+  height: 32px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  margin-left: 0.75rem;
+  transition: background-color 0.2s ease;
+}
+
+.panelContentWrapper :global(.sendButton:hover:not(:disabled)) {
+  background: var(--primary) !important;
+  filter: brightness(1.1);
+}
+
+/* Error banner styling in panel */
+.panelContentWrapper :global(.errorBanner) {
+  margin: 0.5rem 1rem !important;
+  border-radius: var(--radius) !important;
+  font-size: 0.875rem !important;
+}
+
+/* Scrollbar Styling */
+.panelContentWrapper :global(.chatMessages)::-webkit-scrollbar {
+  width: 6px;
+}
+.panelContentWrapper :global(.chatMessages)::-webkit-scrollbar-track {
+  background: transparent;
+}
+.panelContentWrapper :global(.chatMessages)::-webkit-scrollbar-thumb {
+  background: rgb(var(--gray-300-rgb)); /* Subtle thumb (gray-300) */
+  border-radius: 3px;
+}
+.panelContentWrapper :global(.chatMessages)::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--gray-400-rgb)); /* Darker thumb on hover (gray-400) */
+}
+
+/* Responsive design for panel */
+@media (max-width: 768px) {
+  .chatBotPanel {
+    width: 427px;
+    right: -427px;
+  }
+  
+  .panelContentWrapper > :global(.chatMessages) {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+  
+  .panelContentWrapper :global(.chatInput) {
+    padding: 0.5rem 0.75rem !important;
+  }
+  
+  .panelHeader {
+    padding: 0.5rem 0.75rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .chatBotPanel {
+    width: 427px;
+    right: -427px;
+  }
+  
+  .panelTitle {
+    font-size: 0.875rem !important;
+  }
+  
+  .panelTitleSparkle {
+    width: 18px !important;
+    height: 18px !important;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .chatBotPanel,
+  .backdrop {
+    transition: none;
+  }
+  
+  .backdrop {
+    animation: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .chatBotPanel {
+    border-left-width: 2px;
+  }
+  
+  .panelHeader {
+    border-bottom-width: 2px;
+  }
+  
+  .actionButton {
+    border: 1px solid transparent;
+  }
+  
+  .actionButton:hover {
+    border-color: var(--foreground);
+  }
+}
+
+.panelContentWrapper :global(.messageText) {
+  line-height: 1.8 !important;
+}
+
+.panelContentWrapper :global(.userMessage) :global(.messageText) {
+  font-family: inter-variable, sans-serif !important;
+  font-size: 16px !important;
+  line-height: 1.8 !important;
+  font-weight: 400 !important;
+  letter-spacing: normal !important;
+  color: #000000 !important;
+} 

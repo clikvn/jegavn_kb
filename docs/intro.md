@@ -1,29 +1,21 @@
 ---
-sidebar_position: 1
+slug: /intro
+sidebar_position: -1
 ---
 
-# Jega Knowledge Base
+# Chào mừng đến với JEGA Knowledge Base
 
-Welcome to the comprehensive knowledge base for Jega and AiHouse software.
+JEGA Knowledge Base là nguồn tài liệu toàn diện cho phần mềm AiHouse, cung cấp hướng dẫn chi tiết và hỗ trợ cho người dùng.
 
-## Getting Started
+## Tính năng chính
 
-This knowledge base contains detailed documentation, tutorials, and guides for using Jega and AiHouse design software effectively.
+- **Hướng dẫn chi tiết**: Các bài viết hướng dẫn từng bước cho mọi tính năng
+- **AI Chatbot**: Trợ lý AI thông minh để trả lời câu hỏi nhanh chóng <i class="fa-solid fa-wand-magic-sparkles chat-icon" title="Mở JEGA Assistant"></i>
+- **Tài liệu đầy đủ**: Bao phủ tất cả các module và tính năng của AiHouse
+- **Cập nhật thường xuyên**: Nội dung được cập nhật theo phiên bản mới nhất
 
-### What you'll find here
+## Bắt đầu sử dụng
 
-- **Account Settings**: Manage your account, permissions, and project settings
-- **Construction Design**: Learn about ceiling, wall, and tiling design
-- **Design Materials**: Explore 3D models, textures, and material management
-- **Floor Plan**: Master floor plan creation and wall drawing
-- **Furnishing Customization**: Customize furniture, kitchen cabinets, and more
-- **Rendering**: Create beautiful renders and panoramas
-- **And much more...**
+Chọn chủ đề bạn quan tâm từ menu bên trái hoặc sử dụng chatbot AI để tìm kiếm thông tin nhanh chóng <i class="fa-solid fa-wand-magic-sparkles chat-icon" title="Mở JEGA Assistant"></i>.
 
-## Quick Navigation
-
-Use the sidebar to navigate through different sections of the documentation. Each section contains detailed guides, tutorials, and frequently asked questions.
-
-## Need Help?
-
-If you can't find what you're looking for, check the Q&A sections in each category or contact our support team.
+--- 
