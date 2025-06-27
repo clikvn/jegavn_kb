@@ -17,12 +17,13 @@ import styles from './styles.module.css';
 
 // LocalStorage utility functions
 const STORAGE_KEY = 'jega-chat-history';
-const MAX_MESSAGES = 100; // Limit to prevent storage bloat
+const DEFAULT_USER_HISTORY = 100; // Default limit to prevent storage bloat
+const DEFAULT_CONVERSATION_MEMORY = 20; // Default limit messages sent to Vertex AI
 
 const saveMessagesToStorage = (messages) => {
   try {
     if (typeof window === 'undefined') return; // SSR check
-    const messagesToSave = messages.slice(-MAX_MESSAGES); // Keep only last MAX_MESSAGES
+    const messagesToSave = messages.slice(-DEFAULT_USER_HISTORY); // Keep only last DEFAULT_USER_HISTORY
     localStorage.setItem(STORAGE_KEY, JSON.stringify({
       messages: messagesToSave,
       lastUpdated: new Date().toISOString()
@@ -65,6 +66,23 @@ const clearMessagesFromStorage = () => {
 
 const SITE_BASE_URL = 'https://jegavn-kb.vercel.app'; // Change this if your domain changes
 
+/**
+ * Limit chat history to conversation memory for Vertex AI
+ * @param {Array} messages - Full message history
+ * @param {number} conversationMemory - Maximum messages to send to AI
+ * @returns {Array} Limited message history for AI
+ */
+const limitConversationMemory = (messages, conversationMemory = DEFAULT_CONVERSATION_MEMORY) => {
+  if (!messages || messages.length <= conversationMemory) {
+    return messages;
+  }
+  
+  // Keep the most recent conversationMemory messages
+  const limitedMessages = messages.slice(-conversationMemory);
+  console.log(`📝 Limited conversation memory from ${messages.length} to ${limitedMessages.length} messages for Vertex AI`);
+  return limitedMessages;
+};
+
 const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) => {
   // State management
   const [messages, setMessages] = useState(() => {
@@ -76,7 +94,7 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
     return [
     {
       id: 1,
-      text: '👋 Xin chào! Tôi là JEGA Assistant, trợ lý AI chuyên hỗ trợ thiết kế nội thất với phần mềm Jega/AiHouse. Tôi được trang bị Gemini 2.5 Pro và Vertex AI Search để cung cấp thông tin chính xác từ cơ sở tri thức JEGA. Hãy hỏi tôi về cách sử dụng phần mềm, hướng dẫn thiết kế, hoặc khắc phục sự cố!',
+      text: 'Chào bạn, tôi có thể giúp gì cho bạn hôm nay?',
       sender: 'bot',
       timestamp: new Date(),
       model: 'system',
@@ -87,6 +105,10 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [chatConfig, setChatConfig] = useState({
+    conversationMemory: DEFAULT_CONVERSATION_MEMORY,
+    userHistory: DEFAULT_USER_HISTORY
+  });
   
   // Refs
   const messagesEndRef = useRef(null);
@@ -96,6 +118,34 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
   useImperativeHandle(ref, () => ({
     clearChat: handleClearChat
   }), []);
+
+  // Load chat configuration from backend
+  useEffect(() => {
+    const loadChatConfig = async () => {
+      try {
+        const isDevelopment = process.env.NODE_ENV === 'development' || 
+                             window.location.hostname === 'localhost' ||
+                             window.location.hostname === '127.0.0.1';
+        const apiEndpoint = isDevelopment ? 'http://localhost:3001/api/config' : '/api/config';
+        
+        const response = await fetch(apiEndpoint);
+        if (response.ok) {
+          const data = await response.json();
+          if (data.config && data.config.chatSettings) {
+            setChatConfig({
+              conversationMemory: data.config.chatSettings.conversationMemory || DEFAULT_CONVERSATION_MEMORY,
+              userHistory: data.config.chatSettings.userHistory || DEFAULT_USER_HISTORY
+            });
+            console.log('🔧 Loaded chat configuration:', data.config.chatSettings);
+          }
+        }
+      } catch (error) {
+        console.warn('⚠️ Failed to load chat configuration, using defaults:', error);
+      }
+    };
+
+    loadChatConfig();
+  }, []);
 
   // Auto-scroll to bottom when new messages arrive
   const scrollToBottom = useCallback(() => {
@@ -109,9 +159,22 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
   // Save messages to localStorage whenever they change
   useEffect(() => {
     if (messages.length > 0) {
-      saveMessagesToStorage(messages);
+      // Use dynamic userHistory from config
+      const maxHistory = chatConfig.userHistory || DEFAULT_USER_HISTORY;
+      const messagesToSave = messages.slice(-maxHistory);
+      
+      try {
+        if (typeof window === 'undefined') return; // SSR check
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({
+          messages: messagesToSave,
+          lastUpdated: new Date().toISOString()
+        }));
+        console.log('💾 Saved', messagesToSave.length, 'messages to localStorage (max:', maxHistory, ')');
+      } catch (error) {
+        console.warn('⚠️ Failed to save messages to localStorage:', error);
+      }
     }
-  }, [messages]);
+  }, [messages, chatConfig.userHistory]);
 
   // Focus input when panel opens
   useEffect(() => {
@@ -137,9 +200,13 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
       const isDevelopment = process.env.NODE_ENV === 'development' || 
                            window.location.hostname === 'localhost' ||
                            window.location.hostname === '127.0.0.1';
-      const apiEndpoint = isDevelopment ? 'http://localhost:3002/api/vertex-ai' : '/api/vertex-ai';
+      const apiEndpoint = isDevelopment ? 'http://localhost:3001/api/vertex-ai' : '/api/vertex-ai';
       
       console.log('🌐 Calling API endpoint:', apiEndpoint);
+      
+      // Limit chat history to conversation memory for Vertex AI using config
+      const conversationMemory = chatConfig.conversationMemory || DEFAULT_CONVERSATION_MEMORY;
+      const limitedHistory = limitConversationMemory(chatHistory, conversationMemory);
       
       const response = await fetch(apiEndpoint, {
         method: 'POST',
@@ -148,7 +215,7 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
         },
         body: JSON.stringify({
           message: userMessage,
-          chatHistory: chatHistory
+          chatHistory: limitedHistory
         })
       });
 
@@ -177,7 +244,7 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
         sources: []
       };
     }
-  }, []);
+  }, [chatConfig.conversationMemory]);
 
   /**
    * Handle sending a new message
@@ -274,7 +341,7 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
     setMessages([
       {
         id: Date.now(),
-        text: '👋 Xin chào! Tôi là JEGA Assistant, trợ lý AI chuyên hỗ trợ thiết kế nội thất với phần mềm Jega/AiHouse. Tôi được trang bị Gemini 2.5 Pro và Vertex AI Search để cung cấp thông tin chính xác từ cơ sở tri thức JEGA. Hãy hỏi tôi về cách sử dụng phần mềm, hướng dẫn thiết kế, hoặc khắc phục sự cố!',
+        text: 'Chào bạn, tôi có thể giúp gì cho bạn hôm nay?',
         sender: 'bot',
         timestamp: new Date(),
         model: 'system',

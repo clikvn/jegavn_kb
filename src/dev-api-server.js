@@ -4,6 +4,8 @@ const path = require('path');
 
 // Import the Vertex AI function
 const vertexAIHandler = require('../api/vertex-ai.js');
+// Import the Config handler
+const configHandler = require('../api/config.js');
 
 /**
  * Development API Server for JEGA Knowledge Base
@@ -149,6 +151,53 @@ app.post('/api/vertex-ai', async (req, res) => {
   }
 });
 
+// Config API endpoint
+app.use('/api/config', async (req, res) => {
+  try {
+    console.log('🔧 Processing Config request...');
+    
+    // Create a mock Vercel request/response object
+    const mockReq = {
+      method: req.method,
+      body: req.body,
+      headers: req.headers
+    };
+
+    const mockRes = {
+      status: (code) => ({
+        json: (data) => {
+          console.log(`✅ Config response: ${code}`);
+          res.status(code).json(data);
+        },
+        end: () => {
+          console.log(`✅ Config response: ${code}`);
+          res.status(code).end();
+        }
+      }),
+      setHeader: (name, value) => {
+        console.log(`📋 Setting header: ${name} = ${value}`);
+        res.setHeader(name, value);
+      },
+      json: (data) => {
+        console.log('✅ Config response: 200');
+        res.json(data);
+      }
+    };
+
+    // Call the Config handler
+    await configHandler(mockReq, mockRes);
+    
+  } catch (error) {
+    console.error('❌ Config API Error:', error);
+    
+    res.status(500).json({
+      error: 'Internal server error',
+      message: error.message,
+      timestamp: new Date().toISOString()
+    });
+  }
+});
+
 // 404 handler for undefined routes
 app.use('/api/*', (req, res) => {
   console.warn(`⚠️ 404 - Route not found: ${req.method} ${req.originalUrl}`);
@@ -157,7 +206,9 @@ app.use('/api/*', (req, res) => {
     message: `The requested endpoint ${req.originalUrl} does not exist`,
     availableEndpoints: [
       'GET /api/health',
-      'POST /api/vertex-ai'
+      'POST /api/vertex-ai',
+      'GET /api/config',
+      'POST /api/config'
     ]
   });
 });

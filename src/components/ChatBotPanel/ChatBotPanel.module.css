@@ -23,7 +23,7 @@
 .panel {
   position: fixed;
   top: 0;
-  right: -420px;
+  right: -400px;
   width: 400px;
   height: 100vh;
   background: #fff;
@@ -85,8 +85,8 @@
   /* Panel Styling */
   position: fixed;
   top: 0;
-  right: -427px; 
-  width: 427px;
+  right: -400px; 
+  width: 400px;
   height: 100%;
   background-color: var(--background);
   color: var(--foreground);

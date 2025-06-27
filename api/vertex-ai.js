@@ -16,94 +16,100 @@ const PROJECT_ID = 'gen-lang-client-0221178501';
 const LOCATION_ID = 'global';
 const MODEL_ID = 'gemini-2.5-pro';
 
-// System instruction for JEGA Assistant
-const SYSTEM_INSTRUCTION = `<identity>
-You are JEGA Assistant, a personal AI assistant for Vietnamese-speaking interior designers using Jega/AiHouse software. Your persona is that of a friendly, patient, and collaborative expert. You specialize in providing detailed, step-by-step guidance for beginner users. You use LLM model with thinking capability and Vertex AI Search grounding to provide accurate, contextual help.
-</identity>
+// Bubble API configuration
+const BUBBLE_API_URL = 'https://sondn-31149.bubbleapps.io/api/1.1/obj/SystemPrompt';
+const BUBBLE_API_KEY = 'd239ed5060b7336da248b35f16116a2b';
 
-<core_capabilities>
-1. Understand user context and intent through thinking.
-2. Formulate precise search queries based on a defined schema.
-3. Process knowledge packets from Vertex AI Search.
-4. Synthesize comprehensive answers in Vietnamese.
-</core_capabilities>
+/**
+ * Fetch configuration from Bubble database
+ * @returns {Promise<Object>} Configuration object with systemPrompt and modelParameters
+ */
+async function fetchBubbleConfig() {
+  try {
+    console.log('🔧 [BUBBLE] Starting configuration fetch from Bubble database...');
+    console.log('📍 [BUBBLE] API URL:', BUBBLE_API_URL);
+    console.log('⏰ [BUBBLE] Fetch timestamp:', new Date().toISOString());
+    
+    const response = await fetch(BUBBLE_API_URL, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${BUBBLE_API_KEY}`,
+        'Content-Type': 'application/json',
+        'User-Agent': 'JEGA-Knowledge-Base/1.0'
+      }
+    });
 
-<rules_of_engagement>
-1. **Greeting Protocol:** On every turn, you MUST check the chat history. If the current user message is the very first one in the history (i.e., there are no previous turns), you MAY use a brief greeting like "Chào bạn,". If there is ANY previous turn in the history, you MUST respond directly without a greeting. This rule is absolute.
-2. **Follow-up Protocol:** When a user asks a follow-up question, provide a concise, direct answer that focuses only on the new information requested. Do not repeat information from the previous turn.
-3. **Closing Protocol:** Do not use conversational closings like "Chúc bạn thành công!" or "Hy vọng điều này sẽ giúp ích!". End your response directly after providing the main answer.
-4. **Tone:** Maintain a friendly, professional, and collaborative tone at all times.
-</rules_of_engagement>
+    console.log('📡 [BUBBLE] API Response Status:', response.status);
+    console.log('📡 [BUBBLE] API Response Headers:', Object.fromEntries(response.headers.entries()));
 
-<search_logic>
-<metadata_schema>
-You MUST use the following schema to construct your search filter expressions. Only use the values provided.
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('❌ [BUBBLE] API Error:', response.status, errorText);
+      throw new Error(`Bubble API returned ${response.status}: ${errorText}`);
+    }
 
-### Universal Metadata
-- **content_type**: \`tutorial\`, \`feature_guide\`, \`troubleshooting\`
-- **workflow_stage**: \`planning\`, \`modeling\`, \`visualization\`, \`finalization\`
-- **lang**: \`vi\`, \`en\` (inferred from user query language)
+    const data = await response.json();
+    console.log('📦 [BUBBLE] Raw API Response:', JSON.stringify(data, null, 2));
+    console.log('✅ [BUBBLE] Configuration fetched successfully from Bubble');
+    
+    // Transform Bubble data to our configuration format
+    const config = transformBubbleData(data);
+    
+    console.log('🔧 [BUBBLE] Transformed config:', {
+      hasSystemPrompt: !!config.systemPrompt,
+      systemPromptLength: config.systemPrompt?.length || 0,
+      temperature: config.modelParameters.temperature,
+      topP: config.modelParameters.topP,
+      maxOutputTokens: config.modelParameters.maxOutputTokens
+    });
+    
+    return config;
 
-### Content-Specific Metadata
-If **content_type** is "tutorial":
-- **task_objective**: \`create_design\`, \`modify_design\`, \`export_files\`, \`import_files\`, \`generate_renders\`, \`manufacturing_prep\`, \`client_presentation\`
-
-If **content_type** is "feature_guide":
-- **feature_name**: (specific Jega features like "AI Lighting", "Render Settings")
-
-If **content_type** is "troubleshooting":
-- **problem_symptom**: \`error_message\`, \`missing_data\`, \`slow_performance\`, \`blurry_render\`, \`crash\`
-</metadata_schema>
-
-<query_construction_workflow>
-1. **Analyze Intent:** Understand the user's core need (e.g., how to do something, fix something, understand something).
-2. **Determine Content Type:** Based on the intent, select the most likely \`content_type\`.
-  - If the user asks "how to...", it's likely a \`tutorial\`.
-  - If the user mentions a specific feature name, it's likely a \`feature_guide\`.
-  - If the user mentions "error", "fix", "problem", "doesn't work", it's a \`troubleshooting\` guide.
-3. **Select Filters:** Choose the most relevant metadata filters from the schema based on the user's query.
-4. **Formulate Semantic Query:** Create a concise, natural language description in Vietnamese
-5. **Build Filter Expression:** Combine the selected filters with \`AND\`.
-</query_construction_workflow>
-
-<search_query_construction>
-Build queries with two components:
-1. semantic_query: Natural language description in Vietnamese
-2. filter_expression: Metadata filters joined by AND
-Example:
-User: "làm sao tôi có thể thay đổi giá mặc định"
-Query: 
-{
- "search_keywords": "thay đổi giá mặc định báo giá",
- "filter_expression": "lang: ANY('vi') AND task_objective: ANY('modify_design')"
+  } catch (error) {
+    console.error('❌ [BUBBLE] Failed to fetch configuration from Bubble:', error);
+    throw error;
+  }
 }
-</search_query_construction>
-</search_logic>
 
-<synthesis_guidelines>
-When creating answers:
-1. Base your entire response on the 'guide' content from the provided knowledge packets.
-2. Maintain the instructional structure (numbered steps, methods).
-3. Use bold for emphasis on key actions.
-4. Include all relevant details for the user's context, as they are likely beginners.
-</synthesis_guidelines>
-
-<error_protocols>
-<ambiguity_protocol>
-When query is ambiguous:
-- List possible interpretations in Vietnamese.
-- Ask specific clarifying questions.
-- Suggest example queries.
-</ambiguity_protocol>
-
-<no_results_protocol>
-When no relevant results found:
-- Acknowledge the limitation.
-- Suggest alternative search terms.
-- Offer to help reformulate the query.
-- Check if feature name might be different.
-</no_results_protocol>
-</error_protocols>`;
+/**
+ * Transform Bubble data to our configuration format
+ * @param {Object} bubbleData - Raw data from Bubble API
+ * @returns {Object} Transformed configuration object
+ */
+function transformBubbleData(bubbleData) {
+  try {
+    if (bubbleData && bubbleData.response && bubbleData.response.results && bubbleData.response.results.length > 0) {
+      const bubbleConfig = bubbleData.response.results[0];
+      // Extract model parameters
+      const modelParameters = {
+        temperature: bubbleConfig.tempature ? parseFloat(bubbleConfig.tempature) : undefined,
+        topP: bubbleConfig['top-p'] ? parseFloat(bubbleConfig['top-p']) : undefined,
+        maxOutputTokens: bubbleConfig.max_output_tokens ? parseInt(bubbleConfig.max_output_tokens) : undefined
+      };
+      // Extract and parse the system prompt if available
+      let systemPrompt = undefined;
+      if (bubbleConfig.prompt) {
+        systemPrompt = bubbleConfig.prompt
+          .replace(/&lt;/g, '<')
+          .replace(/&gt;/g, '>')
+          .replace(/&amp;/g, '&')
+          .replace(/&quot;/g, '"')
+          .replace(/&#39;/g, "'");
+      }
+      if (!systemPrompt || !modelParameters.temperature || !modelParameters.topP || !modelParameters.maxOutputTokens) {
+        throw new Error('Missing required config fields from Bubble');
+      }
+      return {
+        systemPrompt,
+        modelParameters
+      };
+    } else {
+      throw new Error('No config found in Bubble response');
+    }
+  } catch (error) {
+    throw new Error('Failed to parse Bubble config: ' + error.message);
+  }
+}
 
 /**
  * Validate request body
@@ -194,7 +200,11 @@ function formatChatHistory(chatHistory) {
   const contents = [];
   
   if (chatHistory && chatHistory.length > 1) {
-    chatHistory.slice(1).forEach((msg) => {
+    // Skip the first message (usually welcome message) and process the rest
+    const messagesToProcess = chatHistory.slice(1);
+    console.log(`📝 [CHAT] Processing ${messagesToProcess.length} messages for Vertex AI`);
+    
+    messagesToProcess.forEach((msg, index) => {
       if (msg.sender === 'user' || msg.sender === 'bot') {
         contents.push({
           role: msg.sender === 'user' ? 'user' : 'model',
@@ -202,6 +212,10 @@ function formatChatHistory(chatHistory) {
         });
       }
     });
+    
+    console.log(`✅ [CHAT] Formatted ${contents.length} messages for Vertex AI`);
+  } else {
+    console.log('📝 [CHAT] No chat history to process');
   }
   
   return contents;
@@ -345,6 +359,36 @@ module.exports = async (req, res) => {
       historyLength: chatHistory.length 
     });
 
+    // Log if history was limited by frontend
+    if (chatHistory.length > 20) {
+      console.log('⚠️ [CHAT] Frontend sent more than 20 messages, history may have been limited');
+    }
+
+    // Fetch configuration from Bubble database
+    let config;
+    try {
+      console.log('🔄 [CHAT] Fetching Bubble config for this chat request...');
+      config = await fetchBubbleConfig();
+      console.log('✅ [CHAT] Successfully using configuration from Bubble database');
+      console.log('📋 [CHAT] Config details:', {
+        temperature: config.modelParameters.temperature,
+        topP: config.modelParameters.topP,
+        maxOutputTokens: config.modelParameters.maxOutputTokens,
+        systemPromptLength: config.systemPrompt?.length || 0
+      });
+    } catch (bubbleError) {
+      console.error('❌ [CHAT] Failed to fetch configuration from Bubble:', bubbleError);
+      res.status(503).json({
+        error: 'Configuration service unavailable',
+        message: `Không thể tải cấu hình chatbot từ cơ sở dữ liệu. Lỗi: ${bubbleError.message}. Vui lòng thử lại sau hoặc liên hệ quản trị viên.`,
+        details: {
+          bubbleError: bubbleError.message,
+          timestamp: new Date().toISOString()
+        }
+      });
+      return;
+    }
+
     // Initialize authentication
     const { auth, error: authError } = await initializeAuth();
     if (authError) {
@@ -375,11 +419,11 @@ module.exports = async (req, res) => {
       parts: [{ text: message }]
     });
 
-    // Prepare request body for Vertex AI
+    // Prepare request body for Vertex AI using dynamic configuration
     const requestBody = {
       contents: contents,
       systemInstruction: {
-        parts: [{ text: SYSTEM_INSTRUCTION }]
+        parts: [{ text: config.systemPrompt }]
       },
       tools: [{
         retrieval: {
@@ -389,9 +433,9 @@ module.exports = async (req, res) => {
         }
       }],
       generationConfig: {
-        temperature: 0.5,
-        maxOutputTokens: 65535,
-        topP: 0.9
+        temperature: config.modelParameters.temperature,
+        maxOutputTokens: config.modelParameters.maxOutputTokens,
+        topP: config.modelParameters.topP
       }
     };
 
@@ -401,10 +445,20 @@ module.exports = async (req, res) => {
       hasSystemInstruction: !!requestBody.systemInstruction,
       hasTools: !!requestBody.tools,
       toolsLength: requestBody.tools?.length || 0,
-      hasGenerationConfig: !!requestBody.generationConfig
+      hasGenerationConfig: !!requestBody.generationConfig,
+      configSource: 'Bubble Database',
+      temperature: config.modelParameters.temperature,
+      maxOutputTokens: config.modelParameters.maxOutputTokens,
+      topP: config.modelParameters.topP
     });
 
-    console.log('🚀 Sending request to Vertex AI...');
+    console.log('🚀 [VERTEX] Sending request to Vertex AI with Bubble config...');
+    console.log('🔧 [VERTEX] Generation config from Bubble:', {
+      temperature: requestBody.generationConfig.temperature,
+      maxOutputTokens: requestBody.generationConfig.maxOutputTokens,
+      topP: requestBody.generationConfig.topP
+    });
+    console.log('📝 [VERTEX] System instruction length from Bubble:', requestBody.systemInstruction.parts[0].text.length);
 
     // Call Vertex AI API
     const vertexResponse = await fetch(
