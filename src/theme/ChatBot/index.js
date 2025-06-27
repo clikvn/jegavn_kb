@@ -124,12 +124,15 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
   }, [isPanelVersion]);
 
   /**
-   * Call Vertex AI API with user message and chat history
+   * Call Vertex AI API with streaming support
    * @param {string} userMessage - The user's input message
    * @param {Array} chatHistory - Previous conversation messages
-   * @returns {Promise<Object>} Response from Vertex AI
+   * @param {Function} onChunk - Callback for each text chunk
+   * @param {Function} onSources - Callback when sources are received
+   * @param {Function} onComplete - Callback when streaming is complete
+   * @param {Function} onError - Callback for errors
    */
-  const callVertexAI = useCallback(async (userMessage, chatHistory) => {
+  const callVertexAIStream = useCallback(async (userMessage, chatHistory, onChunk, onSources, onComplete, onError) => {
     try {
       setError(null);
       
@@ -137,50 +140,87 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
       const isDevelopment = process.env.NODE_ENV === 'development' || 
                            window.location.hostname === 'localhost' ||
                            window.location.hostname === '127.0.0.1';
-      const apiEndpoint = isDevelopment ? 'http://localhost:3002/api/vertex-ai' : '/api/vertex-ai';
+      const apiEndpoint = isDevelopment ? 'http://localhost:3002/api/vertex-ai-stream' : '/api/vertex-ai-stream';
       
-      console.log('🌐 Calling API endpoint:', apiEndpoint);
+      console.log('🌐 Calling streaming API endpoint:', apiEndpoint);
       
-      const response = await fetch(apiEndpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          message: userMessage,
-          chatHistory: chatHistory
-        })
+      // Create EventSource for Server-Sent Events
+      const eventSource = new EventSource(`${apiEndpoint}?data=${encodeURIComponent(JSON.stringify({
+        message: userMessage,
+        chatHistory: chatHistory
+      }))}`);
+
+      let fullResponse = '';
+      let sources = [];
+
+      eventSource.onmessage = (event) => {
+        try {
+          const data = JSON.parse(event.data);
+          
+          switch (data.type) {
+            case 'status':
+              console.log('📡 Status:', data.message);
+              break;
+              
+            case 'chunk':
+              if (data.text) {
+                fullResponse += data.text;
+                onChunk(data.text);
+              }
+              break;
+              
+            case 'sources':
+              if (data.sources) {
+                sources = data.sources;
+                onSources(data.sources);
+              }
+              break;
+              
+            case 'complete':
+              console.log('✅ Streaming complete:', data);
+              eventSource.close();
+              onComplete(fullResponse, sources);
+              break;
+              
+            case 'error':
+              console.error('❌ Streaming error:', data.message);
+              eventSource.close();
+              onError(data.message);
+              break;
+              
+            default:
+              console.log('📡 Unknown event type:', data.type);
+          }
+        } catch (parseError) {
+          console.error('❌ Error parsing SSE data:', parseError);
+        }
+      };
+
+      eventSource.onerror = (error) => {
+        console.error('❌ EventSource error:', error);
+        eventSource.close();
+        onError('Connection error - please try again');
+      };
+
+      // Set a timeout for the connection
+      const timeout = setTimeout(() => {
+        eventSource.close();
+        onError('Request timeout - please try again');
+      }, 60000); // 60 seconds timeout
+
+      // Clean up timeout when streaming completes
+      eventSource.addEventListener('complete', () => {
+        clearTimeout(timeout);
       });
 
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(`HTTP ${response.status}: ${errorData.message || response.statusText}`);
-      }
-
-      const data = await response.json();
-      
-      if (data.response) {
-        return {
-          text: data.response,
-          model: 'gemini-2.5-pro',
-          sources: data.sources || []
-        };
-      } else {
-        throw new Error('No response received from Vertex AI');
-      }
     } catch (error) {
-      console.error('❌ Vertex AI error:', error);
-      setError(error.message);
-      return {
-        text: 'Xin lỗi, hệ thống JEGA Assistant hiện tại không khả dụng. Vui lòng thử lại sau hoặc liên hệ với bộ phận hỗ trợ.',
-        model: 'error',
-        sources: []
-      };
+      console.error('❌ Streaming setup error:', error);
+      onError(error.message);
     }
   }, []);
 
   /**
-   * Handle sending a new message
+   * Handle sending a new message with streaming
    */
   const handleSendMessage = useCallback(async () => {
     if (!inputValue.trim() || isLoading) return;
@@ -200,35 +240,93 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
     
     setMessages(prev => [...prev, newUserMessage]);
     
+    // Create placeholder for bot response
+    const botMessageId = Date.now() + 1;
+    const initialBotMessage = {
+      id: botMessageId,
+      text: '',
+      sender: 'bot',
+      timestamp: new Date(),
+      model: 'gemini-2.5-pro',
+      sources: [],
+      isStreaming: true
+    };
+    
+    setMessages(prev => [...prev, initialBotMessage]);
+    
     try {
-      // Get bot response
-      const botResponse = await callVertexAI(userMessage, [...messages, newUserMessage]);
+      // Start streaming response
+      await callVertexAIStream(
+        userMessage, 
+        [...messages, newUserMessage],
+        
+        // onChunk callback - update text in real-time
+        (chunk) => {
+          setMessages(prev => prev.map(msg => 
+            msg.id === botMessageId 
+              ? { ...msg, text: msg.text + chunk }
+              : msg
+          ));
+        },
+        
+        // onSources callback - update sources when received
+        (sources) => {
+          setMessages(prev => prev.map(msg => 
+            msg.id === botMessageId 
+              ? { ...msg, sources: sources }
+              : msg
+          ));
+        },
+        
+        // onComplete callback - mark streaming as complete
+        (fullResponse, sources) => {
+          setMessages(prev => prev.map(msg => 
+            msg.id === botMessageId 
+              ? { 
+                  ...msg, 
+                  text: fullResponse,
+                  sources: sources,
+                  isStreaming: false 
+                }
+              : msg
+          ));
+          setIsLoading(false);
+        },
+        
+        // onError callback - handle errors
+        (errorMessage) => {
+          setMessages(prev => prev.map(msg => 
+            msg.id === botMessageId 
+              ? { 
+                  ...msg, 
+                  text: 'Xin lỗi, đã có lỗi xảy ra. Vui lòng thử lại sau.',
+                  model: 'error',
+                  sources: [],
+                  isStreaming: false 
+                }
+              : msg
+          ));
+          setError(errorMessage);
+          setIsLoading(false);
+        }
+      );
       
-      const newBotMessage = {
-        id: Date.now() + 1,
-        text: botResponse.text,
-        sender: 'bot',
-        timestamp: new Date(),
-        model: botResponse.model,
-        sources: botResponse.sources
-      };
-      
-      setMessages(prev => [...prev, newBotMessage]);
     } catch (error) {
       console.error('Error sending message:', error);
-      const errorMessage = {
-        id: Date.now() + 1,
-        text: 'Xin lỗi, đã có lỗi xảy ra. Vui lòng thử lại sau.',
-        sender: 'bot',
-        timestamp: new Date(),
-        model: 'error',
-        sources: []
-      };
-      setMessages(prev => [...prev, errorMessage]);
-    } finally {
+      setMessages(prev => prev.map(msg => 
+        msg.id === botMessageId 
+          ? { 
+              ...msg, 
+              text: 'Xin lỗi, đã có lỗi xảy ra. Vui lòng thử lại sau.',
+              model: 'error',
+              sources: [],
+              isStreaming: false 
+            }
+          : msg
+      ));
       setIsLoading(false);
     }
-  }, [inputValue, isLoading, messages, callVertexAI]);
+  }, [inputValue, isLoading, messages, callVertexAIStream]);
 
   /**
    * Handle keyboard events
@@ -336,12 +434,25 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
       {/* Messages area */}
       <div className={styles.chatMessages}>
         {messages.map((message) => (
-          <div key={message.id} className={`${styles.messageWrapper} ${message.sender === 'user' ? styles.userMessage : styles.botMessage}`}>
+          <div key={message.id} className={`${styles.messageWrapper} ${message.sender === 'user' ? styles.userMessage : styles.botMessage} ${message.isStreaming ? styles.messageStreaming : ''}`}>
             <div className={styles.messageBubble}>
               <div 
                 className={styles.messageText} 
                 dangerouslySetInnerHTML={{ __html: formatMessage(message.text) }} 
               />
+              
+              {/* Streaming indicator */}
+              {message.isStreaming && (
+                <div className={styles.streamingIndicator}>
+                  <span>Đang trả lời</span>
+                  <div className={styles.typingDots}>
+                    <div className={styles.typingDot}></div>
+                    <div className={styles.typingDot}></div>
+                    <div className={styles.typingDot}></div>
+                  </div>
+                  <span className={styles.streamingCursor}></span>
+                </div>
+              )}
               
               {/* Sources section */}
               {message.sources && message.sources.length > 0 && !message.text.includes('<a href=') && (
@@ -404,8 +515,8 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
           </div>
         ))}
         
-        {/* Loading indicator */}
-        {isLoading && (
+        {/* Loading indicator - only show if no message is currently streaming */}
+        {isLoading && !messages.some(msg => msg.isStreaming) && (
           <div className={`${styles.messageWrapper} ${styles.botMessage}`}>
             <div className={styles.messageBubble}>
               <div className={styles.typingIndicator}>
