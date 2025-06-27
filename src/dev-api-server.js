@@ -5,9 +5,6 @@ const path = require('path');
 // Import the Vertex AI function
 const vertexAIHandler = require('../api/vertex-ai.js');
 
-// Import the streaming handler
-const vertexAIStreamHandler = require('../api/vertex-ai-stream');
-
 /**
  * Development API Server for JEGA Knowledge Base
  * 
@@ -152,80 +149,6 @@ app.post('/api/vertex-ai', async (req, res) => {
   }
 });
 
-// Vertex AI Streaming API endpoint
-app.post('/api/vertex-ai-stream', async (req, res) => {
-  try {
-    console.log('🤖 Processing Vertex AI streaming request...');
-    
-    // Validate request body
-    if (!req.body || typeof req.body !== 'object') {
-      return res.status(400).json({ 
-        error: 'Invalid request body',
-        message: 'Request body must be a valid JSON object'
-      });
-    }
-
-    // Create a mock Vercel request/response object
-    const mockReq = {
-      method: 'POST',
-      body: req.body,
-      headers: req.headers
-    };
-
-    const mockRes = {
-      status: (code) => ({
-        json: (data) => {
-          console.log(`✅ Vertex AI streaming response: ${code}`);
-          res.status(code).json(data);
-        },
-        end: () => {
-          console.log(`✅ Vertex AI streaming response: ${code}`);
-          res.status(code).end();
-        }
-      }),
-      setHeader: (name, value) => {
-        console.log(`📋 Setting streaming header: ${name} = ${value}`);
-        res.setHeader(name, value);
-      },
-      write: (data) => {
-        console.log('📡 Streaming data:', data.substring(0, 100) + '...');
-        res.write(data);
-      },
-      end: () => {
-        console.log('✅ Streaming complete');
-        res.end();
-      }
-    };
-
-    // Call the streaming Vertex AI handler
-    await vertexAIStreamHandler(mockReq, mockRes);
-    
-  } catch (error) {
-    console.error('❌ Dev API Server Streaming Error:', error);
-    
-    // Determine appropriate error response
-    let statusCode = 500;
-    let errorMessage = 'Internal server error';
-    
-    if (error.message.includes('credentials')) {
-      statusCode = 503;
-      errorMessage = 'Vertex AI service unavailable - credentials not configured';
-    } else if (error.message.includes('network') || error.message.includes('fetch')) {
-      statusCode = 503;
-      errorMessage = 'Vertex AI service temporarily unavailable';
-    } else if (error.message.includes('validation')) {
-      statusCode = 400;
-      errorMessage = error.message;
-    }
-    
-    res.status(statusCode).json({
-      error: errorMessage,
-      message: error.message,
-      timestamp: new Date().toISOString()
-    });
-  }
-});
-
 // 404 handler for undefined routes
 app.use('/api/*', (req, res) => {
   console.warn(`⚠️ 404 - Route not found: ${req.method} ${req.originalUrl}`);
@@ -234,8 +157,7 @@ app.use('/api/*', (req, res) => {
     message: `The requested endpoint ${req.originalUrl} does not exist`,
     availableEndpoints: [
       'GET /api/health',
-      'POST /api/vertex-ai',
-      'POST /api/vertex-ai-stream'
+      'POST /api/vertex-ai'
     ]
   });
 });

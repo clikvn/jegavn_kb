@@ -34,7 +34,6 @@
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
-    "@google/genai": "^1.7.0",
     "@mdx-js/react": "^3.1.0",
     "clsx": "^2.1.1",
     "cors": "^2.8.5",
