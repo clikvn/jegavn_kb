@@ -63,6 +63,8 @@ const clearMessagesFromStorage = () => {
   }
 };
 
+const SITE_BASE_URL = 'https://jegavn-kb.vercel.app'; // Change this if your domain changes
+
 const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) => {
   // State management
   const [messages, setMessages] = useState(() => {
@@ -353,11 +355,20 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
                   </div>
                   <div className={styles.sourcesList}>
                     {message.sources.map((source, index) => {
-                      const isInternal = source.url && source.url.startsWith('/docs/');
+                      let isInternal = false;
+                      let internalPath = source.url;
+                      if (source.url) {
+                        if (source.url.startsWith('/docs/')) {
+                          isInternal = true;
+                        } else if (source.url.startsWith(SITE_BASE_URL + '/docs/')) {
+                          isInternal = true;
+                          internalPath = source.url.replace(SITE_BASE_URL, '');
+                        }
+                      }
                       return isInternal ? (
                         <Link
                           key={index}
-                          to={source.url}
+                          to={internalPath}
                           className={styles.sourceLink}
                           title={source.displayTitle}
                         >
