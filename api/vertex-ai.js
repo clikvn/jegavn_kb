@@ -149,15 +149,17 @@ async function initializeAuth() {
   try {
     let auth;
     
-    // In production, use environment variables for credentials
+    // In production (Vercel), use environment variables for credentials
     if (process.env.GOOGLE_CLOUD_CREDENTIALS) {
+      console.log('🔐 Using environment variable credentials');
       const credentials = JSON.parse(process.env.GOOGLE_CLOUD_CREDENTIALS);
       auth = new GoogleAuth({
         credentials: credentials,
         scopes: ['https://www.googleapis.com/auth/cloud-platform']
       });
     } else {
-      // Fallback: try to use service account file (for development)
+      // Fallback: try to use service account file (for local development only)
+      console.log('🔐 Using service account file (local development)');
       auth = new GoogleAuth({
         keyFilename: './jega-chatbot-service-key.json',
         scopes: ['https://www.googleapis.com/auth/cloud-platform']
@@ -167,10 +169,19 @@ async function initializeAuth() {
     return { auth, error: null };
   } catch (error) {
     console.error('❌ Auth initialization failed:', error);
-    return { 
-      auth: null, 
-      error: 'Google Cloud credentials not configured properly' 
-    };
+    
+    // Provide specific error messages for different scenarios
+    if (process.env.GOOGLE_CLOUD_CREDENTIALS) {
+      return { 
+        auth: null, 
+        error: 'Invalid GOOGLE_CLOUD_CREDENTIALS environment variable. Please check the JSON format.' 
+      };
+    } else {
+      return { 
+        auth: null, 
+        error: 'Google Cloud credentials not found. Please set GOOGLE_CLOUD_CREDENTIALS environment variable or ensure jega-chatbot-service-key.json exists.' 
+      };
+    }
   }
 }
 
