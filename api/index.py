@@ -191,18 +191,18 @@ async def update_bubble_config(config_updates: Dict[str, Any]) -> Dict[str, Any]
     if 'modelParameters' in config_updates:
         params = config_updates['modelParameters']
         if 'temperature' in params:
-            bubble_updates['tempature'] = params['temperature']  # Note: Bubble field name has typo
+            bubble_updates['tempature'] = str(params['temperature'])  # Convert to string for Bubble
         if 'topP' in params:
-            bubble_updates['top-p'] = params['topP']
+            bubble_updates['top-p'] = str(params['topP'])  # Convert to string for Bubble
         if 'maxOutputTokens' in params:
-            bubble_updates['max_output_tokens'] = params['maxOutputTokens']
+            bubble_updates['max_output_tokens'] = str(params['maxOutputTokens'])  # Convert to string for Bubble
     
     if 'chatSettings' in config_updates:
         settings = config_updates['chatSettings']
         if 'conversationMemory' in settings:
-            bubble_updates['conversation_memory'] = settings['conversationMemory']
+            bubble_updates['conversation_memory'] = str(settings['conversationMemory'])  # Convert to string for Bubble
         if 'userHistory' in settings:
-            bubble_updates['user_history'] = settings['userHistory']
+            bubble_updates['user_history'] = str(settings['userHistory'])  # Convert to string for Bubble
     
     logger.info(f"📝 Bubble update payload: {list(bubble_updates.keys())}")
     
