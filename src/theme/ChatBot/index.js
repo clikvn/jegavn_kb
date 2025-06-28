@@ -854,18 +854,7 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
           </div>
         ))}
         
-        {/* Loading indicator - only show when no streaming messages */}
-        {isLoading && !messages.some(msg => msg.isStreaming) && (
-          <div className={`${styles.messageWrapper} ${styles.botMessage}`}>
-            <div className={styles.messageBubble}>
-              <div className={styles.typingIndicator}>
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-            </div>
-          </div>
-        )}
+
         
         <div ref={messagesEndRef} />
       </div>
