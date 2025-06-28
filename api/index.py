@@ -133,6 +133,7 @@ async def fetch_bubble_config() -> Dict[str, Any]:
                 
                 # Extract configuration
                 config = {
+                    'record_id': bubble_config.get('_id'),  # Store record ID for updates
                     'ai_model': bubble_config.get('ai_model'),
                     'system_prompt': bubble_config.get('prompt', '').replace('&lt;', '<').replace('&gt;', '>').replace('&amp;', '&'),
                     'temperature': float(bubble_config.get('tempature', 0.5)),
@@ -155,6 +156,78 @@ async def fetch_bubble_config() -> Dict[str, Any]:
     except Exception as e:
         logger.error(f"❌ Bubble config error: {e}")
         raise HTTPException(status_code=503, detail=f"Config error: {str(e)}")
+
+async def update_bubble_config(config_updates: Dict[str, Any]) -> Dict[str, Any]:
+    """Update configuration in Bubble database"""
+    
+    # First, get the current config to get the record ID
+    current_config = await fetch_bubble_config()
+    record_id = current_config.get('record_id')
+    
+    if not record_id:
+        raise HTTPException(status_code=503, detail="No record ID found for update")
+    
+    # Determine environment
+    is_production = (
+        os.getenv('VERCEL_ENV') == 'production' or 
+        os.getenv('NODE_ENV') == 'production'
+    )
+    base_endpoint = BUBBLE_ENDPOINTS['production'] if is_production else BUBBLE_ENDPOINTS['development']
+    update_endpoint = f"{base_endpoint}/{record_id}"
+    
+    logger.info(f"🔧 Updating config at: {update_endpoint}")
+    
+    # Convert frontend config format to Bubble field format
+    bubble_updates = {}
+    
+    if 'systemPrompt' in config_updates:
+        # Encode HTML entities for Bubble
+        prompt = config_updates['systemPrompt']
+        bubble_updates['prompt'] = prompt.replace('<', '&lt;').replace('>', '&gt;').replace('&', '&amp;')
+    
+    if 'aiModel' in config_updates:
+        bubble_updates['ai_model'] = config_updates['aiModel']
+    
+    if 'modelParameters' in config_updates:
+        params = config_updates['modelParameters']
+        if 'temperature' in params:
+            bubble_updates['tempature'] = params['temperature']  # Note: Bubble field name has typo
+        if 'topP' in params:
+            bubble_updates['top-p'] = params['topP']
+        if 'maxOutputTokens' in params:
+            bubble_updates['max_output_tokens'] = params['maxOutputTokens']
+    
+    if 'chatSettings' in config_updates:
+        settings = config_updates['chatSettings']
+        if 'conversationMemory' in settings:
+            bubble_updates['conversation_memory'] = settings['conversationMemory']
+        if 'userHistory' in settings:
+            bubble_updates['user_history'] = settings['userHistory']
+    
+    logger.info(f"📝 Bubble update payload: {list(bubble_updates.keys())}")
+    
+    try:
+        async with aiohttp.ClientSession() as session:
+            headers = {
+                'Authorization': f'Bearer {BUBBLE_API_KEY}',
+                'Content-Type': 'application/json',
+                'User-Agent': 'JEGA-Knowledge-Base-Python/1.0'
+            }
+            
+            async with session.patch(update_endpoint, headers=headers, json=bubble_updates) as response:
+                if response.status not in [200, 204]:
+                    error_text = await response.text()
+                    logger.error(f"❌ Bubble update failed: {response.status} - {error_text}")
+                    raise HTTPException(status_code=503, detail=f"Bubble API update error: {response.status}")
+                
+                logger.info(f"✅ Config updated in Bubble successfully")
+                
+                # Return the updated configuration
+                return await fetch_bubble_config()
+                
+    except Exception as e:
+        logger.error(f"❌ Bubble update error: {e}")
+        raise HTTPException(status_code=503, detail=f"Config update error: {str(e)}")
 
 def format_chat_history(chat_history: Optional[List[Dict[str, Any]]]) -> List[Dict[str, Any]]:
     """Convert chat history to GenAI format"""
@@ -233,21 +306,50 @@ async def get_chat_config():
 
 @app.post("/api/config")
 async def update_chat_config(request: Request):
-    """Update chat configuration - Currently read-only from Bubble"""
+    """Update chat configuration in Bubble database"""
     try:
-        # For now, this is read-only from Bubble
-        # Future: Could implement Bubble API update calls
-        logger.info("⚠️ Config update attempted - currently read-only from Bubble")
+        # Parse the request body
+        body = await request.json()
+        config_updates = body.get('config', {})
         
-        return {
-            "success": False,
-            "message": "Configuration is currently read-only from Bubble database. Please update configuration in Bubble directly.",
-            "timestamp": datetime.now().isoformat()
+        if not config_updates:
+            raise HTTPException(status_code=400, detail="No configuration updates provided")
+        
+        logger.info(f"📝 Config update request: {list(config_updates.keys())}")
+        
+        # Update the configuration in Bubble
+        updated_config = await update_bubble_config(config_updates)
+        
+        # Return the updated configuration in the same format as GET
+        chat_config = {
+            "config": {
+                "systemPrompt": updated_config.get('system_prompt'),
+                "aiModel": updated_config.get('ai_model'),
+                "modelParameters": {
+                    "temperature": updated_config.get('temperature'),
+                    "topP": updated_config.get('top_p'),
+                    "maxOutputTokens": updated_config.get('max_output_tokens')
+                },
+                "chatSettings": {
+                    "conversationMemory": updated_config.get('conversation_memory', 10),
+                    "userHistory": updated_config.get('user_history', 100)
+                }
+            }
         }
         
+        # Add success metadata
+        chat_config["success"] = True
+        chat_config["message"] = "Configuration updated successfully in Bubble database"
+        chat_config["timestamp"] = datetime.now().isoformat()
+        
+        logger.info(f"✅ Config update completed successfully")
+        return chat_config
+        
+    except HTTPException:
+        raise  # Re-raise HTTP exceptions as-is
     except Exception as e:
         logger.error(f"❌ Config update error: {e}")
-        raise HTTPException(status_code=503, detail=f"Configuration update error: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Configuration update error: {str(e)}")
 
 @app.post("/api/vertex-ai")
 async def vertex_ai_chat(request: Request):
