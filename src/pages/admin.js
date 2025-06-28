@@ -263,9 +263,6 @@ const AdminPage = () => {
       <div className={styles.header}>
         <div className={styles.headerContent}>
           <h1>🤖 Chatbot Configuration Admin</h1>
-          <p className={styles.headerNote}>
-            🔧 <strong>Live Configuration</strong> - Changes are saved directly to Bubble database and applied immediately.
-          </p>
         </div>
         <div className={styles.headerActions}>
           {!isEditing ? (
