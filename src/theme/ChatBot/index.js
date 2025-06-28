@@ -437,7 +437,6 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
       let typewriterInterval = null;
       let processingTimer = null; // Timer for frontend UI phases
       let thinkingTimer = null; // Timer for thinking phase
-      let streamTimeout = null; // Fallback timeout to prevent stuck indicators
       
       // Typewriter animation function
       const startTypewriter = () => {
@@ -538,25 +537,7 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
         }
       }, 2000);
       
-      // 🛡️ SAFETY TIMEOUT: Ensure streaming indicators never stick (30s max)
-      streamTimeout = setTimeout(() => {
-        console.warn('⚠️ [STREAM] Timeout reached - forcing stream completion');
-        setMessages(prev => prev.map(msg => {
-          if (msg.id === streamingBotMessage.id) {
-            return { 
-              ...msg, 
-              isStreaming: false,
-              streamingPhase: null,
-              text: textBuffer || msg.text || 'Phản hồi không hoàn chỉnh. Vui lòng thử lại.'
-            };
-          }
-          return msg;
-        }));
-        
-        // 🔓 CRITICAL: Reset loading state on timeout to ensure input is not stuck
-        setIsLoading(false);
-        console.log('🔓 [TIMEOUT] Loading state reset after timeout - input enabled');
-      }, 30000); // 30 second timeout
+
 
       // Get bot response with streaming (starts immediately!)
       const botResponse = await callVertexAI(userMessage, [...messages, newUserMessage], onChunk, streamingBotMessage.id);
@@ -590,11 +571,7 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
       // Wait for typewriter to finish
       await finishTypewriter();
       
-      // 🧹 CLEAR SAFETY TIMEOUT - stream completed successfully
-      if (streamTimeout) {
-        clearTimeout(streamTimeout);
-        streamTimeout = null;
-      }
+
       
       // ✅ Update metadata only - preserve the typewriter-animated text
       setMessages(prev => prev.map(msg => 
@@ -650,10 +627,6 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
       if (thinkingTimer) {
         clearTimeout(thinkingTimer);
         thinkingTimer = null;
-      }
-      if (streamTimeout) {
-        clearTimeout(streamTimeout);
-        streamTimeout = null;
       }
       
       // 🔓 CRITICAL: Reset loading state on error to ensure input is not stuck
