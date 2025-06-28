@@ -451,11 +451,11 @@ async def vertex_ai_chat(request: Request):
 # Initialize on startup
 init_genai_client()
 
-# For Vercel deployment
-from mangum import Mangum
-handler = Mangum(app)
-
 # Local development server
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=3001, log_level="info")
+
+# For Vercel deployment - must be at the end
+from mangum import Mangum
+handler = Mangum(app, lifespan="off")
