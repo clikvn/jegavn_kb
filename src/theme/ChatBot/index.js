@@ -195,7 +195,7 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
    * @param {Function} onChunk - Callback for streaming chunks
    * @returns {Promise<Object>} Response from Vertex AI
    */
-  const callVertexAI = useCallback(async (userMessage, chatHistory, onChunk = null) => {
+  const callVertexAI = useCallback(async (userMessage, chatHistory, onChunk = null, streamingMessageId = null) => {
     const maxRetries = 2; // Google recommendation: retry no more than 2 times
     const baseDelay = 1000; // Google recommendation: minimum delay of 1 second
     
@@ -283,16 +283,18 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
                 console.log('🏁 [STREAM] Received [DONE] signal');
                 
                 // 🎯 IMMEDIATE STREAM COMPLETION: Turn off streaming indicators right away
-                setMessages(prev => prev.map(msg => {
-                  if (msg.id === streamingBotMessage.id) {
-                    return { 
-                      ...msg, 
-                      isStreaming: false, // ✅ Immediately stop streaming indicator
-                      streamingPhase: null // ✅ Clear streaming phase
-                    };
-                  }
-                  return msg;
-                }));
+                if (streamingMessageId) {
+                  setMessages(prev => prev.map(msg => {
+                    if (msg.id === streamingMessageId) {
+                      return { 
+                        ...msg, 
+                        isStreaming: false, // ✅ Immediately stop streaming indicator
+                        streamingPhase: null // ✅ Clear streaming phase
+                      };
+                    }
+                    return msg;
+                  }));
+                }
                 
                 console.log('✅ [STREAM] Streaming indicators turned off immediately');
                 break;
@@ -543,7 +545,7 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
       }, 30000); // 30 second timeout
 
       // Get bot response with streaming (starts immediately!)
-      const botResponse = await callVertexAI(userMessage, [...messages, newUserMessage], onChunk);
+      const botResponse = await callVertexAI(userMessage, [...messages, newUserMessage], onChunk, streamingBotMessage.id);
       
       // 🎯 FINISH TYPEWRITER ANIMATION
       // Ensure all buffered text is displayed before marking as complete
