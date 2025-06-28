@@ -652,20 +652,6 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
           : msg
       ));
     } finally {
-      // 🧹 CLEANUP ALL TIMERS ON COMPLETION
-      if (typewriterInterval) {
-        clearInterval(typewriterInterval);
-      }
-      if (processingTimer) {
-        clearTimeout(processingTimer);
-      }
-      if (thinkingTimer) {
-        clearTimeout(thinkingTimer);
-      }
-      if (streamTimeout) {
-        clearTimeout(streamTimeout);
-      }
-      
       setIsLoading(false);
     }
   }, [inputValue, isLoading, messages, callVertexAI, chatConfig]);
