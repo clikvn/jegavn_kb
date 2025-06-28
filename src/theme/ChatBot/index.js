@@ -253,6 +253,7 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
         let buffer = '';
         let fullResponse = '';
         let finalMetadata = null;
+        let streamCompleted = false; // Track if stream completed properly
         
         console.log('🌊 [STREAM] Starting to process streaming response...');
         console.log('🔍 [DEBUG] onChunk callback type:', typeof onChunk);
@@ -297,6 +298,9 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
                 }
                 
                 console.log('✅ [STREAM] Streaming indicators turned off immediately');
+                
+                // 🔓 CRITICAL: Force break to ensure promise resolves properly
+                streamCompleted = true;
                 break;
               }
               
@@ -335,6 +339,12 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
               } catch (parseError) {
                 console.warn('⚠️ [STREAM] Failed to parse SSE data:', dataStr.substring(0, 100));
               }
+            }
+            
+            // 🔓 CRITICAL: Check if stream completed via [DONE] signal
+            if (streamCompleted) {
+              console.log('🎯 [STREAM] Breaking outer loop - stream completed');
+              break;
             }
           }
           
