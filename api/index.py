@@ -231,6 +231,24 @@ async def get_chat_config():
         logger.error(f"❌ Config endpoint error: {e}")
         raise HTTPException(status_code=503, detail=f"Configuration error: {str(e)}")
 
+@app.post("/api/config")
+async def update_chat_config(request: Request):
+    """Update chat configuration - Currently read-only from Bubble"""
+    try:
+        # For now, this is read-only from Bubble
+        # Future: Could implement Bubble API update calls
+        logger.info("⚠️ Config update attempted - currently read-only from Bubble")
+        
+        return {
+            "success": False,
+            "message": "Configuration is currently read-only from Bubble database. Please update configuration in Bubble directly.",
+            "timestamp": datetime.now().isoformat()
+        }
+        
+    except Exception as e:
+        logger.error(f"❌ Config update error: {e}")
+        raise HTTPException(status_code=503, detail=f"Configuration update error: {str(e)}")
+
 @app.post("/api/vertex-ai")
 async def vertex_ai_chat(request: Request):
     """Main chat endpoint with streaming"""

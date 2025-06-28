@@ -140,9 +140,15 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
             
             setChatConfig({
               conversationMemory: data.config.chatSettings.conversationMemory,
-              userHistory: data.config.chatSettings.userHistory
+              userHistory: data.config.chatSettings.userHistory,
+              // Store full config for potential future use
+              fullConfig: data.config
             });
-            console.log('🔧 Loaded chat configuration from Bubble:', data.config.chatSettings);
+            console.log('🔧 Loaded chat configuration from Bubble:', {
+              chatSettings: data.config.chatSettings,
+              aiModel: data.config.aiModel,
+              hasFullConfig: !!data.config.systemPrompt
+            });
           } else {
             console.error('❌ No chat settings found in Bubble API response');
             setError('Không thể tải cấu hình chatbot từ Bubble API. Vui lòng liên hệ quản trị viên.');

@@ -261,7 +261,13 @@ const AdminPage = () => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h1>🤖 Chatbot Configuration Admin</h1>
+        <div className={styles.headerContent}>
+          <h1>🤖 Chatbot Configuration Admin</h1>
+          <p className={styles.headerNote}>
+            📖 <strong>Read-Only View</strong> - Configuration is managed in Bubble database. 
+            Changes must be made in Bubble directly.
+          </p>
+        </div>
         <div className={styles.headerActions}>
           {!isEditing ? (
             <>
