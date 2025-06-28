@@ -281,6 +281,20 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
               
               if (dataStr === '[DONE]') {
                 console.log('🏁 [STREAM] Received [DONE] signal');
+                
+                // 🎯 IMMEDIATE STREAM COMPLETION: Turn off streaming indicators right away
+                setMessages(prev => prev.map(msg => {
+                  if (msg.id === streamingBotMessage.id) {
+                    return { 
+                      ...msg, 
+                      isStreaming: false, // ✅ Immediately stop streaming indicator
+                      streamingPhase: null // ✅ Clear streaming phase
+                    };
+                  }
+                  return msg;
+                }));
+                
+                console.log('✅ [STREAM] Streaming indicators turned off immediately');
                 break;
               }
               
@@ -411,6 +425,7 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
       let typewriterInterval = null;
       let processingTimer = null; // Timer for frontend UI phases
       let thinkingTimer = null; // Timer for thinking phase
+      let streamTimeout = null; // Fallback timeout to prevent stuck indicators
       
       // Typewriter animation function
       const startTypewriter = () => {
@@ -511,6 +526,22 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
         }
       }, 2000);
       
+      // 🛡️ SAFETY TIMEOUT: Ensure streaming indicators never stick (30s max)
+      streamTimeout = setTimeout(() => {
+        console.warn('⚠️ [STREAM] Timeout reached - forcing stream completion');
+        setMessages(prev => prev.map(msg => {
+          if (msg.id === streamingBotMessage.id) {
+            return { 
+              ...msg, 
+              isStreaming: false,
+              streamingPhase: null,
+              text: textBuffer || msg.text || 'Phản hồi không hoàn chỉnh. Vui lòng thử lại.'
+            };
+          }
+          return msg;
+        }));
+      }, 30000); // 30 second timeout
+
       // Get bot response with streaming (starts immediately!)
       const botResponse = await callVertexAI(userMessage, [...messages, newUserMessage], onChunk);
       
@@ -537,6 +568,12 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
       
       // Wait for typewriter to finish
       await finishTypewriter();
+      
+      // 🧹 CLEAR SAFETY TIMEOUT - stream completed successfully
+      if (streamTimeout) {
+        clearTimeout(streamTimeout);
+        streamTimeout = null;
+      }
       
       // ✅ Update metadata only - preserve the typewriter-animated text
       setMessages(prev => prev.map(msg => 
@@ -593,6 +630,10 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
         clearTimeout(thinkingTimer);
         thinkingTimer = null;
       }
+      if (streamTimeout) {
+        clearTimeout(streamTimeout);
+        streamTimeout = null;
+      }
       
       // Update the streaming message with error (preserve any streamed text)
       setMessages(prev => prev.map(msg => 
@@ -609,6 +650,20 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
           : msg
       ));
     } finally {
+      // 🧹 CLEANUP ALL TIMERS ON COMPLETION
+      if (typewriterInterval) {
+        clearInterval(typewriterInterval);
+      }
+      if (processingTimer) {
+        clearTimeout(processingTimer);
+      }
+      if (thinkingTimer) {
+        clearTimeout(thinkingTimer);
+      }
+      if (streamTimeout) {
+        clearTimeout(streamTimeout);
+      }
+      
       setIsLoading(false);
     }
   }, [inputValue, isLoading, messages, callVertexAI, chatConfig]);
