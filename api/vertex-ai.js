@@ -14,11 +14,10 @@ const { GoogleAuth } = require('google-auth-library');
 // Google Cloud configuration
 const PROJECT_ID = 'gen-lang-client-0221178501';
 const LOCATION_ID = 'global';
-const MODEL_ID = 'gemini-2.5-pro';
+// MODEL_ID is now dynamic from Bubble config
 
 // Bubble API configuration
-const BUBBLE_API_URL = 'https://sondn-31149.bubbleapps.io/api/1.1/obj/SystemPrompt';
-const BUBBLE_API_KEY = 'd239ed5060b7336da248b35f16116a2b';
+const { BUBBLE_API_URL, BUBBLE_API_KEY, environment } = require('./bubble-config');
 
 /**
  * Fetch configuration from Bubble database
@@ -58,6 +57,7 @@ async function fetchBubbleConfig() {
     console.log('🔧 [BUBBLE] Transformed config:', {
       hasSystemPrompt: !!config.systemPrompt,
       systemPromptLength: config.systemPrompt?.length || 0,
+      aiModel: config.aiModel,
       temperature: config.modelParameters.temperature,
       topP: config.modelParameters.topP,
       maxOutputTokens: config.modelParameters.maxOutputTokens
@@ -80,12 +80,24 @@ function transformBubbleData(bubbleData) {
   try {
     if (bubbleData && bubbleData.response && bubbleData.response.results && bubbleData.response.results.length > 0) {
       const bubbleConfig = bubbleData.response.results[0];
+      
+      // Extract AI model - REQUIRED from Bubble
+      let aiModel = undefined;
+      console.log('🔍 [BUBBLE] Raw ai_model from Bubble:', bubbleConfig.ai_model);
+      if (bubbleConfig.ai_model) {
+        aiModel = bubbleConfig.ai_model;
+        console.log('✅ [BUBBLE] AI model extracted:', aiModel);
+      } else {
+        console.log('❌ [BUBBLE] AI model field missing or empty');
+      }
+      
       // Extract model parameters
       const modelParameters = {
         temperature: bubbleConfig.tempature ? parseFloat(bubbleConfig.tempature) : undefined,
         topP: bubbleConfig['top-p'] ? parseFloat(bubbleConfig['top-p']) : undefined,
         maxOutputTokens: bubbleConfig.max_output_tokens ? parseInt(bubbleConfig.max_output_tokens) : undefined
       };
+      
       // Extract and parse the system prompt if available
       let systemPrompt = undefined;
       if (bubbleConfig.prompt) {
@@ -96,10 +108,29 @@ function transformBubbleData(bubbleData) {
           .replace(/&quot;/g, '"')
           .replace(/&#39;/g, "'");
       }
-      if (!systemPrompt || !modelParameters.temperature || !modelParameters.topP || !modelParameters.maxOutputTokens) {
-        throw new Error('Missing required config fields from Bubble');
+      
+      // Validate ALL required fields are present
+      console.log('🔍 [BUBBLE] Validation check:', {
+        hasAiModel: !!aiModel,
+        aiModelValue: aiModel,
+        hasSystemPrompt: !!systemPrompt,
+        hasTemperature: !!modelParameters.temperature,
+        hasTopP: !!modelParameters.topP,
+        hasMaxOutputTokens: !!modelParameters.maxOutputTokens
+      });
+      
+      if (!aiModel || !systemPrompt || !modelParameters.temperature || !modelParameters.topP || !modelParameters.maxOutputTokens) {
+        const missingFields = [];
+        if (!aiModel) missingFields.push('aiModel');
+        if (!systemPrompt) missingFields.push('systemPrompt');
+        if (!modelParameters.temperature) missingFields.push('temperature');
+        if (!modelParameters.topP) missingFields.push('topP');
+        if (!modelParameters.maxOutputTokens) missingFields.push('maxOutputTokens');
+        throw new Error(`Missing required config fields from Bubble: ${missingFields.join(', ')}`);
       }
+      
       return {
+        aiModel,
         systemPrompt,
         modelParameters
       };
@@ -460,9 +491,15 @@ module.exports = async (req, res) => {
     });
     console.log('📝 [VERTEX] System instruction length from Bubble:', requestBody.systemInstruction.parts[0].text.length);
 
-    // Call Vertex AI API
+    // Call Vertex AI API using dynamic model from Bubble config - NO FALLBACKS
+    if (!config.aiModel) {
+      throw new Error('AI model not configured in Bubble database. Contact administrator.');
+    }
+    const modelId = config.aiModel;
+    console.log('🤖 [VERTEX] Using AI model from Bubble config:', modelId);
+    
     const vertexResponse = await fetch(
-      `https://us-central1-aiplatform.googleapis.com/v1/projects/${PROJECT_ID}/locations/${LOCATION_ID}/publishers/google/models/${MODEL_ID}:generateContent`,
+      `https://us-central1-aiplatform.googleapis.com/v1/projects/${PROJECT_ID}/locations/${LOCATION_ID}/publishers/google/models/${modelId}:generateContent`,
       {
         method: 'POST',
         headers: {
@@ -478,6 +515,19 @@ module.exports = async (req, res) => {
     if (!vertexResponse.ok) {
       const errorData = await vertexResponse.json();
       console.error('❌ Vertex AI Error:', JSON.stringify(errorData, null, 2));
+      
+      // Special logging for 429 errors to help with monitoring
+      if (vertexResponse.status === 429) {
+        console.warn('⚠️ [DSQ] Resource exhausted error detected - this is normal under Dynamic Shared Quota');
+        console.warn('⚠️ [DSQ] Error details:', {
+          status: vertexResponse.status,
+          timestamp: new Date().toISOString(),
+          errorCode: errorData.error?.code,
+          errorMessage: errorData.error?.message,
+          requestId: vertexResponse.headers.get('x-request-id') || 'unknown'
+        });
+      }
+      
       throw new Error(`Vertex AI API error: ${vertexResponse.status} - ${errorData.error?.message || 'Unknown error'}`);
     }
 
@@ -535,7 +585,7 @@ module.exports = async (req, res) => {
     // Return successful response
     res.status(200).json({
       response: responseText,
-      model: 'gemini-2.5-pro',
+      model: modelId,
       groundingMetadata: groundingMetadata || null,
       usageMetadata: usageMetadata || null,
       sources: extractedSources
@@ -559,7 +609,7 @@ module.exports = async (req, res) => {
       errorMessage = error.message;
     } else if (error.message.includes('API error: 429')) {
       statusCode = 429;
-      errorMessage = 'Rate limit exceeded - please try again later';
+      errorMessage = 'Vertex AI resources temporarily exhausted due to high demand. This is normal under Dynamic Shared Quota and will resolve automatically. Please retry with exponential backoff.';
     } else if (error.message.includes('API error: 403')) {
       statusCode = 403;
       errorMessage = 'Access denied - check API permissions';

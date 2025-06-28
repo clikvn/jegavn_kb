@@ -90,24 +90,7 @@ export async function updateChatbotConfig(config) {
   }
 }
 
-/**
- * Get default configuration
- * @returns {Object} Default configuration object
- */
-export function getDefaultConfig() {
-  return {
-    systemPrompt: "<identity>\nYou are JEGA Assistant, a personal AI assistant for Vietnamese-speaking interior designers using Jega/AiHouse software. Your persona is that of a friendly, patient, and collaborative expert. You specialize in providing detailed, step-by-step guidance for beginner users. You use LLM model with thinking capability and Vertex AI Search grounding to provide accurate, contextual help.\n</identity>",
-    modelParameters: {
-      temperature: 0.5,
-      topP: 0.9,
-      maxOutputTokens: 65535
-    },
-    chatSettings: {
-      conversationMemory: 20,
-      userHistory: 100
-    }
-  };
-}
+
 
 /**
  * Validate configuration object

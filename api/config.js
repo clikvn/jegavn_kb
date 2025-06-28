@@ -8,8 +8,7 @@
  * by fetching and updating settings from the Bubble database.
  */
 
-const BUBBLE_API_URL = 'https://sondn-31149.bubbleapps.io/api/1.1/obj/SystemPrompt';
-const BUBBLE_API_KEY = 'd239ed5060b7336da248b35f16116a2b';
+const { BUBBLE_API_URL, BUBBLE_API_KEY, environment } = require('./bubble-config');
 
 /**
  * Fetch configuration from Bubble database
@@ -80,14 +79,12 @@ function transformBubbleData(bubbleData) {
     if (bubbleData && bubbleData.response && bubbleData.response.results && bubbleData.response.results.length > 0) {
       const bubbleConfig = bubbleData.response.results[0];
       
-      // Extract only the specific fields we need
+      // Extract only the specific fields we need - ALL must come from Bubble
       const extractedConfig = {
         systemPrompt: '',
+        aiModel: '',
         modelParameters: {},
-        chatSettings: {
-          conversationMemory: 20,
-          userHistory: 100
-        },
+        chatSettings: {},
         searchSettings: {
           enableGrounding: true,
           maxSearchResults: 5,
@@ -103,6 +100,12 @@ function transformBubbleData(bubbleData) {
           maxResponseLength: 1000
         }
       };
+
+      // Extract AI model - REQUIRED from Bubble
+      if (!bubbleConfig.ai_model) {
+        throw new Error('Missing required ai_model in Bubble config');
+      }
+      extractedConfig.aiModel = bubbleConfig.ai_model;
 
       // Extract model parameters - throw error if missing
       if (!bubbleConfig.tempature || !bubbleConfig['top-p'] || !bubbleConfig.max_output_tokens) {
@@ -131,21 +134,24 @@ function transformBubbleData(bubbleData) {
       // Store the prompt as a direct string, not nested object
       extractedConfig.systemPrompt = decodedPrompt;
 
-      // Extract chat settings if available
-      if (bubbleConfig.conversation_memory) {
-        extractedConfig.chatSettings.conversationMemory = parseInt(bubbleConfig.conversation_memory);
-        console.log('📝 Found conversation_memory in Bubble:', bubbleConfig.conversation_memory);
-      } else {
-        console.log('⚠️ conversation_memory not found in Bubble, using default');
+      // Extract chat settings - REQUIRED from Bubble (no defaults)
+      if (!bubbleConfig.conversation_memory) {
+        throw new Error('Missing required conversation_memory in Bubble config');
       }
-      if (bubbleConfig.user_history) {
-        extractedConfig.chatSettings.userHistory = parseInt(bubbleConfig.user_history);
-        console.log('📝 Found user_history in Bubble:', bubbleConfig.user_history);
-      } else {
-        console.log('⚠️ user_history not found in Bubble, using default');
+      if (!bubbleConfig.user_history) {
+        throw new Error('Missing required user_history in Bubble config');
       }
+      
+      extractedConfig.chatSettings.conversationMemory = parseInt(bubbleConfig.conversation_memory);
+      extractedConfig.chatSettings.userHistory = parseInt(bubbleConfig.user_history);
+      
+      console.log('📝 Successfully extracted chat settings from Bubble:', {
+        conversationMemory: extractedConfig.chatSettings.conversationMemory,
+        userHistory: extractedConfig.chatSettings.userHistory
+      });
 
       console.log('✅ Successfully extracted configuration from Bubble:', {
+        aiModel: extractedConfig.aiModel,
         temperature: extractedConfig.modelParameters.temperature,
         topP: extractedConfig.modelParameters.topP,
         maxOutputTokens: extractedConfig.modelParameters.maxOutputTokens,
@@ -234,6 +240,12 @@ async function updateConfig(req, res) {
 
     // Prepare the update data in Bubble format
     const updateData = {};
+    
+    // Map AI model to Bubble field
+    if (config.aiModel) {
+      updateData.ai_model = config.aiModel;
+      console.log('📤 Sending ai_model to Bubble:', config.aiModel);
+    }
     
     // Map our config to Bubble fields
     if (config.modelParameters) {
@@ -343,6 +355,14 @@ function validateConfig(config) {
     errors.push('systemPrompt cannot be empty');
   }
   
+  if (!config.aiModel) {
+    errors.push('aiModel is required');
+  } else if (typeof config.aiModel !== 'string') {
+    errors.push('aiModel must be a string');
+  } else if (config.aiModel.trim().length === 0) {
+    errors.push('aiModel cannot be empty');
+  }
+  
   if (!config.modelParameters) {
     errors.push('modelParameters is required');
   }
@@ -364,20 +384,23 @@ function validateConfig(config) {
     }
   }
   
-  // Validate chat settings
-  if (config.chatSettings) {
+  // Validate chat settings - REQUIRED from Bubble
+  if (!config.chatSettings) {
+    errors.push('chatSettings is required');
+  } else {
     const { conversationMemory, userHistory } = config.chatSettings;
     
-    if (conversationMemory !== undefined) {
-      if (conversationMemory < 1 || conversationMemory > 100) {
-        errors.push('conversationMemory must be between 1 and 100');
-      }
+    // Both conversationMemory and userHistory are required
+    if (conversationMemory === undefined || conversationMemory === null) {
+      errors.push('conversationMemory is required');
+    } else if (conversationMemory < 1 || conversationMemory > 100) {
+      errors.push('conversationMemory must be between 1 and 100');
     }
     
-    if (userHistory !== undefined) {
-      if (userHistory < 10 || userHistory > 1000) {
-        errors.push('userHistory must be between 10 and 1000');
-      }
+    if (userHistory === undefined || userHistory === null) {
+      errors.push('userHistory is required');
+    } else if (userHistory < 10 || userHistory > 1000) {
+      errors.push('userHistory must be between 10 and 1000');
     }
   }
   

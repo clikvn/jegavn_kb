@@ -17,18 +17,16 @@ import styles from './styles.module.css';
 
 // LocalStorage utility functions
 const STORAGE_KEY = 'jega-chat-history';
-const DEFAULT_USER_HISTORY = 100; // Default limit to prevent storage bloat
-const DEFAULT_CONVERSATION_MEMORY = 20; // Default limit messages sent to Vertex AI
 
-const saveMessagesToStorage = (messages) => {
+const saveMessagesToStorage = (messages, userHistoryLimit = 100) => {
   try {
     if (typeof window === 'undefined') return; // SSR check
-    const messagesToSave = messages.slice(-DEFAULT_USER_HISTORY); // Keep only last DEFAULT_USER_HISTORY
+    const messagesToSave = messages.slice(-userHistoryLimit); // Keep only last userHistoryLimit
     localStorage.setItem(STORAGE_KEY, JSON.stringify({
       messages: messagesToSave,
       lastUpdated: new Date().toISOString()
     }));
-    console.log('💾 Saved', messagesToSave.length, 'messages to localStorage');
+    console.log('💾 Saved', messagesToSave.length, 'messages to localStorage (limit:', userHistoryLimit, ')');
   } catch (error) {
     console.warn('⚠️ Failed to save messages to localStorage:', error);
   }
@@ -69,10 +67,14 @@ const SITE_BASE_URL = 'https://jegavn-kb.vercel.app'; // Change this if your dom
 /**
  * Limit chat history to conversation memory for Vertex AI
  * @param {Array} messages - Full message history
- * @param {number} conversationMemory - Maximum messages to send to AI
+ * @param {number} conversationMemory - Maximum messages to send to AI (required)
  * @returns {Array} Limited message history for AI
  */
-const limitConversationMemory = (messages, conversationMemory = DEFAULT_CONVERSATION_MEMORY) => {
+const limitConversationMemory = (messages, conversationMemory) => {
+  if (!conversationMemory) {
+    throw new Error('conversationMemory is required from Bubble config');
+  }
+  
   if (!messages || messages.length <= conversationMemory) {
     return messages;
   }
@@ -105,10 +107,7 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [chatConfig, setChatConfig] = useState({
-    conversationMemory: DEFAULT_CONVERSATION_MEMORY,
-    userHistory: DEFAULT_USER_HISTORY
-  });
+  const [chatConfig, setChatConfig] = useState(null); // Must be loaded from Bubble API
   
   // Refs
   const messagesEndRef = useRef(null);
@@ -132,15 +131,29 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
         if (response.ok) {
           const data = await response.json();
           if (data.config && data.config.chatSettings) {
+            // Require all settings from Bubble - no defaults
+            if (!data.config.chatSettings.conversationMemory || !data.config.chatSettings.userHistory) {
+              console.error('❌ Missing required chat settings from Bubble API');
+              setError('Cấu hình chatbot không đầy đủ. Vui lòng liên hệ quản trị viên.');
+              return;
+            }
+            
             setChatConfig({
-              conversationMemory: data.config.chatSettings.conversationMemory || DEFAULT_CONVERSATION_MEMORY,
-              userHistory: data.config.chatSettings.userHistory || DEFAULT_USER_HISTORY
+              conversationMemory: data.config.chatSettings.conversationMemory,
+              userHistory: data.config.chatSettings.userHistory
             });
-            console.log('🔧 Loaded chat configuration:', data.config.chatSettings);
+            console.log('🔧 Loaded chat configuration from Bubble:', data.config.chatSettings);
+          } else {
+            console.error('❌ No chat settings found in Bubble API response');
+            setError('Không thể tải cấu hình chatbot từ Bubble API. Vui lòng liên hệ quản trị viên.');
           }
+        } else {
+          console.error('❌ Failed to fetch chat configuration from API');
+          setError('Không thể kết nối đến API cấu hình. Vui lòng thử lại sau.');
         }
       } catch (error) {
-        console.warn('⚠️ Failed to load chat configuration, using defaults:', error);
+        console.error('❌ Failed to load chat configuration:', error);
+        setError('Lỗi khi tải cấu hình chatbot. Vui lòng thử lại sau.');
       }
     };
 
@@ -158,23 +171,11 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
 
   // Save messages to localStorage whenever they change
   useEffect(() => {
-    if (messages.length > 0) {
-      // Use dynamic userHistory from config
-      const maxHistory = chatConfig.userHistory || DEFAULT_USER_HISTORY;
-      const messagesToSave = messages.slice(-maxHistory);
-      
-      try {
-        if (typeof window === 'undefined') return; // SSR check
-        localStorage.setItem(STORAGE_KEY, JSON.stringify({
-          messages: messagesToSave,
-          lastUpdated: new Date().toISOString()
-        }));
-        console.log('💾 Saved', messagesToSave.length, 'messages to localStorage (max:', maxHistory, ')');
-      } catch (error) {
-        console.warn('⚠️ Failed to save messages to localStorage:', error);
-      }
+    if (messages.length > 0 && chatConfig && chatConfig.userHistory) {
+      // Use userHistory from Bubble config (required)
+      saveMessagesToStorage(messages, chatConfig.userHistory);
     }
-  }, [messages, chatConfig.userHistory]);
+  }, [messages, chatConfig]);
 
   // Focus input when panel opens
   useEffect(() => {
@@ -188,69 +189,104 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
 
   /**
    * Call Vertex AI API with user message and chat history
+   * Includes retry mechanism for 429 errors as recommended by Google
    * @param {string} userMessage - The user's input message
    * @param {Array} chatHistory - Previous conversation messages
    * @returns {Promise<Object>} Response from Vertex AI
    */
   const callVertexAI = useCallback(async (userMessage, chatHistory) => {
-    try {
-      setError(null);
-      
-      // Determine API endpoint based on environment
-      const isDevelopment = process.env.NODE_ENV === 'development' || 
-                           window.location.hostname === 'localhost' ||
-                           window.location.hostname === '127.0.0.1';
-      const apiEndpoint = isDevelopment ? 'http://localhost:3001/api/vertex-ai' : '/api/vertex-ai';
-      
-      console.log('🌐 Calling API endpoint:', apiEndpoint);
-      
-      // Limit chat history to conversation memory for Vertex AI using config
-      const conversationMemory = chatConfig.conversationMemory || DEFAULT_CONVERSATION_MEMORY;
-      const limitedHistory = limitConversationMemory(chatHistory, conversationMemory);
-      
-      const response = await fetch(apiEndpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          message: userMessage,
-          chatHistory: limitedHistory
-        })
-      });
+    const maxRetries = 2; // Google recommendation: retry no more than 2 times
+    const baseDelay = 1000; // Google recommendation: minimum delay of 1 second
+    
+    for (let attempt = 0; attempt <= maxRetries; attempt++) {
+      try {
+        setError(null);
+        
+        // Determine API endpoint based on environment
+        const isDevelopment = process.env.NODE_ENV === 'development' || 
+                             window.location.hostname === 'localhost' ||
+                             window.location.hostname === '127.0.0.1';
+        const apiEndpoint = isDevelopment ? 'http://localhost:3001/api/vertex-ai' : '/api/vertex-ai';
+        
+        console.log(`🌐 Calling API endpoint (attempt ${attempt + 1}/${maxRetries + 1}):`, apiEndpoint);
+        
+        // Require conversation memory from Bubble config
+        if (!chatConfig || !chatConfig.conversationMemory) {
+          throw new Error('Chat configuration not loaded from Bubble API');
+        }
+        
+        const limitedHistory = limitConversationMemory(chatHistory, chatConfig.conversationMemory);
+        
+        const response = await fetch(apiEndpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            message: userMessage,
+            chatHistory: limitedHistory
+          })
+        });
 
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(`HTTP ${response.status}: ${errorData.message || response.statusText}`);
-      }
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => ({}));
+          
+          // Handle 429 (Resource Exhausted) with retry logic
+          if (response.status === 429 && attempt < maxRetries) {
+            const delay = baseDelay * Math.pow(2, attempt); // Exponential backoff
+            console.log(`⏳ Received 429 error, retrying in ${delay}ms (attempt ${attempt + 1}/${maxRetries + 1})`);
+            
+            // Show user feedback about retry
+            setError(`Hệ thống đang bận, đang thử lại... (${attempt + 1}/${maxRetries + 1})`);
+            
+            await new Promise(resolve => setTimeout(resolve, delay));
+            continue; // Retry the request
+          }
+          
+          throw new Error(`HTTP ${response.status}: ${errorData.message || response.statusText}`);
+        }
 
-      const data = await response.json();
-      
-      if (data.response) {
-        return {
-          text: data.response,
-          model: 'gemini-2.5-pro',
-          sources: data.sources || []
-        };
-      } else {
-        throw new Error('No response received from Vertex AI');
+        const data = await response.json();
+        
+        if (data.response) {
+          return {
+            text: data.response,
+            model: data.model || 'unknown-model',
+            sources: data.sources || []
+          };
+        } else {
+          throw new Error('No response received from Vertex AI');
+        }
+        
+      } catch (error) {
+        // If this is the last attempt or not a retryable error, throw
+        if (attempt === maxRetries || (error.message && !error.message.includes('429'))) {
+          console.error('❌ Vertex AI error:', error);
+          setError(error.message);
+          return {
+            text: 'Xin lỗi, hệ thống JEGA Assistant hiện tại không khả dụng. Vui lòng thử lại sau hoặc liên hệ với bộ phận hỗ trợ.',
+            model: 'error',
+            sources: []
+          };
+        }
+        
+        // For retryable errors, continue to next attempt
+        console.log(`🔄 Retryable error on attempt ${attempt + 1}, will retry:`, error.message);
       }
-    } catch (error) {
-      console.error('❌ Vertex AI error:', error);
-      setError(error.message);
-      return {
-        text: 'Xin lỗi, hệ thống JEGA Assistant hiện tại không khả dụng. Vui lòng thử lại sau hoặc liên hệ với bộ phận hỗ trợ.',
-        model: 'error',
-        sources: []
-      };
     }
-  }, [chatConfig.conversationMemory]);
+  }, [chatConfig]);
 
   /**
    * Handle sending a new message
    */
   const handleSendMessage = useCallback(async () => {
     if (!inputValue.trim() || isLoading) return;
+    
+    // Ensure chat config is loaded from Bubble before allowing messages
+    if (!chatConfig) {
+      setError('Chưa tải được cấu hình chatbot. Vui lòng thử lại sau.');
+      return;
+    }
     
     const userMessage = inputValue.trim();
     setInputValue('');
@@ -295,7 +331,7 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
     } finally {
       setIsLoading(false);
     }
-  }, [inputValue, isLoading, messages, callVertexAI]);
+  }, [inputValue, isLoading, messages, callVertexAI, chatConfig]);
 
   /**
    * Handle keyboard events
@@ -493,20 +529,20 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
           <input 
             ref={inputRef}
             type="text" 
-            placeholder="Nhập câu hỏi của bạn..."
+            placeholder={!chatConfig ? "Đang tải cấu hình..." : "Nhập câu hỏi của bạn..."}
             className={styles.messageInput}
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             onKeyPress={handleKeyPress}
-            disabled={isLoading}
+            disabled={isLoading || !chatConfig}
             aria-label="Nhập tin nhắn"
           />
           <button 
             className={styles.sendButton} 
             onClick={handleSendMessage}
-            disabled={!inputValue.trim() || isLoading}
+            disabled={!inputValue.trim() || isLoading || !chatConfig}
             aria-label="Gửi tin nhắn"
-            title="Gửi tin nhắn"
+            title={!chatConfig ? "Đang tải cấu hình..." : "Gửi tin nhắn"}
           >
             <svg 
               width="18"

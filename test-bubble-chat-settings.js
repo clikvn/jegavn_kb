@@ -3,8 +3,7 @@
  * This will test both GET and PATCH operations for the new fields
  */
 
-const BUBBLE_API_URL = 'https://sondn-31149.bubbleapps.io/api/1.1/obj/SystemPrompt';
-const BUBBLE_API_KEY = 'd239ed5060b7336da248b35f16116a2b';
+const { BUBBLE_API_URL, BUBBLE_API_KEY, environment } = require('./api/bubble-config');
 
 async function testBubbleChatSettings() {
   console.log('🧪 Testing Bubble API Chat Settings Integration...\n');

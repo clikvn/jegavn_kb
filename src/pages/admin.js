@@ -1,6 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { fetchChatbotConfig, updateChatbotConfig, getDefaultConfig, validateConfig } from '../utils/configManager';
+import { fetchChatbotConfig, updateChatbotConfig, validateConfig } from '../utils/configManager';
 import styles from './admin.module.css';
+
+// Predefined AI models list
+const PREDEFINED_MODELS = ['gemini-2.5-pro', 'gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-2.0-flash-lite'];
+
+// Helper function to check if a model is in the predefined list (exact match only)
+const isPredefinedModel = (model) => {
+  return PREDEFINED_MODELS.includes(model);
+};
+
+// This function is still used to determine initial state when loading config
 
 const AdminPage = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -13,6 +23,7 @@ const AdminPage = () => {
   const [error, setError] = useState(null);
   const [saveMessage, setSaveMessage] = useState('');
   const [lastUpdated, setLastUpdated] = useState(null);
+  const [isCustomModel, setIsCustomModel] = useState(false);
 
   // Check for existing session on component mount
   useEffect(() => {
@@ -113,6 +124,8 @@ const AdminPage = () => {
       if (result.success) {
         setConfig(result.config);
         setLastUpdated(result.timestamp);
+        // Set custom model state based on whether the loaded model is predefined
+        setIsCustomModel(!isPredefinedModel(result.config.aiModel));
       } else {
         setError(result.error);
         setConfig(null); // Don't use default config, show error instead
@@ -184,6 +197,13 @@ const AdminPage = () => {
     setConfig(prev => ({
       ...prev,
       systemPrompt: value
+    }));
+  };
+
+  const updateAiModel = (value) => {
+    setConfig(prev => ({
+      ...prev,
+      aiModel: value
     }));
   };
 
@@ -310,7 +330,7 @@ const AdminPage = () => {
               <div className={styles.subsection}>
                 <h3>System Prompt</h3>
                 <textarea
-                  value={config.systemPrompt || ''}
+                  value={config.systemPrompt}
                   onChange={(e) => updateSystemPrompt(e.target.value)}
                   className={styles.promptTextarea}
                   placeholder="Enter the full system prompt..."
@@ -321,10 +341,59 @@ const AdminPage = () => {
               <div className={styles.subsection}>
                 <h3>System Prompt</h3>
                 <div className={styles.promptDisplay}>
-                  {config.systemPrompt || 'Not set'}
+                  {config.systemPrompt || '❌ Missing from Bubble database'}
                 </div>
               </div>
             )}
+          </div>
+
+          {/* AI Model Section */}
+          <div className={styles.section}>
+            <h3>AI Model</h3>
+            <div className={styles.parameters}>
+              <div className={styles.parameter}>
+                <label>Model:</label>
+                {isEditing ? (
+                  <div className={styles.modelSelector}>
+                    <select
+                      value={isCustomModel ? 'custom' : config.aiModel}
+                      onChange={(e) => {
+                        if (e.target.value === 'custom') {
+                          setIsCustomModel(true);
+                          // Keep current value if it's already custom, otherwise clear it
+                          if (isPredefinedModel(config.aiModel)) {
+                            updateAiModel('');
+                          }
+                        } else {
+                          // User selected a predefined model
+                          setIsCustomModel(false);
+                          updateAiModel(e.target.value);
+                        }
+                      }}
+                      className={styles.aiModelSelect}
+                    >
+                      <option value="gemini-2.5-pro">gemini-2.5-pro</option>
+                      <option value="gemini-2.5-flash">gemini-2.5-flash</option>
+                      <option value="gemini-2.0-flash">gemini-2.0-flash</option>
+                      <option value="gemini-2.0-flash-lite">gemini-2.0-flash-lite</option>
+                      <option value="custom">Custom (enter below)</option>
+                    </select>
+                    {isCustomModel && (
+                      <input
+                        type="text"
+                        value={config.aiModel}
+                        onChange={(e) => updateAiModel(e.target.value)}
+                        className={styles.aiModelInput}
+                        placeholder="e.g., gemini-2.5-pro-vision, gemini-experimental..."
+                        style={{ marginTop: '8px' }}
+                      />
+                    )}
+                  </div>
+                ) : (
+                  <span>{config.aiModel || '❌ Missing from Bubble database'}</span>
+                )}
+              </div>
+            </div>
           </div>
 
           {/* Model Parameters Section */}
@@ -339,12 +408,12 @@ const AdminPage = () => {
                     step="0.1"
                     min="0"
                     max="2"
-                    value={config.modelParameters?.temperature || 0.5}
+                    value={config.modelParameters?.temperature}
                     onChange={(e) => updateConfig('modelParameters', 'temperature', parseFloat(e.target.value))}
                     className={styles.input}
                   />
                 ) : (
-                  <span>{config.modelParameters?.temperature || 'Not set'}</span>
+                  <span>{config.modelParameters?.temperature ?? '❌ Missing from Bubble database'}</span>
                 )}
               </div>
               <div className={styles.parameter}>
@@ -355,12 +424,12 @@ const AdminPage = () => {
                     step="0.1"
                     min="0"
                     max="1"
-                    value={config.modelParameters?.topP || 0.9}
+                    value={config.modelParameters?.topP}
                     onChange={(e) => updateConfig('modelParameters', 'topP', parseFloat(e.target.value))}
                     className={styles.input}
                   />
                 ) : (
-                  <span>{config.modelParameters?.topP || 'Not set'}</span>
+                  <span>{config.modelParameters?.topP ?? '❌ Missing from Bubble database'}</span>
                 )}
               </div>
               <div className={styles.parameter}>
@@ -370,12 +439,12 @@ const AdminPage = () => {
                     type="number"
                     min="1"
                     max="65535"
-                    value={config.modelParameters?.maxOutputTokens || 65535}
+                    value={config.modelParameters?.maxOutputTokens}
                     onChange={(e) => updateConfig('modelParameters', 'maxOutputTokens', parseInt(e.target.value))}
                     className={styles.input}
                   />
                 ) : (
-                  <span>{config.modelParameters?.maxOutputTokens || 'Not set'}</span>
+                  <span>{config.modelParameters?.maxOutputTokens ?? '❌ Missing from Bubble database'}</span>
                 )}
               </div>
             </div>
@@ -392,12 +461,12 @@ const AdminPage = () => {
                     type="number"
                     min="1"
                     max="100"
-                    value={config.chatSettings?.conversationMemory || 20}
+                    value={config.chatSettings?.conversationMemory}
                     onChange={(e) => updateConfig('chatSettings', 'conversationMemory', parseInt(e.target.value))}
                     className={styles.input}
                   />
                 ) : (
-                  <span>{config.chatSettings?.conversationMemory || 'Not set'}</span>
+                  <span>{config.chatSettings?.conversationMemory ?? '❌ Missing from Bubble database'}</span>
                 )}
               </div>
               <div className={styles.parameter}>
@@ -407,18 +476,14 @@ const AdminPage = () => {
                     type="number"
                     min="10"
                     max="1000"
-                    value={config.chatSettings?.userHistory || 100}
+                    value={config.chatSettings?.userHistory}
                     onChange={(e) => updateConfig('chatSettings', 'userHistory', parseInt(e.target.value))}
                     className={styles.input}
                   />
                 ) : (
-                  <span>{config.chatSettings?.userHistory || 'Not set'}</span>
+                  <span>{config.chatSettings?.userHistory ?? '❌ Missing from Bubble database'}</span>
                 )}
               </div>
-            </div>
-            <div className={styles.info}>
-              <p><strong>Conversation Memory:</strong> Maximum number of messages sent to Vertex AI (affects performance and costs)</p>
-              <p><strong>User History:</strong> Maximum number of messages stored in user's browser localStorage</p>
             </div>
           </div>
         </div>
