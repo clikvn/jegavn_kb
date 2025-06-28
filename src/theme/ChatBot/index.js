@@ -542,10 +542,19 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
           }
           return msg;
         }));
+        
+        // 🔓 CRITICAL: Reset loading state on timeout to ensure input is not stuck
+        setIsLoading(false);
+        console.log('🔓 [TIMEOUT] Loading state reset after timeout - input enabled');
       }, 30000); // 30 second timeout
 
       // Get bot response with streaming (starts immediately!)
       const botResponse = await callVertexAI(userMessage, [...messages, newUserMessage], onChunk, streamingBotMessage.id);
+      
+      // 🔓 CRITICAL: Reset loading state immediately after API call completes
+      // This ensures input is enabled as soon as the response is received
+      setIsLoading(false);
+      console.log('🔓 [INPUT] Loading state reset - input enabled');
       
       // 🎯 FINISH TYPEWRITER ANIMATION
       // Ensure all buffered text is displayed before marking as complete
@@ -636,6 +645,10 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
         clearTimeout(streamTimeout);
         streamTimeout = null;
       }
+      
+      // 🔓 CRITICAL: Reset loading state on error to ensure input is not stuck
+      setIsLoading(false);
+      console.log('🔓 [ERROR] Loading state reset after error - input enabled');
       
       // Update the streaming message with error (preserve any streamed text)
       setMessages(prev => prev.map(msg => 
