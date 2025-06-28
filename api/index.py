@@ -6,6 +6,7 @@ Replaces the Node.js implementation with Python GenAI SDK
 import json
 import os
 import logging
+from datetime import datetime
 from typing import Dict, List, Any, Optional
 
 from fastapi import FastAPI, HTTPException, Request
@@ -136,7 +137,9 @@ async def fetch_bubble_config() -> Dict[str, Any]:
                     'system_prompt': bubble_config.get('prompt', '').replace('&lt;', '<').replace('&gt;', '>').replace('&amp;', '&'),
                     'temperature': float(bubble_config.get('tempature', 0.5)),
                     'top_p': float(bubble_config.get('top-p', 0.9)),
-                    'max_output_tokens': int(bubble_config.get('max_output_tokens', 10000))
+                    'max_output_tokens': int(bubble_config.get('max_output_tokens', 10000)),
+                    'conversation_memory': int(bubble_config.get('conversation_memory', 10)),
+                    'user_history': int(bubble_config.get('user_history', 100))
                 }
                 
                 # Validate required fields
@@ -200,17 +203,28 @@ async def get_chat_config():
         # Fetch full config from Bubble
         config = await fetch_bubble_config()
         
-        # Return only the chat settings the frontend needs
+        # Return the complete configuration from Bubble in expected frontend format
         chat_config = {
             "config": {
+                "systemPrompt": config.get('system_prompt'),
+                "aiModel": config.get('ai_model'),
+                "modelParameters": {
+                    "temperature": config.get('temperature'),
+                    "topP": config.get('top_p'),
+                    "maxOutputTokens": config.get('max_output_tokens')
+                },
                 "chatSettings": {
-                    "conversationMemory": 10,  # Default conversation memory
-                    "userHistory": 100  # Default user history limit
+                    "conversationMemory": config.get('conversation_memory', 10),  # From Bubble or default
+                    "userHistory": config.get('user_history', 100)  # From Bubble or default
                 }
             }
         }
         
-        logger.info("✅ Chat config served to frontend")
+        logger.info(f"✅ Full config served to frontend: {config.get('ai_model')}")
+        
+        # Add timestamp for cache validation
+        chat_config["timestamp"] = datetime.now().isoformat()
+        
         return chat_config
         
     except Exception as e:
