@@ -68,7 +68,6 @@ When the server starts, you'll see logs like:
 The following files now use the environment-based configuration:
 - `api/config.js` - Main configuration API
 - `api/vertex-ai.js` - AI chat API  
-- `test-bubble-chat-settings.js` - Test script
 - `api/bubble-config.js` - Shared configuration module (new)
 
 ## Benefits

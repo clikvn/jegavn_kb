@@ -5,10 +5,7 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
-    "start:api": "node src/dev-api-server.js",
-    "dev": "concurrently \"npm run start:api\" \"npm run start\"",
-    "dev:api": "cross-env NODE_ENV=development npm run start:api",
-    "dev:frontend": "cross-env NODE_ENV=development npm run start",
+    "dev:python": "python api/index.py",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
@@ -23,8 +20,7 @@
     "test": "echo \"No tests specified\" && exit 0",
     "clean": "rm -rf build .docusaurus node_modules/.cache",
     "clean:all": "rm -rf build .docusaurus node_modules package-lock.json yarn.lock",
-    "install:clean": "npm run clean:all && npm install",
-    "health": "curl -f http://localhost:3001/api/health || echo 'API server not running'"
+    "install:clean": "npm run clean:all && npm install"
   },
   "dependencies": {
     "@docusaurus/core": "3.8.0",
@@ -36,9 +32,6 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@mdx-js/react": "^3.1.0",
     "clsx": "^2.1.1",
-    "cors": "^2.8.5",
-    "express": "^4.18.2",
-    "google-auth-library": "^9.15.1",
     "prism-react-renderer": "^2.4.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
@@ -46,8 +39,6 @@
   "devDependencies": {
     "@docusaurus/module-type-aliases": "3.8.0",
     "@docusaurus/types": "3.8.0",
-    "concurrently": "^8.2.2",
-    "cross-env": "^7.0.3",
     "typescript": "~5.7.2"
   },
   "browserslist": {

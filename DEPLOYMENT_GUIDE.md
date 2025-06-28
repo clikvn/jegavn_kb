@@ -66,12 +66,19 @@ Create `vercel.json` in your project root:
 ```json
 {
   "functions": {
-    "api/vertex-ai.js": {
+    "api/index.py": {
+      "runtime": "python3.9",
       "maxDuration": 30
     }
   },
+  "rewrites": [
+    {
+      "source": "/api/vertex-ai",
+      "destination": "/api/index.py"
+    }
+  ],
   "env": {
-    "NODE_ENV": "production"
+    "PYTHONPATH": "/var/task"
   }
 }
 ```
@@ -81,15 +88,16 @@ Create `vercel.json` in your project root:
 ```
 jega_kb/
 ├── api/
-│   └── vertex-ai.js              # Vercel serverless function
+│   ├── __init__.py               # Python package
+│   └── index.py                  # Python Vercel serverless function
 ├── src/
 │   └── theme/
 │       └── ChatBot/
-│           ├── index.js          # Chatbot component (auto-detects environment)
+│           ├── index.js          # Chatbot component
 │           └── styles.module.css # Chatbot styles
-├── vertex-ai-proxy-fixed.js     # Local development proxy (optional)
-├── vercel.json                   # Vercel configuration
-└── package.json                  # Dependencies
+├── requirements.txt              # Python dependencies
+├── vercel.json                   # Vercel configuration (Python)
+└── package.json                  # Frontend dependencies only
 ```
 
 ## 🔄 How It Works

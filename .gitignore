@@ -47,6 +47,24 @@ coverage/
 tmp/
 temp/
 
-# Google Cloud Service Account Keys
-*.json
-jega-chatbot-service-key.json 
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Google Cloud Service Account Keys  
+jega-chatbot-service-key.json
+
+# Test files (keep test patterns but exclude from git)
+test-*.js
+test-*.py
+test_*.py
+*_test.py 

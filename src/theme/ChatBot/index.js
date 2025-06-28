@@ -188,13 +188,14 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
   }, [isPanelVersion]);
 
   /**
-   * Call Vertex AI API with user message and chat history
+   * Call Vertex AI API with user message and chat history - STREAMING VERSION
    * Includes retry mechanism for 429 errors as recommended by Google
    * @param {string} userMessage - The user's input message
    * @param {Array} chatHistory - Previous conversation messages
+   * @param {Function} onChunk - Callback for streaming chunks
    * @returns {Promise<Object>} Response from Vertex AI
    */
-  const callVertexAI = useCallback(async (userMessage, chatHistory) => {
+  const callVertexAI = useCallback(async (userMessage, chatHistory, onChunk = null) => {
     const maxRetries = 2; // Google recommendation: retry no more than 2 times
     const baseDelay = 1000; // Google recommendation: minimum delay of 1 second
     
@@ -202,13 +203,13 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
       try {
         setError(null);
         
-        // Determine API endpoint based on environment
+        // Use correct API endpoint - port 3001 for development, relative path for production
         const isDevelopment = process.env.NODE_ENV === 'development' || 
                              window.location.hostname === 'localhost' ||
                              window.location.hostname === '127.0.0.1';
         const apiEndpoint = isDevelopment ? 'http://localhost:3001/api/vertex-ai' : '/api/vertex-ai';
         
-        console.log(`🌐 Calling API endpoint (attempt ${attempt + 1}/${maxRetries + 1}):`, apiEndpoint);
+        console.log(`🌐 Calling streaming API endpoint (attempt ${attempt + 1}/${maxRetries + 1}):`, apiEndpoint);
         
         // Require conversation memory from Bubble config
         if (!chatConfig || !chatConfig.conversationMemory) {
@@ -246,22 +247,108 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
           throw new Error(`HTTP ${response.status}: ${errorData.message || response.statusText}`);
         }
 
-        const data = await response.json();
+        // Handle streaming response
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        let buffer = '';
+        let fullResponse = '';
+        let finalMetadata = null;
         
-        if (data.response) {
+        console.log('🌊 [STREAM] Starting to process streaming response...');
+        console.log('🔍 [DEBUG] onChunk callback type:', typeof onChunk);
+        console.log('🔍 [DEBUG] onChunk callback:', onChunk);
+        
+        try {
+          while (true) {
+            const { done, value } = await reader.read();
+            
+            if (done) {
+              console.log('✅ [STREAM] Stream complete');
+              break;
+            }
+            
+            // Decode chunk and add to buffer
+            buffer += decoder.decode(value, { stream: true });
+            
+            // Process complete lines
+            const lines = buffer.split('\n');
+            buffer = lines.pop() || ''; // Keep incomplete line in buffer
+            
+            for (const line of lines) {
+              if (line.trim() === '' || !line.startsWith('data: ')) continue;
+              
+              const dataStr = line.substring(6); // Remove 'data: ' prefix
+              
+              if (dataStr === '[DONE]') {
+                console.log('🏁 [STREAM] Received [DONE] signal');
+                break;
+              }
+              
+              try {
+                const data = JSON.parse(dataStr);
+                
+                if (data.type === 'chunk') {
+                  console.log(`🔍 [DEBUG] Processing chunk: ${data.content.length} chars`);
+                  console.log(`🔍 [DEBUG] Chunk content: "${data.content.substring(0, 100)}..."`);
+                  
+                  fullResponse += data.content;
+                  
+                  // Call onChunk callback for real-time UI updates
+                  if (onChunk && typeof onChunk === 'function') {
+                    console.log(`🔄 [UI] Calling onChunk with: "${data.content.substring(0, 30)}..."`);
+                    onChunk(data.content);
+                    console.log(`✅ [UI] onChunk called successfully`);
+                  } else {
+                    console.error(`❌ [UI] onChunk not available! Type: ${typeof onChunk}`);
+                  }
+                  
+                  console.log(`📝 [STREAM] Received chunk: ${data.content.substring(0, 50)}...`);
+                  
+                } else if (data.type === 'complete') {
+                  finalMetadata = data;
+                  console.log('📊 [STREAM] Received final metadata:', {
+                    model: data.model,
+                    sourcesCount: data.sources?.length || 0,
+                    hasGrounding: !!data.groundingMetadata
+                  });
+                  
+                } else if (data.type === 'error') {
+                  throw new Error(data.error || 'Streaming error occurred');
+                }
+                
+              } catch (parseError) {
+                console.warn('⚠️ [STREAM] Failed to parse SSE data:', dataStr.substring(0, 100));
+              }
+            }
+          }
+          
+        } catch (streamError) {
+          console.error('❌ [STREAM] Streaming error:', streamError);
+          throw streamError;
+        }
+        
+        // Return the complete response with metadata
+        if (finalMetadata) {
           return {
-            text: data.response,
-            model: data.model || 'unknown-model',
-            sources: data.sources || []
+            text: finalMetadata.fullResponse || fullResponse,
+            model: finalMetadata.model || 'unknown-model',
+            sources: finalMetadata.sources || [],
+            groundingMetadata: finalMetadata.groundingMetadata,
+            usageMetadata: finalMetadata.usageMetadata
           };
         } else {
-          throw new Error('No response received from Vertex AI');
+          // Fallback if no final metadata received
+          return {
+            text: fullResponse || 'Xin lỗi, không nhận được phản hồi hoàn chỉnh.',
+            model: 'unknown-model',
+            sources: []
+          };
         }
         
       } catch (error) {
         // If this is the last attempt or not a retryable error, throw
         if (attempt === maxRetries || (error.message && !error.message.includes('429'))) {
-          console.error('❌ Vertex AI error:', error);
+          console.error('❌ Vertex AI streaming error:', error);
           setError(error.message);
           return {
             text: 'Xin lỗi, hệ thống JEGA Assistant hiện tại không khả dụng. Vui lòng thử lại sau hoặc liên hệ với bộ phận hỗ trợ.',
@@ -277,7 +364,7 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
   }, [chatConfig]);
 
   /**
-   * Handle sending a new message
+   * Handle sending a new message - STREAMING VERSION with SMOOTH TYPEWRITER EFFECT
    */
   const handleSendMessage = useCallback(async () => {
     if (!inputValue.trim() || isLoading) return;
@@ -303,31 +390,191 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
     
     setMessages(prev => [...prev, newUserMessage]);
     
+    // Create initial bot message for streaming
+    const streamingBotMessage = {
+      id: Date.now() + 1,
+      text: '', // Will be updated as chunks arrive
+      sender: 'bot',
+      timestamp: new Date(),
+      model: 'loading...',
+      sources: [],
+      isStreaming: true, // Flag to indicate streaming status
+      streamingPhase: 'processing' // Track streaming phase: 'processing' -> 'thinking' -> 'searching' -> 'generating'
+    };
+    
+    setMessages(prev => [...prev, streamingBotMessage]);
+    
     try {
-      // Get bot response
-      const botResponse = await callVertexAI(userMessage, [...messages, newUserMessage]);
+      // 🎯 SMOOTH TYPEWRITER EFFECT IMPLEMENTATION
+      let textBuffer = ''; // Buffer to store incoming chunks
+      let displayedLength = 0; // Track how much text is currently displayed
+      let typewriterInterval = null;
+      let processingTimer = null; // Timer for frontend UI phases
+      let thinkingTimer = null; // Timer for thinking phase
       
-      const newBotMessage = {
-        id: Date.now() + 1,
-        text: botResponse.text,
-        sender: 'bot',
-        timestamp: new Date(),
+      // Typewriter animation function
+      const startTypewriter = () => {
+        if (typewriterInterval) return; // Already running
+        
+        typewriterInterval = setInterval(() => {
+          if (displayedLength < textBuffer.length) {
+            displayedLength++;
+            
+            setMessages(prev => prev.map(msg => {
+              if (msg.id === streamingBotMessage.id) {
+                return { 
+                  ...msg, 
+                  text: textBuffer.substring(0, displayedLength)
+                };
+              }
+              return msg;
+            }));
+          } else {
+            // If we've displayed all buffered text, pause the typewriter
+            if (typewriterInterval) {
+              clearInterval(typewriterInterval);
+              typewriterInterval = null;
+            }
+          }
+                 }, 10); // 10ms = ~100 characters per second (faster speed)
+      };
+      
+      // Define onChunk callback for smooth streaming
+      const onChunk = (chunk) => {
+        console.log(`🔄 [UI] Adding chunk to buffer: "${chunk.substring(0, 30)}..."`);
+        console.log(`🔍 [UI] Chunk length: ${chunk.length} chars`);
+        
+        // Add chunk to buffer
+        textBuffer += chunk;
+        
+        // 🎯 PHASE 4: Change to "generating" phase on first chunk
+        if (textBuffer.length === chunk.length) {
+          // This is the first chunk - clear all timers and switch to generating
+          clearTimeout(processingTimer);
+          clearTimeout(thinkingTimer);
+          setMessages(prev => prev.map(msg => {
+            if (msg.id === streamingBotMessage.id) {
+              return { ...msg, streamingPhase: 'generating' };
+            }
+            return msg;
+          }));
+          console.log(`🚀 [UX] First chunk arrived - switched to 'generating' phase`);
+        }
+        
+        // Start typewriter if not already running
+        startTypewriter();
+        
+        console.log(`✨ [TYPEWRITER] Buffer updated: ${textBuffer.length} chars total, ${displayedLength} displayed`);
+      };
+      
+      // 🎯 FOUR-PHASE UX: Progressive timing for thinking model
+      console.log(`🚀 [UX] API call starting immediately - showing progressive phases`);
+      
+      // Phase 1 -> 2: Processing (5s) -> Thinking  
+      processingTimer = setTimeout(() => {
+        setMessages(prev => prev.map(msg => {
+          if (msg.id === streamingBotMessage.id) {
+            return { ...msg, streamingPhase: 'thinking' };
+          }
+          return msg;
+        }));
+        console.log(`🧠 [UX] Switched to 'thinking' phase after 5s`);
+        
+        // Phase 2 -> 3: Thinking (15s) -> Searching
+        thinkingTimer = setTimeout(() => {
+          setMessages(prev => prev.map(msg => {
+            if (msg.id === streamingBotMessage.id) {
+              return { ...msg, streamingPhase: 'searching' };
+            }
+            return msg;
+          }));
+          console.log(`🔍 [UX] Switched to 'searching' phase after 15s more (20s total)`);
+        }, 15000);
+      }, 5000);
+      
+      // Get bot response with streaming (starts immediately!)
+      const botResponse = await callVertexAI(userMessage, [...messages, newUserMessage], onChunk);
+      
+      // 🎯 FINISH TYPEWRITER ANIMATION
+      // Ensure all buffered text is displayed before marking as complete
+      const finishTypewriter = () => {
+        return new Promise((resolve) => {
+          const checkCompletion = () => {
+            if (displayedLength >= textBuffer.length) {
+              // All text displayed, clean up
+              if (typewriterInterval) {
+                clearInterval(typewriterInterval);
+                typewriterInterval = null;
+              }
+              resolve();
+            } else {
+              // Wait a bit more for typewriter to finish
+              setTimeout(checkCompletion, 100);
+            }
+          };
+          checkCompletion();
+        });
+      };
+      
+      // Wait for typewriter to finish
+      await finishTypewriter();
+      
+      // ✅ Update metadata only - preserve the typewriter-animated text
+      setMessages(prev => prev.map(msg => 
+        msg.id === streamingBotMessage.id 
+          ? {
+              ...msg,
+              // ✅ Ensure final text is complete (fallback)
+              text: textBuffer || msg.text,
+              model: botResponse.model,
+              sources: botResponse.sources,
+              groundingMetadata: botResponse.groundingMetadata,
+              usageMetadata: botResponse.usageMetadata,
+              isStreaming: false, // Mark streaming as complete
+              streamingPhase: null // Clear streaming phase
+            }
+          : msg
+      ));
+      
+      console.log('🔄 [UI] Updated metadata only - preserved typewriter text');
+      
+      console.log('✅ [CHAT] Streaming message completed:', {
+        responseLength: textBuffer.length,
         model: botResponse.model,
-        sources: botResponse.sources
-      };
+        sourcesCount: botResponse.sources?.length || 0
+      });
       
-      setMessages(prev => [...prev, newBotMessage]);
     } catch (error) {
-      console.error('Error sending message:', error);
-      const errorMessage = {
-        id: Date.now() + 1,
-        text: 'Xin lỗi, đã có lỗi xảy ra. Vui lòng thử lại sau.',
-        sender: 'bot',
-        timestamp: new Date(),
-        model: 'error',
-        sources: []
-      };
-      setMessages(prev => [...prev, errorMessage]);
+      console.error('Error sending streaming message:', error);
+      
+      // 🧹 CLEANUP TYPEWRITER AND TIMERS ON ERROR
+      if (typewriterInterval) {
+        clearInterval(typewriterInterval);
+        typewriterInterval = null;
+      }
+      if (processingTimer) {
+        clearTimeout(processingTimer);
+        processingTimer = null;
+      }
+      if (thinkingTimer) {
+        clearTimeout(thinkingTimer);
+        thinkingTimer = null;
+      }
+      
+      // Update the streaming message with error (preserve any streamed text)
+      setMessages(prev => prev.map(msg => 
+        msg.id === streamingBotMessage.id 
+          ? {
+              ...msg,
+              // Only replace text if no streaming happened, otherwise preserve typewriter text
+              text: textBuffer || msg.text || 'Xin lỗi, đã có lỗi xảy ra. Vui lòng thử lại sau.',
+              model: 'error',
+              sources: [],
+              isStreaming: false,
+              streamingPhase: null // Clear streaming phase on error
+            }
+          : msg
+      ));
     } finally {
       setIsLoading(false);
     }
@@ -440,14 +687,24 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
       <div className={styles.chatMessages}>
         {messages.map((message) => (
           <div key={message.id} className={`${styles.messageWrapper} ${message.sender === 'user' ? styles.userMessage : styles.botMessage}`}>
-            <div className={styles.messageBubble}>
+            <div className={`${styles.messageBubble} ${message.isStreaming ? styles.streamingMessage : ''}`}>
               <div 
                 className={styles.messageText} 
                 dangerouslySetInnerHTML={{ __html: formatMessage(message.text) }} 
               />
               
-              {/* Sources section */}
-              {message.sources && message.sources.length > 0 && !message.text.includes('<a href=') && (
+              {/* Enhanced streaming indicator with four-phase messages */}
+              {message.isStreaming && (
+                <div className={styles.streamingIndicator}>
+                  {message.streamingPhase === 'processing' && 'Đang xử lý câu hỏi của bạn...'}
+                  {message.streamingPhase === 'thinking' && 'Suy nghĩ về câu hỏi của bạn...'}
+                  {message.streamingPhase === 'searching' && 'Đang tìm kiếm dữ liệu...'}
+                  {message.streamingPhase === 'generating' && 'Đang tạo phản hồi...'}
+                </div>
+              )}
+              
+              {/* Sources section - only show when not streaming and has sources */}
+              {!message.isStreaming && message.sources && message.sources.length > 0 && !message.text.includes('<a href=') && (
                 <div className={styles.sourcesSection}>
                   <div className={styles.sourcesHeader}>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
@@ -507,8 +764,8 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
           </div>
         ))}
         
-        {/* Loading indicator */}
-        {isLoading && (
+        {/* Loading indicator - only show when no streaming messages */}
+        {isLoading && !messages.some(msg => msg.isStreaming) && (
           <div className={`${styles.messageWrapper} ${styles.botMessage}`}>
             <div className={styles.messageBubble}>
               <div className={styles.typingIndicator}>

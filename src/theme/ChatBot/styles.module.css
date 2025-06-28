@@ -200,6 +200,60 @@
   padding: 0;
 }
 
+/* Streaming message styles with typewriter cursor */
+.streamingMessage {
+  position: relative;
+}
+
+.streamingMessage::after {
+  content: '|';
+  display: inline-block;
+  width: auto;
+  height: auto;
+  color: var(--primary);
+  margin-left: 2px;
+  font-weight: 400;
+  animation: typewriterCursor 1s ease-in-out infinite;
+  vertical-align: baseline;
+}
+
+@keyframes typewriterCursor {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+
+
+.streamingIndicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--primary);
+  font-size: 12px;
+  margin-top: 4px;
+  font-style: italic;
+  opacity: 0.7;
+  transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.streamingIndicator::before {
+  content: '●';
+  animation: streamingDot 1s ease-in-out infinite;
+}
+
+@keyframes streamingDot {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
 /* User message styles */
 .userMessage .messageBubble {
   background: #EEF2F1;
