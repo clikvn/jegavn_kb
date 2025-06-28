@@ -447,18 +447,28 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
         // Add chunk to buffer
         textBuffer += chunk;
         
-        // 🎯 PHASE 4: Change to "generating" phase on first chunk
+        // 🎯 FIRST CHUNK DETECTION: Switch to generating immediately
         if (textBuffer.length === chunk.length) {
-          // This is the first chunk - clear all timers and switch to generating
+          hasReceivedFirstChunk = true;
+          const responseTime = Date.now() - startTime;
+          
+          // Clear all pending timers - we're now generating!
           clearTimeout(processingTimer);
           clearTimeout(thinkingTimer);
+          
           setMessages(prev => prev.map(msg => {
             if (msg.id === streamingBotMessage.id) {
               return { ...msg, streamingPhase: 'generating' };
             }
             return msg;
           }));
-          console.log(`🚀 [UX] First chunk arrived - switched to 'generating' phase`);
+          
+          console.log(`🚀 [UX] First chunk arrived after ${responseTime}ms - switched to 'generating' phase`);
+          
+          // Log UX efficiency
+          if (responseTime < 2000) {
+            console.log(`⚡ [UX] Quick response - skipped unnecessary phases`);
+          }
         }
         
         // Start typewriter if not already running
@@ -467,30 +477,39 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
         console.log(`✨ [TYPEWRITER] Buffer updated: ${textBuffer.length} chars total, ${displayedLength} displayed`);
       };
       
-      // 🎯 FOUR-PHASE UX: Progressive timing for thinking model
-      console.log(`🚀 [UX] API call starting immediately - showing progressive phases`);
+      // 🎯 ADAPTIVE UX PHASES: Shorter timers, skip searching for quick responses
+      console.log(`🚀 [UX] API call starting - using adaptive phases`);
       
-      // Phase 1 -> 2: Processing (5s) -> Thinking  
+      let startTime = Date.now();
+      let hasReceivedFirstChunk = false;
+      
+      // Phase 1 -> 2: Processing (2s) -> Thinking  
       processingTimer = setTimeout(() => {
-        setMessages(prev => prev.map(msg => {
-          if (msg.id === streamingBotMessage.id) {
-            return { ...msg, streamingPhase: 'thinking' };
-          }
-          return msg;
-        }));
-        console.log(`🧠 [UX] Switched to 'thinking' phase after 5s`);
-        
-        // Phase 2 -> 3: Thinking (15s) -> Searching
-        thinkingTimer = setTimeout(() => {
+        // Only switch to thinking if no chunk received yet
+        if (!hasReceivedFirstChunk) {
           setMessages(prev => prev.map(msg => {
             if (msg.id === streamingBotMessage.id) {
-              return { ...msg, streamingPhase: 'searching' };
+              return { ...msg, streamingPhase: 'thinking' };
             }
             return msg;
           }));
-          console.log(`🔍 [UX] Switched to 'searching' phase after 15s more (20s total)`);
-        }, 15000);
-      }, 5000);
+          console.log(`🧠 [UX] Switched to 'thinking' phase after 2s`);
+          
+          // Phase 2 -> 3: Thinking (4s more) -> Searching (only for slower responses)
+          thinkingTimer = setTimeout(() => {
+            // Only show searching if still no chunks and it's been a while
+            if (!hasReceivedFirstChunk) {
+              setMessages(prev => prev.map(msg => {
+                if (msg.id === streamingBotMessage.id) {
+                  return { ...msg, streamingPhase: 'searching' };
+                }
+                return msg;
+              }));
+              console.log(`🔍 [UX] Switched to 'searching' phase after 6s total (slower response)`);
+            }
+          }, 4000);
+        }
+      }, 2000);
       
       // Get bot response with streaming (starts immediately!)
       const botResponse = await callVertexAI(userMessage, [...messages, newUserMessage], onChunk);
@@ -538,11 +557,25 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
       
       console.log('🔄 [UI] Updated metadata only - preserved typewriter text');
       
+      // 🎯 UX VALIDATION: Check if streaming phases matched actual behavior
+      const actuallySearched = botResponse.groundingMetadata?.has_grounding || false;
+      const sourcesFound = botResponse.sources?.length || 0;
+      const totalResponseTime = Date.now() - startTime;
+      
       console.log('✅ [CHAT] Streaming message completed:', {
         responseLength: textBuffer.length,
         model: botResponse.model,
-        sourcesCount: botResponse.sources?.length || 0
+        sourcesCount: sourcesFound,
+        actuallySearched: actuallySearched,
+        totalResponseTime: totalResponseTime
       });
+      
+      // Log UX accuracy
+      if (!actuallySearched && sourcesFound === 0) {
+        console.log('✅ [UX] Efficient: No grounding needed, phases adapted correctly');
+      } else if (actuallySearched && sourcesFound > 0) {
+        console.log('✅ [UX] Search phases were justified - found', sourcesFound, 'sources');
+      }
       
     } catch (error) {
       console.error('Error sending streaming message:', error);

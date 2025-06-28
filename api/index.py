@@ -326,76 +326,107 @@ async def vertex_ai_chat(request: Request):
                                         }
                                         yield f"data: {json.dumps(chunk_data)}\n\n"
                         
-                        # Extract metadata
-                        if hasattr(candidate, 'grounding_metadata'):
-                            grounding_metadata = candidate.grounding_metadata
-                            if grounding_metadata:
-                                logger.info(f"🔍 Grounding metadata found: {type(grounding_metadata)}")
-                                logger.info(f"🔍 Grounding metadata attributes: {dir(grounding_metadata)}")
-                                if hasattr(grounding_metadata, 'grounding_chunks'):
-                                    logger.info(f"🔍 Found {len(grounding_metadata.grounding_chunks) if grounding_metadata.grounding_chunks else 0} grounding chunks")
-                    
-                    if hasattr(chunk, 'usage_metadata'):
-                        usage_metadata = chunk.usage_metadata
-                
-                # Process sources from Vertex AI Search grounding
-                if grounding_metadata and hasattr(grounding_metadata, 'grounding_chunks') and grounding_metadata.grounding_chunks:
-                    logger.info(f"🔍 Processing {len(grounding_metadata.grounding_chunks)} grounding chunks")
-                    for idx, chunk_info in enumerate(grounding_metadata.grounding_chunks):
-                        try:
-                            logger.info(f"🔍 Chunk {idx}: type={type(chunk_info)}, attributes={dir(chunk_info)}")
+                        # Extract metadata safely
+                        candidate_grounding = getattr(candidate, 'grounding_metadata', None)
+                        if candidate_grounding:
+                            grounding_metadata = candidate_grounding
+                            logger.info(f"🔍 Grounding metadata found: {type(grounding_metadata)}")
+                            logger.info(f"🔍 Grounding metadata attributes: {dir(grounding_metadata)}")
                             
-                            # Handle Vertex AI Search results
-                            if hasattr(chunk_info, 'retrieved_context') and chunk_info.retrieved_context:
-                                context = chunk_info.retrieved_context
-                                
-                                # Extract title and text
-                                title = getattr(context, 'title', None) or 'JEGA Knowledge Base'
-                                text = getattr(context, 'text', '')
-                                
-                                if text:  # As long as we have some content
-                                    # Extract source URL from text content using regex
-                                    import re
-                                    source_match = re.search(r'source:\s*(https?://[^\s\n]+)', text)
-                                    source_uri = source_match.group(1) if source_match else '/docs/'
-                                    
-                                    # Use title from context
-                                    display_title = title if title != 'JEGA Knowledge Base' else text[:50] + '...'
-                                    
-                                    # Extract description for snippet
-                                    desc_match = re.search(r'description:\s*([^\n]+)', text)
-                                    snippet = desc_match.group(1) if desc_match else text[:200] + '...'
-                                    
-                                    sources.append({
-                                        'title': display_title,
-                                        'displayTitle': display_title,
-                                        'url': source_uri,
-                                        'uri': source_uri,
-                                        'snippet': snippet
-                                    })
-                                    logger.info(f"📄 Added source: {display_title} (URI: {source_uri})")
-                                else:
-                                    logger.warning(f"⚠️ Context has no text content")
-                            
-                            # Handle web results (if any)
-                            elif hasattr(chunk_info, 'web') and chunk_info.web:
-                                web_title = getattr(chunk_info.web, 'title', 'Unknown')
-                                web_uri = getattr(chunk_info.web, 'uri', '#')
-                                sources.append({
-                                    'title': web_title,
-                                    'displayTitle': web_title,
-                                    'url': web_uri,
-                                    'uri': web_uri,
-                                    'snippet': ''
-                                })
-                                logger.info(f"🌐 Added web source: {chunk_info.web.uri}")
-                            
+                            # Safely check for grounding_chunks
+                            chunks = getattr(grounding_metadata, 'grounding_chunks', None)
+                            if chunks:
+                                logger.info(f"🔍 Found {len(chunks)} grounding chunks")
                             else:
-                                logger.warning(f"⚠️ No retrieved_context or web in chunk {idx}")
+                                logger.info("ℹ️ No grounding_chunks in metadata")
+                        else:
+                            logger.info("ℹ️ No grounding_metadata returned in this chunk")
+                    
+                    # Safe extraction of usage metadata
+                    chunk_usage = getattr(chunk, 'usage_metadata', None)
+                    if chunk_usage:
+                        usage_metadata = chunk_usage
+                
+                # Process sources from Vertex AI Search grounding - robust handling
+                if grounding_metadata:
+                    # More detailed debugging
+                    chunks = getattr(grounding_metadata, 'grounding_chunks', None)
+                    logger.info(f"🔍 grounding_chunks value: {chunks}")
+                    logger.info(f"🔍 grounding_chunks type: {type(chunks)}")
+                    
+                    # Try multiple ways to access grounding data
+                    if chunks is not None:
+                        logger.info(f"🔍 Processing {len(chunks)} grounding chunks")
+                        for idx, chunk_info in enumerate(chunks):
+                            try:
+                                logger.info(f"🔍 Chunk {idx}: type={type(chunk_info)}")
+                                
+                                # Safe extraction of retrieved_context
+                                retrieved_context = getattr(chunk_info, 'retrieved_context', None)
+                                if retrieved_context:
+                                    # Safely extract title and text
+                                    title = getattr(retrieved_context, 'title', None)
+                                    text = getattr(retrieved_context, 'text', '')
+                                    
+                                    if text:  # Only process if we have content
+                                        # Extract source URL from text content using regex
+                                        import re
+                                        source_match = re.search(r'source:\s*(https?://[^\s\n]+)', text)
+                                        source_uri = source_match.group(1) if source_match else '/docs/'
+                                        
+                                        # Create display title
+                                        display_title = title if title else text[:50] + '...'
+                                        if not display_title or display_title == 'JEGA Knowledge Base':
+                                            display_title = text[:50] + '...'
+                                        
+                                        # Extract description for snippet
+                                        desc_match = re.search(r'description:\s*([^\n]+)', text)
+                                        snippet = desc_match.group(1) if desc_match else text[:200] + '...'
+                                        
+                                        sources.append({
+                                            'title': display_title,
+                                            'displayTitle': display_title,
+                                            'url': source_uri,
+                                            'uri': source_uri,
+                                            'snippet': snippet
+                                        })
+                                        logger.info(f"📄 Added source: {display_title} (URI: {source_uri})")
+                                    else:
+                                        logger.warning(f"⚠️ Chunk {idx}: retrieved_context has no text content")
+                                
+                                # Safe extraction of web results
+                                else:
+                                    web = getattr(chunk_info, 'web', None)
+                                    if web:
+                                        web_title = getattr(web, 'title', 'Unknown')
+                                        web_uri = getattr(web, 'uri', '#')
+                                        sources.append({
+                                            'title': web_title,
+                                            'displayTitle': web_title,
+                                            'url': web_uri,
+                                            'uri': web_uri,
+                                            'snippet': ''
+                                        })
+                                        logger.info(f"🌐 Added web source: {web_uri}")
+                                    else:
+                                        logger.warning(f"⚠️ Chunk {idx}: No retrieved_context or web found")
+                            
+                            except Exception as e:
+                                logger.warning(f"⚠️ Failed to process grounding chunk {idx}: {e}")
+                                continue
+                    else:
+                        logger.info("ℹ️ No grounding chunks found in metadata")
                         
-                        except Exception as e:
-                            logger.warning(f"⚠️ Failed to process grounding chunk: {e}")
-                            continue
+                        # Try alternative grounding data sources
+                        alt_attrs = ['grounding_supports', 'retrieval_metadata', 'search_entry_point']
+                        for attr in alt_attrs:
+                            alt_data = getattr(grounding_metadata, attr, None)
+                            if alt_data:
+                                logger.info(f"🔍 Found alternative grounding data in {attr}: {type(alt_data)}")
+                                logger.info(f"🔍 {attr} content: {alt_data}")
+                                break
+                else:
+                    logger.info("ℹ️ No grounding metadata available for source processing")
                 
                 # Process final response
                 processed_response = process_response_text(full_response)
@@ -413,7 +444,11 @@ async def vertex_ai_chat(request: Request):
                         'prompt_tokens': getattr(usage_metadata, 'prompt_token_count', 0) if usage_metadata else 0,
                         'completion_tokens': getattr(usage_metadata, 'candidates_token_count', 0) if usage_metadata else 0,
                         'total_tokens': getattr(usage_metadata, 'total_token_count', 0) if usage_metadata else 0
-                    } if usage_metadata else None,
+                    } if usage_metadata else {
+                        'prompt_tokens': 0,
+                        'completion_tokens': 0,
+                        'total_tokens': 0
+                    },
                     'fullResponse': processed_response,
                     'totalChunks': chunk_count
                 }
