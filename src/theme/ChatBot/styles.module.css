@@ -642,4 +642,15 @@
 
 .sourceLink[style]:hover {
   text-decoration: none !important;
+}
+
+/* Internal link styling */
+:global(.internal-link) {
+  border-left: 3px solid var(--primary) !important;
+  background: linear-gradient(90deg, rgba(0, 149, 104, 0.1), rgba(0, 149, 104, 0.05)) !important;
+}
+
+:global(.internal-link):hover {
+  border-left-color: var(--primary) !important;
+  background: linear-gradient(90deg, rgba(0, 149, 104, 0.15), rgba(0, 149, 104, 0.08)) !important;
 } 

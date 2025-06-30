@@ -508,3 +508,14 @@
 .panelContentWrapper :global(.messageText) ul li::marker {
   color: var(--primary) !important;
 }
+
+/* Internal link styling for panel */
+.panelContentWrapper :global(.internal-link) {
+  border-left: 3px solid var(--primary) !important;
+  background: linear-gradient(90deg, rgba(0, 149, 104, 0.1), rgba(0, 149, 104, 0.05)) !important;
+}
+
+.panelContentWrapper :global(.internal-link):hover {
+  border-left-color: var(--primary) !important;
+  background: linear-gradient(90deg, rgba(0, 149, 104, 0.15), rgba(0, 149, 104, 0.08)) !important;
+}

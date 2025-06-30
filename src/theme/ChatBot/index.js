@@ -699,11 +699,40 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
         (match, url1, title1, title2, url2) => {
           const url = (url1 || url2).trim();
           const title = (title1 || title2).trim();
-          console.log('🔗 Found source link:', { url, title, cssClass: styles.sourceLink });
-          return `<div class="source-link-container"><a href="${esc(url)}" target="_blank" rel="noopener noreferrer" class="${styles.sourceLink}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M18 13V19C18 19.5304 17.7893 20.0391 17.4142 20.4142C17.0391 20.7893 16.5304 21 16 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V8C3 7.46957 3.21071 6.96086 3.58579 6.58579C3.96086 6.21071 4.46957 6 5 6H11" stroke="currentColor" stroke-width="2" fill="none"/><path d="M15 3H21V9" stroke="currentColor" stroke-width="2" fill="none"/><path d="M10 14L21 3" stroke="currentColor" stroke-width="2" fill="none"/></svg>${esc(title)}</a></div>`;
+          
+          // Check if this is an internal docusaurus link
+          const isInternal = url.includes('jegavn-kb.vercel.app/docs/') || url.includes('localhost:3000/docs/');
+          
+          let linkAttrs = '';
+          let iconPath = '';
+          
+          if (isInternal) {
+            // For internal links, extract the path and navigate internally
+            const docPath = url.split('/docs/')[1];
+            linkAttrs = `href="/docs/${docPath}" class="${styles.sourceLink} internal-link" data-internal-path="/docs/${docPath}"`;
+            // Use internal navigation icon
+            iconPath = '<path d="M9 12L11 14L15 10" stroke="currentColor" stroke-width="2" fill="none"/><path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" fill="none"/>';
+          } else {
+            // For external links, use target="_blank"
+            linkAttrs = `href="${esc(url)}" target="_blank" rel="noopener noreferrer" class="${styles.sourceLink}"`;
+            // Use external link icon
+            iconPath = '<path d="M18 13V19C18 19.5304 17.7893 20.0391 17.4142 20.4142C17.0391 20.7893 16.5304 21 16 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V8C3 7.46957 3.21071 6.96086 3.58579 6.58579C3.96086 6.21071 4.46957 6 5 6H11" stroke="currentColor" stroke-width="2" fill="none"/><path d="M15 3H21V9" stroke="currentColor" stroke-width="2" fill="none"/><path d="M10 14L21 3" stroke="currentColor" stroke-width="2" fill="none"/>';
+          }
+          
+          console.log('🔗 Found source link:', { url, title, isInternal, cssClass: styles.sourceLink });
+          return `<div class="source-link-container"><a ${linkAttrs}><svg width="12" height="12" viewBox="0 0 24 24" fill="none">${iconPath}</svg>${esc(title)}</a></div>`;
         })
       // Convert [Link] URL patterns to clickable links
-      .replace(/\[Link\]\s*(https?:\/\/[^\s]+)/g, `<a href="$1" target="_blank" rel="noopener noreferrer" class="${styles.sourceLink}">Link</a>`)
+      .replace(/\[Link\]\s*(https?:\/\/[^\s]+)/g, (match, url) => {
+        const isInternal = url.includes('jegavn-kb.vercel.app/docs/') || url.includes('localhost:3000/docs/');
+        
+        if (isInternal) {
+          const docPath = url.split('/docs/')[1];
+          return `<a href="/docs/${docPath}" class="${styles.sourceLink} internal-link" data-internal-path="/docs/${docPath}">Link</a>`;
+        } else {
+          return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="${styles.sourceLink}">Link</a>`;
+        }
+      })
       // Clean up consecutive <br> tags to prevent extra empty lines
       .replace(/(<br\/?>){2,}/gi, '<br>')
       // Remove <br> tags that appear immediately after header closing tags to prevent extra spacing
@@ -740,6 +769,38 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
       onClearChat();
     }
   }, [onClearChat]);
+
+  // Handle internal link navigation
+  useEffect(() => {
+    const handleInternalLinkClick = (event) => {
+      const target = event.target.closest('a.internal-link');
+      if (target) {
+        event.preventDefault();
+        const internalPath = target.getAttribute('data-internal-path');
+        if (internalPath) {
+          console.log('🔄 Navigating to internal path:', internalPath);
+          // Use browser history for navigation
+          window.history.pushState({}, '', internalPath);
+          // Trigger a popstate event to notify React Router
+          window.dispatchEvent(new PopStateEvent('popstate'));
+          // Also reload the page to ensure proper navigation
+          window.location.href = internalPath;
+        }
+      }
+    };
+
+    // Add click listener to the chat messages container
+    const chatMessagesContainer = document.querySelector(`.${styles.chatMessages}`);
+    if (chatMessagesContainer) {
+      chatMessagesContainer.addEventListener('click', handleInternalLinkClick);
+    }
+
+    return () => {
+      if (chatMessagesContainer) {
+        chatMessagesContainer.removeEventListener('click', handleInternalLinkClick);
+      }
+    };
+  }, [messages]);
 
   // Expose clear chat function to parent component (fallback method)
   useEffect(() => {
