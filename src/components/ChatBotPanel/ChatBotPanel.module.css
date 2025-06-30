@@ -479,3 +479,32 @@
 .panelContentWrapper :global(.messageText) h3 {
   font-size: 1.5em !important;
 }
+
+/* List styles for markdown conversion in panel */
+.panelContentWrapper :global(.messageText) ol,
+.panelContentWrapper :global(.messageText) ul {
+  margin: 12px 0 !important;
+  padding-left: 24px !important;
+}
+
+.panelContentWrapper :global(.messageText) li {
+  margin: 4px 0 !important;
+  line-height: 1.6 !important;
+}
+
+.panelContentWrapper :global(.messageText) ol {
+  list-style-type: decimal !important;
+}
+
+.panelContentWrapper :global(.messageText) ul {
+  list-style-type: disc !important;
+}
+
+.panelContentWrapper :global(.messageText) ol li::marker {
+  color: var(--primary) !important;
+  font-weight: 600 !important;
+}
+
+.panelContentWrapper :global(.messageText) ul li::marker {
+  color: var(--primary) !important;
+}

@@ -671,12 +671,29 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
       .replace(/^# (.*$)/gim, '<h1>$1</h1>')
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
       .replace(/\*(.*?)\*/g, '<em>$1</em>')
-      .replace(/`(.*?)`/g, '<code>$1</code>')
-      .replace(/\n/g, '<br>')
-      // Remove numbering patterns like "1. ", "2. " etc. before links
-      .replace(/(\d+\.\s*)(<a\s+href=)/g, '$2')
-      // Remove numbering patterns like "1. " that appear before any text
-      .replace(/(\d+\.\s*)([^<])/g, '$2')
+      .replace(/`(.*?)`/g, '<code>$1</code>');
+
+    // Process lists before converting newlines to <br>
+    // Handle numbered lists (1. 2. 3. etc.)
+    formatted = formatted.replace(/(^|\n)((?:\d+\.\s+.+(?:\n|$))+)/gm, (match, prefix, listContent) => {
+      const items = listContent.trim().split('\n').map(item => {
+        const cleaned = item.replace(/^\d+\.\s+/, '').trim();
+        return cleaned ? `<li>${cleaned}</li>` : '';
+      }).filter(Boolean);
+      return `${prefix}<ol>${items.join('')}</ol>`;
+    });
+
+    // Handle bullet lists (*, -, + patterns)
+    formatted = formatted.replace(/(^|\n)((?:[*+-]\s+.+(?:\n|$))+)/gm, (match, prefix, listContent) => {
+      const items = listContent.trim().split('\n').map(item => {
+        const cleaned = item.replace(/^[*+-]\s+/, '').trim();
+        return cleaned ? `<li>${cleaned}</li>` : '';
+      }).filter(Boolean);
+      return `${prefix}<ul>${items.join('')}</ul>`;
+    });
+
+    // Now convert remaining newlines to <br>
+    formatted = formatted.replace(/\n/g, '<br>')
       // Convert XML-style source format to clickable links (handles different orders, multiline, and <br> tags)
       .replace(/(?:<br\/?>)*<source>(?:\s|<br\/?>)*(?:<url>(.*?)<\/url>(?:\s|<br\/?>)*<title>(.*?)<\/title>|<title>(.*?)<\/title>(?:\s|<br\/?>)*<url>(.*?)<\/url>)(?:\s|<br\/?>)*<\/source>/gis, 
         (match, url1, title1, title2, url2) => {

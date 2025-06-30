@@ -321,6 +321,35 @@
   background: rgba(255, 255, 255, 0.2);
 }
 
+/* List styles for markdown conversion */
+.messageText ol,
+.messageText ul {
+  margin: 12px 0;
+  padding-left: 24px;
+}
+
+.messageText li {
+  margin: 4px 0;
+  line-height: 1.6;
+}
+
+.messageText ol {
+  list-style-type: decimal;
+}
+
+.messageText ul {
+  list-style-type: disc;
+}
+
+.messageText ol li::marker {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.messageText ul li::marker {
+  color: var(--primary);
+}
+
 /* Header styles for markdown conversion */
 .messageText h1,
 .messageText h2,
