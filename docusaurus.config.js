@@ -66,8 +66,22 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      // Replace with your project's social card
-      image: 'img/docusaurus-social-card.jpg',
+      // JEGA Knowledge Base social card
+      image: 'img/jega_logo.png',
+      
+      // Meta tags for better social sharing
+      metadata: [
+        {name: 'keywords', content: 'jega, aihouse, furniture, design, software, knowledge, base'},
+        {name: 'description', content: 'Complete guide for Jega and AiHouse software'},
+        {property: 'og:type', content: 'website'},
+        {property: 'og:title', content: 'JEGA Knowledge Base'},
+        {property: 'og:description', content: 'Complete guide for Jega and AiHouse software'},
+        {property: 'og:image', content: 'img/jega_logo.png'},
+        {property: 'twitter:card', content: 'summary_large_image'},
+        {property: 'twitter:title', content: 'JEGA Knowledge Base'},
+        {property: 'twitter:description', content: 'Complete guide for Jega and AiHouse software'},
+        {property: 'twitter:image', content: 'img/jega_logo.png'},
+      ],
       
       // Mintlify-inspired navbar
       navbar: {
