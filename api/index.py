@@ -79,8 +79,12 @@ def init_genai_client():
                 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = f.name
         
         elif os.path.exists('../jega-chatbot-service-key.json'):
-            logger.info("🔐 Using local service account file")
+            logger.info("🔐 Using local service account file (parent directory)")
             os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '../jega-chatbot-service-key.json'
+        
+        elif os.path.exists('./jega-chatbot-service-key.json'):
+            logger.info("🔐 Using local service account file (current directory)")
+            os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = './jega-chatbot-service-key.json'
         
         else:
             raise Exception("No Google Cloud credentials found")
@@ -135,7 +139,7 @@ async def fetch_bubble_config() -> Dict[str, Any]:
                 config = {
                     'record_id': bubble_config.get('_id'),  # Store record ID for updates
                     'ai_model': bubble_config.get('ai_model'),
-                    'system_prompt': bubble_config.get('prompt', '').replace('&lt;', '<').replace('&gt;', '>').replace('&amp;', '&'),
+                    'system_prompt': bubble_config.get('prompt', ''),  # Store raw text without HTML entity decoding
                     'temperature': float(bubble_config.get('tempature', 0.5)),
                     'top_p': float(bubble_config.get('top-p', 0.9)),
                     'max_output_tokens': int(bubble_config.get('max_output_tokens', 10000)),
@@ -181,9 +185,8 @@ async def update_bubble_config(config_updates: Dict[str, Any]) -> Dict[str, Any]
     bubble_updates = {}
     
     if 'systemPrompt' in config_updates:
-        # Encode HTML entities for Bubble
-        prompt = config_updates['systemPrompt']
-        bubble_updates['prompt'] = prompt.replace('<', '&lt;').replace('>', '&gt;').replace('&', '&amp;')
+        # Store raw text without HTML entity encoding to preserve < > characters
+        bubble_updates['prompt'] = config_updates['systemPrompt']
     
     if 'aiModel' in config_updates:
         bubble_updates['ai_model'] = config_updates['aiModel']
@@ -416,8 +419,6 @@ async def vertex_ai_chat(request: Request):
             try:
                 full_response = ""
                 chunk_count = 0
-                sources = []
-                grounding_metadata = None
                 usage_metadata = None
                 
                 # Send connection confirmation
@@ -460,107 +461,14 @@ async def vertex_ai_chat(request: Request):
                                         }
                                         yield f"data: {json.dumps(chunk_data)}\n\n"
                         
-                        # Extract metadata safely
-                        candidate_grounding = getattr(candidate, 'grounding_metadata', None)
-                        if candidate_grounding:
-                            grounding_metadata = candidate_grounding
-                            logger.info(f"🔍 Grounding metadata found: {type(grounding_metadata)}")
-                            logger.info(f"🔍 Grounding metadata attributes: {dir(grounding_metadata)}")
-                            
-                            # Safely check for grounding_chunks
-                            chunks = getattr(grounding_metadata, 'grounding_chunks', None)
-                            if chunks:
-                                logger.info(f"🔍 Found {len(chunks)} grounding chunks")
-                            else:
-                                logger.info("ℹ️ No grounding_chunks in metadata")
-                        else:
-                            logger.info("ℹ️ No grounding_metadata returned in this chunk")
+
                     
                     # Safe extraction of usage metadata
                     chunk_usage = getattr(chunk, 'usage_metadata', None)
                     if chunk_usage:
                         usage_metadata = chunk_usage
                 
-                # Process sources from Vertex AI Search grounding - robust handling
-                if grounding_metadata:
-                    # More detailed debugging
-                    chunks = getattr(grounding_metadata, 'grounding_chunks', None)
-                    logger.info(f"🔍 grounding_chunks value: {chunks}")
-                    logger.info(f"🔍 grounding_chunks type: {type(chunks)}")
-                    
-                    # Try multiple ways to access grounding data
-                    if chunks is not None:
-                        logger.info(f"🔍 Processing {len(chunks)} grounding chunks")
-                        for idx, chunk_info in enumerate(chunks):
-                            try:
-                                logger.info(f"🔍 Chunk {idx}: type={type(chunk_info)}")
-                                
-                                # Safe extraction of retrieved_context
-                                retrieved_context = getattr(chunk_info, 'retrieved_context', None)
-                                if retrieved_context:
-                                    # Safely extract title and text
-                                    title = getattr(retrieved_context, 'title', None)
-                                    text = getattr(retrieved_context, 'text', '')
-                                    
-                                    if text:  # Only process if we have content
-                                        # Extract source URL from text content using regex
-                                        import re
-                                        source_match = re.search(r'source:\s*(https?://[^\s\n]+)', text)
-                                        source_uri = source_match.group(1) if source_match else '/docs/'
-                                        
-                                        # Create display title
-                                        display_title = title if title else text[:50] + '...'
-                                        if not display_title or display_title == 'JEGA Knowledge Base':
-                                            display_title = text[:50] + '...'
-                                        
-                                        # Extract description for snippet
-                                        desc_match = re.search(r'description:\s*([^\n]+)', text)
-                                        snippet = desc_match.group(1) if desc_match else text[:200] + '...'
-                                        
-                                        sources.append({
-                                            'title': display_title,
-                                            'displayTitle': display_title,
-                                            'url': source_uri,
-                                            'uri': source_uri,
-                                            'snippet': snippet
-                                        })
-                                        logger.info(f"📄 Added source: {display_title} (URI: {source_uri})")
-                                    else:
-                                        logger.warning(f"⚠️ Chunk {idx}: retrieved_context has no text content")
-                                
-                                # Safe extraction of web results
-                                else:
-                                    web = getattr(chunk_info, 'web', None)
-                                    if web:
-                                        web_title = getattr(web, 'title', 'Unknown')
-                                        web_uri = getattr(web, 'uri', '#')
-                                        sources.append({
-                                            'title': web_title,
-                                            'displayTitle': web_title,
-                                            'url': web_uri,
-                                            'uri': web_uri,
-                                            'snippet': ''
-                                        })
-                                        logger.info(f"🌐 Added web source: {web_uri}")
-                                    else:
-                                        logger.warning(f"⚠️ Chunk {idx}: No retrieved_context or web found")
-                            
-                            except Exception as e:
-                                logger.warning(f"⚠️ Failed to process grounding chunk {idx}: {e}")
-                                continue
-                    else:
-                        logger.info("ℹ️ No grounding chunks found in metadata")
-                        
-                        # Try alternative grounding data sources
-                        alt_attrs = ['grounding_supports', 'retrieval_metadata', 'search_entry_point']
-                        for attr in alt_attrs:
-                            alt_data = getattr(grounding_metadata, attr, None)
-                            if alt_data:
-                                logger.info(f"🔍 Found alternative grounding data in {attr}: {type(alt_data)}")
-                                logger.info(f"🔍 {attr} content: {alt_data}")
-                                break
-                else:
-                    logger.info("ℹ️ No grounding metadata available for source processing")
+
                 
                 # Process final response
                 processed_response = process_response_text(full_response)
@@ -569,11 +477,6 @@ async def vertex_ai_chat(request: Request):
                 final_data = {
                     'type': 'complete',
                     'model': config['ai_model'],
-                    'sources': sources,
-                    'groundingMetadata': {
-                        'has_grounding': bool(grounding_metadata),
-                        'sources_found': len(sources)
-                    },
                     'usageMetadata': {
                         'prompt_tokens': getattr(usage_metadata, 'prompt_token_count', 0) if usage_metadata else 0,
                         'completion_tokens': getattr(usage_metadata, 'candidates_token_count', 0) if usage_metadata else 0,
@@ -590,7 +493,7 @@ async def vertex_ai_chat(request: Request):
                 yield f"data: {json.dumps(final_data)}\n\n"
                 yield f"data: [DONE]\n\n"
                 
-                logger.info(f"✅ Complete: {chunk_count} chunks, {len(sources)} sources")
+                logger.info(f"✅ Complete: {chunk_count} chunks")
                 
             except Exception as e:
                 logger.error(f"❌ Stream error: {e}")

@@ -175,6 +175,8 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
     scrollToBottom();
   }, [messages, scrollToBottom]);
 
+
+
   // Save messages to localStorage whenever they change
   useEffect(() => {
     if (messages.length > 0 && chatConfig && chatConfig.userHistory) {
@@ -333,9 +335,7 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
                 } else if (data.type === 'complete') {
                   finalMetadata = data;
                   console.log('📊 [STREAM] Received final metadata:', {
-                    model: data.model,
-                    sourcesCount: data.sources?.length || 0,
-                    hasGrounding: !!data.groundingMetadata
+                    model: data.model
                   });
                   
                 } else if (data.type === 'error') {
@@ -364,16 +364,13 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
           return {
             text: finalMetadata.fullResponse || fullResponse,
             model: finalMetadata.model || 'unknown-model',
-            sources: finalMetadata.sources || [],
-            groundingMetadata: finalMetadata.groundingMetadata,
             usageMetadata: finalMetadata.usageMetadata
           };
         } else {
           // Fallback if no final metadata received
           return {
             text: fullResponse || 'Xin lỗi, không nhận được phản hồi hoàn chỉnh.',
-            model: 'unknown-model',
-            sources: []
+            model: 'unknown-model'
           };
         }
         
@@ -384,8 +381,7 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
           setError(error.message);
           return {
             text: 'Xin lỗi, hệ thống JEGA Assistant hiện tại không khả dụng. Vui lòng thử lại sau hoặc liên hệ với bộ phận hỗ trợ.',
-            model: 'error',
-            sources: []
+            model: 'error'
           };
         }
         
@@ -429,7 +425,6 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
       sender: 'bot',
       timestamp: new Date(),
       model: 'loading...',
-      sources: [],
       isStreaming: true, // Flag to indicate streaming status
       streamingPhase: 'processing' // Track streaming phase: 'processing' -> 'thinking' -> 'searching' -> 'generating'
     };
@@ -598,25 +593,13 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
       
       console.log('🔄 [UI] Updated metadata only - preserved typewriter text');
       
-      // 🎯 UX VALIDATION: Check if streaming phases matched actual behavior
-      const actuallySearched = botResponse.groundingMetadata?.has_grounding || false;
-      const sourcesFound = botResponse.sources?.length || 0;
       const totalResponseTime = Date.now() - startTime;
       
       console.log('✅ [CHAT] Streaming message completed:', {
         responseLength: textBuffer.length,
         model: botResponse.model,
-        sourcesCount: sourcesFound,
-        actuallySearched: actuallySearched,
         totalResponseTime: totalResponseTime
       });
-      
-      // Log UX accuracy
-      if (!actuallySearched && sourcesFound === 0) {
-        console.log('✅ [UX] Efficient: No grounding needed, phases adapted correctly');
-      } else if (actuallySearched && sourcesFound > 0) {
-        console.log('✅ [UX] Search phases were justified - found', sourcesFound, 'sources');
-      }
       
     } catch (error) {
       console.error('Error sending streaming message:', error);
@@ -647,7 +630,6 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
               // Only replace text if no streaming happened, otherwise preserve typewriter text
               text: textBuffer || msg.text || 'Xin lỗi, đã có lỗi xảy ra. Vui lòng thử lại sau.',
               model: 'error',
-              sources: [],
               isStreaming: false,
               streamingPhase: null // Clear streaming phase on error
             }
@@ -674,7 +656,19 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
   const formatMessage = useCallback((text) => {
     if (!text) return '';
     
+    // Simple HTML escaping function
+    function esc(str) {
+      return str.replace(/[&<>"']/g, (match) => {
+        const escapeMap = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
+        return escapeMap[match];
+      });
+    }
+    
     let formatted = text
+      // Convert markdown headers (must be done before \n to <br> conversion)
+      .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+      .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+      .replace(/^# (.*$)/gim, '<h1>$1</h1>')
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
       .replace(/\*(.*?)\*/g, '<em>$1</em>')
       .replace(/`(.*?)`/g, '<code>$1</code>')
@@ -683,8 +677,22 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
       .replace(/(\d+\.\s*)(<a\s+href=)/g, '$2')
       // Remove numbering patterns like "1. " that appear before any text
       .replace(/(\d+\.\s*)([^<])/g, '$2')
+      // Convert XML-style source format to clickable links (handles different orders, multiline, and <br> tags)
+      .replace(/(?:<br\/?>)*<source>(?:\s|<br\/?>)*(?:<url>(.*?)<\/url>(?:\s|<br\/?>)*<title>(.*?)<\/title>|<title>(.*?)<\/title>(?:\s|<br\/?>)*<url>(.*?)<\/url>)(?:\s|<br\/?>)*<\/source>/gis, 
+        (match, url1, title1, title2, url2) => {
+          const url = (url1 || url2).trim();
+          const title = (title1 || title2).trim();
+          console.log('🔗 Found source link:', { url, title, cssClass: styles.sourceLink });
+          return `<div class="source-link-container"><a href="${esc(url)}" target="_blank" rel="noopener noreferrer" class="${styles.sourceLink}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M18 13V19C18 19.5304 17.7893 20.0391 17.4142 20.4142C17.0391 20.7893 16.5304 21 16 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V8C3 7.46957 3.21071 6.96086 3.58579 6.58579C3.96086 6.21071 4.46957 6 5 6H11" stroke="currentColor" stroke-width="2" fill="none"/><path d="M15 3H21V9" stroke="currentColor" stroke-width="2" fill="none"/><path d="M10 14L21 3" stroke="currentColor" stroke-width="2" fill="none"/></svg>${esc(title)}</a></div>`;
+        })
       // Convert [Link] URL patterns to clickable links
-      .replace(/\[Link\]\s*(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer" class="' + styles.sourceLink + '">Link</a>');
+      .replace(/\[Link\]\s*(https?:\/\/[^\s]+)/g, `<a href="$1" target="_blank" rel="noopener noreferrer" class="${styles.sourceLink}">Link</a>`)
+      // Clean up consecutive <br> tags to prevent extra empty lines
+      .replace(/(<br\/?>){2,}/gi, '<br>')
+      // Remove <br> tags that appear immediately after header closing tags to prevent extra spacing
+      .replace(/(<\/h[1-6]>)\s*(<br\/?>)/gi, '$1');
+    
+    console.log('📝 formatMessage result:', formatted);
     
     return formatted;
   }, []);
@@ -705,8 +713,7 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
         text: 'Chào bạn, tôi có thể giúp gì cho bạn hôm nay?',
         sender: 'bot',
         timestamp: new Date(),
-        model: 'system',
-        sources: []
+        model: 'system'
       }
     ]);
     setError(null);
@@ -778,64 +785,6 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
                   {message.streamingPhase === 'thinking' && 'Suy nghĩ về câu hỏi của bạn...'}
                   {message.streamingPhase === 'searching' && 'Đang tìm kiếm dữ liệu...'}
                   {message.streamingPhase === 'generating' && 'Đang tạo phản hồi...'}
-                </div>
-              )}
-              
-              {/* Sources section - only show when not streaming and has sources */}
-              {!message.isStreaming && message.sources && message.sources.length > 0 && !message.text.includes('<a href=') && (
-                <div className={styles.sourcesSection}>
-                  <div className={styles.sourcesHeader}>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                      <path d="M14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.89 22 5.99 22H18C19.1 22 20 21.1 20 20V8L14 2Z" stroke="currentColor" strokeWidth="2" fill="none"/>
-                      <path d="M14 2V8H20" stroke="currentColor" strokeWidth="2" fill="none"/>
-                    </svg>
-                    Nguồn tham khảo ({message.sources.length})
-                  </div>
-                  <div className={styles.sourcesList}>
-                    {message.sources.map((source, index) => {
-                      let isInternal = false;
-                      let internalPath = source.url;
-                      if (source.url) {
-                        if (source.url.startsWith('/docs/')) {
-                          isInternal = true;
-                        } else if (source.url.startsWith(SITE_BASE_URL + '/docs/')) {
-                          isInternal = true;
-                          internalPath = source.url.replace(SITE_BASE_URL, '');
-                        }
-                      }
-                      return isInternal ? (
-                        <Link
-                          key={index}
-                          to={internalPath}
-                          className={styles.sourceLink}
-                          title={source.displayTitle}
-                        >
-                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
-                            <path d="M18 13V19C18 19.5304 17.7893 20.0391 17.4142 20.4142C17.0391 20.7893 16.5304 21 16 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V8C3 7.46957 3.21071 6.96086 3.58579 6.58579C3.96086 6.21071 4.46957 6 5 6H11" stroke="currentColor" strokeWidth="2" fill="none"/>
-                            <path d="M15 3H21V9" stroke="currentColor" strokeWidth="2" fill="none"/>
-                            <path d="M10 14L21 3" stroke="currentColor" strokeWidth="2" fill="none"/>
-                          </svg>
-                          {source.displayTitle}
-                        </Link>
-                      ) : (
-                        <a
-                          key={index}
-                          href={source.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={styles.sourceLink}
-                          title={source.displayTitle}
-                        >
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
-                            <path d="M18 13V19C18 19.5304 17.7893 20.0391 17.4142 20.4142C17.0391 20.7893 16.5304 21 16 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V8C3 7.46957 3.21071 6.96086 3.58579 6.58579C3.96086 6.21071 4.46957 6 5 6H11" stroke="currentColor" strokeWidth="2" fill="none"/>
-                            <path d="M15 3H21V9" stroke="currentColor" strokeWidth="2" fill="none"/>
-                            <path d="M10 14L21 3" stroke="currentColor" strokeWidth="2" fill="none"/>
-                          </svg>
-                        {source.displayTitle}
-                      </a>
-                      );
-                    })}
-                  </div>
                 </div>
               )}
             </div>

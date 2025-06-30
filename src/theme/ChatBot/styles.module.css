@@ -226,8 +226,6 @@
   }
 }
 
-
-
 .streamingIndicator {
   display: inline-flex;
   align-items: center;
@@ -323,91 +321,28 @@
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* Sources Section */
-.sourcesSection {
-  margin-top: 12px;
-  padding-top: 12px;
-  border-top: 1px solid #e9ecef;
+/* Header styles for markdown conversion */
+.messageText h1,
+.messageText h2,
+.messageText h3,
+.messageText h4,
+.messageText h5,
+.messageText h6 {
+  margin: 0.5rem 0;
+  font-weight: 600;
+  line-height: 1.3;
 }
 
-.sourcesHeader {
-  font-size: 12px;
-  color: var(--primary);
-  margin-bottom: 8px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+.messageText h1 {
+  font-size: 1.5em;
 }
 
-.sourcesHeader svg {
-  color: #6c757d;
+.messageText h2 {
+  font-size: 1.3em;
 }
 
-.sourcesList {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.sourceLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 10px;
-  background: transparent;
-  color: var(--primary) !important;
-  text-decoration: none;
-  border-radius: 6px;
-  font-size: 12px !important;
-  transition: all 0.2s ease;
-  border: none;
-  font-weight: normal !important;
-}
-
-.sourceLink:hover {
-  text-decoration: underline !important;
-}
-
-/* Override any inline styles on source links */
-.sourceLink[style] {
-  color: var(--primary) !important;
-  font-size: 12px !important;
-  font-weight: normal !important;
-  text-decoration: none !important;
-  background: transparent !important;
-  border: none !important;
-}
-
-.sourceLink[style]:hover {
-  text-decoration: underline !important;
-}
-
-/* Target any anchor tags within bot messages that might be sources */
-.botMessage .messageBubble a {
-  color: var(--primary) !important;
-  font-size: 12px !important;
-  font-weight: normal !important;
-  text-decoration: none !important;
-  background: transparent !important;
-  padding: 0 !important;
-  border-radius: 0 !important;
-  border: none !important;
-  display: inline !important;
-  align-items: normal !important;
-  gap: 0 !important;
-  transition: none !important;
-}
-
-.botMessage .messageBubble a:hover {
-  background: transparent !important;
-  color: var(--primary) !important;
-  border: none !important;
-  transform: none !important;
-  box-shadow: none !important;
-  text-decoration: underline !important;
+.messageText h3 {
+  font-size: 1.5em;
 }
 
 /* Typing Indicator */
@@ -625,4 +560,57 @@
   .inputContainer {
     border-width: 2px;
   }
+}
+
+/* Source Links from AI Responses */
+.sourceLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: #f8f9fa;
+  color: var(--primary) !important;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  border: 1px solid #e9ecef;
+  transition: all 0.2s ease;
+  margin-top: 4px;
+}
+
+.sourceLink:hover {
+  background: #e9ecef !important;
+  border-color: var(--primary) !important;
+  text-decoration: none !important;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sourceLink svg {
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+.sourceLink:hover svg {
+  opacity: 1;
+}
+
+/* Source link container for proper spacing */
+:global(.source-link-container) {
+  margin-top: 12px;
+  padding-top: 8px;
+  border-top: 1px solid #f1f3f4;
+}
+
+/* Override any inline styles on source links */
+.sourceLink[style] {
+  color: var(--primary) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+}
+
+.sourceLink[style]:hover {
+  text-decoration: none !important;
 } 

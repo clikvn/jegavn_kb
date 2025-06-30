@@ -247,11 +247,11 @@ pre code {
 }
 
 .theme-doc-sidebar-menu {
-  padding: 1rem 0;
+  padding: 0.5rem 0 0 0;
 }
 
 .theme-doc-sidebar-item-category {
-  margin-bottom: 2rem !important;
+  margin-bottom: 1rem !important;
 }
 
 /* Sidebar section headers */
@@ -261,7 +261,7 @@ pre code {
   color: #9ca3af !important; /* Tailwind gray-400 */
   text-transform: capitalize;
   letter-spacing: 0.03em;
-  margin-top: 2rem !important;
+  margin-top: 1rem !important;
   margin-bottom: 0.5rem !important;
   padding-left: 0.5rem !important;
   background: none !important;
@@ -276,6 +276,9 @@ pre code {
   color: #222 !important;
   border-left: 2px solid transparent !important;
   padding-left: 1rem !important;
+  padding-top: 0.25rem !important;
+  padding-bottom: 0.25rem !important;
+  margin-bottom: 0.125rem !important;
   background: none !important;
   transition: color 0.2s, border-color 0.2s;
 }
@@ -356,7 +359,7 @@ th {
 .footer {
   background-color: var(--card);
   border-top: 1px solid var(--border);
-  margin-top: 4rem;
+  margin-top: 0;
 }
 
 .footer__inner {
@@ -817,3 +820,34 @@ body {
 .chat-icon:hover {
   opacity: 0.8;
 }
+
+/* Reduce spacing for menu list items */
+.theme-doc-sidebar-item {
+  margin-bottom: 0 !important;
+}
+
+/* Reduce spacing for subcategories */
+.menu__list {
+  margin-top: 0.25rem !important;
+  margin-bottom: 0.25rem !important;
+}
+
+/* Compact menu list items */
+.menu__list-item {
+  margin-bottom: 0.125rem !important;
+}
+
+/* Remove extra space at the bottom of sidebar */
+.theme-doc-sidebar-menu .theme-doc-sidebar-item-category:last-child {
+  margin-bottom: 0 !important;
+}
+
+.theme-doc-sidebar-menu .menu__list:last-child {
+  margin-bottom: 0 !important;
+}
+
+.theme-doc-sidebar-menu .menu__list-item:last-child {
+  margin-bottom: 0 !important;
+}
+
+

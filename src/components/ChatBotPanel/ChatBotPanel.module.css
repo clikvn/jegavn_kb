@@ -244,70 +244,7 @@
   color: var(--primary-foreground) !important;
 }
 
-.panelContentWrapper :global(.sourcesSection) {
-  border-top: 1px solid var(--border) !important;
-  margin-top: 10px !important;
-  padding-top: 10px !important;
-}
-.panelContentWrapper :global(.sourcesHeader) {
-  color: var(--primary) !important;
-  font-size: 12px !important;
-}
-.panelContentWrapper :global(.sourcesList) {
-  list-style: none !important;
-  padding: 0 !important;
-  margin: 0 !important;
-}
-.panelContentWrapper :global(.sourceLink) {
-  background-color: transparent !important;
-  border: none !important;
-  color: var(--primary) !important;
-  border-radius: 0 !important;
-  padding: 0 !important;
-  font-size: 12px !important;
-  font-weight: normal !important;
-}
-.panelContentWrapper :global(.sourceLink:hover) {
-  text-decoration: underline !important;
-}
 
-/* Override any inline styles on source links in panel */
-.panelContentWrapper :global(.sourceLink[style]) {
-  color: var(--primary) !important;
-  font-size: 12px !important;
-  font-weight: normal !important;
-  text-decoration: none !important;
-  background: transparent !important;
-  border: none !important;
-}
-.panelContentWrapper :global(.sourceLink[style]:hover) {
-  text-decoration: underline !important;
-}
-
-/* Target any anchor tags within bot messages in panel */
-.panelContentWrapper :global(.botMessage) :global(.messageBubble) a {
-  color: var(--primary) !important;
-  font-size: 12px !important;
-  font-weight: normal !important;
-  text-decoration: none !important;
-  background: transparent !important;
-  padding: 0 !important;
-  border-radius: 0 !important;
-  border: none !important;
-  display: inline !important;
-  align-items: normal !important;
-  gap: 0 !important;
-  transition: none !important;
-}
-
-.panelContentWrapper :global(.botMessage) :global(.messageBubble) a:hover {
-  background: transparent !important;
-  color: var(--primary) !important;
-  border: none !important;
-  transform: none !important;
-  box-shadow: none !important;
-  text-decoration: underline !important;
-}
 
 /* Chat Input Area Styling */
 .panelContentWrapper :global(.chatInput) {
@@ -465,4 +402,80 @@
   font-weight: 400 !important;
   letter-spacing: normal !important;
   color: #000000 !important;
+}
+
+/* Source Links in Panel */
+.panelContentWrapper :global(.sourceLink) {
+  background-color: var(--muted) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--primary) !important;
+  border-radius: var(--radius) !important;
+  padding: 8px 12px !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+  margin-top: 4px !important;
+}
+
+.panelContentWrapper :global(.sourceLink:hover) {
+  background-color: var(--accent) !important;
+  border-color: var(--primary) !important;
+  text-decoration: none !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+.panelContentWrapper :global(.sourceLink) svg {
+  flex-shrink: 0 !important;
+  opacity: 0.7 !important;
+}
+
+.panelContentWrapper :global(.sourceLink:hover) svg {
+  opacity: 1 !important;
+}
+
+.panelContentWrapper :global(.source-link-container) {
+  margin-top: 12px !important;
+  padding-top: 8px !important;
+  border-top: 1px solid var(--border) !important;
+}
+
+/* Override any inline styles on source links in panel */
+.panelContentWrapper :global(.sourceLink[style]) {
+  color: var(--primary) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+}
+
+.panelContentWrapper :global(.sourceLink[style]:hover) {
+  text-decoration: none !important;
 } 
+
+/* Header styles for markdown conversion in panel */
+.panelContentWrapper :global(.messageText) h1,
+.panelContentWrapper :global(.messageText) h2,
+.panelContentWrapper :global(.messageText) h3,
+.panelContentWrapper :global(.messageText) h4,
+.panelContentWrapper :global(.messageText) h5,
+.panelContentWrapper :global(.messageText) h6 {
+  margin: 0.5rem 0 !important;
+  font-weight: 600 !important;
+  line-height: 1.3 !important;
+}
+
+.panelContentWrapper :global(.messageText) h1 {
+  font-size: 1.5em !important;
+}
+
+.panelContentWrapper :global(.messageText) h2 {
+  font-size: 1.3em !important;
+}
+
+.panelContentWrapper :global(.messageText) h3 {
+  font-size: 1.5em !important;
+}
