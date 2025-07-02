@@ -742,14 +742,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Remove underline or bottom border from sidebar links */
-.theme-doc-sidebar-item-link,
-.theme-doc-sidebar-item-link::after {
-  border-bottom: none !important;
-  box-shadow: none !important;
-  text-decoration: none !important;
-  background-image: none !important;
-}
+
 
 /* Only show left border for active or hovered menu item */
 .theme-doc-sidebar-item-link.theme-doc-sidebar-item-link--active[aria-current],
@@ -848,6 +841,26 @@ body {
 
 .theme-doc-sidebar-menu .menu__list-item:last-child {
   margin-bottom: 0 !important;
+}
+
+/* Hide default Docusaurus sidebar arrow indicator */
+.menu__link--sublist-caret::after {
+  display: none !important;
+}
+
+button.clean-btn.menu__caret::before {
+  display: none !important;
+  content: none !important;
+}
+
+button.clean-btn.menu__caret[aria-expanded="true"] svg {
+  color: var(--primary) !important;
+  fill: var(--primary) !important;
+}
+
+button.clean-btn.menu__caret svg {
+  width: 14px !important;
+  height: 14px !important;
 }
 
 
