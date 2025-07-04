@@ -662,6 +662,8 @@
   border-radius: 0;
   background: transparent;
   overflow: hidden;
+  width: 100%;
+  display: block;
 }
 
 .thinkingContainer {
@@ -671,6 +673,8 @@
   background: transparent;
   overflow: hidden;
   animation: thinkingPulse 2s ease-in-out infinite;
+  width: 100%;
+  display: block;
 }
 
 @keyframes thinkingPulse {
@@ -698,6 +702,8 @@
   align-items: center;
   justify-content: space-between;
   gap: 6px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .thoughtsSummary:hover {
@@ -768,6 +774,8 @@
   flex-direction: column;
   align-items: stretch;
   gap: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .thoughtsDivider {
