@@ -290,8 +290,8 @@ async def get_chat_config():
                     "maxOutputTokens": config.get('max_output_tokens')
                 },
                 "chatSettings": {
-                    "conversationMemory": config.get('conversation_memory', 10),  # From Bubble or default
-                    "userHistory": config.get('user_history', 100)  # From Bubble or default
+                    "conversationMemory": config.get('conversation_memory'),  # From Bubble
+                    "userHistory": config.get('user_history')  # From Bubble 
                 }
             }
         }
@@ -334,8 +334,8 @@ async def update_chat_config(request: Request):
                     "maxOutputTokens": updated_config.get('max_output_tokens')
                 },
                 "chatSettings": {
-                    "conversationMemory": updated_config.get('conversation_memory', 10),
-                    "userHistory": updated_config.get('user_history', 100)
+                    "conversationMemory": updated_config.get('conversation_memory'),
+                    "userHistory": updated_config.get('user_history')
                 }
             }
         }
@@ -412,6 +412,12 @@ async def vertex_ai_chat(request: Request):
             )
         ]
         
+        # Add thinking configuration
+        thinking_config = types.ThinkingConfig(
+            thinking_budget=-1,  # Dynamic thinking - model decides
+            include_thoughts=True  # Expose thoughts in response
+        )
+        
         logger.info(f"🚀 Generating with {config['ai_model']}")
         
         # Streaming generator
@@ -436,30 +442,58 @@ async def vertex_ai_chat(request: Request):
                         temperature=config['temperature'],
                         max_output_tokens=config['max_output_tokens'],
                         top_p=config['top_p'],
-                        seed=0,
+                        seed=42,
                         tools=tools,
-                        safety_settings=safety_settings
+                        safety_settings=safety_settings,
+                        thinking_config=thinking_config
                     )
                 ):
                     chunk_count += 1
+                    chunk_timestamp = datetime.now().isoformat()
+                    logger.info(f"📦 [STREAM] Received chunk {chunk_count} from Gemini at {chunk_timestamp}")
                     
-                    # Extract text
+                    # Extract text and thoughts
                     if hasattr(chunk, 'candidates') and chunk.candidates:
                         candidate = chunk.candidates[0]
                         
                         if hasattr(candidate, 'content') and candidate.content:
                             if hasattr(candidate.content, 'parts') and candidate.content.parts:
+                                logger.info(f"🔍 [DEBUG] Processing {len(candidate.content.parts)} parts in chunk {chunk_count}")
                                 for part in candidate.content.parts:
                                     if hasattr(part, 'text') and part.text:
                                         text_chunk = part.text
-                                        full_response += text_chunk
                                         
-                                        # Send chunk
-                                        chunk_data = {
-                                            'type': 'chunk',
-                                            'content': text_chunk
-                                        }
-                                        yield f"data: {json.dumps(chunk_data)}\n\n"
+                                        # Debug: Log part attributes
+                                        part_attrs = [attr for attr in dir(part) if not attr.startswith('_')]
+                                        logger.info(f"🔍 [DEBUG] Part attributes: {part_attrs}")
+                                        logger.info(f"🔍 [DEBUG] Part has 'thought' attribute: {hasattr(part, 'thought')}")
+                                        if hasattr(part, 'thought'):
+                                            logger.info(f"🔍 [DEBUG] Part.thought value: {part.thought}")
+                                        
+                                        # Check if this is a thought or final answer - use direct attribute access like in the example
+                                        is_thought = hasattr(part, 'thought') and part.thought
+                                        
+                                        if is_thought:
+                                            # Send thought chunk
+                                            send_timestamp = datetime.now().isoformat()
+                                            logger.info(f"🧠 [THOUGHT] Sending thought chunk to frontend at {send_timestamp}: {text_chunk[:50]}...")
+                                            thought_data = {
+                                                'type': 'thought',
+                                                'content': text_chunk,
+                                                'timestamp': send_timestamp
+                                            }
+                                            yield f"data: {json.dumps(thought_data)}\n\n"
+                                        else:
+                                            # Send regular response chunk
+                                            full_response += text_chunk
+                                            send_timestamp = datetime.now().isoformat()
+                                            logger.info(f"📝 [CHUNK] Sending answer chunk to frontend at {send_timestamp}: {text_chunk[:50]}...")
+                                            chunk_data = {
+                                                'type': 'chunk',
+                                                'content': text_chunk,
+                                                'timestamp': send_timestamp
+                                            }
+                                            yield f"data: {json.dumps(chunk_data)}\n\n"
                         
 
                     
@@ -480,10 +514,12 @@ async def vertex_ai_chat(request: Request):
                     'usageMetadata': {
                         'prompt_tokens': getattr(usage_metadata, 'prompt_token_count', 0) if usage_metadata else 0,
                         'completion_tokens': getattr(usage_metadata, 'candidates_token_count', 0) if usage_metadata else 0,
+                        'thoughts_tokens': getattr(usage_metadata, 'thoughts_token_count', 0) if usage_metadata else 0,
                         'total_tokens': getattr(usage_metadata, 'total_token_count', 0) if usage_metadata else 0
                     } if usage_metadata else {
                         'prompt_tokens': 0,
                         'completion_tokens': 0,
+                        'thoughts_tokens': 0,
                         'total_tokens': 0
                     },
                     'fullResponse': processed_response,

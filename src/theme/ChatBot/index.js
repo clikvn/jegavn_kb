@@ -18,9 +18,16 @@ import styles from './styles.module.css';
 // LocalStorage utility functions
 const STORAGE_KEY = 'jega-chat-history';
 
-const saveMessagesToStorage = (messages, userHistoryLimit = 100) => {
+const saveMessagesToStorage = (messages, userHistoryLimit) => {
   try {
     if (typeof window === 'undefined') return; // SSR check
+    
+    // Require userHistoryLimit from Bubble config - no default fallback
+    if (!userHistoryLimit || typeof userHistoryLimit !== 'number') {
+      console.warn('⚠️ userHistoryLimit not provided from Bubble config, skipping save');
+      return;
+    }
+    
     const messagesToSave = messages.slice(-userHistoryLimit); // Keep only last userHistoryLimit
     localStorage.setItem(STORAGE_KEY, JSON.stringify({
       messages: messagesToSave,
@@ -85,6 +92,34 @@ const limitConversationMemory = (messages, conversationMemory) => {
   return limitedMessages;
 };
 
+// Reusable typewriter streaming function
+function runTypewriterStream({
+  appendChunk, // function to append chunk to buffer
+  getBuffer,   // function to get current buffer
+  getDisplayedLength, // function to get current displayed length
+  setDisplayedLength, // function to set displayed length
+  onTypewriterUpdate, // function to update UI with current text
+  intervalMs = 10,    // typewriter speed
+  onDone = null       // callback when done
+}) {
+  let interval = setInterval(() => {
+    const buffer = getBuffer();
+    let displayedLength = getDisplayedLength();
+    if (displayedLength < buffer.length) {
+      displayedLength++;
+      setDisplayedLength(displayedLength);
+      onTypewriterUpdate(buffer.substring(0, displayedLength));
+    } else {
+      clearInterval(interval);
+      if (onDone) {
+        console.log('✅ [TYPEWRITER] Stream complete, calling onDone callback');
+        onDone();
+      }
+    }
+  }, intervalMs);
+  return interval;
+}
+
 const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) => {
   // State management
   const [messages, setMessages] = useState(() => {
@@ -108,6 +143,7 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [chatConfig, setChatConfig] = useState(null); // Must be loaded from Bubble API
+  const [currentThoughts, setCurrentThoughts] = useState(''); // Track current thoughts for streaming
   
   // Refs
   const messagesEndRef = useRef(null);
@@ -203,7 +239,7 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
    * @param {Function} onChunk - Callback for streaming chunks
    * @returns {Promise<Object>} Response from Vertex AI
    */
-  const callVertexAI = useCallback(async (userMessage, chatHistory, onChunk = null, streamingMessageId = null) => {
+  const callVertexAI = useCallback(async (userMessage, chatHistory, onChunk = null, streamingMessageId = null, onThought = null) => {
     const maxRetries = 2; // Google recommendation: retry no more than 2 times
     const baseDelay = 1000; // Google recommendation: minimum delay of 1 second
     
@@ -332,6 +368,24 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
                   
                   console.log(`📝 [STREAM] Received chunk: ${data.content.substring(0, 50)}...`);
                   
+                } else if (data.type === 'thought') {
+                  console.log(`🧠 [THOUGHT] Processing thought: ${data.content.length} chars`);
+                  console.log(`🧠 [THOUGHT] Thought content: "${data.content.substring(0, 100)}..."`);
+                  
+                  // Accumulate thoughts for display
+                  setCurrentThoughts(prev => prev + data.content);
+                  
+                  // Call onThought callback for typewriter effect
+                  if (onThought && typeof onThought === 'function') {
+                    console.log(`🧠 [UI] Calling onThought with: "${data.content.substring(0, 30)}..."`);
+                    onThought(data.content);
+                    console.log(`✅ [UI] onThought called successfully`);
+                  } else {
+                    console.error(`❌ [UI] onThought not available! Type: ${typeof onThought}`);
+                  }
+                  
+                  console.log(`🧠 [THOUGHT] Received thought: ${data.content.substring(0, 50)}...`);
+                  
                 } else if (data.type === 'complete') {
                   finalMetadata = data;
                   console.log('📊 [STREAM] Received final metadata:', {
@@ -407,6 +461,7 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
     setInputValue('');
     setIsLoading(true);
     setError(null);
+    setCurrentThoughts(''); // Reset thoughts for new message
     
     // Add user message to chat
     const newUserMessage = {
@@ -426,84 +481,170 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
       timestamp: new Date(),
       model: 'loading...',
       isStreaming: true, // Flag to indicate streaming status
-      streamingPhase: 'processing' // Track streaming phase: 'processing' -> 'thinking' -> 'searching' -> 'generating'
+      streamingPhase: 'processing', // Track streaming phase: 'processing' -> 'thinking' -> 'searching' -> 'generating'
+      thoughts: '', // Will store accumulated thoughts
+      isThinking: false // Flag to show thinking is active
     };
     
     setMessages(prev => [...prev, streamingBotMessage]);
     
     try {
-      // 🎯 SMOOTH TYPEWRITER EFFECT IMPLEMENTATION
-      let textBuffer = ''; // Buffer to store incoming chunks
-      let displayedLength = 0; // Track how much text is currently displayed
-      let typewriterInterval = null;
-      let processingTimer = null; // Timer for frontend UI phases
-      let thinkingTimer = null; // Timer for thinking phase
+      // Buffers and state for answer and thoughts
+      let answerBuffer = '';
+      let answerDisplayedLength = 0;
+      let answerTypewriterInterval = null;
+      let thoughtsBuffer = '';
+      let thoughtsDisplayedLength = 0;
+      let thoughtsTypewriterInterval = null;
+      let processingTimer = null;
+      let thinkingTimer = null;
       
-      // Typewriter animation function
-      const startTypewriter = () => {
-        if (typewriterInterval) return; // Already running
-        
-        typewriterInterval = setInterval(() => {
-          if (displayedLength < textBuffer.length) {
-            displayedLength++;
-            
-            setMessages(prev => prev.map(msg => {
-              if (msg.id === streamingBotMessage.id) {
-                return { 
-                  ...msg, 
-                  text: textBuffer.substring(0, displayedLength)
-                };
-              }
-              return msg;
-            }));
-          } else {
-            // If we've displayed all buffered text, pause the typewriter
-            if (typewriterInterval) {
-              clearInterval(typewriterInterval);
-              typewriterInterval = null;
-            }
+      // 🕐 TIMING TRACKING: Track thoughts timing
+      let thoughtsStartTime = null;
+      let thoughtsEndTime = null;
+      let thoughtsDuration = 0;
+      let thoughtsChunkTimeout = null;
+
+      // Typewriter update for answer - only show when thoughts are complete
+      const updateAnswer = (text) => {
+        setMessages(prev => prev.map(msg => {
+          if (msg.id === streamingBotMessage.id) {
+            // Only show answer text if thoughts are complete
+            return { 
+              ...msg, 
+              text: thoughtsComplete ? text : msg.text || '' // Keep existing text if thoughts not complete
+            };
           }
-                 }, 10); // 10ms = ~100 characters per second (faster speed)
+          return msg;
+        }));
+      };
+      // Typewriter update for thoughts
+      const updateThoughts = (text) => {
+        setMessages(prev => prev.map(msg => {
+          if (msg.id === streamingBotMessage.id) {
+            return { ...msg, thoughts: text, isThinking: true };
+          }
+          return msg;
+        }));
+      };
+
+      // Sequential flow: thoughts first, then answer
+      let thoughtsComplete = false;
+      let answerStarted = false;
+      
+      // Define onChunk callback for answer - only start after thoughts are complete
+      const onChunk = (chunk) => {
+        answerBuffer += chunk;
+        // Only start answer typewriter if thoughts are complete
+        if (!answerTypewriterInterval && thoughtsComplete && !answerStarted) {
+          answerStarted = true;
+          console.log('🧠 [SEQUENTIAL] Thoughts complete, starting answer typewriter');
+          answerTypewriterInterval = runTypewriterStream({
+            getBuffer: () => answerBuffer,
+            getDisplayedLength: () => answerDisplayedLength,
+            setDisplayedLength: (len) => { answerDisplayedLength = len; },
+                              onTypewriterUpdate: updateAnswer,
+                  intervalMs: 10
+          });
+        }
       };
       
-      // Define onChunk callback for smooth streaming
-      const onChunk = (chunk) => {
-        console.log(`🔄 [UI] Adding chunk to buffer: "${chunk.substring(0, 30)}..."`);
-        console.log(`🔍 [UI] Chunk length: ${chunk.length} chars`);
-        
-        // Add chunk to buffer
-        textBuffer += chunk;
-        
-        // 🎯 FIRST CHUNK DETECTION: Switch to generating immediately
-        if (textBuffer.length === chunk.length) {
-          hasReceivedFirstChunk = true;
-          const responseTime = Date.now() - startTime;
-          
-          // Clear all pending timers - we're now generating!
-          clearTimeout(processingTimer);
-          clearTimeout(thinkingTimer);
-          
-          setMessages(prev => prev.map(msg => {
-            if (msg.id === streamingBotMessage.id) {
-              return { ...msg, streamingPhase: 'generating' };
-            }
-            return msg;
-          }));
-          
-          console.log(`🚀 [UX] First chunk arrived after ${responseTime}ms - switched to 'generating' phase`);
-          
-          // Log UX efficiency
-          if (responseTime < 2000) {
-            console.log(`⚡ [UX] Quick response - skipped unnecessary phases`);
-          }
+      // Define onThought callback for thoughts - start immediately
+      const onThought = (chunk) => {
+        // 🕐 TIMING: Start timing when first thought chunk arrives
+        if (!thoughtsStartTime) {
+          thoughtsStartTime = Date.now();
+          console.log('🕐 [TIMING] Thoughts started at:', new Date(thoughtsStartTime).toISOString());
         }
         
-        // Start typewriter if not already running
-        startTypewriter();
+        thoughtsBuffer += chunk;
         
-        console.log(`✨ [TYPEWRITER] Buffer updated: ${textBuffer.length} chars total, ${displayedLength} displayed`);
+        // 🕐 TIMING: Track when we receive chunks to detect when thoughts are complete
+        // We'll use a timeout to detect when no more thought chunks are coming
+        if (thoughtsChunkTimeout) {
+          clearTimeout(thoughtsChunkTimeout);
+        }
+        
+        // Set a timeout to detect when thoughts are complete (no more chunks for 500ms)
+        thoughtsChunkTimeout = setTimeout(() => {
+          if (!thoughtsEndTime) {
+            thoughtsEndTime = Date.now();
+            thoughtsDuration = thoughtsEndTime - thoughtsStartTime;
+            console.log('🕐 [TIMING] Thoughts completed (no more chunks) in:', thoughtsDuration, 'ms');
+          }
+        }, 500); // Wait 500ms after last chunk to consider thoughts complete
+        
+        if (!thoughtsTypewriterInterval) {
+          console.log('🧠 [SEQUENTIAL] Starting thoughts typewriter');
+          thoughtsTypewriterInterval = runTypewriterStream({
+            getBuffer: () => thoughtsBuffer,
+            getDisplayedLength: () => thoughtsDisplayedLength,
+            setDisplayedLength: (len) => { thoughtsDisplayedLength = len; },
+            onTypewriterUpdate: updateThoughts,
+            intervalMs: 0.1, // Very fast for thoughts since they're typically shorter
+            onDone: () => {
+              // When thoughts typewriter is complete, mark as done and start answer if available
+              thoughtsComplete = true;
+              console.log('🧠 [SEQUENTIAL] Thoughts typewriter complete');
+              
+              // Update message to show thoughts are complete and collapse thoughts section
+              setMessages(prev => prev.map(msg => {
+                if (msg.id === streamingBotMessage.id) {
+                  return { 
+                    ...msg, 
+                    isThinking: false,
+                    thoughtsCollapsed: true, // Collapse thoughts section when complete
+                    isStreaming: answerBuffer.length > 0, // Keep streaming if answer available
+                    streamingPhase: answerBuffer.length > 0 ? 'generating' : null,
+                    thoughtsDuration: thoughtsDuration // Store thoughts duration
+                  };
+                }
+                return msg;
+              }));
+              
+              if (answerBuffer.length > 0 && !answerStarted) {
+                answerStarted = true;
+                console.log('🧠 [SEQUENTIAL] Starting answer typewriter after thoughts');
+                answerTypewriterInterval = runTypewriterStream({
+                  getBuffer: () => answerBuffer,
+                  getDisplayedLength: () => answerDisplayedLength,
+                  setDisplayedLength: (len) => { answerDisplayedLength = len; },
+                  onTypewriterUpdate: updateAnswer,
+                  intervalMs: 10,
+                  onDone: () => {
+                    // When answer is complete, finalize the message
+                    console.log('📝 [SEQUENTIAL] Answer typewriter complete');
+                    setMessages(prev => prev.map(msg => {
+                      if (msg.id === streamingBotMessage.id) {
+                        return { 
+                          ...msg, 
+                          isStreaming: false,
+                          streamingPhase: null
+                        };
+                      }
+                      return msg;
+                    }));
+                  }
+                });
+              } else if (answerBuffer.length === 0) {
+                // No answer chunks, complete the message
+                console.log('📝 [SEQUENTIAL] No answer chunks, completing message');
+                setMessages(prev => prev.map(msg => {
+                  if (msg.id === streamingBotMessage.id) {
+                    return { 
+                      ...msg, 
+                      isStreaming: false,
+                      streamingPhase: null
+                    };
+                  }
+                  return msg;
+                }));
+              }
+            }
+          });
+        }
       };
-      
+
       // 🎯 ADAPTIVE UX PHASES: Shorter timers, skip searching for quick responses
       console.log(`🚀 [UX] API call starting - using adaptive phases`);
       
@@ -541,52 +682,28 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
 
 
       // Get bot response with streaming (starts immediately!)
-      const botResponse = await callVertexAI(userMessage, [...messages, newUserMessage], onChunk, streamingBotMessage.id);
+      const botResponse = await callVertexAI(userMessage, [...messages, newUserMessage], onChunk, streamingBotMessage.id, onThought);
       
       // 🔓 CRITICAL: Reset loading state immediately after API call completes
       // This ensures input is enabled as soon as the response is received
       setIsLoading(false);
       console.log('🔓 [INPUT] Loading state reset - input enabled');
       
-      // 🎯 FINISH TYPEWRITER ANIMATION
-      // Ensure all buffered text is displayed before marking as complete
-      const finishTypewriter = () => {
-        return new Promise((resolve) => {
-          const checkCompletion = () => {
-            if (displayedLength >= textBuffer.length) {
-              // All text displayed, clean up
-              if (typewriterInterval) {
-                clearInterval(typewriterInterval);
-                typewriterInterval = null;
-              }
-              resolve();
-            } else {
-              // Wait a bit more for typewriter to finish
-              setTimeout(checkCompletion, 100);
-            }
-          };
-          checkCompletion();
-        });
-      };
-      
-      // Wait for typewriter to finish
-      await finishTypewriter();
-      
-
-      
       // ✅ Update metadata only - preserve the typewriter-animated text
       setMessages(prev => prev.map(msg => 
         msg.id === streamingBotMessage.id 
           ? {
               ...msg,
-              // ✅ Ensure final text is complete (fallback)
-              text: textBuffer || msg.text,
+              // ✅ Ensure final text is complete (fallback) - but only if thoughts are done
+              text: thoughtsComplete ? (answerBuffer || msg.text) : (msg.text || ''),
               model: botResponse.model,
               sources: botResponse.sources,
               groundingMetadata: botResponse.groundingMetadata,
               usageMetadata: botResponse.usageMetadata,
-              isStreaming: false, // Mark streaming as complete
-              streamingPhase: null // Clear streaming phase
+              thoughts: thoughtsBuffer || msg.thoughts || '', // Always preserve full thoughts
+              isThinking: !thoughtsComplete, // Keep thinking state if thoughts not complete
+              isStreaming: !thoughtsComplete, // Keep streaming if thoughts not complete
+              streamingPhase: thoughtsComplete ? null : 'thinking' // Keep phase if thoughts not complete
             }
           : msg
       ));
@@ -596,7 +713,8 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
       const totalResponseTime = Date.now() - startTime;
       
       console.log('✅ [CHAT] Streaming message completed:', {
-        responseLength: textBuffer.length,
+        responseLength: answerBuffer.length,
+        thoughtsLength: thoughtsBuffer.length,
         model: botResponse.model,
         totalResponseTime: totalResponseTime
       });
@@ -605,9 +723,17 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
       console.error('Error sending streaming message:', error);
       
       // 🧹 CLEANUP TYPEWRITER AND TIMERS ON ERROR
-      if (typewriterInterval) {
-        clearInterval(typewriterInterval);
-        typewriterInterval = null;
+      if (answerTypewriterInterval) {
+        clearInterval(answerTypewriterInterval);
+        answerTypewriterInterval = null;
+      }
+      if (thoughtsTypewriterInterval) {
+        clearInterval(thoughtsTypewriterInterval);
+        thoughtsTypewriterInterval = null;
+      }
+      if (thoughtsChunkTimeout) {
+        clearTimeout(thoughtsChunkTimeout);
+        thoughtsChunkTimeout = null;
       }
       if (processingTimer) {
         clearTimeout(processingTimer);
@@ -628,7 +754,8 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
           ? {
               ...msg,
               // Only replace text if no streaming happened, otherwise preserve typewriter text
-              text: textBuffer || msg.text || 'Xin lỗi, đã có lỗi xảy ra. Vui lòng thử lại sau.',
+              text: answerBuffer || msg.text || 'Xin lỗi, đã có lỗi xảy ra. Vui lòng thử lại sau.',
+              thoughts: thoughtsBuffer || msg.thoughts || '',
               model: 'error',
               isStreaming: false,
               streamingPhase: null // Clear streaming phase on error
@@ -638,7 +765,7 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
     } finally {
       setIsLoading(false);
     }
-  }, [inputValue, isLoading, messages, callVertexAI, chatConfig]);
+  }, [inputValue, isLoading, messages, callVertexAI, chatConfig, currentThoughts]);
 
   /**
    * Handle keyboard events
@@ -850,22 +977,55 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
       <div className={styles.chatMessages}>
         {messages.map((message) => (
           <div key={message.id} className={`${styles.messageWrapper} ${message.sender === 'user' ? styles.userMessage : styles.botMessage}`}>
-            <div className={`${styles.messageBubble} ${message.isStreaming ? styles.streamingMessage : ''}`}>
-              <div 
-                className={styles.messageText} 
-                dangerouslySetInnerHTML={{ __html: formatMessage(message.text) }} 
-              />
-              
-              {/* Enhanced streaming indicator with four-phase messages */}
-              {message.isStreaming && (
-                <div className={styles.streamingIndicator}>
-                  {message.streamingPhase === 'processing' && 'Đang xử lý câu hỏi của bạn...'}
-                  {message.streamingPhase === 'thinking' && 'Suy nghĩ về câu hỏi của bạn...'}
-                  {message.streamingPhase === 'searching' && 'Đang tìm kiếm dữ liệu...'}
-                  {message.streamingPhase === 'generating' && 'Đang tạo phản hồi...'}
+            {message.sender === 'bot' ? (
+              <div className={styles.botGroupContainer}>
+                {/* Thoughts section (if any) */}
+                {message.thoughts && message.thoughts.trim() && (
+                  <details className={message.isThinking ? styles.thinkingContainer : styles.thoughtsContainer} open={!message.thoughtsCollapsed}>
+                    <summary className={styles.thoughtsSummary}>
+                      🧠 {message.isThinking ? 'Đang suy nghĩ...' : 'Quá trình suy nghĩ'} ({message.thoughts.length} ký tự)
+                      {message.thoughtsDuration && (
+                        <span className={styles.thoughtsDuration}>
+                          • {message.thoughtsDuration}ms
+                        </span>
+                      )}
+                      {message.isThinking && <span className={styles.thinkingDots}>...</span>}
+                    </summary>
+                    <div className={styles.thoughtsContent}>
+                      <pre>{message.thoughts}</pre>
+                    </div>
+                  </details>
+                )}
+                {/* Divider if both thoughts and message exist */}
+                {message.thoughts && message.thoughts.trim() && message.text && (
+                  <div className={styles.thoughtsDivider} />
+                )}
+                {/* Bot message bubble */}
+                <div className={`${styles.messageBubble} ${message.isStreaming ? styles.streamingMessage : ''}`}>
+                  <div 
+                    className={styles.messageText} 
+                    dangerouslySetInnerHTML={{ __html: formatMessage(message.text) }} 
+                  />
+                  {/* Enhanced streaming indicator with four-phase messages */}
+                  {message.isStreaming && (
+                    <div className={styles.streamingIndicator}>
+                      {message.streamingPhase === 'processing' && 'Đang xử lý câu hỏi của bạn...'}
+                      {message.streamingPhase === 'thinking' && 'Suy nghĩ về câu hỏi của bạn...'}
+                      {message.streamingPhase === 'searching' && 'Đang tìm kiếm dữ liệu...'}
+                      {message.streamingPhase === 'generating' && 'Đang tạo phản hồi...'}
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
+              </div>
+            ) : (
+              // User message (no thoughts)
+              <div className={`${styles.messageBubble} ${message.isStreaming ? styles.streamingMessage : ''}`}>
+                <div 
+                  className={styles.messageText} 
+                  dangerouslySetInnerHTML={{ __html: formatMessage(message.text) }} 
+                />
+              </div>
+            )}
           </div>
         ))}
         

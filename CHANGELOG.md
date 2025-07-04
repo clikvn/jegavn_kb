@@ -28,6 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **NEW**: Enhanced CORS configuration
 - **NEW**: Development scripts for easier local development
 - **NEW**: Comprehensive documentation and README
+- **NEW**: Gemini 2.5 thinking capability with streaming thoughts display
 
 ### Changed
 - Updated to use Gemini 2.5 Pro model
@@ -71,6 +72,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **FIXED**: Delete button functionality using forwardRef and useImperativeHandle for proper component communication
 - **FIXED**: Component rendering error in ChatBotPanel - resolved undefined component issue by properly handling ref forwarding between Root and ChatBotPanel components
 - **FIXED**: User message text and send time overlapping issue - removed flex display from message bubble to ensure proper text and time separation
+- **FIXED**: Removed hardcoded default limit (100) from saveMessagesToStorage function - now properly uses userHistory value from Bubble configuration
+- **ENHANCED**: Added Gemini 2.5 thinking configuration with dynamic thinking budget and thought streaming
+- **ENHANCED**: Implemented real-time streaming thoughts with typewriter effect and visual indicators
+- **UX IMPROVEMENT**: Thoughts section now expanded by default for better visibility of AI reasoning process
+- **FIXED**: Corrected thought detection logic to use direct attribute access (`part.thought`) instead of `getattr()` for proper Gemini 2.5 thinking detection
+- **UX IMPROVEMENT**: Moved thoughts section above bot message for better logical flow - users see AI reasoning before the final answer
+- **FIXED**: Corrected undefined variable references in typewriter streaming implementation - replaced `typewriterInterval` and `textBuffer` with proper variable names (`answerTypewriterInterval`, `thoughtsTypewriterInterval`, `answerBuffer`, `thoughtsBuffer`)
+- **FIXED**: Thoughts now properly stream with typewriter effect - corrected streaming response handler to call `onThought` callback instead of directly updating message state
+- **IMPROVED**: Thoughts typewriter speed increased to 5ms (from 10ms) for faster, more responsive display since thoughts are typically shorter than answers
+- **ENHANCED**: Sequential typewriter flow - thoughts appear first with typewriter effect, then answer starts only after thoughts are complete for better readability
+- **FIXED**: Answer text now properly hidden until thoughts typewriter effect is complete - prevents premature display of answer content
+- **ENHANCED**: Thoughts section automatically collapses when typewriter effect completes - cleaner UI flow
+- **UI IMPROVEMENTS**: 
+  - Removed borders and round corners from thoughts section for cleaner appearance
+  - Moved thoughts arrow indicator to the right side
+  - Changed answer typewriter speed to 10ms for better readability
+  - Applied streaming indicator styling to thoughts text (primary color, italic, opacity) while keeping font size
+  - Applied streaming indicator styling to thoughts summary header (primary color only) and updated arrow icon to match menu style
+  - Enhanced thoughts summary header with soft gray gradient background (left to right) for better visual appeal
+  - **NEW**: Added thoughts timing display in header showing total time spent on thoughts (in milliseconds)
+  - **FIXED**: Thoughts timing now stops when last chunk is received (not when typewriter ends) for accurate timing measurement
+  - **STYLING**: Made thoughts content background and borders transparent for cleaner appearance
 
 ### Technical Details
 - **Frontend**: React 18.3.1, Docusaurus 3.8.0
