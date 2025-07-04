@@ -135,25 +135,28 @@ async def fetch_bubble_config() -> Dict[str, Any]:
                 
                 bubble_config = data['response']['results'][0]
                 
-                # Extract configuration
+                # Extract configuration STRICTLY from Bubble (no fallbacks)
                 config = {
-                    'record_id': bubble_config.get('_id'),  # Store record ID for updates
+                    'record_id': bubble_config.get('_id'),
                     'ai_model': bubble_config.get('ai_model'),
-                    'system_prompt': bubble_config.get('prompt', ''),  # Store raw text without HTML entity decoding
-                    'temperature': float(bubble_config.get('tempature', 0.5)),
-                    'top_p': float(bubble_config.get('top-p', 0.9)),
-                    'max_output_tokens': int(bubble_config.get('max_output_tokens', 10000)),
-                    'conversation_memory': int(bubble_config.get('conversation_memory', 10)),
-                    'user_history': int(bubble_config.get('user_history', 100))
+                    'system_prompt': bubble_config.get('prompt'),
+                    'temperature': bubble_config.get('tempature'),
+                    'top_p': bubble_config.get('top-p'),
+                    'max_output_tokens': bubble_config.get('max_output_tokens'),
+                    'conversation_memory': bubble_config.get('conversation_memory'),
+                    'user_history': bubble_config.get('user_history')
                 }
-                
-                # Validate required fields
-                required = ['ai_model', 'system_prompt', 'temperature', 'top_p', 'max_output_tokens']
-                missing = [field for field in required if not config.get(field)]
-                
+                # Validate required fields (all must be present and not None/empty)
+                required = ['ai_model', 'system_prompt', 'temperature', 'top_p', 'max_output_tokens', 'conversation_memory', 'user_history']
+                missing = [field for field in required if config.get(field) in [None, '']]
                 if missing:
                     raise HTTPException(status_code=503, detail=f"Missing config: {missing}")
-                
+                # Convert numeric fields to proper types after validation
+                config['temperature'] = float(config['temperature'])
+                config['top_p'] = float(config['top_p'])
+                config['max_output_tokens'] = int(config['max_output_tokens'])
+                config['conversation_memory'] = int(config['conversation_memory'])
+                config['user_history'] = int(config['user_history'])
                 logger.info(f"✅ Config loaded: {config['ai_model']}")
                 return config
                 
@@ -377,10 +380,25 @@ async def vertex_ai_chat(request: Request):
         
         # Format chat history
         contents = format_chat_history(chat_history)
-        contents.append({
-            'role': 'user',
-            'parts': [{'text': message}]
-        })
+        
+        # Check if the current message is already in chat history to avoid duplication
+        is_message_in_history = any(
+            msg.get('sender') == 'user' and msg.get('text', '').strip() == message
+            for msg in chat_history
+        )
+        
+        # Only append if not already in history
+        if not is_message_in_history:
+            contents.append({
+                'role': 'user',
+                'parts': [{'text': message}]
+            })
+        
+        # Debug: Log the exact payload being sent to Gemini
+        logger.info(f"🔍 [DEBUG] User message: '{message}'")
+        logger.info(f"🔍 [DEBUG] Chat history length: {len(chat_history)}")
+        logger.info(f"🔍 [DEBUG] Message in history: {is_message_in_history}")
+        logger.info(f"🔍 [DEBUG] Contents payload: {json.dumps(contents, ensure_ascii=False, indent=2)}")
         
         # Prepare tools and settings
         tools = [
@@ -437,7 +455,7 @@ async def vertex_ai_chat(request: Request):
                     config=types.GenerateContentConfig(
                         system_instruction=types.Content(
                             parts=[types.Part(text=config['system_prompt'])],
-                            role='user'
+                            role='model'
                         ),
                         temperature=config['temperature'],
                         max_output_tokens=config['max_output_tokens'],

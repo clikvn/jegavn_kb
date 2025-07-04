@@ -94,6 +94,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - **NEW**: Added thoughts timing display in header showing total time spent on thoughts (in milliseconds)
   - **FIXED**: Thoughts timing now stops when last chunk is received (not when typewriter ends) for accurate timing measurement
   - **STYLING**: Made thoughts content background and borders transparent for cleaner appearance
+- **CRITICAL FIX**: Fixed single-word message duplication bug - added check to prevent duplicate user messages in chat history before sending to Gemini API
+- **FIXED**: Removed hardcoded fallback values for conversation_memory (10) and user_history (100) - now properly validates that these values exist in Bubble configuration
 
 ### Technical Details
 - **Frontend**: React 18.3.1, Docusaurus 3.8.0
