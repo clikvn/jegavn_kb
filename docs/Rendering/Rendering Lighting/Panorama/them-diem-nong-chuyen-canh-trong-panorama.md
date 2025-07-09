@@ -1,6 +1,6 @@
 ---
 title: Thêm điểm nóng chuyển cảnh trong Panorama
-slug: them-diem-nong-chuyen-canh-trong-panorama
+slug: /them-diem-nong-chuyen-canh-trong-panorama
 sidebar_label: Thêm điểm nóng chuyển cảnh
 ---
 
@@ -25,7 +25,5 @@ Lối vào 2: Mở dự án cần chỉnh sửa, nhấp vào album bên trái, c
 ![Hộp thoại Tạo mã QR trong Trình chỉnh sửa toàn cảnh, hiển thị liên kết được tạo.](https://storage.googleapis.com/jegavn_kb/images/5d12216f-4d32-4e00-8641-60f1e96209cb.png)
 
 :::note
-
-Video hướng dẫn về Panorama: [https://www.aihouse.com/global/study/detail/800](https://www.aihouse.com/global/study/detail/800)
 
 :::

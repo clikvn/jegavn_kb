@@ -1,6 +1,6 @@
 ---
 title: Tối ưu hóa tương tác ảnh chụp nhanh
-slug: toi-uu-hoa-tuong-tac-anh-chup-nhanh
+slug: /toi-uu-hoa-tuong-tac-anh-chup-nhanh
 sidebar_label: Tối ưu hóa tương tác ảnh chụp nhanh
 ---
 

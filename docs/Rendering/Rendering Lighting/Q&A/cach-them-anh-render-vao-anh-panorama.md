@@ -1,6 +1,6 @@
 ---
 title: Cách thêm ảnh render vào ảnh panorama
-slug: cach-them-anh-render-vao-anh-panorama
+slug: /cach-them-anh-render-vao-anh-panorama
 sidebar_label: Cách thêm ảnh render vào ảnh panorama
 ---
 

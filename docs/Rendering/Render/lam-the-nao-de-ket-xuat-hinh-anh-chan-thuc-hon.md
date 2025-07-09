@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để kết xuất hình ảnh chân thực hơn
-slug: lam-the-nao-de-ket-xuat-hinh-anh-chan-thuc-hon
+slug: /lam-the-nao-de-ket-xuat-hinh-anh-chan-thuc-hon
 sidebar_label: Làm thế nào để kết xuất hình ảnh chân thực hơn
 ---
 

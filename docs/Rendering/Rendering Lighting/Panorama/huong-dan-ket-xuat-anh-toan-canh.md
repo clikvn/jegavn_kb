@@ -1,6 +1,6 @@
 ---
 title: Hướng Dẫn Kết Xuất Ảnh Toàn Cảnh
-slug: huong-dan-ket-xuat-anh-toan-canh
+slug: /huong-dan-ket-xuat-anh-toan-canh
 sidebar_label: Hướng Dẫn Kết Xuất Ảnh Toàn Cảnh
 ---
 

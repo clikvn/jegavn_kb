@@ -1,6 +1,6 @@
 ---
 title: Tại sao render thất bại
-slug: tai-sao-render-that-bai
+slug: /tai-sao-render-that-bai
 sidebar_label: Tại sao render thất bại
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Hướng dẫn sử dụng chức năng vẽ AI
-slug: huong-dan-su-dung-chuc-nang-ve-ai
+slug: /huong-dan-su-dung-chuc-nang-ve-ai
 sidebar_label: Hướng dẫn sử dụng chức năng vẽ AI
 ---
 
@@ -27,9 +27,5 @@ Bạn có thể thực hiện các lần lặp lại thứ cấp trên các hìn
 ![Giao diện vẽ AI hiển thị kết xuất phòng nội thất, các tùy chọn tạo kiểu, cài đặt máy ảnh và tiến trình của các hình ảnh được tạo.](https://storage.googleapis.com/jegavn_kb/images/49dc61db-abc7-404b-9f57-b820ce00702c.png)
 
 :::note
-
-Để xem hướng dẫn chi tiết, vui lòng nhấp vào 
-
-
 
 :::

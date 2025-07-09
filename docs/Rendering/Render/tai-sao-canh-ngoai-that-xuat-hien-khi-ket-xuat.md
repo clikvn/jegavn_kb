@@ -1,6 +1,6 @@
 ---
 title: Tại sao cảnh ngoại thất xuất hiện khi kết xuất
-slug: tai-sao-canh-ngoai-that-xuat-hien-khi-ket-xuat
+slug: /tai-sao-canh-ngoai-that-xuat-hien-khi-ket-xuat
 sidebar_label: Tại sao cảnh ngoại thất xuất hiện khi kết xuất
 ---
 

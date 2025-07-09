@@ -1,6 +1,6 @@
 ---
 title: Sơ đồ phòng trống
-slug: so-do-phong-trong
+slug: /so-do-phong-trong
 sidebar_label: Sơ đồ phòng trống
 ---
 

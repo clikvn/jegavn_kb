@@ -1,6 +1,6 @@
 ---
 title: Cài đặt tự phát sáng cho mô hình
-slug: cai-dat-tu-phat-sang-cho-mo-hinh
+slug: /cai-dat-tu-phat-sang-cho-mo-hinh
 sidebar_label: Cài đặt tự phát sáng cho mô hình
 ---
 

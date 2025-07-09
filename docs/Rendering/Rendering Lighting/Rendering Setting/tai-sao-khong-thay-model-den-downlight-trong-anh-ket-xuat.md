@@ -1,6 +1,6 @@
 ---
 title: Tại sao không thấy model đèn downlight trong ảnh kết xuất
-slug: tai-sao-khong-thay-model-den-downlight-trong-anh-ket-xuat
+slug: /tai-sao-khong-thay-model-den-downlight-trong-anh-ket-xuat
 sidebar_label: Tại sao không thấy model đèn downlight trong ảnh kết xuất
 ---
 

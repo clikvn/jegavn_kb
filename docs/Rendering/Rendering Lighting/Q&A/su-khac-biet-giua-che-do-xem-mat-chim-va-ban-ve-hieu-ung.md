@@ -1,6 +1,6 @@
 ---
 title: Sự khác biệt giữa chế độ xem mắt chim và bản vẽ hiệu ứng
-slug: su-khac-biet-giua-che-do-xem-mat-chim-va-ban-ve-hieu-ung
+slug: /su-khac-biet-giua-che-do-xem-mat-chim-va-ban-ve-hieu-ung
 sidebar_label: Sự khác biệt giữa chế độ xem mắt chim và bản vẽ hiệu ứng
 ---
 

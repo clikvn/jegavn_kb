@@ -96,6 +96,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - **STYLING**: Made thoughts content background and borders transparent for cleaner appearance
 - **CRITICAL FIX**: Fixed single-word message duplication bug - added check to prevent duplicate user messages in chat history before sending to Gemini API
 - **FIXED**: Removed hardcoded fallback values for conversation_memory (10) and user_history (100) - now properly validates that these values exist in Bubble configuration
+- **DOCUMENTATION FIX**: Fixed YAML frontmatter parsing errors in multiple documentation files - added proper quotes around titles containing colons to resolve Docusaurus build issues (affected 6 files across different documentation sections)
+- **ROUTING FIX**: Resolved duplicate routes warning by adding prefixes to differentiate similar content across sections:
+  - Added "kitchen-" prefix to Kitchen Cabinets documentation routes
+  - Added "general-" prefix to root-level Parameters Setting routes  
+  - Added "lighting-" prefix to Rendering Lighting routes
+  - Added "intro-", "basic-", "construction-" prefixes to resolve other conflicts
+  - Fixed 12 duplicate route conflicts total
+- **MARKDOWN FIX**: Fixed unused markdown directives - replaced unsupported `:::question` and `:::example` with standard `:::note` directives
+- **BLOG FIX**: Added proper blog post content with truncation marker (`<!-- truncate -->`) to resolve Docusaurus warning
+- **CRITICAL CLEANUP**: Removed duplicate root-level "Parameters Setting" folder that was conflicting with merged "Wardrobe-System Cabinets/Parameters Setting" 
+  - Eliminated 58+ module resolution errors causing build failures
+  - Resolved "EMFILE: too many open files" issues
+  - Cleaned up folder structure after merging old separate "System Cabinet" and "Wardrobe" folders into unified "Wardrobe-System Cabinets"
+  - Cleared Docusaurus cache and restarted servers for clean state
+- **YAML FRONTMATTER CRITICAL FIX**: Resolved persistent YAML parsing errors preventing frontend startup
+  - Fixed 6 documentation files where titles containing colons (`:`) weren't properly quoted
+  - Recreated `trinh-chinh-sua-mo-hinh-tam-1-mo-canh-ben.md` with clean character encoding
+  - Added proper quotes around titles and sidebar_labels in affected files
+  - Cleared Docusaurus build cache to resolve stale file conflicts
+  - **VERIFIED**: Both frontend (port 3000) and backend (port 3001) servers now running successfully
 
 ### Technical Details
 - **Frontend**: React 18.3.1, Docusaurus 3.8.0

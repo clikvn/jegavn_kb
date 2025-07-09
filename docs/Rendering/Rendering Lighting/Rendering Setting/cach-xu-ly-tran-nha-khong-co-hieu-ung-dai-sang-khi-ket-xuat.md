@@ -1,6 +1,6 @@
 ---
 title: Cách xử lý trần nhà không có hiệu ứng dải sáng khi kết xuất
-slug: cach-xu-ly-tran-nha-khong-co-hieu-ung-dai-sang-khi-ket-xuat
+slug: /cach-xu-ly-tran-nha-khong-co-hieu-ung-dai-sang-khi-ket-xuat
 sidebar_label: Xử lý trần không có hiệu ứng dải sáng
 ---
 

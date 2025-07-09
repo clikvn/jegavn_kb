@@ -1,6 +1,6 @@
 ---
 title: Tại sao không thể tải xuống ảnh panorama
-slug: tai-sao-khong-the-tai-xuong-anh-panorama
+slug: /tai-sao-khong-the-tai-xuong-anh-panorama
 sidebar_label: Tại sao không thể tải xuống ảnh panorama
 ---
 
@@ -9,7 +9,5 @@ Xin chào, vui lòng truy cập **Tất cả hồ sơ (All Records)** - **Thư v
 ![Giao diện người dùng hiển thị các tùy chọn tải xuống cho một ảnh panorama, với biểu tượng tải xuống (1) và menu thả xuống (2) được đánh dấu.](https://storage.googleapis.com/jegavn_kb/images/f6981845-f5c5-45dc-a914-c66a11d541c8.png)
 
 :::note
-
-
 
 :::

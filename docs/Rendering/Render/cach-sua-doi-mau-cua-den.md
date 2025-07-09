@@ -1,6 +1,6 @@
 ---
 title: Cách sửa đổi màu của đèn
-slug: cach-sua-doi-mau-cua-den
+slug: /cach-sua-doi-mau-cua-den
 sidebar_label: Cách sửa đổi màu của đèn
 ---
 

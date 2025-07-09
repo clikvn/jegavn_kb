@@ -1,14 +1,12 @@
 ---
 title: Tìm hiểu cài đặt ánh sáng mặt trời
-slug: tim-hieu-cai-dat-anh-sang-mat-troi
+slug: /tim-hieu-cai-dat-anh-sang-mat-troi
 sidebar_label: Tìm hiểu cài đặt ánh sáng mặt trời
 ---
 
 Xin chào, nếu bạn cần tạo hiệu ứng ánh nắng mặt trời chiếu vào, bạn có thể tham khảo các phương pháp sau:
 
 :::info [Phương pháp 1]
-
-Phương pháp 1: Bật giao diện kết xuất ánh sáng mặt trời và thiết lập độ sáng, thời gian và hướng yêu cầu.
 
 :::
 
@@ -33,8 +31,6 @@ Trong tab (①) **Hình ảnh kết xuất (Render picture)**, chọn tab (②) 
 ![Giao diện phiên bản thiết kế hiển thị tab (1) Hình ảnh kết xuất và (2) Môi trường được chọn, với phần (3) Ánh sáng mặt trời được tô sáng.](https://storage.googleapis.com/jegavn_kb/images/f2710e8d-5fd5-468c-b599-26749ea84521.png)
 
 :::info [Phương pháp 2]
-
-Trong mục bù sáng, kéo mô hình mặt trời và đặt nó bên ngoài cửa sổ ở chế độ 2D; thông thường, đặt nó ở vị trí cách không gian 12 ô lưới, sau đó chuyển sang chế độ 3D và kéo chuột để điều chỉnh độ cao của ánh sáng mặt trời.
 
 :::
 

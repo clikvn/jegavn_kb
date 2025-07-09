@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để khôi phục hình ảnh hiệu ứng đã xóa
-slug: lam-the-nao-de-khoi-phuc-hinh-anh-hieu-ung-da-xoa
+slug: /lam-the-nao-de-khoi-phuc-hinh-anh-hieu-ung-da-xoa
 sidebar_label: Khôi phục hình ảnh hiệu ứng đã xóa
 ---
 
@@ -8,13 +8,9 @@ Xin chào, các phương án, hình ảnh kết xuất và vật liệu đã xó
 
 :::note
 
-Thùng rác chỉ lưu giữ các hình ảnh kết xuất và ảnh toàn cảnh đã bị xóa trong vòng 15 ngày qua.
-
 :::
 
 :::info
-
-Nếu bạn là người dùng doanh nghiệp và không có quyền chỉnh sửa và khôi phục, vui lòng liên hệ với quản trị viên để được khôi phục.
 
 :::
 

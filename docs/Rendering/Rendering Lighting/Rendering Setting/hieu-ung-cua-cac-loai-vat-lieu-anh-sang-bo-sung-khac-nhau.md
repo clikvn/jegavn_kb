@@ -1,6 +1,6 @@
 ---
 title: Hiệu ứng của các loại vật liệu ánh sáng bổ sung khác nhau
-slug: hieu-ung-cua-cac-loai-vat-lieu-anh-sang-bo-sung-khac-nhau
+slug: /hieu-ung-cua-cac-loai-vat-lieu-anh-sang-bo-sung-khac-nhau
 sidebar_label: Hiệu ứng của các loại vật liệu ánh sáng bổ sung khác nhau
 ---
 

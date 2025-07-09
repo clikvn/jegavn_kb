@@ -1,6 +1,6 @@
 ---
 title: Cách liên kết và chỉnh sửa ảnh panorama mới
-slug: cach-lien-ket-va-chinh-sua-anh-panorama-moi
+slug: /cach-lien-ket-va-chinh-sua-anh-panorama-moi
 sidebar_label: Cách liên kết và chỉnh sửa ảnh panorama mới
 ---
 
@@ -19,8 +19,6 @@ Các bước thao tác như sau:
 3. Nhấp để thêm một điểm nóng mới;
 
 :::note
-
-Lưu ý: Mỗi phòng phải có một điểm nóng, nếu không sẽ không thể chuyển đổi không gian.
 
 :::
 

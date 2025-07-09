@@ -1,6 +1,6 @@
 ---
 title: Phương pháp sản xuất video ngắn
-slug: phuong-phap-san-xuat-video-ngan
+slug: /phuong-phap-san-xuat-video-ngan
 sidebar_label: Phương pháp sản xuất video ngắn
 ---
 
@@ -15,8 +15,6 @@ Xin chào, sau khi video toàn cảnh được ghi lại, vui lòng thực hiệ
 ![Một người dùng đã hoàn tất việc tạo video trong trình chỉnh sửa toàn cảnh và được nhắc lưu lại.](https://storage.googleapis.com/jegavn_kb/images/a3949038-26df-42e5-8031-54e97ea6e313.png)
 
 :::note
-
-Nếu kích thước tệp video được tạo là 0 MB, vui lòng sao chép liên kết trình chỉnh sửa toàn cảnh và tạo video trong một trình duyệt khác, sau đó lưu lại.
 
 :::
 

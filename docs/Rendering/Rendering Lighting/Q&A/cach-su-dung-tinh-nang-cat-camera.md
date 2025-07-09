@@ -1,6 +1,6 @@
 ---
 title: Cách sử dụng tính năng cắt camera
-slug: cach-su-dung-tinh-nang-cat-camera
+slug: /cach-su-dung-tinh-nang-cat-camera
 sidebar_label: Cách sử dụng tính năng cắt camera
 ---
 

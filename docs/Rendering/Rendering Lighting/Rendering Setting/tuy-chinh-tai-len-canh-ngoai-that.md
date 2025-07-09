@@ -1,14 +1,12 @@
 ---
 title: Tùy chỉnh tải lên cảnh ngoại thất
-slug: tuy-chinh-tai-len-canh-ngoai-that
+slug: /tuy-chinh-tai-len-canh-ngoai-that
 sidebar_label: Tùy chỉnh tải lên cảnh ngoại thất
 ---
 
 Xin chào, trong phiên bản 5 plus mới, bạn có thể tùy chỉnh tải lên cảnh ngoại thất.
 
 :::note
-
-Định dạng tải lên của cảnh ngoại thất hỗ trợ png và jpg. Tỷ lệ hình ảnh được hỗ trợ là 3:4 và 2:1. Trong trường hợp độ phân giải không đáp ứng tỷ lệ nghiêm ngặt là 2:1, hình ảnh sẽ được kéo dài để tránh lỗi tải lên do chênh lệch một vài pixel về độ phân giải chiều dài hoặc chiều rộng; Kích thước hình ảnh không vượt quá 20m; Có thể tải lên tối đa 12 cảnh ngoại thất.
 
 :::
 

@@ -1,6 +1,6 @@
 ---
 title: Tại sao không có ảnh nào được hiển thị hoặc kết xuất không thành công
-slug: tai-sao-khong-co-anh-nao-duoc-hien-thi-hoac-ket-xuat-khong-thanh-cong
+slug: /tai-sao-khong-co-anh-nao-duoc-hien-thi-hoac-ket-xuat-khong-thanh-cong
 sidebar_label: Không hiển thị ảnh hoặc kết xuất không thành công
 ---
 

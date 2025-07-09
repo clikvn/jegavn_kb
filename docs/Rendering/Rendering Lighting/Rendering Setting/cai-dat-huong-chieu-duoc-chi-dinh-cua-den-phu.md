@@ -1,6 +1,6 @@
 ---
 title: Cài đặt hướng chiếu được chỉ định của đèn phụ
-slug: cai-dat-huong-chieu-duoc-chi-dinh-cua-den-phu
+slug: /cai-dat-huong-chieu-duoc-chi-dinh-cua-den-phu
 sidebar_label: Cài đặt hướng chiếu được chỉ định của đèn phụ
 ---
 

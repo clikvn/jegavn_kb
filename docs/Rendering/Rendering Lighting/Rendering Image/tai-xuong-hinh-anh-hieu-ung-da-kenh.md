@@ -1,6 +1,6 @@
 ---
 title: Tải xuống hình ảnh hiệu ứng đa kênh
-slug: tai-xuong-hinh-anh-hieu-ung-da-kenh
+slug: /tai-xuong-hinh-anh-hieu-ung-da-kenh
 sidebar_label: Tải xuống hình ảnh hiệu ứng đa kênh
 ---
 

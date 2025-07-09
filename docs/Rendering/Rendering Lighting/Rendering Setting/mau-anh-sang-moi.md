@@ -1,6 +1,6 @@
 ---
 title: Mẫu ánh sáng mới
-slug: mau-anh-sang-moi
+slug: /mau-anh-sang-moi
 sidebar_label: Mẫu ánh sáng mới
 ---
 
@@ -9,12 +9,6 @@ Xin chào, mẫu ánh sáng chân thực là mẫu ánh sáng mới nhất đư�
 Phiên bản thiết kế Giao diện vận hành
 
 :::note
-
-Như được hiển thị trong hình, chọn mẫu "Ánh sáng và bóng đổ chân thực 1.0 (Realistic light and shadow 1.0)" và nhấp vào (①) 
-
-**Áp dụng (Apply)**
-
-.
 
 :::
 

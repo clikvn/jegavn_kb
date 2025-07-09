@@ -1,6 +1,6 @@
 ---
 title: "Video AI: Kỹ thuật viết câu lệnh để tạo nhân vật"
-slug: "/video-ai-ky-thuat-viet-cau-lenh-de-tao-nhan-vat"
+slug: /video-ai-ky-thuat-viet-cau-lenh-de-tao-nhan-vat
 sidebar_label: "Kỹ thuật viết câu lệnh Video AI"
 ---
 
@@ -17,8 +17,6 @@ Video AI: Kỹ thuật viết câu lệnh để tạo nhân vật
 3. Hành động của nhân vật
 
 :::note
-
-Điều quan trọng là phải neo hành động vào một đối tượng cụ thể (ví dụ: "ngồi trên ghế đẩu màu đen") — nếu không, AI có thể tạo ra một nhân vật ngồi trên một chiếc ghế đẩu tự tạo.
 
 :::
 

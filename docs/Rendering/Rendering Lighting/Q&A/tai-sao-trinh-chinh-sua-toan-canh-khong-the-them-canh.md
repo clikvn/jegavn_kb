@@ -1,6 +1,6 @@
 ---
 title: Tại sao trình chỉnh sửa toàn cảnh không thể thêm cảnh
-slug: tai-sao-trinh-chinh-sua-toan-canh-khong-the-them-canh
+slug: /tai-sao-trinh-chinh-sua-toan-canh-khong-the-them-canh
 sidebar_label: Tại sao trình chỉnh sửa toàn cảnh không thể thêm cảnh
 ---
 

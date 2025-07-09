@@ -1,6 +1,6 @@
 ---
 title: Cách thay thế hình mờ của ảnh kết xuất?
-slug: cach-thay-the-hinh-mo-cua-anh-ket-xuat
+slug: /cach-thay-the-hinh-mo-cua-anh-ket-xuat
 sidebar_label: Cách thay thế hình mờ của ảnh kết xuất
 ---
 
@@ -19,7 +19,5 @@ Xin chào, vui lòng làm theo các bước dưới đây để tải lên và s
 ![Giao diện làm đẹp ảnh hiển thị (①) tab Làm đẹp ảnh, (②) công tắc Hình mờ được bật, và (③) hình mờ AiHouse trên ảnh.](https://storage.googleapis.com/jegavn_kb/images/aa53ff58-b618-4ec4-89a4-bf0b9556741b.png)
 
 :::note
-
-[Nhấp vào đây để xem hướng dẫn chi tiết](https://www.aihouse.com/global/study/detail/718)
 
 :::

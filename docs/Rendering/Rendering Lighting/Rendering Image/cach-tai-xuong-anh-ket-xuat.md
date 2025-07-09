@@ -1,6 +1,6 @@
 ---
 title: Cách tải xuống ảnh kết xuất
-slug: cach-tai-xuong-anh-ket-xuat
+slug: /cach-tai-xuong-anh-ket-xuat
 sidebar_label: Cách tải xuống ảnh kết xuất
 ---
 

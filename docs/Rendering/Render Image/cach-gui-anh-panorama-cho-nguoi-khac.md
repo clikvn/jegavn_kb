@@ -1,14 +1,12 @@
 ---
 title: Cách gửi ảnh panorama cho người khác
-slug: cach-gui-anh-panorama-cho-nguoi-khac
+slug: /cach-gui-anh-panorama-cho-nguoi-khac
 sidebar_label: Cách gửi ảnh panorama cho người khác
 ---
 
 Xin chào, bạn có thể gửi một ảnh panorama đơn lẻ hoặc một ảnh panorama toàn nhà đã chỉnh sửa cho khách hàng. Vui lòng thực hiện theo các bước dưới đây:
 
 :::info [Ảnh panorama đơn lẻ]
-
-Nếu đó là một ảnh panorama đơn lẻ, hãy nhấp vào "Xem Toàn cảnh" trong "Tất cả bản ghi", và quét mã để mở và chia sẻ bằng điện thoại của bạn;
 
 :::
 
@@ -21,8 +19,6 @@ Nếu đó là một ảnh panorama đơn lẻ, hãy nhấp vào "Xem Toàn cả
 ![Giao diện người dùng hiển thị một không gian nội thất được kết xuất 3D với hộp thoại (①) Chia sẻ đang mở, hiển thị mã QR và tùy chọn (②) Sao chép liên kết để tham quan ảo.](https://storage.googleapis.com/jegavn_kb/images/1fa07d06-1950-4f90-933d-330f4190d74f.png)
 
 :::info [Ảnh panorama toàn nhà]
-
-Nếu đó là ảnh panorama toàn nhà và bạn muốn chia sẻ nó trên Moments, vui lòng thực hiện các thao tác sau:
 
 :::
 

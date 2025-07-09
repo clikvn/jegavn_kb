@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để kết xuất ảnh xem từ trên không
-slug: lam-the-nao-de-ket-xuat-anh-xem-tu-tren-khong
+slug: /lam-the-nao-de-ket-xuat-anh-xem-tu-tren-khong
 sidebar_label: Kết xuất ảnh xem từ trên không
 ---
 
@@ -13,9 +13,5 @@ Chào bạn, ảnh xem từ trên không có thể được kết xuất theo c�
 ![Một ứng dụng kết xuất 3D hiển thị một sơ đồ mặt bằng với đồ nội thất, cho thấy các tùy chọn về chất lượng kết xuất khác nhau.](https://storage.googleapis.com/jegavn_kb/images/4036b599-9b71-4062-9c1f-bc0a8fba7422.png)
 
 :::note
-
-Chỉnh sửa Toàn cảnh - Hướng dẫn cần xem về Kết xuất Chế độ xem từ trên không: 
-
-
 
 :::

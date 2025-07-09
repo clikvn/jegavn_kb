@@ -1,16 +1,12 @@
 ---
 title: Tại sao có nhiều điểm nhiễu khi kết xuất
-slug: tai-sao-co-nhieu-diem-nhieu-khi-ket-xuat
+slug: /tai-sao-co-nhieu-diem-nhieu-khi-ket-xuat
 sidebar_label: Tại sao có nhiều điểm nhiễu khi kết xuất
 ---
 
 Xin chào, hiện tượng nhiễu hạt chủ yếu bị ảnh hưởng bởi ánh sáng của môi trường hiện tại. Ánh sáng càng tối thì càng có nhiều nhiễu. Để khắc phục, bạn có thể thêm đèn bổ sung một cách thích hợp hoặc chuyển sang chất lượng hình ảnh nâng cao để kết xuất.
 
 :::info [Giải pháp]
-
-
-
-
 
 :::
 

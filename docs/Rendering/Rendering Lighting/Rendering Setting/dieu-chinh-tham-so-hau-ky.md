@@ -1,6 +1,6 @@
 ---
 title: Điều chỉnh tham số hậu kỳ
-slug: dieu-chinh-tham-so-hau-ky
+slug: /dieu-chinh-tham-so-hau-ky
 sidebar_label: Điều chỉnh tham số hậu kỳ
 ---
 
@@ -13,31 +13,5 @@ Kết hợp với kết xuất thời gian thực, người dùng có thể xác
 ![Giao diện điều chỉnh tham số hậu kỳ trong phần mềm kết xuất cho một cảnh phòng ngủ. Bảng điều khiển (②) Hiệu ứng ánh sáng và Màu sắc được làm nổi bật.](https://storage.googleapis.com/jegavn_kb/images/77aa1767-d07f-475b-8eed-115154443a3f.png)
 
 :::note
-
-Bảng điều khiển (②) bao gồm các điều chỉnh cho 
-
-**Hiệu ứng ánh sáng (light effect)**
-
- và 
-
-**Màu sắc (color)**
-
-, chẳng hạn như 
-
-**Phơi sáng (Exposure)**
-
-, 
-
-**Độ tương phản (Contrast)**
-
-, 
-
-**Đèn pha (floodlight)**
-
-, và 
-
-**Độ bão hòa (Saturation)**
-
-. Giai đoạn hậu kỳ chỉ có hiệu lực đối với chất lượng kết xuất thời gian thực và cực nhanh, và tạm thời không hỗ trợ chất lượng tiêu chuẩn và chất lượng video.
 
 :::

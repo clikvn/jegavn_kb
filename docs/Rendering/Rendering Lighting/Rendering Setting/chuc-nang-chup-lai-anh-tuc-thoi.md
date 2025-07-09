@@ -1,6 +1,6 @@
 ---
 title: Chức năng Chụp lại Ảnh tức thời
-slug: chuc-nang-chup-lai-anh-tuc-thoi
+slug: /chuc-nang-chup-lai-anh-tuc-thoi
 sidebar_label: Chức năng Chụp lại Ảnh tức thời
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Tại sao kết xuất không thay đổi sau khi mô hình sửa đổi vật liệu
-slug: tai-sao-ket-xuat-khong-thay-doi-sau-khi-mo-hinh-sua-doi-vat-lieu
+slug: /tai-sao-ket-xuat-khong-thay-doi-sau-khi-mo-hinh-sua-doi-vat-lieu
 sidebar_label: Tại sao kết xuất không thay đổi sau khi sửa đổi vật liệu
 ---
 

@@ -1,12 +1,10 @@
 ---
 title: Hướng dẫn kết xuất cấp độ phim và truyền hình
-slug: huong-dan-ket-xuat-cap-do-phim-va-truyen-hinh
+slug: /huong-dan-ket-xuat-cap-do-phim-va-truyen-hinh
 sidebar_label: Hướng dẫn kết xuất cấp độ phim và truyền hình
 ---
 
 :::note
-
-Chức năng kết xuất cấp độ phim và truyền hình của tài khoản doanh nghiệp tạm thời chưa được mở.
 
 :::
 

@@ -1,6 +1,6 @@
 ---
 title: Cách tải xuống ảnh kết xuất
-slug: cach-tai-xuong-anh-ket-xuat
+slug: /cach-tai-xuong-anh-ket-xuat
 sidebar_label: Cách tải xuống ảnh kết xuất
 ---
 
@@ -13,8 +13,6 @@ Trong thư viện **Ảnh kết xuất (Render picture)** (①), di chuột qua 
 ![Thư viện ảnh kết xuất hiển thị (①) Ảnh kết xuất, (②) Biểu tượng tải xuống và (③) chú giải công cụ Tải xuống bản kết xuất.](https://storage.googleapis.com/jegavn_kb/images/eb5013af-5b41-42f7-b390-35ad52f28455.png)
 
 :::note
-
-
 
 :::
 

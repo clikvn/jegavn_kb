@@ -1,6 +1,6 @@
 ---
 title: Cách kết xuất hình ảnh với ánh sáng
-slug: cach-ket-xuat-hinh-anh-voi-anh-sang
+slug: /cach-ket-xuat-hinh-anh-voi-anh-sang
 sidebar_label: Cách kết xuất hình ảnh với ánh sáng
 ---
 
@@ -13,8 +13,6 @@ Chọn (①) **Kết xuất hình ảnh (Render picture)**, sau đó chọn (②
 ![Một người dùng đang cấu hình các cài đặt kết xuất, bao gồm chế độ kết xuất, mẫu ánh sáng và các dự án ánh sáng, trong giao diện phần mềm thiết kế 3D.](https://storage.googleapis.com/jegavn_kb/images/ffe7dec0-a65f-45eb-b1c5-1efad24e848b.png)
 
 :::note
-
-Sau khi kết xuất xong, khuyến nghị không nên thêm đèn, hãy kết xuất trực tiếp, sau đó điều chỉnh đèn theo hiệu ứng của hình ảnh kết xuất. Trong thiết kế kết xuất, do kích thước của mỗi phòng, sự sắp xếp và hiệu ứng không khí bạn muốn thể hiện, các thông số ánh sáng không giống nhau, và ánh sáng phụ tự động chỉ là hiệu ứng ánh sáng phụ cơ bản.
 
 :::
 

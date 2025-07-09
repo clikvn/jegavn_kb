@@ -1,6 +1,6 @@
 ---
 title: Cách sửa đổi cảnh mặc định của panorama
-slug: cach-sua-doi-canh-mac-dinh-cua-panorama
+slug: /cach-sua-doi-canh-mac-dinh-cua-panorama
 sidebar_label: Cách sửa đổi cảnh mặc định của panorama
 ---
 

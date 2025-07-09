@@ -1,6 +1,6 @@
 ---
 title: Tại sao không có nút kết xuất
-slug: tai-sao-khong-co-nut-ket-xuat
+slug: /tai-sao-khong-co-nut-ket-xuat
 sidebar_label: Tại sao không có nút kết xuất
 ---
 

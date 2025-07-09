@@ -1,6 +1,6 @@
 ---
 title: Cách sửa đổi và xóa thẻ điểm nóng
-slug: cach-sua-doi-va-xoa-the-diem-nong
+slug: /cach-sua-doi-va-xoa-the-diem-nong
 sidebar_label: Cách sửa đổi và xóa thẻ điểm nóng
 ---
 
@@ -15,7 +15,5 @@ Tại đây, bạn có thể nhấp vào (①) **Chọn biểu tượng (Select 
 ![Giao diện hiển thị tính năng 'Chọn biểu tượng' và một biểu tượng cụ thể để chỉnh sửa.](https://storage.googleapis.com/jegavn_kb/images/91f2f977-2585-4224-8f9f-b15a3f848d9e.png)
 
 :::note
-
-
 
 :::

@@ -1,6 +1,6 @@
 ---
 title: Cách thay đổi bản ghi kết xuất toàn cảnh
-slug: cach-thay-doi-ban-ghi-ket-xuat-toan-canh
+slug: /cach-thay-doi-ban-ghi-ket-xuat-toan-canh
 sidebar_label: Thay đổi bản ghi kết xuất toàn cảnh
 ---
 

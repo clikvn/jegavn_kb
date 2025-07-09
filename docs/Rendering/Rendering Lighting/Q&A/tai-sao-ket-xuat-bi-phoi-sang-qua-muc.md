@@ -1,6 +1,6 @@
 ---
 title: Tại sao kết xuất bị phơi sáng quá mức
-slug: tai-sao-ket-xuat-bi-phoi-sang-qua-muc
+slug: /tai-sao-ket-xuat-bi-phoi-sang-qua-muc
 sidebar_label: Tại sao kết xuất bị phơi sáng quá mức
 ---
 

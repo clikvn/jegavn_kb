@@ -1,6 +1,6 @@
 ---
 title: Kết xuất độ sâu trường ảnh
-slug: ket-xuat-do-sau-truong-anh
+slug: /ket-xuat-do-sau-truong-anh
 sidebar_label: Kết xuất độ sâu trường ảnh
 ---
 

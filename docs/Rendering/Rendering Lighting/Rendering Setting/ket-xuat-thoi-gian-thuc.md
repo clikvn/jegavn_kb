@@ -1,6 +1,6 @@
 ---
 title: Kết Xuất Thời Gian Thực
-slug: ket-xuat-thoi-gian-thuc
+slug: /ket-xuat-thoi-gian-thuc
 sidebar_label: Kết Xuất Thời Gian Thực
 ---
 

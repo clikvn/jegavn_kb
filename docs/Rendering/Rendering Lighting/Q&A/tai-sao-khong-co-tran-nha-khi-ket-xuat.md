@@ -1,6 +1,6 @@
 ---
 title: Tại sao không có trần nhà khi kết xuất
-slug: tai-sao-khong-co-tran-nha-khi-ket-xuat
+slug: /tai-sao-khong-co-tran-nha-khi-ket-xuat
 sidebar_label: Tại sao không có trần nhà khi kết xuất
 ---
 

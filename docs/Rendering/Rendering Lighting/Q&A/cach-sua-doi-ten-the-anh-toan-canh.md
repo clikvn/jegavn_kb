@@ -1,6 +1,6 @@
 ---
 title: Cách sửa đổi tên thẻ ảnh toàn cảnh
-slug: cach-sua-doi-ten-the-anh-toan-canh
+slug: /cach-sua-doi-ten-the-anh-toan-canh
 sidebar_label: Cách sửa đổi tên thẻ ảnh toàn cảnh
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Cách xem ảnh panorama
-slug: cach-xem-anh-panorama
+slug: /cach-xem-anh-panorama
 sidebar_label: Cách xem ảnh panorama
 ---
 

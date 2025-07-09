@@ -1,6 +1,6 @@
 ---
 title: Cách kết xuất không gian nhỏ
-slug: cach-ket-xuat-khong-gian-nho
+slug: /cach-ket-xuat-khong-gian-nho
 sidebar_label: Cách kết xuất không gian nhỏ
 ---
 

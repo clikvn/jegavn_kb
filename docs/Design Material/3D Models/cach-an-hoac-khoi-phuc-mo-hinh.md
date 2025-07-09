@@ -20,6 +20,4 @@ sidebar_label: Cách ẩn hoặc khôi phục mô hình
 
 :::note
 
-Phím tắt để ẩn là “H”, và không có phím tắt để hiển thị.
-
 :::

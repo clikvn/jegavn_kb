@@ -1,6 +1,6 @@
 ---
 title: Cách kết xuất ảnh
-slug: cach-ket-xuat-anh
+slug: /cach-ket-xuat-anh
 sidebar_label: Cách kết xuất ảnh
 ---
 
@@ -10,8 +10,6 @@ Xin chào, các bước để kết xuất ảnh như sau:
 
 :::info
 
-Giao diện hoạt động của Phiên bản 5 plus (5 plus Version) như sau:
-
 :::
 
 ![Giao diện người dùng của phần mềm AiHouse hiển thị thiết kế nhà bếp 3D và làm nổi bật các tùy chọn để kết xuất và chuyển vùng. (①) Chuyển vùng (Roam), (②) Kết xuất (Render(Alt+R)).](https://storage.googleapis.com/jegavn_kb/images/dfadd608-6bec-4756-a887-47e29dcef105.png)
@@ -20,8 +18,6 @@ Giao diện hoạt động của Phiên bản 5 plus (5 plus Version) như sau:
 
 :::info
 
-Giao diện hoạt động của Phiên bản 5 plus (5 plus Version) như sau:
-
 :::
 
 ![Giao diện người dùng cho phần mềm kết xuất 3D, hiển thị một cảnh và làm nổi bật (①) cài đặt máy ảnh để có kết quả kết xuất tối ưu.](https://storage.googleapis.com/jegavn_kb/images/5aa7898d-97e2-4928-95da-b371e40f6213.png)
@@ -29,8 +25,6 @@ Giao diện hoạt động của Phiên bản 5 plus (5 plus Version) như sau:
 3. Nhấp vào ảnh kết xuất, chọn độ nét, tỷ lệ bố cục và cảnh cần thiết, rồi nhấp vào (①) **Kết xuất ngay lập tức (Render immediately)** để kết xuất.
 
 :::info
-
-Giao diện hoạt động của Phiên bản 5 plus (5 plus Version) như sau:
 
 :::
 

@@ -1,6 +1,6 @@
 ---
 title: Cách cài đặt ánh sáng nâng cao
-slug: cach-cai-dat-anh-sang-nang-cao
+slug: /cach-cai-dat-anh-sang-nang-cao
 sidebar_label: Cách cài đặt ánh sáng nâng cao
 ---
 
@@ -14,17 +14,7 @@ sidebar_label: Cách cài đặt ánh sáng nâng cao
 
 4. Nhiệt độ màu đèn spotlight: 4500K
 
-:::note
-
-Các cài đặt này chỉ có hiệu lực khi tùy chọn 
-
-**Bật (Enable)**
-
- được chọn trong bảng điều khiển (①) 
-
-**Hiệu ứng ánh sáng (Light effect)**
-
-.
+:::info
 
 :::
 

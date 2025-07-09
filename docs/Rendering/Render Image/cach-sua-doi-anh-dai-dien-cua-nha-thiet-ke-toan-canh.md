@@ -1,6 +1,6 @@
 ---
 title: Cách sửa đổi ảnh đại diện của nhà thiết kế toàn cảnh
-slug: cach-sua-doi-anh-dai-dien-cua-nha-thiet-ke-toan-canh
+slug: /cach-sua-doi-anh-dai-dien-cua-nha-thiet-ke-toan-canh
 sidebar_label: Cách sửa đổi ảnh đại diện của nhà thiết kế toàn cảnh
 ---
 

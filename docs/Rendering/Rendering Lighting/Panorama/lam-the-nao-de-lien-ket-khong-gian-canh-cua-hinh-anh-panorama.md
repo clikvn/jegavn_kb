@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để liên kết không gian cảnh của hình ảnh panorama
-slug: lam-the-nao-de-lien-ket-khong-gian-canh-cua-hinh-anh-panorama
+slug: /lam-the-nao-de-lien-ket-khong-gian-canh-cua-hinh-anh-panorama
 sidebar_label: Liên kết không gian cảnh panorama
 ---
 

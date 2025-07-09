@@ -1,6 +1,6 @@
 ---
 title: Tại sao ảnh kết xuất không có trần nhà
-slug: tai-sao-anh-ket-xuat-khong-co-tran-nha
+slug: /tai-sao-anh-ket-xuat-khong-co-tran-nha
 sidebar_label: Tại sao ảnh kết xuất không có trần nhà
 ---
 

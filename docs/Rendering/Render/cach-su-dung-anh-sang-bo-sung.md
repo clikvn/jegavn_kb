@@ -1,6 +1,6 @@
 ---
 title: Cách sử dụng ánh sáng bổ sung
-slug: cach-su-dung-anh-sang-bo-sung
+slug: /cach-su-dung-anh-sang-bo-sung
 sidebar_label: Cách sử dụng ánh sáng bổ sung
 ---
 

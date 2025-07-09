@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để sửa đổi hình ảnh quang cảnh bên ngoài
-slug: lam-the-nao-de-sua-doi-hinh-anh-quang-canh-ben-ngoai
+slug: /lam-the-nao-de-sua-doi-hinh-anh-quang-canh-ben-ngoai
 sidebar_label: Sửa đổi hình ảnh quang cảnh bên ngoài
 ---
 
@@ -10,8 +10,6 @@ Chào bạn, quang cảnh bên ngoài có thể được chọn trong giao diệ
 
 :::note
 
-Giao diện kết xuất phiên bản thiết kế như sau:
-
 :::
 
 ![Giao diện cài đặt trong phiên bản thiết kế, hiển thị các tùy chọn (①) Công cụ, (②) Tùy chọn vận hành, và (③) Nền trời (3D/chuyển vùng).](https://storage.googleapis.com/jegavn_kb/images/16d72ed4-6023-4074-b0e2-625c52dc02a8.png)
@@ -19,8 +17,6 @@ Giao diện kết xuất phiên bản thiết kế như sau:
 ![Cài đặt ánh sáng môi trường trong phiên bản thiết kế, hiển thị lựa chọn (①) Thành phố hiện đại, (②) bảng cài đặt của nó, và (③) thanh trượt ánh sáng ngoài trời.](https://storage.googleapis.com/jegavn_kb/images/adb3ec20-3e20-4f9c-8f56-f1ac00d5c288.png)
 
 :::note
-
-Giao diện kết xuất phiên bản v5 plus như sau:
 
 :::
 

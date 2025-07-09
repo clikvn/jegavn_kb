@@ -1,6 +1,6 @@
 ---
 title: Cách thêm nhạc nền vào ảnh toàn cảnh
-slug: cach-them-nhac-nen-vao-anh-toan-canh
+slug: /cach-them-nhac-nen-vao-anh-toan-canh
 sidebar_label: Cách thêm nhạc nền vào ảnh toàn cảnh
 ---
 
@@ -15,10 +15,6 @@ Xin chào, nhạc mặc định của ảnh toàn cảnh cần được nhấp �
 ![Một người dùng tương tác với cài đặt nhạc trong trình chỉnh sửa toàn cảnh, cụ thể là mở menu chọn nhạc và làm nổi bật tùy chọn tải lên.](https://storage.googleapis.com/jegavn_kb/images/02c36413-f873-4ddf-af15-b23fafd360ef.png)
 
 :::note
-
-
-
-
 
 :::
 

@@ -1,6 +1,6 @@
 ---
 title: Làm thế nào để hợp nhất các chế độ xem toàn cảnh của hai phương án
-slug: lam-the-nao-de-hop-nhat-cac-che-do-xem-toan-canh-cua-hai-phuong-an
+slug: /lam-the-nao-de-hop-nhat-cac-che-do-xem-toan-canh-cua-hai-phuong-an
 sidebar_label: Hợp nhất chế độ xem toàn cảnh
 ---
 
@@ -14,8 +14,6 @@ Có hai cách để tải lên hình ảnh đã tải xuống.
 
 :::note
 
-Cách 1: Tải lên từ Bàn làm việc
-
 :::
 
 1. Vào giao diện bàn làm việc trên trang web chính thức bằng cách nhấp vào (①) **biểu tượng hồ sơ người dùng (User profile icon)** và sau đó chọn (②) **bàn làm việc (workbench)**.
@@ -27,8 +25,6 @@ Cách 1: Tải lên từ Bàn làm việc
 ![Giao diện người dùng hiển thị một 'Danh sách chương trình' với chi tiết của một chương trình được chọn, làm nổi bật các yếu tố UI khác nhau liên quan đến quản lý chương trình và tải lên hình ảnh.](https://storage.googleapis.com/jegavn_kb/images/e037a459-49df-4e63-a77e-9a5cf19fe521.png)
 
 :::note
-
-Cách 2: Tải lên từ Trình chỉnh sửa
 
 :::
 

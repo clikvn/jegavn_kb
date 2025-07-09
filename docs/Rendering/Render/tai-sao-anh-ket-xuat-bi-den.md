@@ -1,6 +1,6 @@
 ---
 title: Tại sao ảnh kết xuất bị đen
-slug: tai-sao-anh-ket-xuat-bi-den
+slug: /tai-sao-anh-ket-xuat-bi-den
 sidebar_label: Tại sao ảnh kết xuất bị đen
 ---
 

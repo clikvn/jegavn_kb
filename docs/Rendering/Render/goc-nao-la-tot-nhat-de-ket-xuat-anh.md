@@ -1,6 +1,6 @@
 ---
 title: Góc nào là tốt nhất để kết xuất ảnh?
-slug: goc-nao-la-tot-nhat-de-ket-xuat-anh
+slug: /goc-nao-la-tot-nhat-de-ket-xuat-anh
 sidebar_label: Góc kết xuất tốt nhất
 ---
 
@@ -9,7 +9,5 @@ sidebar_label: Góc kết xuất tốt nhất
 ![Giao diện người dùng hiển thị một khu vực bếp và ăn uống, với nút (①) Dạo chơi được đánh dấu.](https://storage.googleapis.com/jegavn_kb/images/ae6dc625-35c2-41c4-bcb2-db4a2b3bc026.png)
 
 :::note
-
-Lưu ý: Các phím tắt chỉ có thể được sử dụng trong Google Chrome.
 
 :::
