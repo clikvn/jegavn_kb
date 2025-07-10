@@ -136,6 +136,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - **SOLUTION**: Changed processing order to handle source links before numbered lists
   - **TECHNICAL**: Changed source link containers from `<div>` to `<span>` elements to maintain inline flow within list items
   - **RESULT**: Numbered lists now maintain continuous numbering (1, 2, 3, 4, 5) even with source links
+- **URL FIX**: Fixed double slash issue in ChatBot source link URLs
+  - **PROBLEM**: ChatBot was generating malformed URLs like `http://localhost:3000/docs//o-vat-lieu` with double slashes
+  - **ROOT CAUSE**: AI responses contained URLs with leading slashes after `/docs/`, causing concatenation issues
+  - **SOLUTION**: Added `.replace(/^\/+/, '')` to strip leading slashes from document paths before URL construction
+  - **RESULT**: All internal source links now generate correct URLs like `http://localhost:3000/docs/o-vat-lieu`
+  - **DEBUGGING**: Enhanced logging to track URL processing and validation
 
 ### Technical Details
 - **Frontend**: React 18.3.1, Docusaurus 3.8.0

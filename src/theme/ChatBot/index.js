@@ -766,7 +766,7 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
           
           if (isInternal) {
             // For internal links, extract the path and navigate internally
-            const docPath = url.split('/docs/')[1];
+            const docPath = url.split('/docs/')[1].replace(/^\/+/, ''); // Remove leading slashes to prevent double slashes
             linkAttrs = `href="/docs/${docPath}" class="${styles.sourceLink} internal-link" data-internal-path="/docs/${docPath}"`;
             // Use internal navigation icon
             iconPath = '<path d="M9 12L11 14L15 10" stroke="currentColor" stroke-width="2" fill="none"/><path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" fill="none"/>';
@@ -777,7 +777,13 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
             iconPath = '<path d="M18 13V19C18 19.5304 17.7893 20.0391 17.4142 20.4142C17.0391 20.7893 16.5304 21 16 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V8C3 7.46957 3.21071 6.96086 3.58579 6.58579C3.96086 6.21071 4.46957 6 5 6H11" stroke="currentColor" stroke-width="2" fill="none"/><path d="M15 3H21V9" stroke="currentColor" stroke-width="2" fill="none"/><path d="M10 14L21 3" stroke="currentColor" stroke-width="2" fill="none"/>';
           }
           
-          console.log('🔗 Found source link:', { url, title, isInternal, cssClass: styles.sourceLink });
+          console.log('🔗 Found source link:', { 
+            originalUrl: url, 
+            title, 
+            isInternal, 
+            docPath: isInternal ? url.split('/docs/')[1].replace(/^\/+/, '') : null, 
+            cssClass: styles.sourceLink 
+          });
           // Use a span instead of div to keep it inline within list items
           return `<span class="source-link-container"><a ${linkAttrs}><svg width="12" height="12" viewBox="0 0 24 24" fill="none">${iconPath}</svg>${esc(title)}</a></span>`;
         });
@@ -808,7 +814,7 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
         const isInternal = url.includes('jegavn-kb.vercel.app/docs/') || url.includes('localhost:3000/docs/');
         
         if (isInternal) {
-          const docPath = url.split('/docs/')[1];
+          const docPath = url.split('/docs/')[1].replace(/^\/+/, ''); // Remove leading slashes to prevent double slashes
           return `<a href="/docs/${docPath}" class="${styles.sourceLink} internal-link" data-internal-path="/docs/${docPath}">Link</a>`;
         } else {
           return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="${styles.sourceLink}">Link</a>`;
