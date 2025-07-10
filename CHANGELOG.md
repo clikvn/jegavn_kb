@@ -116,6 +116,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Added proper quotes around titles and sidebar_labels in affected files
   - Cleared Docusaurus build cache to resolve stale file conflicts
   - **VERIFIED**: Both frontend (port 3000) and backend (port 3001) servers now running successfully
+- **MAJOR UX IMPROVEMENT**: Completely redesigned ChatBot thoughts and answer streaming flow to eliminate freezing and jarring transitions
+  - **REMOVED**: Complex sequential typewriter animation for thoughts that caused freezing and sudden appearances
+  - **IMPROVED**: Thoughts now appear instantly but remain collapsed by default until user manually opens them
+  - **ENHANCED**: Answer typing animation starts immediately when ready, no longer waits for thoughts to complete
+  - **SIMPLIFIED**: Changed from sequential flow (thoughts → answer) to parallel flow (thoughts + answer simultaneously)
+  - **PERFORMANCE**: Eliminated unnecessary typewriter intervals and reduced complexity of streaming logic
+  - **ACCESSIBILITY**: Better user experience with smoother, more predictable chat interactions
+- **CRITICAL FIX**: ChatBot panel now stays open when users click on source links
+  - **FIXED**: Removed `window.location.href` from internal link navigation that was causing full page reload and closing the ChatBot panel
+  - **IMPROVED**: Internal source links now navigate using React Router's pushState without page reload
+  - **UX ENHANCEMENT**: Users can now click on source links and continue their conversation without losing the ChatBot panel state
+- **UI IMPROVEMENT**: Source link containers now maintain full width regardless of text length
+  - **FIXED**: Changed source links from `inline-flex` to `flex` with `width: 100%` for consistent layout
+  - **ENHANCED**: Source link containers now provide consistent visual spacing and alignment
+  - **STYLING**: Added `box-sizing: border-box` for proper width calculation
 
 ### Technical Details
 - **Frontend**: React 18.3.1, Docusaurus 3.8.0

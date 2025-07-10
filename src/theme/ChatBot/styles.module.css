@@ -593,7 +593,7 @@
 
 /* Source Links from AI Responses */
 .sourceLink {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 6px;
   padding: 8px 12px;
@@ -606,6 +606,8 @@
   border: 1px solid #e9ecef;
   transition: all 0.2s ease;
   margin-top: 4px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .sourceLink:hover {
@@ -630,6 +632,8 @@
   margin-top: 12px;
   padding-top: 8px;
   border-top: 1px solid #f1f3f4;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Override any inline styles on source links */

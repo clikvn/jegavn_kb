@@ -494,8 +494,6 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
       let answerDisplayedLength = 0;
       let answerTypewriterInterval = null;
       let thoughtsBuffer = '';
-      let thoughtsDisplayedLength = 0;
-      let thoughtsTypewriterInterval = null;
       let processingTimer = null;
       let thinkingTimer = null;
       
@@ -505,51 +503,65 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
       let thoughtsDuration = 0;
       let thoughtsChunkTimeout = null;
 
-      // Typewriter update for answer - only show when thoughts are complete
+      // Typewriter update for answer - can start immediately
       const updateAnswer = (text) => {
         setMessages(prev => prev.map(msg => {
           if (msg.id === streamingBotMessage.id) {
-            // Only show answer text if thoughts are complete
-            return { 
-              ...msg, 
-              text: thoughtsComplete ? text : msg.text || '' // Keep existing text if thoughts not complete
-            };
-          }
-          return msg;
-        }));
-      };
-      // Typewriter update for thoughts
-      const updateThoughts = (text) => {
-        setMessages(prev => prev.map(msg => {
-          if (msg.id === streamingBotMessage.id) {
-            return { ...msg, thoughts: text, isThinking: true };
+            return { ...msg, text: text };
           }
           return msg;
         }));
       };
 
-      // Sequential flow: thoughts first, then answer
-      let thoughtsComplete = false;
+      // Instant update for thoughts - no typewriter animation
+      const updateThoughts = (text) => {
+        setMessages(prev => prev.map(msg => {
+          if (msg.id === streamingBotMessage.id) {
+            return { 
+              ...msg, 
+              thoughts: text, 
+              isThinking: true,
+              thoughtsCollapsed: true // Always collapsed by default
+            };
+          }
+          return msg;
+        }));
+      };
+
+      // Parallel flow: answer can start immediately, thoughts appear instantly
       let answerStarted = false;
       
-      // Define onChunk callback for answer - only start after thoughts are complete
+      // Define onChunk callback for answer - start immediately when ready
       const onChunk = (chunk) => {
         answerBuffer += chunk;
-        // Only start answer typewriter if thoughts are complete
-        if (!answerTypewriterInterval && thoughtsComplete && !answerStarted) {
+        // Start answer typewriter immediately on first chunk
+        if (!answerTypewriterInterval && !answerStarted) {
           answerStarted = true;
-          console.log('🧠 [SEQUENTIAL] Thoughts complete, starting answer typewriter');
+          console.log('📝 [PARALLEL] Starting answer typewriter immediately');
           answerTypewriterInterval = runTypewriterStream({
             getBuffer: () => answerBuffer,
             getDisplayedLength: () => answerDisplayedLength,
             setDisplayedLength: (len) => { answerDisplayedLength = len; },
-                              onTypewriterUpdate: updateAnswer,
-                  intervalMs: 10
+            onTypewriterUpdate: updateAnswer,
+            intervalMs: 10,
+            onDone: () => {
+              console.log('📝 [PARALLEL] Answer typewriter complete');
+              setMessages(prev => prev.map(msg => {
+                if (msg.id === streamingBotMessage.id) {
+                  return { 
+                    ...msg, 
+                    isStreaming: false,
+                    streamingPhase: null
+                  };
+                }
+                return msg;
+              }));
+            }
           });
         }
       };
       
-      // Define onThought callback for thoughts - start immediately
+      // Define onThought callback for thoughts - instant display, no typewriter
       const onThought = (chunk) => {
         // 🕐 TIMING: Start timing when first thought chunk arrives
         if (!thoughtsStartTime) {
@@ -560,7 +572,6 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
         thoughtsBuffer += chunk;
         
         // 🕐 TIMING: Track when we receive chunks to detect when thoughts are complete
-        // We'll use a timeout to detect when no more thought chunks are coming
         if (thoughtsChunkTimeout) {
           clearTimeout(thoughtsChunkTimeout);
         }
@@ -571,78 +582,24 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
             thoughtsEndTime = Date.now();
             thoughtsDuration = thoughtsEndTime - thoughtsStartTime;
             console.log('🕐 [TIMING] Thoughts completed (no more chunks) in:', thoughtsDuration, 'ms');
-          }
-        }, 500); // Wait 500ms after last chunk to consider thoughts complete
-        
-        if (!thoughtsTypewriterInterval) {
-          console.log('🧠 [SEQUENTIAL] Starting thoughts typewriter');
-          thoughtsTypewriterInterval = runTypewriterStream({
-            getBuffer: () => thoughtsBuffer,
-            getDisplayedLength: () => thoughtsDisplayedLength,
-            setDisplayedLength: (len) => { thoughtsDisplayedLength = len; },
-            onTypewriterUpdate: updateThoughts,
-            intervalMs: 0.1, // Very fast for thoughts since they're typically shorter
-            onDone: () => {
-              // When thoughts typewriter is complete, mark as done and start answer if available
-              thoughtsComplete = true;
-              console.log('🧠 [SEQUENTIAL] Thoughts typewriter complete');
-              
-              // Update message to show thoughts are complete and collapse thoughts section
-              setMessages(prev => prev.map(msg => {
-                if (msg.id === streamingBotMessage.id) {
-                  return { 
-                    ...msg, 
-                    isThinking: false,
-                    thoughtsCollapsed: true, // Collapse thoughts section when complete
-                    isStreaming: answerBuffer.length > 0, // Keep streaming if answer available
-                    streamingPhase: answerBuffer.length > 0 ? 'generating' : null,
-                    thoughtsDuration: thoughtsDuration // Store thoughts duration
-                  };
-                }
-                return msg;
-              }));
-              
-              if (answerBuffer.length > 0 && !answerStarted) {
-                answerStarted = true;
-                console.log('🧠 [SEQUENTIAL] Starting answer typewriter after thoughts');
-                answerTypewriterInterval = runTypewriterStream({
-                  getBuffer: () => answerBuffer,
-                  getDisplayedLength: () => answerDisplayedLength,
-                  setDisplayedLength: (len) => { answerDisplayedLength = len; },
-                  onTypewriterUpdate: updateAnswer,
-                  intervalMs: 10,
-                  onDone: () => {
-                    // When answer is complete, finalize the message
-                    console.log('📝 [SEQUENTIAL] Answer typewriter complete');
-                    setMessages(prev => prev.map(msg => {
-                      if (msg.id === streamingBotMessage.id) {
-                        return { 
-                          ...msg, 
-                          isStreaming: false,
-                          streamingPhase: null
-                        };
-                      }
-                      return msg;
-                    }));
-                  }
-                });
-              } else if (answerBuffer.length === 0) {
-                // No answer chunks, complete the message
-                console.log('📝 [SEQUENTIAL] No answer chunks, completing message');
-                setMessages(prev => prev.map(msg => {
-                  if (msg.id === streamingBotMessage.id) {
-                    return { 
-                      ...msg, 
-                      isStreaming: false,
-                      streamingPhase: null
-                    };
-                  }
-                  return msg;
-                }));
+            
+            // Update thoughts duration when complete
+            setMessages(prev => prev.map(msg => {
+              if (msg.id === streamingBotMessage.id) {
+                return { 
+                  ...msg, 
+                  isThinking: false,
+                  thoughtsDuration: thoughtsDuration
+                };
               }
-            }
-          });
-        }
+              return msg;
+            }));
+          }
+        }, 500);
+        
+        // Update thoughts instantly - no typewriter effect
+        console.log('🧠 [PARALLEL] Updating thoughts instantly');
+        updateThoughts(thoughtsBuffer);
       };
 
       // 🎯 ADAPTIVE UX PHASES: Shorter timers, skip searching for quick responses
@@ -695,15 +652,15 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
           ? {
               ...msg,
               // ✅ Ensure final text is complete (fallback) - but only if thoughts are done
-              text: thoughtsComplete ? (answerBuffer || msg.text) : (msg.text || ''),
+              text: answerBuffer || msg.text,
               model: botResponse.model,
               sources: botResponse.sources,
               groundingMetadata: botResponse.groundingMetadata,
               usageMetadata: botResponse.usageMetadata,
               thoughts: thoughtsBuffer || msg.thoughts || '', // Always preserve full thoughts
-              isThinking: !thoughtsComplete, // Keep thinking state if thoughts not complete
-              isStreaming: !thoughtsComplete, // Keep streaming if thoughts not complete
-              streamingPhase: thoughtsComplete ? null : 'thinking' // Keep phase if thoughts not complete
+              isThinking: !answerStarted, // Keep thinking state if answer not started
+              isStreaming: !answerStarted, // Keep streaming if answer not started
+              streamingPhase: answerStarted ? null : 'thinking' // Keep phase if answer not started
             }
           : msg
       ));
@@ -726,10 +683,6 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
       if (answerTypewriterInterval) {
         clearInterval(answerTypewriterInterval);
         answerTypewriterInterval = null;
-      }
-      if (thoughtsTypewriterInterval) {
-        clearInterval(thoughtsTypewriterInterval);
-        thoughtsTypewriterInterval = null;
       }
       if (thoughtsChunkTimeout) {
         clearTimeout(thoughtsChunkTimeout);
@@ -906,12 +859,11 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
         const internalPath = target.getAttribute('data-internal-path');
         if (internalPath) {
           console.log('🔄 Navigating to internal path:', internalPath);
-          // Use browser history for navigation
+          // Use browser history for navigation without page reload to preserve ChatBot panel state
           window.history.pushState({}, '', internalPath);
           // Trigger a popstate event to notify React Router
           window.dispatchEvent(new PopStateEvent('popstate'));
-          // Also reload the page to ensure proper navigation
-          window.location.href = internalPath;
+          // Note: Removed window.location.href to prevent full page reload that closes the ChatBot panel
         }
       }
     };
