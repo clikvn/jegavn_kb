@@ -751,31 +751,9 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
       .replace(/^# (.*$)/gim, '<h1>$1</h1>')
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
       .replace(/\*(.*?)\*/g, '<em>$1</em>')
-      .replace(/`(.*?)`/g, '<code>$1</code>');
-
-    // Process lists before converting newlines to <br>
-    // Handle numbered lists (1. 2. 3. etc.)
-    formatted = formatted.replace(/(^|\n)((?:\d+\.\s+.+(?:\n|$))+)/gm, (match, prefix, listContent) => {
-      const items = listContent.trim().split('\n').map(item => {
-        const cleaned = item.replace(/^\d+\.\s+/, '').trim();
-        return cleaned ? `<li>${cleaned}</li>` : '';
-      }).filter(Boolean);
-      return `${prefix}<ol>${items.join('')}</ol>`;
-    });
-
-    // Handle bullet lists (*, -, + patterns)
-    formatted = formatted.replace(/(^|\n)((?:[*+-]\s+.+(?:\n|$))+)/gm, (match, prefix, listContent) => {
-      const items = listContent.trim().split('\n').map(item => {
-        const cleaned = item.replace(/^[*+-]\s+/, '').trim();
-        return cleaned ? `<li>${cleaned}</li>` : '';
-      }).filter(Boolean);
-      return `${prefix}<ul>${items.join('')}</ul>`;
-    });
-
-    // Now convert remaining newlines to <br>
-    formatted = formatted.replace(/\n/g, '<br>')
-      // Convert XML-style source format to clickable links (handles different orders, multiline, and <br> tags)
-      .replace(/(?:<br\/?>)*<source>(?:\s|<br\/?>)*(?:<url>(.*?)<\/url>(?:\s|<br\/?>)*<title>(.*?)<\/title>|<title>(.*?)<\/title>(?:\s|<br\/?>)*<url>(.*?)<\/url>)(?:\s|<br\/?>)*<\/source>/gis, 
+      .replace(/`(.*?)`/g, '<code>$1</code>')
+      // Process source links BEFORE list processing to avoid breaking list structure
+      .replace(/(?:\n)*<source>(?:\s)*(?:<url>(.*?)<\/url>(?:\s)*<title>(.*?)<\/title>|<title>(.*?)<\/title>(?:\s)*<url>(.*?)<\/url>)(?:\s)*<\/source>/gis, 
         (match, url1, title1, title2, url2) => {
           const url = (url1 || url2).trim();
           const title = (title1 || title2).trim();
@@ -800,8 +778,31 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
           }
           
           console.log('🔗 Found source link:', { url, title, isInternal, cssClass: styles.sourceLink });
-          return `<div class="source-link-container"><a ${linkAttrs}><svg width="12" height="12" viewBox="0 0 24 24" fill="none">${iconPath}</svg>${esc(title)}</a></div>`;
-        })
+          // Use a span instead of div to keep it inline within list items
+          return `<span class="source-link-container"><a ${linkAttrs}><svg width="12" height="12" viewBox="0 0 24 24" fill="none">${iconPath}</svg>${esc(title)}</a></span>`;
+        });
+
+    // Process lists after source links are converted to inline elements
+    // Handle numbered lists (1. 2. 3. etc.) - now with proper source link handling
+    formatted = formatted.replace(/(^|\n)((?:\d+\.\s+.+(?:\n|$))+)/gm, (match, prefix, listContent) => {
+      const items = listContent.trim().split('\n').map(item => {
+        const cleaned = item.replace(/^\d+\.\s+/, '').trim();
+        return cleaned ? `<li>${cleaned}</li>` : '';
+      }).filter(Boolean);
+      return `${prefix}<ol>${items.join('')}</ol>`;
+    });
+
+    // Handle bullet lists (*, -, + patterns)
+    formatted = formatted.replace(/(^|\n)((?:[*+-]\s+.+(?:\n|$))+)/gm, (match, prefix, listContent) => {
+      const items = listContent.trim().split('\n').map(item => {
+        const cleaned = item.replace(/^[*+-]\s+/, '').trim();
+        return cleaned ? `<li>${cleaned}</li>` : '';
+      }).filter(Boolean);
+      return `${prefix}<ul>${items.join('')}</ul>`;
+    });
+
+    // Now convert remaining newlines to <br>
+    formatted = formatted.replace(/\n/g, '<br>')
       // Convert [Link] URL patterns to clickable links
       .replace(/\[Link\]\s*(https?:\/\/[^\s]+)/g, (match, url) => {
         const isInternal = url.includes('jegavn-kb.vercel.app/docs/') || url.includes('localhost:3000/docs/');

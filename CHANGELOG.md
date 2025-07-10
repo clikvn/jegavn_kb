@@ -131,6 +131,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - **FIXED**: Changed source links from `inline-flex` to `flex` with `width: 100%` for consistent layout
   - **ENHANCED**: Source link containers now provide consistent visual spacing and alignment
   - **STYLING**: Added `box-sizing: border-box` for proper width calculation
+- **CRITICAL FIX**: Fixed numbered list numbering reset issue when source links are present
+  - **PROBLEM**: Source links were breaking HTML list structure, causing numbering to reset to 1 after each source link
+  - **SOLUTION**: Changed processing order to handle source links before numbered lists
+  - **TECHNICAL**: Changed source link containers from `<div>` to `<span>` elements to maintain inline flow within list items
+  - **RESULT**: Numbered lists now maintain continuous numbering (1, 2, 3, 4, 5) even with source links
 
 ### Technical Details
 - **Frontend**: React 18.3.1, Docusaurus 3.8.0

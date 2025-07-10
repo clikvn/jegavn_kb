@@ -629,9 +629,9 @@
 
 /* Source link container for proper spacing */
 :global(.source-link-container) {
-  margin-top: 12px;
-  padding-top: 8px;
-  border-top: 1px solid #f1f3f4;
+  display: block;
+  margin-top: 8px;
+  margin-bottom: 4px;
   width: 100%;
   box-sizing: border-box;
 }
