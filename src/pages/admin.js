@@ -28,6 +28,9 @@ const AdminPage = () => {
   // Check for existing session on component mount
   useEffect(() => {
     const checkSession = () => {
+      // Check if we're in a browser environment
+      if (typeof window === 'undefined') return false;
+      
       const sessionData = localStorage.getItem('adminSession');
       if (sessionData) {
         try {
@@ -58,12 +61,12 @@ const AdminPage = () => {
       
       // Automatically open chat panel when admin page loads
       const openChatPanelWithRetry = () => {
-        if (window.openChatPanel) {
+        if (typeof window !== 'undefined' && window.openChatPanel) {
           window.openChatPanel();
         } else {
           // Retry after a longer delay if function is not available yet
           setTimeout(() => {
-            if (window.openChatPanel) {
+            if (typeof window !== 'undefined' && window.openChatPanel) {
               window.openChatPanel();
             }
           }, 1000);
@@ -97,12 +100,12 @@ const AdminPage = () => {
       
       // Automatically open chat panel when admin page loads
       const openChatPanelWithRetry = () => {
-        if (window.openChatPanel) {
+        if (typeof window !== 'undefined' && window.openChatPanel) {
           window.openChatPanel();
         } else {
           // Retry after a longer delay if function is not available yet
           setTimeout(() => {
-            if (window.openChatPanel) {
+            if (typeof window !== 'undefined' && window.openChatPanel) {
               window.openChatPanel();
             }
           }, 1000);

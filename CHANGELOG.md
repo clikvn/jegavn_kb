@@ -26,6 +26,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **FIXED**: Document rating API endpoints now properly use production URLs instead of hardcoded localhost
 - **FIXED**: All API endpoints now use consistent runtime environment detection for production vs development
 - **FIXED**: Removed build-time environment variable dependency that could cause production API routing issues
+- **FIXED**: Critical SSR (Server-Side Rendering) issue that was causing Vercel build failures
+- **FIXED**: Made admin page and configManager SSR-safe by checking for browser environment before accessing window object
 
 ## [Unreleased]
 

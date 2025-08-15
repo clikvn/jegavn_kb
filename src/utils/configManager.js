@@ -5,11 +5,18 @@
  * through the API endpoints.
  */
 
-const API_BASE_URL = (() => {
-  // Use runtime detection for development vs production
-  const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-  return isDevelopment ? 'http://localhost:3002/api' : '/api';
-})();
+// Helper function to get API base URL - safe for SSR
+const getApiBaseUrl = () => {
+  // Check if we're in a browser environment
+  if (typeof window !== 'undefined') {
+    const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    return isDevelopment ? 'http://localhost:3002/api' : '/api';
+  }
+  // Default to production URL during SSR
+  return '/api';
+};
+
+const API_BASE_URL = getApiBaseUrl();
 
 /**
  * Fetch current chatbot configuration
