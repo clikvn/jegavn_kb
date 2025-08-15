@@ -67,4 +67,7 @@ jega-chatbot-service-key.json
 test-*.js
 test-*.py
 test_*.py
-*_test.py 
+*_test.py
+
+# Automation Testing (excluded from git)
+automation-tests/ 

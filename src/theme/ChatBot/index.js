@@ -161,7 +161,7 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
         const isDevelopment = process.env.NODE_ENV === 'development' || 
                              window.location.hostname === 'localhost' ||
                              window.location.hostname === '127.0.0.1';
-        const apiEndpoint = isDevelopment ? 'http://localhost:3001/api/config' : '/api/config';
+        const apiEndpoint = isDevelopment ? 'http://localhost:3002/api/config' : '/api/config';
         
         const response = await fetch(apiEndpoint);
         if (response.ok) {
@@ -251,7 +251,7 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
         const isDevelopment = process.env.NODE_ENV === 'development' || 
                              window.location.hostname === 'localhost' ||
                              window.location.hostname === '127.0.0.1';
-        const apiEndpoint = isDevelopment ? 'http://localhost:3001/api/vertex-ai' : '/api/vertex-ai';
+        const apiEndpoint = isDevelopment ? 'http://localhost:3002/api/vertex-ai' : '/api/vertex-ai';
         
         console.log(`🌐 Calling streaming API endpoint (attempt ${attempt + 1}/${maxRetries + 1}):`, apiEndpoint);
         

@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- **MAJOR MIGRATION**: Replaced English documentation structure with Vietnamese jega_docs
+  - Removed old docs folder with English-structured content
+  - Migrated complete Vietnamese documentation from jega_docs to docs folder
+  - Updated documentation structure to better match Vietnamese content organization
+  - Created new intro.md page with comprehensive Vietnamese navigation
+  - Fixed YAML frontmatter issues with colons in titles (quoted sensitive values)
+  - **VERIFIED**: Build process works correctly with new Vietnamese document structure
+  - **RESULT**: All documentation now uses proper Vietnamese organization and terminology
+- **API DATASTORE UPDATE**: Updated Google Vertex AI Search datastore configuration
+  - Changed from `jega-kb-chunks_1750402964245` to `jega-chunks-v2`
+  - Maintained full path format: `projects/gen-lang-client-0221178501/locations/global/collections/default_collection/dataStores/jega-chunks-v2`
+
 ### Added
 - Initial project setup with Docusaurus 3.8.0
 - JEGA Assistant AI ChatBot with Vertex AI integration
@@ -142,6 +155,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - **SOLUTION**: Added `.replace(/^\/+/, '')` to strip leading slashes from document paths before URL construction
   - **RESULT**: All internal source links now generate correct URLs like `http://localhost:3000/docs/o-vat-lieu`
   - **DEBUGGING**: Enhanced logging to track URL processing and validation
+- **NEW FEATURE**: Added comprehensive automation testing framework for ChatBot API
+  - **FRAMEWORK**: Created `automation-tests/` folder with complete testing infrastructure (git-ignored)
+  - **CAPABILITIES**: CSV-based question loading, API response validation, performance testing, and detailed reporting
+  - **STRUCTURE**: Organized folders for data, tests, config, and results with professional test architecture
+  - **VALIDATION**: Automated checks for API response structure, content length, keyword matching, and performance metrics
+  - **FORMATS**: Multiple output formats (JSON, CSV, logs) for comprehensive test result analysis
+  - **USABILITY**: Simple batch file execution for Windows users and command-line interface for advanced usage
+  - **DOCUMENTATION**: Complete README with setup instructions, usage examples, and troubleshooting guide
+  - **CUSTOM FORMAT**: Updated framework to work with user's CSV format (persona, question, relevant_doc_title)
+  - **ENHANCED VALIDATION**: Added Vietnamese language detection, source checking, and persona-based testing
+  - **FLEXIBLE INPUT**: Supports both user's format and template format for maximum compatibility
+  - **STREAMING API**: Fixed framework to work with streaming ChatBot API endpoint (`/api/vertex-ai`)
+  - **RESPONSE PARSING**: Added Server-Sent Events (SSE) parsing for streaming responses with `fullResponse` field
+  - **TESTING LIMITS**: Added `max_questions` configuration to limit test runs (default: 10 questions) for easier testing and validation
+  - **BACKEND API MATCHING**: Enhanced framework to replicate backend API configuration exactly
+    - ✅ Same system prompt fetched from Bubble database
+    - ✅ Same model parameters (temperature, top_p, max_tokens)
+    - ✅ Same safety settings (all categories OFF)
+    - ✅ Same thinking configuration (dynamic budget, thoughts included)
+    - ✅ Same tools (Vertex AI Search with identical datastore)
+    - ✅ Same response processing (link conversion, text formatting)
+  - **ENHANCED CSV OUTPUT**: Results now capture detailed AI responses for manual review:
+    - `ai_analyze`: AI thinking and analysis process
+    - `ai_search`: Search results and document sources  
+    - `ai_answer`: Final answer text
+    - Perfect format for quality assessment and manual review
+  - **ASYNC PROCESSING**: Fast, efficient testing with proper rate limiting and error handling
+  - **CONFIGURATION MANAGEMENT**: Automatically fetches live configuration from Bubble API
+  - **BUBBLE API INTEGRATION**: Added `aiohttp` dependency for async HTTP requests to Bubble API
 
 ### Technical Details
 - **Frontend**: React 18.3.1, Docusaurus 3.8.0

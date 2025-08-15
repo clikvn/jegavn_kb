@@ -34,7 +34,7 @@ logger = logging.getLogger(__name__)
 # Configuration constants
 PROJECT_ID = 'gen-lang-client-0221178501'
 LOCATION_ID = 'global'
-DATASTORE_ID = 'projects/gen-lang-client-0221178501/locations/global/collections/default_collection/dataStores/jega-kb-chunks_1750402964245'
+DATASTORE_ID = 'projects/gen-lang-client-0221178501/locations/global/collections/default_collection/dataStores/jega-chunks-v2'
 
 # Bubble API configuration
 BUBBLE_ENDPOINTS = {
@@ -580,4 +580,4 @@ init_genai_client()
 # Local development server
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=3001, log_level="info")
+    uvicorn.run(app, host="0.0.0.0", port=3002, log_level="info")
