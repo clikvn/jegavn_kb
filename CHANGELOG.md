@@ -29,6 +29,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **FIXED**: Critical SSR (Server-Side Rendering) issue that was causing Vercel build failures
 - **FIXED**: Made admin page and configManager SSR-safe by checking for browser environment before accessing window object
 
+### Added
+- **NEW**: Test Cases page at `/test-cases` with 500 JEGA software questions in Vietnamese
+- **NEW**: Comprehensive test case management system with search, filtering, and categorization
+- **NEW**: User rating system (thumbs up/down) for AI answers
+- **NEW**: User comment system for feedback on AI responses
+- **NEW**: Advanced filtering by category and difficulty level
+- **NEW**: Pagination system for better performance with large datasets
+- **NEW**: Responsive design optimized for all device sizes
+
 ## [Unreleased]
 
 ### Changed
