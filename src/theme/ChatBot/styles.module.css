@@ -789,3 +789,93 @@
   border: none;
   width: 100%;
 }
+
+/* Chat Rating Styles */
+.chatRatingContainer {
+  margin-top: 12px;
+  padding: 8px 12px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 12px;
+  animation: fadeInRating 0.5s ease-in-out;
+}
+
+@keyframes fadeInRating {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ratingQuestion {
+  color: #6c757d;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.ratingButtons {
+  display: flex;
+  gap: 8px;
+}
+
+.ratingBtn {
+  background: white;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+}
+
+.ratingBtn:hover {
+  border-color: #adb5bd;
+  background: #f8f9fa;
+}
+
+.ratingBtnPositive:hover {
+  border-color: #28a745;
+  color: #28a745;
+}
+
+.ratingBtnNegative:hover {
+  border-color: #dc3545;
+  color: #dc3545;
+}
+
+.ratingBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.ratingBtn.selected {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.ratingBtnPositive.selected {
+  background: #28a745;
+  color: white;
+  border-color: #28a745;
+}
+
+.ratingBtnNegative.selected {
+  background: #dc3545;
+  color: white;
+  border-color: #dc3545;
+}
+

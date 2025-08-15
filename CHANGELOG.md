@@ -98,6 +98,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **UX IMPROVEMENT**: Moved thoughts section above bot message for better logical flow - users see AI reasoning before the final answer
 - **FIXED**: Corrected undefined variable references in typewriter streaming implementation - replaced `typewriterInterval` and `textBuffer` with proper variable names (`answerTypewriterInterval`, `thoughtsTypewriterInterval`, `answerBuffer`, `thoughtsBuffer`)
 - **FIXED**: Thoughts now properly stream with typewriter effect - corrected streaming response handler to call `onThought` callback instead of directly updating message state
+- **NEW**: Chatbot response rating system - Users can rate AI responses with thumbs up/down
+- **NEW**: Chat rating component integrated into chatbot interface for each AI response
+- **NEW**: Backend API endpoint `/api/chat-rating` for storing chat ratings in Bubble database
+- **NEW**: Separate storage system for chat ratings vs document ratings with localStorage persistence
+- **NEW**: Rating feedback display showing user's previous rating status
+- **IMPROVED**: Chat rating component now only appears after AI response streaming is complete
+- **IMPROVED**: Added 500ms delay and smooth fade-in animation for better user experience
+- **IMPROVED**: Chat rating buttons now always visible, allowing users to change their ratings
+- **IMPROVED**: Added visual feedback for selected rating state with color-coded buttons
+- **IMPROVED**: Simplified chat rating UI by removing redundant text feedback - users can see rating status through button colors
+- **FIXED**: Chat rating API now correctly stores AI answers in `ai_answer` field instead of `user_feedback` field
 - **IMPROVED**: Thoughts typewriter speed increased to 5ms (from 10ms) for faster, more responsive display since thoughts are typically shorter than answers
 - **ENHANCED**: Sequential typewriter flow - thoughts appear first with typewriter effect, then answer starts only after thoughts are complete for better readability
 - **FIXED**: Answer text now properly hidden until thoughts typewriter effect is complete - prevents premature display of answer content

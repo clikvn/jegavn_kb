@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback, forwardRef, useImperativeHandle } from 'react';
 import Link from '@docusaurus/Link';
 import styles from './styles.module.css';
+import ChatRating from './ChatRating';
 
 /**
  * JEGA Assistant ChatBot Component
@@ -205,6 +206,26 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
   // Auto-scroll to bottom when new messages arrive
   const scrollToBottom = useCallback(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, []);
+
+  // Get user question for a specific bot message
+  const getUserQuestionForMessage = useCallback((messageId) => {
+    const messageIndex = messages.findIndex(msg => msg.id === messageId);
+    if (messageIndex > 0) {
+      // Find the previous user message
+      for (let i = messageIndex - 1; i >= 0; i--) {
+        if (messages[i].sender === 'user') {
+          return messages[i].text;
+        }
+      }
+    }
+    return '';
+  }, [messages]);
+
+  // Handle chat rating submission
+  const handleChatRatingSubmit = useCallback((messageId, rating) => {
+    console.log(`Chat rating submitted: Message ${messageId}, Rating: ${rating ? 'Positive' : 'Negative'}`);
+    // You can add additional logic here if needed
   }, []);
 
   useEffect(() => {
@@ -975,6 +996,16 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
                     </div>
                   )}
                 </div>
+                
+                {/* Chat Rating Component - Only show for completed bot messages (not streaming) */}
+                {message.sender === 'bot' && !message.isStreaming && message.text && (
+                  <ChatRating
+                    messageId={message.id}
+                    question={getUserQuestionForMessage(message.id)}
+                    answer={message.text}
+                    onRatingSubmit={handleChatRatingSubmit}
+                  />
+                )}
               </div>
             ) : (
               // User message (no thoughts)

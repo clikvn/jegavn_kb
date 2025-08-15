@@ -463,6 +463,79 @@ async def create_feedback(request: Request):
         logger.error(f"❌ Create feedback error: {e}")
         raise HTTPException(status_code=500, detail=f"Failed to create feedback: {str(e)}")
 
+@app.post("/api/chat-rating")
+async def create_chat_rating(request: Request):
+    """Create a new chat rating record in JEGA_Chat_Ratings table"""
+    try:
+        # Parse the request body
+        body = await request.json()
+        
+        # Extract required fields
+        message_id = body.get('message_id')
+        question = body.get('question', '')
+        answer = body.get('answer', '')
+        rating = body.get('rating')
+        
+        # Validate required fields
+        if not message_id:
+            raise HTTPException(status_code=400, detail="message_id is required")
+        if rating is None:
+            raise HTTPException(status_code=400, detail="rating is required (true/false)")
+        
+        # Determine environment
+        is_production = (
+            os.getenv('VERCEL_ENV') == 'production' or 
+            os.getenv('NODE_ENV') == 'production'
+        )
+        base_endpoint = BUBBLE_ENDPOINTS['production'] if is_production else BUBBLE_ENDPOINTS['development']
+        
+        # Use existing JEGA_Feedbacks table but with chat-specific fields
+        chat_rating_endpoint = base_endpoint.replace('SystemPrompt', 'JEGA_Feedbacks')
+        
+        # Prepare the data for Bubble API - use doc_id field for message_id
+        rating_data = {
+            "doc_id": f"chat_{message_id}",  # Prefix with 'chat_' to distinguish from document IDs
+            "isGood": rating,  # Use existing isGood field
+            "user_question": question,
+            "ai_answer": answer,  # Store full AI answer in ai_answer field
+            "user_feedback": None  # No user comment for chat ratings
+        }
+        
+        logger.info(f"📝 Creating chat rating record: {rating_data}")
+        
+        async with aiohttp.ClientSession() as session:
+            headers = {
+                'Authorization': f'Bearer {BUBBLE_API_KEY}',
+                'Content-Type': 'application/json',
+                'User-Agent': 'JEGA-Knowledge-Base-Python/1.0'
+            }
+            
+            # Create the chat rating record
+            async with session.post(chat_rating_endpoint, headers=headers, json=rating_data) as response:
+                if response.status in [200, 201]:
+                    result = await response.json()
+                    logger.info(f"✅ Chat rating record created successfully: {result}")
+                    return {
+                        "status": "success",
+                        "message": "Chat rating record created successfully",
+                        "record_id": result.get('id') or result.get('_id'),
+                        "data": rating_data
+                    }
+                else:
+                    error_text = await response.text()
+                    logger.error(f"❌ Failed to create chat rating record: {response.status} - {error_text}")
+                    return {
+                        "status": "error",
+                        "error": f"Failed to create chat rating record: {response.status}",
+                        "details": error_text
+                    }
+                    
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"❌ Create chat rating error: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to create chat rating: {str(e)}")
+
 @app.get("/api/feedback/{doc_id}")
 async def get_feedback_stats(doc_id: str):
     """Get feedback statistics for a specific document"""
