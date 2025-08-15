@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Changed
+- **RATING SYSTEM INTEGRATION**: Refactored document rating component positioning
+  - Moved rating component from separate row to same row as document content using Layout override
+  - Rating component now integrates directly into Docusaurus document layout structure
+  - Improved positioning to match document content width constraints
+  - Rating component appears as additional column in same row as navigation and content
 - **MAJOR MIGRATION**: Replaced English documentation structure with Vietnamese jega_docs
   - Removed old docs folder with English-structured content
   - Migrated complete Vietnamese documentation from jega_docs to docs folder

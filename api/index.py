@@ -275,6 +275,270 @@ async def health_check():
     """Health check endpoint"""
     return {"status": "healthy", "service": "JEGA Assistant Python API"}
 
+@app.get("/api/feedback-schema")
+async def get_feedback_schema():
+    """Get the schema of JEGA_Feedbacks table from Bubble"""
+    try:
+        # Determine environment
+        is_production = (
+            os.getenv('VERCEL_ENV') == 'production' or 
+            os.getenv('NODE_ENV') == 'production'
+        )
+        base_endpoint = BUBBLE_ENDPOINTS['production'] if is_production else BUBBLE_ENDPOINTS['development']
+        
+        # Replace SystemPrompt with JEGA_Feedbacks in the endpoint
+        feedback_endpoint = base_endpoint.replace('SystemPrompt', 'JEGA_Feedbacks')
+        
+        logger.info(f"🔍 Fetching feedback schema from: {feedback_endpoint}")
+        
+        async with aiohttp.ClientSession() as session:
+            headers = {
+                'Authorization': f'Bearer {BUBBLE_API_KEY}',
+                'Content-Type': 'application/json',
+                'User-Agent': 'JEGA-Knowledge-Base-Python/1.0'
+            }
+            
+            # Try multiple approaches to get the data
+            # 1. First try with no parameters
+            logger.info(f"🔍 Attempting to fetch data from: {feedback_endpoint}")
+            async with session.get(feedback_endpoint, headers=headers) as response:
+                logger.info(f"📡 Response status: {response.status}")
+                if response.status == 200:
+                    data = await response.json()
+                    logger.info(f"✅ Feedback data retrieved: {data}")
+                    
+                    # 2. Try with different parameters
+                    params_variations = [
+                        {'limit': 50},
+                        {'limit': 100},
+                        {'sort_field': 'Created Date'},
+                        {'sort_direction': 'desc'},
+                        {'constraints': '[]'},  # Empty constraints
+                        {'cursor': 0}
+                    ]
+                    
+                    for params in params_variations:
+                        try:
+                            logger.info(f"🔍 Trying params: {params}")
+                            async with session.get(feedback_endpoint, headers=headers, params=params) as param_response:
+                                if param_response.status == 200:
+                                    param_data = await param_response.json()
+                                    logger.info(f"✅ Data with params {params}: {param_data}")
+                                    if param_data.get('response', {}).get('results'):
+                                        return {
+                                            "status": "success",
+                                            "endpoint": feedback_endpoint,
+                                            "schema_sample": param_data,
+                                            "working_params": params,
+                                            "message": "Retrieved JEGA_Feedbacks data successfully"
+                                        }
+                        except Exception as param_error:
+                            logger.info(f"ℹ️ Params {params} failed: {param_error}")
+                    
+                    # 3. Try to get table metadata by checking if we can create a record
+                    logger.info(f"🔍 Attempting to create a test record to understand table structure")
+                    test_data = {
+                        "Created Date": datetime.now().isoformat(),
+                        "Modified Date": datetime.now().isoformat()
+                    }
+                    
+                    try:
+                        async with session.post(feedback_endpoint, headers=headers, json=test_data) as post_response:
+                            post_status = post_response.status
+                            post_text = await post_response.text()
+                            logger.info(f"📝 Test record creation response: {post_status} - {post_text}")
+                            
+                            if post_status in [200, 201]:
+                                return {
+                                    "status": "success",
+                                    "endpoint": feedback_endpoint,
+                                    "schema_sample": data,
+                                    "test_record": post_text,
+                                    "message": "Retrieved JEGA_Feedbacks schema and created test record"
+                                }
+                            else:
+                                return {
+                                    "status": "success",
+                                    "endpoint": feedback_endpoint,
+                                    "schema_sample": data,
+                                    "test_creation_error": post_text,
+                                    "message": f"Retrieved JEGA_Feedbacks schema (test creation failed with {post_status})"
+                                }
+                    except Exception as post_error:
+                        logger.info(f"ℹ️ Test record creation failed: {post_error}")
+                        return {
+                            "status": "success",
+                            "endpoint": feedback_endpoint,
+                            "schema_sample": data,
+                            "message": "Retrieved JEGA_Feedbacks schema (test creation failed)"
+                        }
+                else:
+                    error_text = await response.text()
+                    logger.error(f"❌ Bubble API error: {response.status} - {error_text}")
+                    return {
+                        "status": "error",
+                        "endpoint": feedback_endpoint,
+                        "error": f"Bubble API error: {response.status}",
+                        "details": error_text
+                    }
+                    
+    except Exception as e:
+        logger.error(f"❌ Feedback schema error: {e}")
+        return {
+            "status": "error",
+            "error": str(e),
+            "message": "Failed to retrieve feedback schema"
+        }
+
+@app.post("/api/feedback")
+async def create_feedback(request: Request):
+    """Create a new feedback record in JEGA_Feedbacks table"""
+    try:
+        # Parse the request body
+        body = await request.json()
+        
+        # Extract required fields (excluding ai_answer as requested)
+        doc_id = body.get('doc_id')
+        is_good = body.get('isGood')
+        user_question = body.get('user_question', '')
+        user_feedback = body.get('user_feedback', '')
+        
+        # Validate required fields
+        if not doc_id:
+            raise HTTPException(status_code=400, detail="doc_id is required")
+        if is_good is None:
+            raise HTTPException(status_code=400, detail="isGood is required (true/false)")
+        
+        # Determine environment
+        is_production = (
+            os.getenv('VERCEL_ENV') == 'production' or 
+            os.getenv('NODE_ENV') == 'production'
+        )
+        base_endpoint = BUBBLE_ENDPOINTS['production'] if is_production else BUBBLE_ENDPOINTS['development']
+        
+        # Replace SystemPrompt with JEGA_Feedbacks in the endpoint
+        feedback_endpoint = base_endpoint.replace('SystemPrompt', 'JEGA_Feedbacks')
+        
+        # Prepare the data for Bubble API (excluding ai_answer)
+        # Note: Created Date and Modified Date are automatically managed by Bubble
+        feedback_data = {
+            "doc_id": doc_id,
+            "isGood": is_good,
+            "user_question": user_question,
+            "user_feedback": user_feedback
+        }
+        
+        logger.info(f"📝 Creating feedback record: {feedback_data}")
+        
+        async with aiohttp.ClientSession() as session:
+            headers = {
+                'Authorization': f'Bearer {BUBBLE_API_KEY}',
+                'Content-Type': 'application/json',
+                'User-Agent': 'JEGA-Knowledge-Base-Python/1.0'
+            }
+            
+            # Create the feedback record
+            async with session.post(feedback_endpoint, headers=headers, json=feedback_data) as response:
+                if response.status in [200, 201]:
+                    result = await response.json()
+                    logger.info(f"✅ Feedback record created successfully: {result}")
+                    return {
+                        "status": "success",
+                        "message": "Feedback record created successfully",
+                        "record_id": result.get('id') or result.get('_id'),
+                        "data": feedback_data
+                    }
+                else:
+                    error_text = await response.text()
+                    logger.error(f"❌ Failed to create feedback record: {response.status} - {error_text}")
+                    return {
+                        "status": "error",
+                        "error": f"Failed to create feedback record: {response.status}",
+                        "details": error_text
+                    }
+                    
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"❌ Create feedback error: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to create feedback: {str(e)}")
+
+@app.get("/api/feedback/{doc_id}")
+async def get_feedback_stats(doc_id: str):
+    """Get feedback statistics for a specific document"""
+    try:
+        # Determine environment
+        is_production = (
+            os.getenv('VERCEL_ENV') == 'production' or 
+            os.getenv('NODE_ENV') == 'production'
+        )
+        base_endpoint = BUBBLE_ENDPOINTS['production'] if is_production else BUBBLE_ENDPOINTS['development']
+        
+        # Replace SystemPrompt with JEGA_Feedbacks in the endpoint
+        feedback_endpoint = base_endpoint.replace('SystemPrompt', 'JEGA_Feedbacks')
+        
+        # For now, get all feedback and filter client-side to avoid timeout issues
+        # TODO: Optimize this with proper constraints once Bubble API performance improves
+        params = {
+            'limit': 100
+        }
+        
+        logger.info(f"📊 Getting feedback stats for doc_id: {doc_id}")
+        
+        async with aiohttp.ClientSession() as session:
+            headers = {
+                'Authorization': f'Bearer {BUBBLE_API_KEY}',
+                'Content-Type': 'application/json',
+                'User-Agent': 'JEGA-Knowledge-Base-Python/1.0'
+            }
+            
+            async with session.get(feedback_endpoint, headers=headers, params=params) as response:
+                if response.status == 200:
+                    data = await response.json()
+                    all_results = data.get('response', {}).get('results', [])
+                    
+                    # Filter results by doc_id (client-side filtering to avoid timeout)
+                    # Handle both with and without leading slash
+                    doc_id_variations = [doc_id]
+                    if not doc_id.startswith('/'):
+                        doc_id_variations.append(f"/{doc_id}")
+                    else:
+                        doc_id_variations.append(doc_id[1:])  # Remove leading slash
+                    
+                    results = [r for r in all_results if r.get('doc_id') in doc_id_variations]
+                    
+                    # Calculate statistics
+                    total_feedback = len(results)
+                    positive_feedback = len([r for r in results if r.get('isGood')])
+                    negative_feedback = total_feedback - positive_feedback
+                    
+                    stats = {
+                        "doc_id": doc_id,
+                        "total_feedback": total_feedback,
+                        "positive_feedback": positive_feedback,
+                        "negative_feedback": negative_feedback,
+                        "positive_percentage": round((positive_feedback / total_feedback * 100) if total_feedback > 0 else 0, 1)
+                    }
+                    
+                    logger.info(f"✅ Feedback stats retrieved: {stats}")
+                    return {
+                        "status": "success",
+                        "stats": stats,
+                        "recent_feedback": results[:5]  # Return last 5 feedback items
+                    }
+                else:
+                    error_text = await response.text()
+                    logger.error(f"❌ Failed to get feedback stats: {response.status} - {error_text}")
+                    return {
+                        "status": "error",
+                        "error": f"Failed to get feedback stats: {response.status}",
+                        "details": error_text
+                    }
+                    
+    except Exception as e:
+        logger.error(f"❌ Get feedback stats error: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to get feedback stats: {str(e)}")
+
 @app.get("/api/config")
 async def get_chat_config():
     """Get chat configuration for frontend"""
