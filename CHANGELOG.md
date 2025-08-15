@@ -5,6 +5,25 @@ All notable changes to the JEGA Knowledge Base project will be documented in thi
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2025-08-15] - Enhanced Chat Rating System
+
+### Added
+- **NEW**: Chat rating system for AI responses with thumbs up/down buttons
+- **NEW**: Backend API endpoint `/api/chat-rating` for storing chat ratings
+- **NEW**: Frontend ChatRating component integrated into chatbot interface
+- **NEW**: localStorage persistence for chat ratings to prevent duplicate submissions
+- **NEW**: Integration with existing JEGA_Feedbacks table using chat_ prefix for doc_id
+
+### Improved
+- **IMPROVED**: Chat rating component now only appears after AI response streaming is complete
+- **IMPROVED**: Added 500ms delay and smooth fade-in animation for better user experience
+- **IMPROVED**: Chat rating buttons now always visible, allowing users to change their ratings
+- **IMPROVED**: Added visual feedback for selected rating state with color-coded buttons
+- **IMPROVED**: Simplified chat rating UI by removing redundant text feedback - users can see rating status through button colors
+
+### Fixed
+- **FIXED**: Chat rating API now correctly stores AI answers in `ai_answer` field instead of `user_feedback` field
+
 ## [Unreleased]
 
 ### Changed
