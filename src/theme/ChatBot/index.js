@@ -159,9 +159,7 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
   useEffect(() => {
     const loadChatConfig = async () => {
       try {
-        const isDevelopment = process.env.NODE_ENV === 'development' || 
-                             window.location.hostname === 'localhost' ||
-                             window.location.hostname === '127.0.0.1';
+        const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
         const apiEndpoint = isDevelopment ? 'http://localhost:3002/api/config' : '/api/config';
         
         const response = await fetch(apiEndpoint);
@@ -268,10 +266,8 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
       try {
         setError(null);
         
-        // Use correct API endpoint - port 3001 for development, relative path for production
-        const isDevelopment = process.env.NODE_ENV === 'development' || 
-                             window.location.hostname === 'localhost' ||
-                             window.location.hostname === '127.0.0.1';
+        // Use correct API endpoint - port 3002 for development, relative path for production
+        const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
         const apiEndpoint = isDevelopment ? 'http://localhost:3002/api/vertex-ai' : '/api/vertex-ai';
         
         console.log(`🌐 Calling streaming API endpoint (attempt ${attempt + 1}/${maxRetries + 1}):`, apiEndpoint);

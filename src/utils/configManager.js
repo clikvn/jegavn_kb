@@ -5,9 +5,11 @@
  * through the API endpoints.
  */
 
-const API_BASE_URL = process.env.NODE_ENV === 'development' 
-  ? 'http://localhost:3002/api' 
-  : '/api';
+const API_BASE_URL = (() => {
+  // Use runtime detection for development vs production
+  const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+  return isDevelopment ? 'http://localhost:3002/api' : '/api';
+})();
 
 /**
  * Fetch current chatbot configuration
