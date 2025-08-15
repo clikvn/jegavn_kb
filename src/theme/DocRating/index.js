@@ -30,7 +30,11 @@ const DocRating = () => {
 
     setIsLoading(true);
     try {
-      const response = await fetch(`http://localhost:3002/api/feedback/${docId}`);
+      // Use relative path for production, localhost for development
+      const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      const apiEndpoint = isDevelopment ? `http://localhost:3002/api/feedback/${docId}` : `/api/feedback/${docId}`;
+      
+      const response = await fetch(apiEndpoint);
       if (response.ok) {
         const data = await response.json();
         if (data.status === 'success') {
@@ -51,7 +55,11 @@ const DocRating = () => {
 
     try {
       setIsSubmitting(true);
-      const response = await fetch('http://localhost:3002/api/feedback', {
+      // Use relative path for production, localhost for development
+      const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      const apiEndpoint = isDevelopment ? 'http://localhost:3002/api/feedback' : '/api/feedback';
+      
+      const response = await fetch(apiEndpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - **FIXED**: Chat rating API now correctly stores AI answers in `ai_answer` field instead of `user_feedback` field
+- **FIXED**: Document rating API endpoints now properly use production URLs instead of hardcoded localhost
 
 ## [Unreleased]
 
