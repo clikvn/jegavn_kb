@@ -969,9 +969,8 @@ async def flowise_chat(request: Request):
 
         # Use non-streaming to get JSON response format
         try:
-            # Increase timeout for Vietnamese text processing
-            timeout = aiohttp.ClientTimeout(total=120)  # 2 minutes timeout
-            async with aiohttp.ClientSession(timeout=timeout) as session:
+            # No timeout - let Flowise take as long as it needs (up to 3 minutes)
+            async with aiohttp.ClientSession() as session:
                 async with session.post(flowise_url, json=payload) as response:
                     if response.status == 200:
                         # Handle JSON response (not streaming)
@@ -1381,8 +1380,9 @@ async def flowise_stream_chat(request: Request):
 async def flowise_stream_generator(flowise_url: str, payload: dict):
     """Generator for streaming Flowise responses"""
     try:
+        # No timeout - let Flowise take as long as it needs (up to 3 minutes)
         async with aiohttp.ClientSession() as session:
-            async with session.post(flowise_url, json=payload, timeout=60) as response:
+            async with session.post(flowise_url, json=payload) as response:
                 if response.status != 200:
                     error_text = await response.text()
                     logger.error(f"❌ Flowise streaming error: {response.status} - {error_text}")
@@ -1427,7 +1427,14 @@ async def flowise_stream_generator(flowise_url: str, payload: dict):
                                     event_type = data.get('event')
                                     event_data = data.get('data', '')
                                     
-                                    if event_type == 'agentFlowEvent':
+                                    if event_type == 'token':
+                                        # This is the actual content from Flowise
+                                        if event_data and event_data.strip():
+                                            logger.info(f"📝 [FLOWISE] Token content: {event_data[:100]}...")
+                                            yield f"data: {json.dumps({'type': 'chunk', 'content': event_data})}\n\n"
+                                            content_buffer += event_data
+                                    
+                                    elif event_type == 'agentFlowEvent':
                                         # Agent flow status - don't send to frontend
                                         logger.info(f"📊 [FLOWISE] Agent flow event: {event_data}")
                                         continue
