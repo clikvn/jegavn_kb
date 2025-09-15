@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback, useMemo, forwardRef, useImperativeHandle } from 'react';
 import Link from '@docusaurus/Link';
 import styles from './styles.module.css';
-import ChatRating from './ChatRating';
 
 /**
  * JEGA Assistant ChatBot Component
@@ -150,11 +149,7 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
     return '';
   }, [messages]);
 
-  // Handle chat rating submission
-  const handleChatRatingSubmit = useCallback((messageId, rating) => {
-    console.log(`Chat rating submitted: Message ${messageId}, Rating: ${rating ? 'Positive' : 'Negative'}`);
-    // You can add additional logic here if needed
-  }, []);
+  // Chat rating functionality removed - will be implemented later
 
   useEffect(() => {
     scrollToBottom();
@@ -669,7 +664,7 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
   /**
    * Memoized message item component to prevent unnecessary re-renders
    */
-  const MessageItem = React.memo(({ message, styles, onRatingSubmit }) => {
+  const MessageItem = React.memo(({ message, styles }) => {
     const formattedText = useMemo(() => formatMessage(message.text), [message.text]);
     const formattedThoughts = useMemo(() => formatMessage(message.thoughts), [message.thoughts]);
     
@@ -718,15 +713,7 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
               )}
             </div>
             
-            {/* Chat Rating Component - Only show for completed bot messages (not streaming) */}
-            {!message.isStreaming && message.text && (
-              <ChatRating
-                messageId={message.id}
-                question={getUserQuestionForMessage(message.id)}
-                answer={message.text}
-                onRatingSubmit={onRatingSubmit}
-              />
-            )}
+            {/* Chat rating functionality removed - will be implemented later */}
           </div>
         ) : (
           // User message (no thoughts)
@@ -1057,8 +1044,7 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
           <MessageItem 
             key={message.id} 
             message={message} 
-            styles={styles} 
-            onRatingSubmit={handleChatRatingSubmit}
+            styles={styles}
           />
         ))}
         

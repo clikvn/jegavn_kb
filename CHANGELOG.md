@@ -7,6 +7,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [2025-01-15] - Complete Migration to Flowise-Only Architecture
 
+## [2025-01-15] - Feedback System Removal
+
+### Removed
+- **REMOVED**: ChatRating component and all chat rating functionality
+- **REMOVED**: DocRating component and document rating system
+- **REMOVED**: All feedback-related API calls and 404 errors
+- **REMOVED**: Chat rating styles and UI elements
+- **REMOVED**: Document rating integration from DocItem wrapper
+
+### Fixed
+- **FIXED**: Eliminated 404 errors for `/api/feedback/` endpoints
+- **FIXED**: Removed unused feedback dependencies and imports
+- **FIXED**: Cleaned up UI components by removing rating functionality
+
+### Technical Details
+- Deleted `src/theme/ChatBot/ChatRating.js` component
+- Deleted `src/theme/DocRating/` directory and all related files
+- Removed ChatRating import and usage from ChatBot component
+- Removed DocRating import and usage from DocItem wrapper
+- Cleaned up chat rating styles from `styles.module.css`
+- Removed chat rating function and props from MessageItem component
+
+### Notes
+- Feedback system will be re-implemented in future iterations
+- All 404 errors related to feedback endpoints have been eliminated
+- UI is now cleaner without rating components
+
+## [2025-01-15] - Complete Migration to Flowise-Only Architecture
+
 ### Major Changes
 - **MIGRATED**: Completely replaced complex Bubble-dependent system with simple Flowise-only implementation
 - **REMOVED**: All Bubble database dependencies and configuration management
