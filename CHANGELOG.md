@@ -5,6 +5,42 @@ All notable changes to the JEGA Knowledge Base project will be documented in thi
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2025-01-15] - Complete Migration to Flowise-Only Architecture
+
+### Major Changes
+- **MIGRATED**: Completely replaced complex Bubble-dependent system with simple Flowise-only implementation
+- **REMOVED**: All Bubble database dependencies and configuration management
+- **REMOVED**: Google GenAI/Vertex AI integration (using Flowise exclusively)
+- **SIMPLIFIED**: Backend from 1400+ lines to ~300 lines of clean, maintainable code
+
+### Added
+- **NEW**: Real-time streaming implementation for Flowise integration
+- **NEW**: `/api/flowise/stream` endpoint for real-time Server-Sent Events (SSE) streaming
+- **NEW**: Simplified Flowise integration without Bubble configuration dependency
+- **NEW**: Chunked streaming to avoid "Chunk too big" errors
+- **NEW**: Direct Flowise API communication without intermediate processing
+- **NEW**: Flowise as the only AI method (removed Vertex AI completely)
+
+### Removed
+- **REMOVED**: Bubble API integration and BUBBLE_API_KEY dependency
+- **REMOVED**: Complex configuration management system
+- **REMOVED**: Google GenAI/Vertex AI fallback system
+- **REMOVED**: Feedback and rating systems (Bubble-dependent)
+- **REMOVED**: Legacy endpoints that required Bubble integration
+
+### Fixed
+- **FIXED**: "Chunk too big" error by implementing chunked streaming (1KB chunks)
+- **FIXED**: Simplified Flowise payload to only send user question (no chat history or Bubble config needed)
+- **FIXED**: Syntax errors and indentation issues in the main API file
+- **FIXED**: Environment variable loading issues (.env file encoding problems)
+- **FIXED**: Production and local deployment consistency
+
+### Technical Details
+- **Backend**: Now uses only Flowise API at `https://langchain-ui.clik.vn/api/v1/prediction/40f982a3-ad4f-4df4-9999-8033ec570672`
+- **Dependencies**: Removed `google-genai`, `aiohttp` for Bubble calls, and complex configuration management
+- **Deployment**: Both production (Vercel) and local development now use the same simplified `index.py`
+- **File Structure**: Cleaned up by removing `index_fixed.py` and backup files
+
 ## [2025-01-15] - Flowise-Only Implementation
 
 ### Added
