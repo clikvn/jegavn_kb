@@ -937,15 +937,10 @@ async def flowise_chat(request: Request):
         # Log the question for debugging
         logger.info(f"🔍 [FLOWISE] Processing question: '{question[:100]}...'")
 
-        # Flowise API configuration - use environment variables with fallbacks
-        flowise_url = os.getenv('FLOWISE_URL', 'https://langchain-ui.clik.vn/api/v1/prediction/4460e8a3-ff9e-4eb2-be18-cdf1ae791201')
-        flowise_api_key = os.getenv('FLOWISE_API_KEY', 'your-flowise-api-key')
+        # Flowise API configuration - no authorization needed
+        flowise_url = os.getenv('FLOWISE_URL', 'https://langchain-ui.clik.vn/api/v1/prediction/40f982a3-ad4f-4df4-9999-8033ec570672')
         
-        # Log configuration status
-        if not flowise_url or flowise_url == 'http://localhost:3000/api/v1/prediction/your-flow-id':
-            logger.warning("⚠️ Using default Flowise URL - please set FLOWISE_URL environment variable")
-        if not flowise_api_key or flowise_api_key == 'your-flowise-api-key':
-            logger.warning("⚠️ Using default Flowise API key - please set FLOWISE_API_KEY environment variable")
+        logger.info(f"🔍 [FLOWISE] Using Flowise URL: {flowise_url}")
 
         # Prepare payload with streaming support
         payload = {
@@ -977,11 +972,7 @@ async def flowise_chat(request: Request):
             # Increase timeout for Vietnamese text processing
             timeout = aiohttp.ClientTimeout(total=120)  # 2 minutes timeout
             async with aiohttp.ClientSession(timeout=timeout) as session:
-                headers = {}
-                if flowise_api_key and flowise_api_key != 'your-flowise-api-key':
-                    headers['Authorization'] = f'Bearer {flowise_api_key}'
-                
-                async with session.post(flowise_url, json=payload, headers=headers) as response:
+                async with session.post(flowise_url, json=payload) as response:
                     if response.status == 200:
                         # Handle JSON response (not streaming)
                         response_text = await response.text()
@@ -1323,15 +1314,10 @@ async def flowise_stream_chat(request: Request):
         # Log the question for debugging
         logger.info(f"🔍 [FLOWISE STREAM] Processing question: '{question[:100]}...'")
 
-        # Flowise API configuration - use fallback values like local development
-        FLOWISE_URL = os.getenv('FLOWISE_URL', 'http://localhost:3000/api/v1/prediction/your-flow-id')
-        FLOWISE_API_KEY = os.getenv('FLOWISE_API_KEY', 'your-flowise-api-key')
+        # Flowise API configuration - no authorization needed
+        FLOWISE_URL = os.getenv('FLOWISE_URL', 'https://langchain-ui.clik.vn/api/v1/prediction/40f982a3-ad4f-4df4-9999-8033ec570672')
         
-        # Log configuration status
-        if not FLOWISE_URL or FLOWISE_URL == 'http://localhost:3000/api/v1/prediction/your-flow-id':
-            logger.warning("⚠️ Using default Flowise URL - please set FLOWISE_URL environment variable")
-        if not FLOWISE_API_KEY or FLOWISE_API_KEY == 'your-flowise-api-key':
-            logger.warning("⚠️ Using default Flowise API key - please set FLOWISE_API_KEY environment variable")
+        logger.info(f"🔍 [FLOWISE STREAM] Using Flowise URL: {FLOWISE_URL}")
 
         # Prepare payload for Flowise
         payload = {
@@ -1389,12 +1375,7 @@ async def flowise_stream_generator(flowise_url: str, payload: dict):
     """Generator for streaming Flowise responses"""
     try:
         async with aiohttp.ClientSession() as session:
-            headers = {}
-            flowise_api_key = os.getenv('FLOWISE_API_KEY', 'your-flowise-api-key')
-            if flowise_api_key and flowise_api_key != 'your-flowise-api-key':
-                headers['Authorization'] = f'Bearer {flowise_api_key}'
-            
-            async with session.post(flowise_url, json=payload, headers=headers, timeout=60) as response:
+            async with session.post(flowise_url, json=payload, timeout=60) as response:
                 if response.status != 200:
                     error_text = await response.text()
                     logger.error(f"❌ Flowise streaming error: {response.status} - {error_text}")
