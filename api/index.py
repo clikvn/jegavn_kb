@@ -6,6 +6,8 @@ Replaces the Node.js implementation with Python GenAI SDK
 import json
 import os
 import logging
+import asyncio
+import re
 from datetime import datetime
 from typing import Dict, List, Any, Optional
 
@@ -259,7 +261,6 @@ def process_response_text(text: str) -> str:
     processed = text.replace('\\n', '\n')
     
     # Convert [text](url) patterns to clickable links
-    import re
     pattern = r'\[([^\]]*)\]\((https?://[^\)]+)\)'
     processed = re.sub(pattern, r'<a href="\2" target="_blank" rel="noopener noreferrer">\1</a>', processed)
     
@@ -910,6 +911,487 @@ async def vertex_ai_chat(request: Request):
     except Exception as e:
         logger.error(f"❌ API error: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/api/flowise")
+async def flowise_chat(request: Request):
+    """Flowise chatbot endpoint with streaming support"""
+    question = ""
+    try:
+        # Parse request with proper encoding handling
+        try:
+            body = await request.json()
+        except UnicodeDecodeError as e:
+            logger.error(f"❌ Unicode decode error: {e}")
+            # Try to get raw body and decode with error handling
+            raw_body = await request.body()
+            body_text = raw_body.decode('utf-8', errors='replace')
+            body = json.loads(body_text)
+        
+        question = body.get('question', '').strip()
+        chat_history = body.get('chatHistory', [])
+        streaming = body.get('streaming', True)  # Default to streaming
+
+        if not question:
+            raise HTTPException(status_code=400, detail="Question is required")
+        
+        # Log the question for debugging
+        logger.info(f"🔍 [FLOWISE] Processing question: '{question[:100]}...'")
+
+        # Flowise API configuration
+        flowise_url = "https://langchain-ui.clik.vn/api/v1/prediction/4460e8a3-ff9e-4eb2-be18-cdf1ae791201"
+
+        # Prepare payload with streaming support
+        payload = {
+            "question": question,
+            "streaming": False  # Force non-streaming to get JSON response
+        }
+
+        # Add chat history if provided
+        if chat_history:
+            # Convert chat history to Flowise format
+            flowise_history = []
+            for msg in chat_history:
+                if msg.get('sender') == 'user':
+                    flowise_history.append({
+                        "message": msg.get('text', ''),
+                        "type": "userMessage"
+                    })
+                else:
+                    flowise_history.append({
+                        "message": msg.get('text', ''),
+                        "type": "apiMessage"
+                    })
+            payload["chatHistory"] = flowise_history
+
+        logger.info(f"🔍 Sending query to Flowise: {question[:50]}... (streaming: {streaming})")
+
+        # Use non-streaming to get JSON response format
+        try:
+            # Increase timeout for Vietnamese text processing
+            timeout = aiohttp.ClientTimeout(total=120)  # 2 minutes timeout
+            async with aiohttp.ClientSession(timeout=timeout) as session:
+                async with session.post(flowise_url, json=payload) as response:
+                    if response.status == 200:
+                        # Handle JSON response (not streaming)
+                        response_text = await response.text()
+                        logger.info(f"🔍 [FLOWISE DEBUG] Raw response: {response_text[:500]}...")
+                        logger.info(f"🔍 [FLOWISE DEBUG] Full response length: {len(response_text)}")
+                        
+                        actual_content = ""
+                        metadata = {}
+                        
+                        # Try to parse as JSON first (new format)
+                        logger.info(f"🔍 [FLOWISE DEBUG] Attempting JSON parse...")
+                        logger.info(f"🔍 [FLOWISE DEBUG] Response starts with: {response_text[:100]}")
+                        
+                        # Check if response is a single JSON object (not streaming format)
+                        if response_text.strip().startswith('{') and response_text.strip().endswith('}'):
+                            logger.info("🔍 [FLOWISE DEBUG] Response appears to be a single JSON object")
+                            try:
+                                response_json = json.loads(response_text.strip())
+                                logger.info(f"🔍 [FLOWISE DEBUG] Parsed as JSON successfully")
+                                
+                                # Extract text from JSON response
+                                if 'text' in response_json:
+                                    actual_content = response_json['text']
+                                    logger.info(f"✅ [FLOWISE] Found text in JSON: {actual_content[:200]}...")
+                                    
+                                    # Filter out system prompt content
+                                    system_prompt_indicators = [
+                                        "<identity>", "You are a Supervisor Agent", "central orchestrator", 
+                                        "search strategist", "multi-agent system", "Your primary goal",
+                                        "You have access to the following tools", "Use the following format",
+                                        "Thought:", "Action:", "Observation:", "Final Answer:",
+                                        "tool_", "predefined workflow", "Analyze-Decide-Review", "A-D-R cycle"
+                                    ]
+                                    
+                                    # Temporarily disable system prompt filtering to debug
+                                    logger.info("🔍 [FLOWISE DEBUG] Raw content received (first 500 chars):")
+                                    logger.info(f"🔍 [FLOWISE DEBUG] {actual_content[:500]}")
+                                    
+                                    # Check if content contains system prompt indicators
+                                    is_system_prompt = any(indicator in actual_content for indicator in system_prompt_indicators)
+                                    
+                                    if is_system_prompt:
+                                        logger.warning("⚠️ [FLOWISE] Detected system prompt content, but allowing it for debugging")
+                                        # actual_content = "Xin lỗi, không thể xử lý phản hồi từ Flowise. Vui lòng thử lại hoặc chuyển sang Vertex AI."
+                                    else:
+                                        logger.info("✅ [FLOWISE] Content looks good, using it")
+                                    
+                                    # Extract metadata
+                                    metadata = {
+                                        'question': response_json.get('question', ''),
+                                        'chatId': response_json.get('chatId', ''),
+                                        'chatMessageId': response_json.get('chatMessageId', '')
+                                    }
+                                    
+                                    # Successfully extracted content from JSON, skip streaming format parsing
+                                    logger.info("✅ [FLOWISE] Successfully extracted content from JSON, skipping streaming format")
+                                    
+                                else:
+                                    logger.warning("⚠️ [FLOWISE] No 'text' field in JSON response")
+                                    
+                            except json.JSONDecodeError as e:
+                                logger.info(f"🔍 [FLOWISE DEBUG] JSON parse failed: {e}")
+                                logger.info("🔍 [FLOWISE DEBUG] Not JSON format, trying streaming format")
+                        else:
+                            logger.info("🔍 [FLOWISE DEBUG] Response is not a single JSON object, trying streaming format")
+                            
+                        # Only try streaming format parsing if we haven't already extracted content from JSON
+                        if not actual_content or actual_content == "Xin lỗi, không thể xử lý phản hồi từ Flowise. Vui lòng thử lại hoặc chuyển sang Vertex AI.":
+                            logger.info("🔍 [FLOWISE DEBUG] No content extracted from JSON, trying streaming format")
+                            # Fallback to streaming format parsing
+                            try:
+                                if 'agentFlowExecutedData' in response_text:
+                                    # Extract the JSON data from agentFlowExecutedData
+                                    import json as json_module
+                                    
+                                    # Try multiple patterns to find the response
+                                    patterns = [
+                                        # First try to find actual conversational responses (Vietnamese)
+                                        r'"text":"([^"]*Chào bạn[^"]*)"',
+                                    r'"text":"([^"]*Tôi không tìm thấy[^"]*)"',
+                                    r'"text":"([^"]*Bạn có quan tâm[^"]*)"',
+                                    r'"text":"([^"]*Công cụ bản vẽ AI[^"]*)"',
+                                    r'"text":"([^"]*Sử dụng chức năng[^"]*)"',
+                                    r'"text":"([^"]*Vui lòng cho tôi biết[^"]*)"',
+                                    r'"text":"([^"]*Hello[^"]*)"',
+                                    r'"text":"([^"]*Hi[^"]*)"',
+                                    r'"text":"([^"]*What is[^"]*)"',
+                                    r'"text":"([^"]*How to[^"]*)"',
+                                    # Then try general patterns but exclude system prompts
+                                    r'"text":"((?!.*<identity>)(?!.*Supervisor Agent)(?!.*central orchestrator)(?!.*search strategist)(?!.*multi-agent system)(?!.*predefined workflow)[^"]*)"',
+                                    r'"answer":"((?!.*<identity>)(?!.*Supervisor Agent)(?!.*central orchestrator)(?!.*search strategist)(?!.*multi-agent system)(?!.*predefined workflow)[^"]*)"',
+                                    r'"response":"((?!.*<identity>)(?!.*Supervisor Agent)(?!.*central orchestrator)(?!.*search strategist)(?!.*multi-agent system)(?!.*predefined workflow)[^"]*)"',
+                                    r'"content":"((?!.*<identity>)(?!.*Supervisor Agent)(?!.*central orchestrator)(?!.*search strategist)(?!.*multi-agent system)(?!.*predefined workflow)[^"]*)"',
+                                    r'"message":"((?!.*<identity>)(?!.*Supervisor Agent)(?!.*central orchestrator)(?!.*search strategist)(?!.*multi-agent system)(?!.*predefined workflow)[^"]*)"',
+                                    # Fallback patterns
+                                    r'"output":\{"text":"([^"]*)"\}',
+                                    r'"text":"([^"]*)"',
+                                    r'"answer":"([^"]*)"',
+                                    r'"response":"([^"]*)"',
+                                    r'"content":"([^"]*)"',
+                                    r'"message":"([^"]*)"',
+                                    # JSON parsing patterns
+                                    r'data:\{"event":"agentFlowExecutedData","data":\[(.*?)\]\}',
+                                    r'"agentFlowExecutedData","data":\[(.*?)\]'
+                                ]
+                                
+                                for i, pattern in enumerate(patterns):
+                                    logger.info(f"🔍 [FLOWISE DEBUG] Trying pattern {i+1}: {pattern}")
+                                    matches = re.findall(pattern, response_text, re.DOTALL)
+                                    logger.info(f"🔍 [FLOWISE DEBUG] Pattern {i+1} found {len(matches)} matches")
+                                    
+                                    if matches:
+                                        if i >= 2:  # Patterns 3 and 4 directly extract text
+                                            actual_content = matches[0]
+                                            logger.info(f"✅ [FLOWISE] Found response with pattern {i+1}: {actual_content[:100]}...")
+                                            break
+                                        else:  # Patterns 1 and 2 need JSON parsing
+                                            data_str = matches[0]
+                                            logger.info(f"🔍 [FLOWISE DEBUG] Found data with pattern {i+1}: {data_str[:200]}...")
+                                            try:
+                                                # Parse the JSON data
+                                                data_array = json_module.loads(f'[{data_str}]')
+                                                logger.info(f"🔍 [FLOWISE DEBUG] Parsed data array with {len(data_array)} items")
+                                                if data_array and len(data_array) > 0:
+                                                    # Look for the output field in the data
+                                                    for j, item in enumerate(data_array):
+                                                        logger.info(f"🔍 [FLOWISE DEBUG] Item {j}: {item}")
+                                                        if isinstance(item, dict) and 'data' in item:
+                                                            data_item = item['data']
+                                                            logger.info(f"🔍 [FLOWISE DEBUG] Data item: {data_item}")
+                                                            
+                                                            # Look for various possible response fields
+                                                            response_fields = ['output', 'response', 'answer', 'text', 'content', 'message']
+                                                            for field in response_fields:
+                                                                if field in data_item:
+                                                                    field_value = data_item[field]
+                                                                    logger.info(f"🔍 [FLOWISE DEBUG] Found {field}: {field_value}")
+                                                                    
+                                                                    if isinstance(field_value, dict):
+                                                                        # Look for text content in nested objects
+                                                                        text_fields = ['text', 'content', 'message', 'answer', 'response']
+                                                                        for text_field in text_fields:
+                                                                            if text_field in field_value:
+                                                                                actual_content = field_value[text_field]
+                                                                                logger.info(f"✅ [FLOWISE] Found response in {field}.{text_field}: {actual_content[:100]}...")
+                                                                                break
+                                                                    elif isinstance(field_value, str) and len(field_value) > 10:
+                                                                        actual_content = field_value
+                                                                        logger.info(f"✅ [FLOWISE] Found response in {field}: {actual_content[:100]}...")
+                                                                        break
+                                                                    
+                                                                    if actual_content:
+                                                                        break
+                                                            
+                                                            if actual_content:
+                                                                break
+                                                if actual_content:
+                                                    break
+                                            except json.JSONDecodeError as json_err:
+                                                logger.error(f"❌ JSON decode error with pattern {i+1}: {json_err}")
+                                                logger.error(f"❌ Data string that failed to parse: {data_str[:500]}...")
+                                                continue
+                                
+                                if not actual_content:
+                                    logger.warning("⚠️ [FLOWISE] No content found with any pattern")
+                                    # Try to find Vietnamese text patterns in the raw response
+                                    vietnamese_patterns = [
+                                        r'Chào bạn[^"]*',
+                                        r'Tôi không tìm thấy[^"]*',
+                                        r'Bạn có quan tâm[^"]*',
+                                        r'Công cụ bản vẽ AI[^"]*',
+                                        r'Sử dụng chức năng[^"]*',
+                                        r'Vui lòng cho tôi biết[^"]*',
+                                        # More specific patterns for actual responses
+                                        r'"text":"([^"]*Chào bạn[^"]*)"',
+                                        r'"text":"([^"]*Tôi không tìm thấy[^"]*)"',
+                                        r'"text":"([^"]*Bạn có quan tâm[^"]*)"',
+                                        r'"text":"([^"]*Công cụ bản vẽ AI[^"]*)"',
+                                        r'"text":"([^"]*Sử dụng chức năng[^"]*)"',
+                                        r'"text":"([^"]*Vui lòng cho tôi biết[^"]*)"'
+                                    ]
+                                    
+                                    for pattern in vietnamese_patterns:
+                                        matches = re.findall(pattern, response_text, re.DOTALL)
+                                        if matches:
+                                            actual_content = matches[0]
+                                            logger.info(f"✅ [FLOWISE] Found Vietnamese response with pattern: {actual_content[:100]}...")
+                                            break
+                                else:
+                                    # Fallback: look for any meaningful content
+                                    logger.info("🔍 [FLOWISE DEBUG] No agentFlowExecutedData found, using fallback")
+                                    try:
+                                        lines = response_text.split('\n')
+                                        for line in lines:
+                                            line = line.strip()
+                                            if (line and 
+                                                not line.startswith('data:') and 
+                                                not line.startswith('message:') and
+                                                not any(keyword in line for keyword in ['agentFlowEvent', 'metadata', 'nodeLabel', 'status', 'INPROGRESS', 'FINISHED']) and
+                                                len(line) > 10):  # Only lines with substantial content
+                                                actual_content += line + '\n'
+                                    except Exception as e:
+                                        logger.error(f"❌ Error extracting content: {e}")
+                                        logger.error(f"❌ Content extraction error type: {type(e).__name__}")
+                                        # Don't use hardcoded fallback, let it be empty so we can debug
+                                        actual_content = ""
+                                    
+                                    # Clean up the content
+                                    actual_content = actual_content.strip()
+                        
+                        # Filter out system prompt content
+                        if actual_content:
+                            # Check if content contains system prompt indicators
+                            system_prompt_indicators = [
+                                '<identity>',
+                                'Supervisor Agent',
+                                'central orchestrator',
+                                'search strategist',
+                                'multi-agent system',
+                                'predefined workflow',
+                                'Analyze-Decide-Review',
+                                'A-D-R cycle',
+                                'Your responsibility is to manage',
+                                'analyzing results',
+                                'construct',
+                                'orchestrator',
+                                'workflow by analyzing',
+                                'multi-agent',
+                                'search strategist'
+                            ]
+                            
+                            # Check if the content starts with system prompt indicators
+                            content_lower = actual_content.lower()
+                            is_system_prompt = any(indicator.lower() in content_lower for indicator in system_prompt_indicators)
+                            
+                            # Also check if content is too long (system prompts are usually very long)
+                            if len(actual_content) > 2000 and is_system_prompt:
+                                logger.warning("⚠️ [FLOWISE] Detected long system prompt content, filtering out")
+                                actual_content = ""
+                            elif is_system_prompt:
+                                logger.warning("⚠️ [FLOWISE] Detected system prompt content, filtering out")
+                                actual_content = ""
+                            else:
+                                logger.info(f"✅ [FLOWISE] Content passed system prompt filter")
+                        
+                        # If still no content, provide a default response
+                        if not actual_content:
+                            logger.warning("⚠️ [FLOWISE] No content extracted, using fallback response")
+                            actual_content = "Xin lỗi, không thể xử lý phản hồi từ Flowise. Vui lòng thử lại hoặc chuyển sang Vertex AI."
+                        
+                        logger.info(f"✅ Flowise response received successfully")
+                        logger.info(f"🔍 [FLOWISE DEBUG] Extracted content: '{actual_content[:200]}...'")
+
+                        return {
+                            "success": True,
+                            "response": actual_content or 'No response received',
+                            "metadata": metadata,
+                            "question": question,
+                            "timestamp": datetime.now().isoformat()
+                        }
+                    else:
+                        error_text = await response.text()
+                        logger.error(f"❌ Flowise API error: {response.status} - {error_text}")
+                        raise HTTPException(status_code=503, detail=f"Flowise API error: {response.status}")
+        except aiohttp.ClientError as e:
+            logger.error(f"❌ Flowise connection error: {e}")
+            logger.error(f"❌ Error type: {type(e).__name__}")
+            return {
+                "success": False,
+                "error": f"Flowise connection error: {str(e)}",
+                "response": "Xin lỗi, không thể kết nối đến Flowise. Vui lòng thử lại sau hoặc chuyển sang Vertex AI.",
+                "metadata": {},
+                "question": question,
+                "timestamp": datetime.now().isoformat()
+            }
+        except asyncio.TimeoutError as e:
+            logger.error(f"❌ Flowise timeout error: {e}")
+            return {
+                "success": False,
+                "error": f"Flowise timeout error: {str(e)}",
+                "response": "Xin lỗi, Flowise phản hồi quá chậm. Vui lòng thử lại sau hoặc chuyển sang Vertex AI.",
+                "metadata": {},
+                "question": question,
+                "timestamp": datetime.now().isoformat()
+            }
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"❌ Flowise endpoint error: {e}")
+        logger.error(f"❌ Error type: {type(e).__name__}")
+        logger.error(f"❌ Error details: {str(e)}")
+        
+        # Return a more user-friendly error response
+        return {
+            "success": False,
+            "error": f"Flowise service temporarily unavailable: {str(e)}",
+            "response": "Xin lỗi, hệ thống Flowise hiện tại không khả dụng. Vui lòng thử lại sau hoặc chuyển sang Vertex AI.",
+            "metadata": {},
+            "question": question,
+            "timestamp": datetime.now().isoformat()
+        }
+
+
+async def flowise_stream_generator(flowise_url: str, payload: dict):
+    """Generator for streaming Flowise responses"""
+    try:
+        async with aiohttp.ClientSession() as session:
+            async with session.post(flowise_url, json=payload, timeout=60) as response:
+                if response.status != 200:
+                    error_text = await response.text()
+                    logger.error(f"❌ Flowise streaming error: {response.status} - {error_text}")
+                    yield f"data: {json.dumps({'type': 'error', 'error': f'Flowise API error: {response.status}'})}\n\n"
+                    return
+
+                # Process streaming response line by line
+                buffer = ""
+                content_buffer = ""
+                in_content = False
+                
+                async for chunk in response.content:
+                    try:
+                        buffer += chunk.decode('utf-8')
+                    except UnicodeDecodeError:
+                        # Handle encoding issues by replacing problematic characters
+                        buffer += chunk.decode('utf-8', errors='replace')
+                    
+                    # Process complete lines
+                    while '\n' in buffer:
+                        line, buffer = buffer.split('\n', 1)
+                        line = line.strip()
+                        
+                        if not line:
+                            continue
+                        
+                        # Handle Flowise specific format
+                        if line == 'message:':
+                            in_content = True
+                            content_buffer = ""
+                            continue
+                            
+                        elif line.startswith('data: '):
+                            data_content = line[6:]  # Remove 'data: ' prefix
+                            
+                            try:
+                                # Try to parse as JSON
+                                data = json.loads(data_content)
+                                
+                                # Handle different event types
+                                if isinstance(data, dict) and 'event' in data:
+                                    event_type = data.get('event')
+                                    event_data = data.get('data', '')
+                                    
+                                    if event_type == 'agentFlowEvent':
+                                        # Agent flow status - don't send to frontend
+                                        logger.info(f"📊 [FLOWISE] Agent flow event: {event_data}")
+                                        continue
+                                        
+                                    elif event_type == 'metadata':
+                                        # Metadata with chat info - don't send to frontend
+                                        logger.info(f"📊 [FLOWISE] Metadata: {event_data}")
+                                        continue
+                                        
+                                    elif event_type == 'end' and event_data == '[DONE]':
+                                        # Stream complete
+                                        logger.info("🏁 Flowise streaming complete")
+                                        yield f"data: {json.dumps({'type': 'complete'})}\n\n"
+                                        break
+                                        
+                                    else:
+                                        # Other events - don't send to frontend
+                                        logger.info(f"📊 [FLOWISE] Other event: {event_type}")
+                                        continue
+                                        
+                                else:
+                                    # Other JSON structures - don't send to frontend
+                                    logger.info(f"📊 [FLOWISE] Other JSON: {data}")
+                                    continue
+                                    
+                            except json.JSONDecodeError:
+                                # If it's not JSON, treat as plain text
+                                yield f"data: {json.dumps({'type': 'chunk', 'content': data_content})}\n\n"
+                        
+                        elif in_content and line:
+                            # This is content after 'message:' - filter out configuration data
+                            # Skip lines that contain configuration data
+                            if (line.startswith('data:') or 
+                                'agentFlowEvent' in line or 
+                                'metadata' in line or 
+                                'nodeLabel' in line or
+                                'status' in line or
+                                'INPROGRESS' in line or
+                                'FINISHED' in line):
+                                continue
+                            
+                            content_buffer += line + '\n'
+                            
+                            # Send content in smaller chunks to avoid "Chunk too big" error
+                            if len(content_buffer) > 50:  # Send every 50 characters
+                                try:
+                                    yield f"data: {json.dumps({'type': 'chunk', 'content': content_buffer})}\n\n"
+                                    content_buffer = ""
+                                except Exception as e:
+                                    logger.error(f"❌ Error yielding chunk: {e}")
+                                    # Send even smaller chunks if there's an error
+                                    if len(content_buffer) > 20:
+                                        yield f"data: {json.dumps({'type': 'chunk', 'content': content_buffer[:20]})}\n\n"
+                                        content_buffer = content_buffer[20:]
+                        
+                        elif line and not in_content:
+                            # Plain text line (fallback) - only if it's not configuration data
+                            if not any(keyword in line for keyword in ['agentFlowEvent', 'metadata', 'nodeLabel', 'status', 'INPROGRESS', 'FINISHED']):
+                                yield f"data: {json.dumps({'type': 'chunk', 'content': line})}\n\n"
+                
+                # Send any remaining content
+                if content_buffer:
+                    yield f"data: {json.dumps({'type': 'chunk', 'content': content_buffer})}\n\n"
+
+    except Exception as e:
+        logger.error(f"❌ Flowise streaming generator error: {e}")
+        yield f"data: {json.dumps({'type': 'error', 'error': str(e)})}\n\n"
 
 # Initialize on startup
 init_genai_client()

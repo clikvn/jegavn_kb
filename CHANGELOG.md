@@ -5,6 +5,157 @@ All notable changes to the JEGA Knowledge Base project will be documented in thi
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2025-01-15] - Flowise-Only Implementation
+
+### Added
+- **NEW**: Real-time streaming implementation for Flowise integration
+- **NEW**: `/api/flowise/stream` endpoint for real-time Server-Sent Events (SSE) streaming
+- **NEW**: Simplified Flowise integration without Bubble configuration dependency
+- **NEW**: Chunked streaming to avoid "Chunk too big" errors
+- **NEW**: Direct Flowise API communication without intermediate processing
+- **NEW**: Flowise as the only AI method (removed Vertex AI completely)
+
+### Fixed
+- **FIXED**: "Chunk too big" error by implementing chunked streaming (1KB chunks)
+- **FIXED**: Simplified Flowise payload to only send user question (no chat history or Bubble config needed)
+- **FIXED**: Removed unnecessary Bubble API calls for Flowise integration
+- **FIXED**: Real streaming implementation using fetch with ReadableStream
+- **FIXED**: Proper handling of Flowise's actual streaming format
+- **FIXED**: Removed "can't load bubble configuration" error by eliminating Bubble dependency
+- **FIXED**: Chatbot now works immediately without waiting for configuration loading
+
+### Improved
+- **IMPROVED**: Flowise integration now works independently without Bubble configuration
+- **IMPROVED**: Real-time streaming with proper token-by-token display
+- **IMPROVED**: Simplified backend logic by removing complex content extraction patterns
+- **IMPROVED**: Better error handling for streaming responses
+- **IMPROVED**: Frontend now uses proper streaming with ReadableStream API
+- **IMPROVED**: Removed all Vertex AI code and dependencies
+- **IMPROVED**: Simplified component props (removed useFlowise prop)
+- **IMPROVED**: Faster startup time without configuration loading
+
+### Removed
+- **REMOVED**: All Vertex AI integration code and functions
+- **REMOVED**: Bubble API configuration loading and dependencies
+- **REMOVED**: Complex content extraction patterns and filtering
+- **REMOVED**: Chat history processing for Flowise (not needed)
+- **REMOVED**: Toggle switch between AI methods (Flowise only now)
+- **REMOVED**: `limitConversationMemory` function (not needed for Flowise)
+- **REMOVED**: All unused code and references to old methods
+- **REMOVED**: Syntax errors and leftover code from old implementation
+- **REMOVED**: AI method toggle switcher from ChatBotPanel component
+- **REMOVED**: All switcher-related props and state from Root.js
+- **REMOVED**: Toggle UI elements and related CSS classes
+
+### Technical Details
+- **Streaming**: Real-time streaming using `response.body.getReader()` and `TextDecoder`
+- **Chunking**: 1KB chunks to prevent "Chunk too big" errors
+- **Format**: Direct forwarding of Flowise's SSE format to frontend
+- **Flowise Endpoint**: Updated to use new chartflow ID `40f982a3-ad4f-4df4-9999-8033ec570672`
+- **Independence**: Flowise integration no longer depends on Bubble API configuration
+- **Performance**: Faster response times due to simplified processing
+- **Simplicity**: Single AI method reduces complexity and potential errors
+
+## [2025-01-15] - Image Upload Feature Implementation
+
+### Added
+- **Image Upload UI**: Added image upload button and preview functionality
+- **Base64 Conversion**: Images automatically converted to base64 format
+- **Multiple Image Support**: Users can upload up to 5 images per message
+- **Image Preview**: Thumbnail preview with remove functionality
+- **Backend Support**: Both API endpoints now handle image uploads
+
+### Updated
+- **Frontend**: Added image selection, preview, and management UI
+- **Backend API**: Enhanced to accept `uploads` parameter with image data
+- **Flowise Integration**: Images sent to Flowise in proper format
+- **CSS Styles**: Added comprehensive styling for image upload components
+
+### Technical Details
+- **Image Format**: Base64 encoded with proper MIME type detection
+- **Upload Structure**: Follows Flowise specification with `data`, `type`, `name`, `mime` fields
+- **File Support**: PNG, JPEG, JPG, GIF, WebP formats supported
+- **Size Limit**: Maximum 5 images per message
+- **Auto-Clear**: Images cleared after sending message
+
+## [2025-01-15] - Flowise Session Management Implementation
+
+### Added
+- **Session Management**: Implemented Flowise session continuity using `chatId` and `sessionId`
+- **Browser Caching**: Session data stored in `localStorage` as `jega_flowise_session`
+- **Session Persistence**: Chat context maintained across browser sessions
+- **Session Clearing**: Clear session data when starting new conversations
+
+### Updated
+- **Backend API**: Both endpoints now accept and forward `chatId` and `sessionId` parameters
+- **Frontend**: Automatically includes session data in Flowise requests
+- **Metadata Handling**: Enhanced response parsing to extract and store session metadata
+- **Clear Chat**: Updated to clear both message history and session data
+
+### Technical Details
+- **Session Storage**: `localStorage.getItem('jega_flowise_session')` for persistence
+- **Session Data**: `{chatId, sessionId, lastUpdated}` structure
+- **Auto-Include**: Session data automatically included in subsequent requests
+- **Session Reset**: Cleared when user starts new conversation
+
+## [2025-01-15] - Flowise Chartflow ID Update
+
+### Updated
+- **Flowise Endpoint**: Updated chartflow ID from `4460e8a3-ff9e-4eb2-be18-cdf1ae791201` to `40f982a3-ad4f-4df4-9999-8033ec570672`
+- **Backend API**: Both `/api/flowise` and `/api/flowise/stream` endpoints now use the new Flowise chartflow
+- **Testing**: Verified both regular and streaming endpoints work with the new chartflow ID
+
+## [2025-01-15] - Flowise Integration & Configuration Message Filtering
+
+### Added
+- **NEW**: Flowise chatbot integration with dedicated API endpoint `/api/flowise`
+- **NEW**: Complete Flowise integration module (`flowise_integration.py`) with comprehensive error handling
+- **NEW**: Test files for Flowise connection validation (`test_flowise.py`, `simple_flowise_test.py`)
+- **NEW**: Local development environment setup with `.env` file configuration
+- **NEW**: Python API server running on port 3002 with environment variable support
+- **NEW**: Docusaurus frontend running on port 3000 with successful build verification
+- **NEW**: AI Method Toggle Switch in ChatBot panel header
+- **NEW**: Seamless switching between Vertex AI and Flowise integrations
+- **NEW**: Toggle switch with visual feedback showing current AI method
+- **NEW**: Configuration message filtering to prevent display of Flowise internal data
+- **NEW**: Content extraction logic to separate actual chat content from agent flow events
+- **NEW**: Debug tools for analyzing Flowise response format (`debug_flowise.py`)
+
+### Fixed
+- **FIXED**: Configuration messages (agentFlowEvent, metadata, nodeLabel) no longer displayed in chat UI
+- **FIXED**: Frontend filtering of Flowise internal events and status updates
+- **FIXED**: Backend content extraction to properly separate chat content from configuration data
+- **FIXED**: UTF-8 encoding issues in streaming response processing
+
+### Known Issues
+- **Streaming**: "Chunk too big" error when using Flowise streaming mode
+- **Connectivity**: Occasional timeouts when connecting to Flowise API
+- **Content Extraction**: Some responses may still contain configuration data that needs further filtering
+
+### Technical Details
+- **Flowise API**: Successfully tested connection to `https://langchain-ui.clik.vn/api/v1/prediction/4460e8a3-ff9e-4eb2-be18-cdf1ae791201`
+- **Environment Setup**: Created `.env` file with `BUBBLE_API_KEY` and `NODE_ENV` configuration
+- **Dependencies**: Installed all required Python packages (`fastapi`, `uvicorn`, `google-genai`, `aiohttp`, `python-multipart`, `python-dotenv`)
+- **API Integration**: Added Flowise endpoint to existing FastAPI server with proper error handling and timeout management
+- **Response Processing**: Implemented metadata extraction for chat IDs, message IDs, and agent flow data
+- **Chat History Support**: Added conversion between frontend chat history format and Flowise format
+- **Toggle UI**: Custom CSS toggle switch with smooth animations and visual feedback
+- **State Management**: React state management for AI method selection with localStorage persistence
+- **API Routing**: Dynamic API endpoint selection based on `useFlowise` prop
+- **Streaming Implementation**: Real-time Server-Sent Events (SSE) for both Vertex AI and Flowise
+- **Flowise Streaming**: Based on [Flowise streaming documentation](https://docs.flowiseai.com/using-flowise/streaming)
+- **Event Types**: Support for `start`, `token`, `error`, `end`, `metadata`, `sourceDocuments`, `usedTools` events
+- **Streaming Generator**: Async generator function for processing Flowise streaming responses
+- **Real-time UI Updates**: Both APIs now provide live streaming with typewriter effects
+- **Flowise Format Handling**: Properly handles Flowise's actual streaming format (`message:` + content + metadata)
+- **Chunked Streaming**: Content is sent in 50-character chunks for smooth typewriter effect
+
+### Development Environment
+- **Frontend**: Docusaurus 3.8.0 running on http://localhost:3000
+- **Backend**: Python FastAPI server running on http://localhost:3002
+- **Environment**: Windows PowerShell with proper encoding for `.env` file creation
+- **Testing**: Comprehensive test suite for Flowise API connection and response validation
+
 ## [2025-08-15] - Enhanced Chat Rating System
 
 ### Added
@@ -30,13 +181,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **FIXED**: Made admin page and configManager SSR-safe by checking for browser environment before accessing window object
 
 ### Added
-- **NEW**: Test Cases page at `/test-cases` with 500 JEGA software questions in Vietnamese
-- **NEW**: Comprehensive test case management system with search, filtering, and categorization
+- **NEW**: Test Cases page at `/test-cases` with 3 sample JEGA software questions in Vietnamese
+- **NEW**: Simple test case management system with search functionality
 - **NEW**: User rating system (thumbs up/down) for AI answers
 - **NEW**: User comment system for feedback on AI responses
-- **NEW**: Advanced filtering by category and difficulty level
-- **NEW**: Pagination system for better performance with large datasets
+- **NEW**: Clean, simplified UI without tags, icons, or expand/collapse functionality
+- **NEW**: Wider layout (4200px max-width) for better readability
+- **NEW**: Always-visible answers (no need to click expand)
+- **NEW**: Single question display with left/right navigation arrows
+- **NEW**: Question counter showing current position (e.g., "2 / 3")
 - **NEW**: Responsive design optimized for all device sizes
+- **UPDATED**: Reduced all component sizes - text font size set to 16px, all spacing reduced by half for more compact layout
+- **UPDATED**: Removed statistics section with question count display
+- **UPDATED**: Moved navigation arrows to left and right sides of main content area for better accessibility and visual balance
+- **FIXED**: UI layout shifts when navigating between questions - added consistent heights and smooth transitions
+- **IMPROVED**: Question/answer box width tripled and layout stability enhanced with fixed dimensions and overflow control
+- **ENHANCED**: Main content area now uses flex: 3 for maximum width utilization with minimum 800px width constraint
+- **IMPROVED**: Header section reduced in height and font size for better proportion and compact design
+- **ENHANCED**: Header height further reduced by half with smaller fonts (12px/10px) and minimal padding (8px) for ultra-compact design
+- **IMPROVED**: Search box width now matches main content area for better visual alignment and consistency
+- **UPDATED**: Rating button text changed from "Hữu ích/Không hữu ích" to "Tốt/Không tốt" for better Vietnamese language clarity
+- **IMPROVED**: Question counter now properly center-aligned with block display and fit-content width for better visual balance
+- **REMOVED**: Search bar completely removed from Test Cases page to save space and simplify the interface
 
 ## [Unreleased]
 

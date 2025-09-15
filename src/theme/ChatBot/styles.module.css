@@ -277,6 +277,18 @@
   color: #333;
 }
 
+/* Warning message styles */
+.botMessage .messageBubble[data-model="warning"] {
+  background: #fff5f5;
+  border: 2px solid #f56565;
+  color: #c53030;
+  box-shadow: 0 2px 8px rgba(245, 101, 101, 0.2);
+}
+
+.botMessage .messageBubble[data-model="warning"] p {
+  color: #c53030;
+}
+
 .userMessage .messageBubble p {
   color: #000000;
   font-family: inter-variable, sans-serif;
@@ -425,7 +437,7 @@
   gap: 8px;
   background: #f8f9fa;
   border-radius: 24px;
-  padding: 4px;
+  padding: 4px 8px 4px 4px;
   border: 1px solid #e9ecef;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
@@ -877,5 +889,155 @@
   background: #dc3545;
   color: white;
   border-color: #dc3545;
+}
+
+/* Image Upload Styles */
+.imagePreviewContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+.imagePreview {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  padding: 4px;
+  min-width: 80px;
+  max-width: 100px;
+}
+
+.previewImage {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 4px;
+}
+
+.removeImageButton {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1;
+  transition: background-color 0.2s ease;
+}
+
+.removeImageButton:hover {
+  background: #c82333;
+}
+
+.imageName {
+  font-size: 10px;
+  color: #6c757d;
+  text-align: center;
+  word-break: break-all;
+  max-width: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.imageUploadButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  color: var(--primary-foreground);
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  margin-right: 8px;
+}
+
+.imageUploadButton:hover:not(.disabled) {
+  background: var(--primary);
+  filter: brightness(1.1);
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(0, 149, 104, 0.18);
+}
+
+.imageUploadButton:active:not(.disabled) {
+  background: var(--primary);
+  filter: brightness(0.95);
+  transform: scale(0.95);
+}
+
+.imageUploadButton.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.imageUploadButton i {
+  font-size: 14px;
+}
+
+/* User Message Image Display */
+.userImageContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
+}
+
+.userImagePreview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  padding: 4px;
+  min-width: 80px;
+  max-width: 120px;
+}
+
+.userImage {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 4px;
+}
+
+.userImageName {
+  font-size: 10px;
+  color: #6c757d;
+  text-align: center;
+  word-break: break-all;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 

@@ -1,0 +1,10 @@
+[33md67397b[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31mvuptt/master[m[33m)[m Add rating system
+[33m5765cd3[m[33m ([m[1;31morigin/master[m[33m)[m feat: Major migration to Vietnamese documentation structure and API updates
+[33mdf499a0[m fix(chatbot): Correct URL generation for internal source links
+[33mfb6952a[m fix(chatbot): Resolve numbered list reset issue caused by source links
+[33m4669e33[m feat(chatbot): Major UX and performance improvements in ChatBot component
+[33m9ff0e1a[m chore: Update CHANGELOG.md and remove obsolete documentation files
+[33m2d6eb5d[m fix(api): Address message duplication and configuration validation issues
+[33mf8d7103[m feat(chatbot): Improve ChatBot styles for better layout and responsiveness
+[33macb11b8[m feat(chatbot): Enhance thought processing and streaming capabilities
+[33mf0b6795[m feat(sidebar): Font Awesome caret icon for collapsible categories, design system color, 14x14 size, remove default arrows

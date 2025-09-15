@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback, forwardRef, useImperativeHandle } from 'react';
+import React, { useState, useRef, useEffect, useCallback, useMemo, forwardRef, useImperativeHandle } from 'react';
 import Link from '@docusaurus/Link';
 import styles from './styles.module.css';
 import ChatRating from './ChatRating';
@@ -7,8 +7,7 @@ import ChatRating from './ChatRating';
  * JEGA Assistant ChatBot Component
  * 
  * This component provides an AI-powered chat interface for JEGA software support.
- * It integrates with Google Vertex AI using Gemini 2.5 Pro and Vertex AI Search
- * for contextual responses based on the JEGA knowledge base.
+ * It integrates with Flowise AI for contextual responses based on the JEGA knowledge base.
  * 
  * @param {Object} props - Component props
  * @param {Function} props.onIconClick - Callback when chat icon is clicked (for panel mode)
@@ -19,22 +18,15 @@ import ChatRating from './ChatRating';
 // LocalStorage utility functions
 const STORAGE_KEY = 'jega-chat-history';
 
-const saveMessagesToStorage = (messages, userHistoryLimit) => {
+const saveMessagesToStorage = (messages, userHistoryLimit = 100) => {
   try {
     if (typeof window === 'undefined') return; // SSR check
-    
-    // Require userHistoryLimit from Bubble config - no default fallback
-    if (!userHistoryLimit || typeof userHistoryLimit !== 'number') {
-      console.warn('⚠️ userHistoryLimit not provided from Bubble config, skipping save');
-      return;
-    }
     
     const messagesToSave = messages.slice(-userHistoryLimit); // Keep only last userHistoryLimit
     localStorage.setItem(STORAGE_KEY, JSON.stringify({
       messages: messagesToSave,
       lastUpdated: new Date().toISOString()
     }));
-    console.log('💾 Saved', messagesToSave.length, 'messages to localStorage (limit:', userHistoryLimit, ')');
   } catch (error) {
     console.warn('⚠️ Failed to save messages to localStorage:', error);
   }
@@ -72,26 +64,7 @@ const clearMessagesFromStorage = () => {
 
 const SITE_BASE_URL = 'https://jegavn-kb.vercel.app'; // Change this if your domain changes
 
-/**
- * Limit chat history to conversation memory for Vertex AI
- * @param {Array} messages - Full message history
- * @param {number} conversationMemory - Maximum messages to send to AI (required)
- * @returns {Array} Limited message history for AI
- */
-const limitConversationMemory = (messages, conversationMemory) => {
-  if (!conversationMemory) {
-    throw new Error('conversationMemory is required from Bubble config');
-  }
-  
-  if (!messages || messages.length <= conversationMemory) {
-    return messages;
-  }
-  
-  // Keep the most recent conversationMemory messages
-  const limitedMessages = messages.slice(-conversationMemory);
-  console.log(`📝 Limited conversation memory from ${messages.length} to ${limitedMessages.length} messages for Vertex AI`);
-  return limitedMessages;
-};
+// Removed limitConversationMemory function - not needed for Flowise
 
 // Reusable typewriter streaming function
 function runTypewriterStream({
@@ -100,7 +73,7 @@ function runTypewriterStream({
   getDisplayedLength, // function to get current displayed length
   setDisplayedLength, // function to set displayed length
   onTypewriterUpdate, // function to update UI with current text
-  intervalMs = 10,    // typewriter speed
+  intervalMs = 3,     // typewriter speed
   onDone = null       // callback when done
 }) {
   let interval = setInterval(() => {
@@ -135,7 +108,7 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
       text: 'Chào bạn, tôi có thể giúp gì cho bạn hôm nay?',
       sender: 'bot',
       timestamp: new Date(),
-      model: 'system',
+      model: 'flowise',
       sources: []
     }
     ];
@@ -143,8 +116,9 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [chatConfig, setChatConfig] = useState(null); // Must be loaded from Bubble API
   const [currentThoughts, setCurrentThoughts] = useState(''); // Track current thoughts for streaming
+  const [selectedImages, setSelectedImages] = useState([]);
+  const [imagePreview, setImagePreview] = useState(null);
   
   // Refs
   const messagesEndRef = useRef(null);
@@ -155,51 +129,7 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
     clearChat: handleClearChat
   }), []);
 
-  // Load chat configuration from backend
-  useEffect(() => {
-    const loadChatConfig = async () => {
-      try {
-        const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-        const apiEndpoint = isDevelopment ? 'http://localhost:3002/api/config' : '/api/config';
-        
-        const response = await fetch(apiEndpoint);
-        if (response.ok) {
-          const data = await response.json();
-          if (data.config && data.config.chatSettings) {
-            // Require all settings from Bubble - no defaults
-            if (!data.config.chatSettings.conversationMemory || !data.config.chatSettings.userHistory) {
-              console.error('❌ Missing required chat settings from Bubble API');
-              setError('Cấu hình chatbot không đầy đủ. Vui lòng liên hệ quản trị viên.');
-              return;
-            }
-            
-            setChatConfig({
-              conversationMemory: data.config.chatSettings.conversationMemory,
-              userHistory: data.config.chatSettings.userHistory,
-              // Store full config for potential future use
-              fullConfig: data.config
-            });
-            console.log('🔧 Loaded chat configuration from Bubble:', {
-              chatSettings: data.config.chatSettings,
-              aiModel: data.config.aiModel,
-              hasFullConfig: !!data.config.systemPrompt
-            });
-          } else {
-            console.error('❌ No chat settings found in Bubble API response');
-            setError('Không thể tải cấu hình chatbot từ Bubble API. Vui lòng liên hệ quản trị viên.');
-          }
-        } else {
-          console.error('❌ Failed to fetch chat configuration from API');
-          setError('Không thể kết nối đến API cấu hình. Vui lòng thử lại sau.');
-        }
-      } catch (error) {
-        console.error('❌ Failed to load chat configuration:', error);
-        setError('Lỗi khi tải cấu hình chatbot. Vui lòng thử lại sau.');
-      }
-    };
-
-    loadChatConfig();
-  }, []);
+  // No need to load configuration - Flowise handles everything
 
   // Auto-scroll to bottom when new messages arrive
   const scrollToBottom = useCallback(() => {
@@ -232,13 +162,17 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
 
 
 
-  // Save messages to localStorage whenever they change
+  // Save messages to localStorage whenever they change (but not during streaming)
   useEffect(() => {
-    if (messages.length > 0 && chatConfig && chatConfig.userHistory) {
-      // Use userHistory from Bubble config (required)
-      saveMessagesToStorage(messages, chatConfig.userHistory);
+    if (messages.length > 0) {
+      // Only save if no messages are currently streaming
+      const hasStreamingMessages = messages.some(msg => msg.isStreaming);
+      if (!hasStreamingMessages) {
+        // Use default limit for Flowise (no Bubble config needed)
+        saveMessagesToStorage(messages, 100); // Default limit
+      }
     }
-  }, [messages, chatConfig]);
+  }, [messages]);
 
   // Focus input when panel opens
   useEffect(() => {
@@ -250,217 +184,205 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
     }
   }, [isPanelVersion]);
 
+  // Removed callVertexAI function - using Flowise only
+
   /**
-   * Call Vertex AI API with user message and chat history - STREAMING VERSION
-   * Includes retry mechanism for 429 errors as recommended by Google
-   * @param {string} userMessage - The user's input message
-   * @param {Array} chatHistory - Previous conversation messages
-   * @param {Function} onChunk - Callback for streaming chunks
-   * @returns {Promise<Object>} Response from Vertex AI
+   * Initialize a new Flowise session for faster response
    */
-  const callVertexAI = useCallback(async (userMessage, chatHistory, onChunk = null, streamingMessageId = null, onThought = null) => {
-    const maxRetries = 2; // Google recommendation: retry no more than 2 times
-    const baseDelay = 1000; // Google recommendation: minimum delay of 1 second
-    
-    for (let attempt = 0; attempt <= maxRetries; attempt++) {
-      try {
-        setError(null);
-        
-        // Use correct API endpoint - port 3002 for development, relative path for production
-        const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-        const apiEndpoint = isDevelopment ? 'http://localhost:3002/api/vertex-ai' : '/api/vertex-ai';
-        
-        console.log(`🌐 Calling streaming API endpoint (attempt ${attempt + 1}/${maxRetries + 1}):`, apiEndpoint);
-        
-        // Require conversation memory from Bubble config
-        if (!chatConfig || !chatConfig.conversationMemory) {
-          throw new Error('Chat configuration not loaded from Bubble API');
-        }
-        
-        const limitedHistory = limitConversationMemory(chatHistory, chatConfig.conversationMemory);
-        
-        const response = await fetch(apiEndpoint, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            message: userMessage,
-            chatHistory: limitedHistory
-          })
-        });
-
-        if (!response.ok) {
-          const errorData = await response.json().catch(() => ({}));
-          
-          // Handle 429 (Resource Exhausted) with retry logic
-          if (response.status === 429 && attempt < maxRetries) {
-            const delay = baseDelay * Math.pow(2, attempt); // Exponential backoff
-            console.log(`⏳ Received 429 error, retrying in ${delay}ms (attempt ${attempt + 1}/${maxRetries + 1})`);
-            
-            // Show user feedback about retry
-            setError(`Hệ thống đang bận, đang thử lại... (${attempt + 1}/${maxRetries + 1})`);
-            
-            await new Promise(resolve => setTimeout(resolve, delay));
-            continue; // Retry the request
-          }
-          
-          throw new Error(`HTTP ${response.status}: ${errorData.message || response.statusText}`);
-        }
-
-        // Handle streaming response
-        const reader = response.body.getReader();
-        const decoder = new TextDecoder();
-        let buffer = '';
-        let fullResponse = '';
-        let finalMetadata = null;
-        let streamCompleted = false; // Track if stream completed properly
-        
-        console.log('🌊 [STREAM] Starting to process streaming response...');
-        console.log('🔍 [DEBUG] onChunk callback type:', typeof onChunk);
-        console.log('🔍 [DEBUG] onChunk callback:', onChunk);
-        
-        try {
-          while (true) {
-            const { done, value } = await reader.read();
-            
-            if (done) {
-              console.log('✅ [STREAM] Stream complete');
-              break;
-            }
-            
-            // Decode chunk and add to buffer
-            buffer += decoder.decode(value, { stream: true });
-            
-            // Process complete lines
-            const lines = buffer.split('\n');
-            buffer = lines.pop() || ''; // Keep incomplete line in buffer
-            
-            for (const line of lines) {
-              if (line.trim() === '' || !line.startsWith('data: ')) continue;
-              
-              const dataStr = line.substring(6); // Remove 'data: ' prefix
-              
-              if (dataStr === '[DONE]') {
-                console.log('🏁 [STREAM] Received [DONE] signal');
-                
-                // 🎯 IMMEDIATE STREAM COMPLETION: Turn off streaming indicators right away
-                if (streamingMessageId) {
-                  setMessages(prev => prev.map(msg => {
-                    if (msg.id === streamingMessageId) {
-                      return { 
-                        ...msg, 
-                        isStreaming: false, // ✅ Immediately stop streaming indicator
-                        streamingPhase: null // ✅ Clear streaming phase
-                      };
-                    }
-                    return msg;
-                  }));
-                }
-                
-                console.log('✅ [STREAM] Streaming indicators turned off immediately');
-                
-                // 🔓 CRITICAL: Force break to ensure promise resolves properly
-                streamCompleted = true;
-                break;
-              }
-              
-              try {
-                const data = JSON.parse(dataStr);
-                
-                if (data.type === 'chunk') {
-                  console.log(`🔍 [DEBUG] Processing chunk: ${data.content.length} chars`);
-                  console.log(`🔍 [DEBUG] Chunk content: "${data.content.substring(0, 100)}..."`);
-                  
-                  fullResponse += data.content;
-                  
-                  // Call onChunk callback for real-time UI updates
-                  if (onChunk && typeof onChunk === 'function') {
-                    console.log(`🔄 [UI] Calling onChunk with: "${data.content.substring(0, 30)}..."`);
-                    onChunk(data.content);
-                    console.log(`✅ [UI] onChunk called successfully`);
-                  } else {
-                    console.error(`❌ [UI] onChunk not available! Type: ${typeof onChunk}`);
-                  }
-                  
-                  console.log(`📝 [STREAM] Received chunk: ${data.content.substring(0, 50)}...`);
-                  
-                } else if (data.type === 'thought') {
-                  console.log(`🧠 [THOUGHT] Processing thought: ${data.content.length} chars`);
-                  console.log(`🧠 [THOUGHT] Thought content: "${data.content.substring(0, 100)}..."`);
-                  
-                  // Accumulate thoughts for display
-                  setCurrentThoughts(prev => prev + data.content);
-                  
-                  // Call onThought callback for typewriter effect
-                  if (onThought && typeof onThought === 'function') {
-                    console.log(`🧠 [UI] Calling onThought with: "${data.content.substring(0, 30)}..."`);
-                    onThought(data.content);
-                    console.log(`✅ [UI] onThought called successfully`);
-                  } else {
-                    console.error(`❌ [UI] onThought not available! Type: ${typeof onThought}`);
-                  }
-                  
-                  console.log(`🧠 [THOUGHT] Received thought: ${data.content.substring(0, 50)}...`);
-                  
-                } else if (data.type === 'complete') {
-                  finalMetadata = data;
-                  console.log('📊 [STREAM] Received final metadata:', {
-                    model: data.model
-                  });
-                  
-                } else if (data.type === 'error') {
-                  throw new Error(data.error || 'Streaming error occurred');
-                }
-                
-              } catch (parseError) {
-                console.warn('⚠️ [STREAM] Failed to parse SSE data:', dataStr.substring(0, 100));
-              }
-            }
-            
-            // 🔓 CRITICAL: Check if stream completed via [DONE] signal
-            if (streamCompleted) {
-              console.log('🎯 [STREAM] Breaking outer loop - stream completed');
-              break;
-            }
-          }
-          
-        } catch (streamError) {
-          console.error('❌ [STREAM] Streaming error:', streamError);
-          throw streamError;
-        }
-        
-        // Return the complete response with metadata
-        if (finalMetadata) {
-          return {
-            text: finalMetadata.fullResponse || fullResponse,
-            model: finalMetadata.model || 'unknown-model',
-            usageMetadata: finalMetadata.usageMetadata
-          };
-        } else {
-          // Fallback if no final metadata received
-          return {
-            text: fullResponse || 'Xin lỗi, không nhận được phản hồi hoàn chỉnh.',
-            model: 'unknown-model'
-          };
-        }
-        
-      } catch (error) {
-        // If this is the last attempt or not a retryable error, throw
-        if (attempt === maxRetries || (error.message && !error.message.includes('429'))) {
-          console.error('❌ Vertex AI streaming error:', error);
-          setError(error.message);
-          return {
-            text: 'Xin lỗi, hệ thống JEGA Assistant hiện tại không khả dụng. Vui lòng thử lại sau hoặc liên hệ với bộ phận hỗ trợ.',
-            model: 'error'
-          };
-        }
-        
-        // For retryable errors, continue to next attempt
-        console.log(`🔄 Retryable error on attempt ${attempt + 1}, will retry:`, error.message);
+  const initializeFlowiseSession = useCallback(async () => {
+    try {
+      console.log('🔄 [FLOWISE SESSION] Initializing new session...');
+      const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      const apiEndpoint = isDevelopment ? 'http://localhost:3002/api/flowise/stream' : '/api/flowise/stream';
+      
+      // Send a simple initialization message to create new session
+      const initResponse = await fetch(apiEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          question: 'init',
+          streaming: true
+        })
+      });
+      
+      if (initResponse.ok) {
+        console.log('✅ [FLOWISE SESSION] New session initialized successfully');
+        return true;
+      } else {
+        console.log('⚠️ [FLOWISE SESSION] Session initialization failed');
+        return false;
       }
+    } catch (error) {
+      console.log('⚠️ [FLOWISE SESSION] Session initialization error:', error.message);
+      return false;
     }
-  }, [chatConfig]);
+  }, []);
+
+  /**
+   * Call Flowise API with streaming support
+   * @param {string} userMessage - The user's input message
+   * @param {Function} onChunk - Callback for streaming chunks
+   * @param {number} streamingMessageId - ID of the streaming message
+   * @param {Array} images - Array of images to upload
+   * @returns {Promise<Object>} Response from Flowise
+   */
+  const callFlowise = useCallback(async (userMessage, onChunk = null, streamingMessageId = null, images = []) => {
+    try {
+      setError(null);
+      
+      // Use correct API endpoint - port 3002 for development, relative path for production
+      const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      const apiEndpoint = isDevelopment ? 'http://localhost:3002/api/flowise/stream' : '/api/flowise/stream';
+      
+      console.log(`🌐 Calling Flowise real streaming API endpoint:`, apiEndpoint);
+      
+      // Get session data from browser storage
+      const sessionData = JSON.parse(localStorage.getItem('jega_flowise_session') || '{}');
+      const { chatId, sessionId } = sessionData;
+      
+      console.log(`🔍 [FLOWISE SESSION] Using chatId: ${chatId ? chatId.substring(0, 8) + '...' : 'none'}, sessionId: ${sessionId ? sessionId.substring(0, 8) + '...' : 'none'}`);
+      
+      // Debug image uploads
+      if (images.length > 0) {
+        console.log(`📷 [FLOWISE UPLOAD] Sending ${images.length} image(s) to Flowise:`, images.map(img => ({
+          name: img.name,
+          type: img.type,
+          mime: img.mime,
+          dataLength: img.data.length,
+          dataPreview: img.data.substring(0, 50) + '...'
+        })));
+      }
+      
+      // Use fetch with streaming for real-time response - include session context
+      const response = await fetch(apiEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          question: userMessage,
+          chatId: chatId || '',
+          sessionId: sessionId || '',
+          uploads: images.length > 0 ? images : []
+        })
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(`HTTP ${response.status}: ${errorData.detail || response.statusText}`);
+      }
+
+      // Handle real streaming response
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let fullResponse = '';
+      let metadata = {};
+      let buffer = '';
+
+      try {
+        while (true) {
+          const { done, value } = await reader.read();
+          
+          if (done) {
+            console.log('🔍 [FLOWISE STREAM] Stream completed');
+            break;
+          }
+
+          // Decode the chunk
+          const chunk = decoder.decode(value, { stream: true });
+          buffer += chunk;
+
+          // Process complete lines
+          const lines = buffer.split('\n');
+          buffer = lines.pop(); // Keep incomplete line in buffer
+
+          for (const line of lines) {
+            if (line.trim() === '') continue;
+
+            console.log('🔍 [FLOWISE STREAM] Processing line:', line);
+
+            // Handle different types of streaming data
+            if (line.startsWith('data:')) {
+              try {
+                const dataContent = line.substring(5).trim();
+                if (dataContent === '[DONE]') {
+                  console.log('🔍 [FLOWISE STREAM] Stream marked as done');
+                  break;
+                }
+                
+                const data = JSON.parse(dataContent);
+                console.log('🔍 [FLOWISE STREAM] Parsed data:', data);
+
+                // Handle token events (actual content)
+                if (data.event === 'token' && data.data) {
+                  const token = data.data;
+                  console.log('🔍 [FLOWISE STREAM] Token:', token);
+                  
+                  // Accumulate response
+                  fullResponse += token;
+                  
+                  // Send chunk to UI for real-time display
+                  if (onChunk && typeof onChunk === 'function') {
+                    onChunk(token);
+                  }
+                } else if (data.event === 'metadata' && data.data) {
+                  metadata = data.data;
+                  console.log('🔍 [FLOWISE STREAM] Metadata:', metadata);
+                  
+                  // Store session data for future requests
+                  if (metadata.chatId || metadata.sessionId) {
+                    const sessionData = {
+                      chatId: metadata.chatId || '',
+                      sessionId: metadata.sessionId || '',
+                      lastUpdated: new Date().toISOString()
+                    };
+                    localStorage.setItem('jega_flowise_session', JSON.stringify(sessionData));
+                    console.log('💾 [FLOWISE SESSION] Stored session data:', sessionData);
+                  }
+                }
+              } catch (parseError) {
+                console.warn('⚠️ [FLOWISE STREAM] Parse error for line:', line, parseError);
+              }
+            }
+          }
+        }
+      } finally {
+        reader.releaseLock();
+      }
+      
+      // Turn off streaming indicators
+      if (streamingMessageId) {
+        setMessages(prev => prev.map(msg => {
+          if (msg.id === streamingMessageId) {
+            return { 
+              ...msg, 
+              isStreaming: false,
+              streamingPhase: null
+            };
+          }
+          return msg;
+        }));
+      }
+      
+      // Return the complete response with metadata
+      return {
+        text: fullResponse || 'Xin lỗi, không nhận được phản hồi hoàn chỉnh từ Flowise.',
+        model: 'flowise',
+        metadata: metadata || {},
+        sources: [] // Flowise doesn't provide sources in the same format
+      };
+      
+    } catch (error) {
+      console.error('❌ Flowise streaming error:', error);
+      setError(error.message);
+      return {
+        text: 'Xin lỗi, hệ thống Flowise hiện tại không khả dụng. Vui lòng thử lại sau.',
+        model: 'error'
+      };
+    }
+  }, []);
 
   /**
    * Handle sending a new message - STREAMING VERSION with SMOOTH TYPEWRITER EFFECT
@@ -468,24 +390,21 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
   const handleSendMessage = useCallback(async () => {
     if (!inputValue.trim() || isLoading) return;
     
-    // Ensure chat config is loaded from Bubble before allowing messages
-    if (!chatConfig) {
-      setError('Chưa tải được cấu hình chatbot. Vui lòng thử lại sau.');
-      return;
-    }
-    
     const userMessage = inputValue.trim();
+    const imagesToSend = [...selectedImages]; // Store images before clearing
     setInputValue('');
+    clearImages(); // Clear selected images after storing them
     setIsLoading(true);
     setError(null);
     setCurrentThoughts(''); // Reset thoughts for new message
     
-    // Add user message to chat
+    // Add user message to chat with images
     const newUserMessage = {
       id: Date.now(),
       text: userMessage,
       sender: 'user',
-      timestamp: new Date()
+      timestamp: new Date(),
+      images: imagesToSend.length > 0 ? imagesToSend : []
     };
     
     setMessages(prev => [...prev, newUserMessage]);
@@ -560,7 +479,7 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
             getDisplayedLength: () => answerDisplayedLength,
             setDisplayedLength: (len) => { answerDisplayedLength = len; },
             onTypewriterUpdate: updateAnswer,
-            intervalMs: 10,
+            intervalMs: 3,
             onDone: () => {
               console.log('📝 [PARALLEL] Answer typewriter complete');
               setMessages(prev => prev.map(msg => {
@@ -655,8 +574,8 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
       
 
 
-      // Get bot response with streaming (starts immediately!)
-      const botResponse = await callVertexAI(userMessage, [...messages, newUserMessage], onChunk, streamingBotMessage.id, onThought);
+      // Get bot response - Flowise only (no chat history needed)
+      const botResponse = await callFlowise(userMessage, onChunk, streamingBotMessage.id, imagesToSend);
       
       // 🔓 CRITICAL: Reset loading state immediately after API call completes
       // This ensures input is enabled as soon as the response is received
@@ -735,7 +654,7 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
     } finally {
       setIsLoading(false);
     }
-  }, [inputValue, isLoading, messages, callVertexAI, chatConfig, currentThoughts]);
+  }, [inputValue, isLoading, messages, callFlowise, currentThoughts]);
 
   /**
    * Handle keyboard events
@@ -746,6 +665,99 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
       handleSendMessage();
     }
   }, [handleSendMessage]);
+
+  /**
+   * Memoized message item component to prevent unnecessary re-renders
+   */
+  const MessageItem = React.memo(({ message, styles, onRatingSubmit }) => {
+    const formattedText = useMemo(() => formatMessage(message.text), [message.text]);
+    const formattedThoughts = useMemo(() => formatMessage(message.thoughts), [message.thoughts]);
+    
+    return (
+      <div className={`${styles.messageWrapper} ${message.sender === 'bot' ? styles.botMessage : styles.userMessage}`}>
+        {message.sender === 'bot' ? (
+          <div className={styles.botGroupContainer}>
+            {/* Thoughts section (if any) */}
+            {message.thoughts && message.thoughts.trim() && (
+              <details className={message.isThinking ? styles.thinkingContainer : styles.thoughtsContainer} open={!message.thoughtsCollapsed}>
+                <summary className={styles.thoughtsSummary}>
+                  🧠 {message.isThinking ? 'Đang suy nghĩ...' : 'Quá trình suy nghĩ'} ({message.thoughts.length} ký tự)
+                  {message.thoughtsDuration && (
+                    <span className={styles.thoughtsDuration}>
+                      • {message.thoughtsDuration}ms
+                    </span>
+                  )}
+                  {message.isThinking && <span className={styles.thinkingDots}>...</span>}
+                </summary>
+                <div className={styles.thoughtsContent}>
+                  <pre>{message.thoughts}</pre>
+                </div>
+              </details>
+            )}
+            {/* Divider if both thoughts and message exist */}
+            {message.thoughts && message.thoughts.trim() && message.text && (
+              <div className={styles.thoughtsDivider} />
+            )}
+            {/* Bot message bubble */}
+            <div 
+              className={`${styles.messageBubble} ${message.isStreaming ? styles.streamingMessage : ''}`}
+              data-model={message.model}
+            >
+              <div 
+                className={styles.messageText} 
+                dangerouslySetInnerHTML={{ __html: formattedText }} 
+              />
+              {/* Enhanced streaming indicator with four-phase messages */}
+              {message.isStreaming && (
+                <div className={styles.streamingIndicator}>
+                  {message.streamingPhase === 'processing' && 'Đang xử lý câu hỏi của bạn...'}
+                  {message.streamingPhase === 'thinking' && 'Suy nghĩ về câu hỏi của bạn...'}
+                  {message.streamingPhase === 'searching' && 'Đang tìm kiếm dữ liệu...'}
+                  {message.streamingPhase === 'generating' && 'Đang tạo phản hồi...'}
+                </div>
+              )}
+            </div>
+            
+            {/* Chat Rating Component - Only show for completed bot messages (not streaming) */}
+            {!message.isStreaming && message.text && (
+              <ChatRating
+                messageId={message.id}
+                question={getUserQuestionForMessage(message.id)}
+                answer={message.text}
+                onRatingSubmit={onRatingSubmit}
+              />
+            )}
+          </div>
+        ) : (
+          // User message (no thoughts)
+          <div 
+            className={`${styles.messageBubble} ${message.isStreaming ? styles.streamingMessage : ''}`}
+            data-model={message.model}
+          >
+            <div 
+              className={styles.messageText} 
+              dangerouslySetInnerHTML={{ __html: formattedText }} 
+            />
+            {/* Display uploaded images in user message */}
+            {message.images && message.images.length > 0 && (
+              <div className={styles.userImageContainer}>
+                {message.images.map((image) => (
+                  <div key={image.id} className={styles.userImagePreview}>
+                    <img 
+                      src={image.data} 
+                      alt={image.name}
+                      className={styles.userImage}
+                    />
+                    <span className={styles.userImageName}>{image.name}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    );
+  });
 
   /**
    * Format message text with markdown-like syntax
@@ -770,10 +782,10 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
       .replace(/\*(.*?)\*/g, '<em>$1</em>')
       .replace(/`(.*?)`/g, '<code>$1</code>')
       // Process source links BEFORE list processing to avoid breaking list structure
-      .replace(/(?:\n)*<source>(?:\s)*(?:<url>(.*?)<\/url>(?:\s)*<title>(.*?)<\/title>|<title>(.*?)<\/title>(?:\s)*<url>(.*?)<\/url>)(?:\s)*<\/source>/gis, 
+      .replace(/(?:\n)*<source>(?:\s)*(?:<url>(.*?)<\/url>(?:\s)*(?:<title>(.*?)<\/title>)?|<title>(.*?)<\/title>(?:\s)*<url>(.*?)<\/url>)(?:\s)*<\/source>/gis, 
         (match, url1, title1, title2, url2) => {
           const url = (url1 || url2).trim();
-          const title = (title1 || title2).trim();
+          const title = (title1 || title2 || 'Xem bài hướng dẫn tại đây').trim();
           
           // Check if this is an internal docusaurus link
           const isInternal = url.includes('jegavn-kb.vercel.app/docs/') || url.includes('localhost:3000/docs/');
@@ -799,7 +811,8 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
             title, 
             isInternal, 
             docPath: isInternal ? url.split('/docs/')[1].replace(/^\/+/, '') : null, 
-            cssClass: styles.sourceLink 
+            cssClass: styles.sourceLink,
+            match: match
           });
           // Use a span instead of div to keep it inline within list items
           return `<span class="source-link-container"><a ${linkAttrs}><svg width="12" height="12" viewBox="0 0 24 24" fill="none">${iconPath}</svg>${esc(title)}</a></span>`;
@@ -832,9 +845,9 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
         
         if (isInternal) {
           const docPath = url.split('/docs/')[1].replace(/^\/+/, ''); // Remove leading slashes to prevent double slashes
-          return `<a href="/docs/${docPath}" class="${styles.sourceLink} internal-link" data-internal-path="/docs/${docPath}">Link</a>`;
+          return `<a href="/docs/${docPath}" class="${styles.sourceLink} internal-link" data-internal-path="/docs/${docPath}">Xem bài hướng dẫn tại đây</a>`;
         } else {
-          return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="${styles.sourceLink}">Link</a>`;
+          return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="${styles.sourceLink}">Xem bài hướng dẫn tại đây</a>`;
         }
       })
       // Clean up consecutive <br> tags to prevent extra empty lines
@@ -842,19 +855,105 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
       // Remove <br> tags that appear immediately after header closing tags to prevent extra spacing
       .replace(/(<\/h[1-6]>)\s*(<br\/?>)/gi, '$1');
     
-    console.log('📝 formatMessage result:', formatted);
-    
     return formatted;
   }, []);
 
   /**
-   * Clear chat history
+   * Handle image file selection
    */
-  const handleClearChat = useCallback(() => {
+  const handleImageSelect = useCallback((event) => {
+    const files = Array.from(event.target.files);
+    const imageFiles = files.filter(file => file.type.startsWith('image/'));
+    
+    if (imageFiles.length === 0) return;
+    
+    // Check if user is trying to select more than 3 images total
+    const totalImagesAfterSelection = selectedImages.length + imageFiles.length;
+    if (totalImagesAfterSelection > 3) {
+      // Remove any existing warning messages first, then add new one
+      setMessages(prev => {
+        const filteredMessages = prev.filter(msg => msg.model !== 'warning');
+        return [...filteredMessages, {
+          id: Date.now(),
+          text: `⚠️ Bạn chỉ có thể tải lên tối đa 3 ảnh. Hiện tại bạn đã có ${selectedImages.length} ảnh, vui lòng chọn tối đa ${3 - selectedImages.length} ảnh nữa.`,
+          sender: 'bot',
+          timestamp: new Date(),
+          model: 'warning'
+        }];
+      });
+      
+      // Clear the input
+      event.target.value = '';
+      return;
+    }
+    
+    // Remove any existing warning messages when user selects correct number
+    setMessages(prev => prev.filter(msg => msg.model !== 'warning'));
+    
+    // Limit to 3 images max
+    const newImages = imageFiles.slice(0, 3 - selectedImages.length);
+    
+    newImages.forEach(file => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const base64 = e.target.result;
+        const mimeType = file.type;
+        const fileName = file.name;
+        
+        const imageData = {
+          data: base64,
+          type: 'image',
+          name: fileName,
+          mime: mimeType,
+          id: Date.now() + Math.random() // Unique ID for React key
+        };
+        
+        setSelectedImages(prev => [...prev, imageData]);
+        console.log('📷 Image selected:', { 
+          fileName, 
+          mimeType, 
+          size: file.size,
+          base64Length: base64.length,
+          base64Preview: base64.substring(0, 50) + '...'
+        });
+      };
+      reader.readAsDataURL(file);
+    });
+    
+    // Clear the input so the same file can be selected again
+    event.target.value = '';
+  }, [selectedImages.length]);
+
+  /**
+   * Remove selected image
+   */
+  const removeImage = useCallback((imageId) => {
+    setSelectedImages(prev => prev.filter(img => img.id !== imageId));
+  }, []);
+
+  /**
+   * Clear all selected images
+   */
+  const clearImages = useCallback(() => {
+    setSelectedImages([]);
+    setImagePreview(null);
+  }, []);
+
+  /**
+   * Clear chat history and initialize new Flowise session
+   */
+  const handleClearChat = useCallback(async () => {
     console.log('🗑️ Clearing chat history...');
     
     // Clear from localStorage
     clearMessagesFromStorage();
+    
+    // Clear Flowise session data
+    localStorage.removeItem('jega_flowise_session');
+    console.log('🗑️ [FLOWISE SESSION] Cleared session data');
+    
+    // Clear selected images
+    clearImages();
     
     // Reset to default welcome message
     setMessages([
@@ -868,11 +967,14 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
     ]);
     setError(null);
     
+    // Initialize new Flowise session for faster response
+    await initializeFlowiseSession();
+    
     // Notify parent component if callback is provided
     if (onClearChat) {
       onClearChat();
     }
-  }, [onClearChat]);
+  }, [onClearChat, clearImages]);
 
   // Handle internal link navigation
   useEffect(() => {
@@ -952,67 +1054,12 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
       {/* Messages area */}
       <div className={styles.chatMessages}>
         {messages.map((message) => (
-          <div key={message.id} className={`${styles.messageWrapper} ${message.sender === 'user' ? styles.userMessage : styles.botMessage}`}>
-            {message.sender === 'bot' ? (
-              <div className={styles.botGroupContainer}>
-                {/* Thoughts section (if any) */}
-                {message.thoughts && message.thoughts.trim() && (
-                  <details className={message.isThinking ? styles.thinkingContainer : styles.thoughtsContainer} open={!message.thoughtsCollapsed}>
-                    <summary className={styles.thoughtsSummary}>
-                      🧠 {message.isThinking ? 'Đang suy nghĩ...' : 'Quá trình suy nghĩ'} ({message.thoughts.length} ký tự)
-                      {message.thoughtsDuration && (
-                        <span className={styles.thoughtsDuration}>
-                          • {message.thoughtsDuration}ms
-                        </span>
-                      )}
-                      {message.isThinking && <span className={styles.thinkingDots}>...</span>}
-                    </summary>
-                    <div className={styles.thoughtsContent}>
-                      <pre>{message.thoughts}</pre>
-                    </div>
-                  </details>
-                )}
-                {/* Divider if both thoughts and message exist */}
-                {message.thoughts && message.thoughts.trim() && message.text && (
-                  <div className={styles.thoughtsDivider} />
-                )}
-                {/* Bot message bubble */}
-                <div className={`${styles.messageBubble} ${message.isStreaming ? styles.streamingMessage : ''}`}>
-                  <div 
-                    className={styles.messageText} 
-                    dangerouslySetInnerHTML={{ __html: formatMessage(message.text) }} 
-                  />
-                  {/* Enhanced streaming indicator with four-phase messages */}
-                  {message.isStreaming && (
-                    <div className={styles.streamingIndicator}>
-                      {message.streamingPhase === 'processing' && 'Đang xử lý câu hỏi của bạn...'}
-                      {message.streamingPhase === 'thinking' && 'Suy nghĩ về câu hỏi của bạn...'}
-                      {message.streamingPhase === 'searching' && 'Đang tìm kiếm dữ liệu...'}
-                      {message.streamingPhase === 'generating' && 'Đang tạo phản hồi...'}
-                    </div>
-                  )}
-                </div>
-                
-                {/* Chat Rating Component - Only show for completed bot messages (not streaming) */}
-                {message.sender === 'bot' && !message.isStreaming && message.text && (
-                  <ChatRating
-                    messageId={message.id}
-                    question={getUserQuestionForMessage(message.id)}
-                    answer={message.text}
-                    onRatingSubmit={handleChatRatingSubmit}
-                  />
-                )}
-              </div>
-            ) : (
-              // User message (no thoughts)
-              <div className={`${styles.messageBubble} ${message.isStreaming ? styles.streamingMessage : ''}`}>
-                <div 
-                  className={styles.messageText} 
-                  dangerouslySetInnerHTML={{ __html: formatMessage(message.text) }} 
-                />
-              </div>
-            )}
-          </div>
+          <MessageItem 
+            key={message.id} 
+            message={message} 
+            styles={styles} 
+            onRatingSubmit={handleChatRatingSubmit}
+          />
         ))}
         
 
@@ -1022,24 +1069,66 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
 
       {/* Input area */}
       <div className={styles.chatInput}>
+        {/* Image preview area */}
+        {selectedImages.length > 0 && (
+          <div className={styles.imagePreviewContainer}>
+            {selectedImages.map((image) => (
+              <div key={image.id} className={styles.imagePreview}>
+                <img 
+                  src={image.data} 
+                  alt={image.name}
+                  className={styles.previewImage}
+                />
+                <button 
+                  className={styles.removeImageButton}
+                  onClick={() => removeImage(image.id)}
+                  aria-label="Xóa ảnh"
+                >
+                  ×
+                </button>
+                <span className={styles.imageName}>{image.name}</span>
+              </div>
+            ))}
+          </div>
+        )}
+        
         <div className={styles.inputContainer}>
+          {/* Image upload button - moved to left */}
+          <input
+            type="file"
+            id="image-upload"
+            accept="image/*"
+            multiple
+            onChange={handleImageSelect}
+            style={{ display: 'none' }}
+            disabled={isLoading || selectedImages.length >= 3}
+          />
+          <label 
+            htmlFor="image-upload" 
+            className={`${styles.imageUploadButton} ${(isLoading || selectedImages.length >= 3) ? styles.disabled : ''}`}
+            title={selectedImages.length >= 3 ? 'Tối đa 3 ảnh' : 'Tải lên ảnh'}
+          >
+            <i className="fa-regular fa-images"></i>
+          </label>
+          
           <input 
             ref={inputRef}
             type="text" 
-            placeholder={!chatConfig ? "Đang tải cấu hình..." : "Nhập câu hỏi của bạn..."}
+            placeholder="Nhập câu hỏi của bạn..."
             className={styles.messageInput}
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             onKeyPress={handleKeyPress}
-            disabled={isLoading || !chatConfig}
+            disabled={isLoading}
             aria-label="Nhập tin nhắn"
           />
+          
           <button 
             className={styles.sendButton} 
             onClick={handleSendMessage}
-            disabled={!inputValue.trim() || isLoading || !chatConfig}
+            disabled={!inputValue.trim() || isLoading}
             aria-label="Gửi tin nhắn"
-            title={!chatConfig ? "Đang tải cấu hình..." : "Gửi tin nhắn"}
+            title="Gửi tin nhắn"
           >
             <svg 
               width="18"

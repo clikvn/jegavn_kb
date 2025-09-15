@@ -130,6 +130,8 @@ export default function Root({children}) {
     // This is just for logging and any future panel-level actions
   };
 
+  // Removed AI method toggle - using Flowise only
+
   return (
     <>
       {children}
@@ -140,7 +142,11 @@ export default function Root({children}) {
         isPanelVersion={false} /* Tells ChatBot to only render its icon */
       />
 
-      <ChatBotPanel open={isPanelOpen} onClose={() => setIsPanelOpen(false)} chatBotRef={chatBotRef}>
+      <ChatBotPanel 
+        open={isPanelOpen} 
+        onClose={() => setIsPanelOpen(false)} 
+        chatBotRef={chatBotRef}
+      >
         {/* Render ChatBot's UI part inside the panel, only when panel is open */}
         {isPanelOpen && (
           <ChatBot 
