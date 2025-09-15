@@ -928,6 +928,9 @@ async def flowise_chat(request: Request):
             body = json.loads(body_text)
         
         question = body.get('question', '').strip()
+        chat_id = body.get('chatId', '')
+        session_id = body.get('sessionId', '')
+        uploads = body.get('uploads', [])
         chat_history = body.get('chatHistory', [])
         streaming = body.get('streaming', True)  # Default to streaming
 
@@ -945,7 +948,9 @@ async def flowise_chat(request: Request):
         # Prepare payload with streaming support
         payload = {
             "question": question,
-            "streaming": False  # Force non-streaming to get JSON response
+            "streaming": False,  # Force non-streaming to get JSON response
+            "chatId": chat_id,
+            "sessionId": session_id
         }
 
         # Add chat history if provided
@@ -965,7 +970,12 @@ async def flowise_chat(request: Request):
                     })
             payload["chatHistory"] = flowise_history
 
-        logger.info(f"🔍 Sending query to Flowise: {question[:50]}... (streaming: {streaming})")
+        # Add uploads if present
+        if uploads:
+            payload["uploads"] = uploads
+            logger.info(f"🔍 [FLOWISE PAYLOAD] Full payload being sent: {json.dumps(payload, indent=2)}")
+        else:
+            logger.info(f"🔍 Sending query to Flowise: {question[:50]}... (streaming: {streaming})")
 
         # Use non-streaming to get JSON response format
         try:

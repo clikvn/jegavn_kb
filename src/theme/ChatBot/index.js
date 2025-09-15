@@ -263,6 +263,7 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
         },
         body: JSON.stringify({
           question: userMessage,
+          streaming: true,
           chatId: chatId || '',
           sessionId: sessionId || '',
           uploads: images.length > 0 ? images : []
