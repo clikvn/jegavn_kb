@@ -1161,27 +1161,34 @@ async def flowise_chat(request: Request):
                                             actual_content = matches[0]
                                             logger.info(f"✅ [FLOWISE] Found Vietnamese response with pattern: {actual_content[:100]}...")
                                             break
-                                else:
-                                    # Fallback: look for any meaningful content
-                                    logger.info("🔍 [FLOWISE DEBUG] No agentFlowExecutedData found, using fallback")
-                                    try:
-                                        lines = response_text.split('\n')
-                                        for line in lines:
-                                            line = line.strip()
-                                            if (line and 
-                                                not line.startswith('data:') and 
-                                                not line.startswith('message:') and
-                                                not any(keyword in line for keyword in ['agentFlowEvent', 'metadata', 'nodeLabel', 'status', 'INPROGRESS', 'FINISHED']) and
-                                                len(line) > 10):  # Only lines with substantial content
-                                                actual_content += line + '\n'
-                                    except Exception as e:
-                                        logger.error(f"❌ Error extracting content: {e}")
-                                        logger.error(f"❌ Content extraction error type: {type(e).__name__}")
-                                        # Don't use hardcoded fallback, let it be empty so we can debug
-                                        actual_content = ""
                                     
-                                    # Clean up the content
-                                    actual_content = actual_content.strip()
+                                    if not actual_content:
+                                        # Fallback: look for any meaningful content
+                                        logger.info("🔍 [FLOWISE DEBUG] No agentFlowExecutedData found, using fallback")
+                                        try:
+                                            lines = response_text.split('\n')
+                                            for line in lines:
+                                                line = line.strip()
+                                                if (line and 
+                                                    not line.startswith('data:') and 
+                                                    not line.startswith('message:') and
+                                                    not any(keyword in line for keyword in ['agentFlowEvent', 'metadata', 'nodeLabel', 'status', 'INPROGRESS', 'FINISHED']) and
+                                                    len(line) > 10):  # Only lines with substantial content
+                                                    actual_content += line + '\n'
+                                        except Exception as e:
+                                            logger.error(f"❌ Error extracting content: {e}")
+                                            logger.error(f"❌ Content extraction error type: {type(e).__name__}")
+                                            # Don't use hardcoded fallback, let it be empty so we can debug
+                                            actual_content = ""
+                                        
+                                        # Clean up the content
+                                        actual_content = actual_content.strip()
+                            
+                            except Exception as e:
+                                logger.error(f"❌ Error in streaming format parsing: {e}")
+                                logger.error(f"❌ Streaming format error type: {type(e).__name__}")
+                                # Don't use hardcoded fallback, let it be empty so we can debug
+                                actual_content = ""
                         
                         # Filter out system prompt content
                         if actual_content:
