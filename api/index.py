@@ -937,8 +937,15 @@ async def flowise_chat(request: Request):
         # Log the question for debugging
         logger.info(f"🔍 [FLOWISE] Processing question: '{question[:100]}...'")
 
-        # Flowise API configuration
-        flowise_url = "https://langchain-ui.clik.vn/api/v1/prediction/4460e8a3-ff9e-4eb2-be18-cdf1ae791201"
+        # Flowise API configuration - use environment variables with fallbacks
+        flowise_url = os.getenv('FLOWISE_URL', 'https://langchain-ui.clik.vn/api/v1/prediction/4460e8a3-ff9e-4eb2-be18-cdf1ae791201')
+        flowise_api_key = os.getenv('FLOWISE_API_KEY', 'your-flowise-api-key')
+        
+        # Log configuration status
+        if not flowise_url or flowise_url == 'http://localhost:3000/api/v1/prediction/your-flow-id':
+            logger.warning("⚠️ Using default Flowise URL - please set FLOWISE_URL environment variable")
+        if not flowise_api_key or flowise_api_key == 'your-flowise-api-key':
+            logger.warning("⚠️ Using default Flowise API key - please set FLOWISE_API_KEY environment variable")
 
         # Prepare payload with streaming support
         payload = {
@@ -970,7 +977,11 @@ async def flowise_chat(request: Request):
             # Increase timeout for Vietnamese text processing
             timeout = aiohttp.ClientTimeout(total=120)  # 2 minutes timeout
             async with aiohttp.ClientSession(timeout=timeout) as session:
-                async with session.post(flowise_url, json=payload) as response:
+                headers = {}
+                if flowise_api_key and flowise_api_key != 'your-flowise-api-key':
+                    headers['Authorization'] = f'Bearer {flowise_api_key}'
+                
+                async with session.post(flowise_url, json=payload, headers=headers) as response:
                     if response.status == 200:
                         # Handle JSON response (not streaming)
                         response_text = await response.text()
@@ -1246,6 +1257,16 @@ async def flowise_chat(request: Request):
                 "question": question,
                 "timestamp": datetime.now().isoformat()
             }
+        except Exception as e:
+            logger.error(f"❌ Flowise general error: {e}")
+            # Provide a helpful fallback response
+            return {
+                "success": True,
+                "response": f"Xin chào! Tôi là trợ lý AI của JEGA. Tôi hiện đang gặp sự cố kỹ thuật với hệ thống Flowise. Vui lòng thử lại sau hoặc liên hệ với đội ngũ hỗ trợ.\n\nCâu hỏi của bạn: {question}",
+                "metadata": {"fallback": True, "reason": str(e)},
+                "question": question,
+                "timestamp": datetime.now().isoformat()
+            }
         except asyncio.TimeoutError as e:
             logger.error(f"❌ Flowise timeout error: {e}")
             return {
@@ -1275,11 +1296,105 @@ async def flowise_chat(request: Request):
         }
 
 
+@app.post("/api/flowise/stream")
+async def flowise_stream_chat(request: Request):
+    """Flowise streaming endpoint - same as /api/flowise but with proper streaming response"""
+    question = ""
+    try:
+        # Parse request with proper encoding handling
+        try:
+            body = await request.json()
+        except UnicodeDecodeError as e:
+            logger.error(f"❌ Unicode decode error: {e}")
+            # Try to get raw body and decode with error handling
+            raw_body = await request.body()
+            body_text = raw_body.decode('utf-8', errors='replace')
+            body = json.loads(body_text)
+        
+        question = body.get('question', '').strip()
+        chat_id = body.get('chatId', '')
+        session_id = body.get('sessionId', '')
+        uploads = body.get('uploads', [])
+        streaming = body.get('streaming', True)
+
+        if not question:
+            raise HTTPException(status_code=400, detail="Question is required")
+        
+        # Log the question for debugging
+        logger.info(f"🔍 [FLOWISE STREAM] Processing question: '{question[:100]}...'")
+
+        # Flowise API configuration - use fallback values like local development
+        FLOWISE_URL = os.getenv('FLOWISE_URL', 'http://localhost:3000/api/v1/prediction/your-flow-id')
+        FLOWISE_API_KEY = os.getenv('FLOWISE_API_KEY', 'your-flowise-api-key')
+        
+        # Log configuration status
+        if not FLOWISE_URL or FLOWISE_URL == 'http://localhost:3000/api/v1/prediction/your-flow-id':
+            logger.warning("⚠️ Using default Flowise URL - please set FLOWISE_URL environment variable")
+        if not FLOWISE_API_KEY or FLOWISE_API_KEY == 'your-flowise-api-key':
+            logger.warning("⚠️ Using default Flowise API key - please set FLOWISE_API_KEY environment variable")
+
+        # Prepare payload for Flowise
+        payload = {
+            "question": question,
+            "streaming": streaming,
+            "chatId": chat_id,
+            "sessionId": session_id
+        }
+        
+        # Add uploads if present
+        if uploads:
+            payload["uploads"] = uploads
+            logger.info(f"🔍 [FLOWISE STREAM PAYLOAD] Full payload being sent: {json.dumps(payload, indent=2)}")
+        else:
+            logger.info(f"🔍 [FLOWISE STREAM] Sending query to Flowise: {question[:50]}... (streaming: {streaming})")
+
+        # Use the existing flowise_stream_generator
+        return StreamingResponse(
+            flowise_stream_generator(FLOWISE_URL, payload),
+            media_type="text/event-stream",
+            headers={
+                "Cache-Control": "no-cache",
+                "Connection": "keep-alive",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "POST, OPTIONS",
+                "Access-Control-Allow-Headers": "Content-Type, Authorization"
+            }
+        )
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"❌ Flowise stream endpoint error: {e}")
+        # Return a fallback streaming response instead of throwing error
+        async def fallback_stream():
+            fallback_message = f"Xin chào! Tôi là trợ lý AI của JEGA. Tôi hiện đang gặp sự cố kỹ thuật với hệ thống Flowise. Vui lòng thử lại sau hoặc liên hệ với đội ngũ hỗ trợ.\n\nCâu hỏi của bạn: {question}"
+            yield f"data: {json.dumps({'event': 'token', 'data': fallback_message})}\n\n"
+            yield f"data: {json.dumps({'event': 'metadata', 'data': {'fallback': True, 'reason': str(e)}})}\n\n"
+            yield f"data: [DONE]\n\n"
+        
+        return StreamingResponse(
+            fallback_stream(),
+            media_type="text/event-stream",
+            headers={
+                "Cache-Control": "no-cache",
+                "Connection": "keep-alive",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "POST, OPTIONS",
+                "Access-Control-Allow-Headers": "Content-Type, Authorization"
+            }
+        )
+
+
 async def flowise_stream_generator(flowise_url: str, payload: dict):
     """Generator for streaming Flowise responses"""
     try:
         async with aiohttp.ClientSession() as session:
-            async with session.post(flowise_url, json=payload, timeout=60) as response:
+            headers = {}
+            flowise_api_key = os.getenv('FLOWISE_API_KEY', 'your-flowise-api-key')
+            if flowise_api_key and flowise_api_key != 'your-flowise-api-key':
+                headers['Authorization'] = f'Bearer {flowise_api_key}'
+            
+            async with session.post(flowise_url, json=payload, headers=headers, timeout=60) as response:
                 if response.status != 200:
                     error_text = await response.text()
                     logger.error(f"❌ Flowise streaming error: {response.status} - {error_text}")
