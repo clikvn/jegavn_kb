@@ -487,6 +487,11 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
                 }
                 return msg;
               }));
+              
+              // 🔓 CRITICAL: Reset loading state only when typewriter is complete
+              // This ensures input is enabled only after the full response is displayed
+              setIsLoading(false);
+              console.log('🔓 [INPUT] Loading state reset after typewriter completion - input enabled');
             }
           });
         }
@@ -572,10 +577,25 @@ const ChatBot = forwardRef(({ onIconClick, isPanelVersion, onClearChat }, ref) =
       // Get bot response - Flowise only (no chat history needed)
       const botResponse = await callFlowise(userMessage, onChunk, streamingBotMessage.id, imagesToSend);
       
-      // 🔓 CRITICAL: Reset loading state immediately after API call completes
-      // This ensures input is enabled as soon as the response is received
-      setIsLoading(false);
-      console.log('🔓 [INPUT] Loading state reset - input enabled');
+      // 🔓 CRITICAL: Don't reset loading state here - wait for typewriter completion
+      // This prevents race condition where input gets enabled before typewriter finishes
+      console.log('🔓 [INPUT] API call completed - waiting for typewriter to finish');
+      
+      // 🛡️ FALLBACK: If no answer content was received, reset loading state immediately
+      // This handles cases where only thoughts are returned or response is empty
+      if (!answerBuffer || answerBuffer.trim() === '') {
+        console.log('🔓 [FALLBACK] No answer content - resetting loading state immediately');
+        setIsLoading(false);
+      } else {
+        // 🛡️ SAFETY TIMEOUT: Ensure input is enabled even if typewriter gets stuck
+        // This prevents the input from being permanently disabled
+        setTimeout(() => {
+          if (isLoading) {
+            console.log('🔓 [SAFETY] Timeout fallback - forcing loading state reset');
+            setIsLoading(false);
+          }
+        }, 30000); // 30 second timeout
+      }
       
       // ✅ Update metadata only - preserve the typewriter-animated text
       setMessages(prev => prev.map(msg => 

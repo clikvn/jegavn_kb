@@ -5,6 +5,22 @@ All notable changes to the JEGA Knowledge Base project will be documented in thi
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2025-01-15] - Chat Input Visibility Fix
+
+### Fixed
+- **FIXED**: Chat input box no longer gets hidden after Flowise response completion
+- **FIXED**: Race condition between API completion and typewriter animation that caused input to be disabled
+- **FIXED**: Input box now properly re-enables only after typewriter animation completes
+- **FIXED**: Added fallback mechanism for cases with no answer content (thoughts only)
+- **FIXED**: Added safety timeout to prevent input from being permanently disabled
+
+### Technical Details
+- **Root Cause**: `setIsLoading(false)` was called immediately after API completion, before typewriter finished
+- **Solution**: Moved loading state reset to typewriter completion callback (`onDone`)
+- **Fallback**: Added immediate reset for empty responses to handle thoughts-only responses
+- **Safety**: Added 30-second timeout to prevent permanent input disabling
+- **Logging**: Enhanced console logging to track input state changes
+
 ## [2025-01-15] - Complete Migration to Flowise-Only Architecture
 
 ## [2025-01-15] - Feedback System Removal
